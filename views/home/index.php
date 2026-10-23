@@ -59,12 +59,12 @@
    <a class="fbtn" href="javascript:void(0)"><!-- URL: consultation / contact page -->Get a Free Consultation →</a></div>
  </div>
  <div class="feats sv" style="transition-delay:.45s">
-  <div class="feat"><span class="fi">⚡</span><div><b>Fast Delivery</b><small>On-time project delivery with agile process.</small></div></div>
-  <div class="feat"><span class="fi">🛡</span><div><b>Secure Solutions</b><small>Your data and business are always protected.</small></div></div>
-  <div class="feat"><span class="fi">👥</span><div><b>Expert Team</b><small>Skilled developers with real-world experience.</small></div></div>
-  <div class="feat"><span class="fi">🎧</span><div><b>24/7 Support</b><small>We're always here when you need us.</small></div></div>
-  <div class="note">Let's Build<br>Something Great<svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#f26a1b" stroke-width="2" stroke-linecap="round"><path d="M5 5c10 4 20 14 24 28M22 30l7 4 3-8"/></svg></div>
- </div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><b>Fast Delivery</b><small>On-time project delivery with agile process.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Secure Solutions</b><small>Your data and business are always protected.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b>Expert Team</b><small>Skilled developers with real-world experience.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><div><b>24/7 Support</b><small>We're always here when you need us.</small></div></div>
+   <div class="note">Let's Build<br>Something Great<svg class="note-arrow" width="42" height="42" viewBox="0 0 40 40" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 C 14 26, 22 16, 26 6 M 17 9 L 26 6 L 27 16"/></svg></div>
+  </div>
 </section>
 
 <!-- ===== FEATURED PROJECTS ===== -->
