@@ -91,10 +91,10 @@ body.dark .feat .fi {
   box-shadow: 0 0 16px rgba(242, 106, 27, 0.1);
 }
 
-/* Let's build something great upward arrow */
+/* Let's build something great upward arrow placed above text */
 .note svg.note-arrow {
   display: block;
-  margin: 4px 0 0 100px;
+  margin: 0 auto 4px auto !important;
   filter: drop-shadow(0 2px 6px rgba(242, 106, 27, 0.35));
 }
 
