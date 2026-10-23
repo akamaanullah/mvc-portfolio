@@ -14,11 +14,11 @@ function makeClearCube(){const G=new THREE.Group();
  const back=new THREE.Mesh(new RoundedBoxGeometry(2.58,2.58,2.58,6,.22),new THREE.MeshPhysicalMaterial({color:0xffe8d6,roughness:.05,envMapIntensity:.3,transparent:true,opacity:.12,side:THREE.BackSide,depthWrite:false,clearcoat:1}));G.add(back);
  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(2.5,2.5,2.5)),new THREE.LineBasicMaterial({color:0xffb27a,transparent:true,opacity:.9}));G.add(edges);
  const circ=T((g,w,h)=>{const r=g.createLinearGradient(0,0,w,h);r.addColorStop(0,'#ff9a3c');r.addColorStop(1,'#e84a00');g.fillStyle=r;g.fillRect(0,0,w,h);g.strokeStyle='rgba(255,230,200,.55)';g.lineWidth=3;for(let i=0;i<14;i++){g.beginPath();const x=(i*37)%w,y=(i*59)%h;g.moveTo(x,0);g.lineTo(x,y);g.lineTo(x+40,y+30);g.lineTo(x+40,h);g.stroke();g.fillStyle='#ffe2c4';g.beginPath();g.arc(x+40,y+30,4,0,7);g.fill()}
-  g.strokeStyle='#fff';g.lineWidth=16;g.lineCap=g.lineJoin='round';g.shadowColor='#fff';g.shadowBlur=16;g.beginPath();g.moveTo(92,86);g.lineTo(52,128);g.lineTo(92,170);g.moveTo(164,86);g.lineTo(204,128);g.lineTo(164,170);g.moveTo(142,76);g.lineTo(114,180);g.stroke()});
+  g.strokeStyle='#fff';g.lineWidth=16;g.lineCap=g.lineJoin='round';g.shadowColor='#fff';g.shadowBlur=8;g.beginPath();g.moveTo(92,86);g.lineTo(52,128);g.lineTo(92,170);g.moveTo(164,86);g.lineTo(204,128);g.lineTo(164,170);g.moveTo(142,76);g.lineTo(114,180);g.stroke()});
  const core=new THREE.Mesh(new RoundedBoxGeometry(1.45,1.45,1.45,4,.1),new THREE.MeshStandardMaterial({map:circ,emissiveMap:circ,color:0xffffff,emissive:0xffffff,emissiveIntensity:1.1,roughness:.4}));G.add(core);
- const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:T((g,w,h)=>{const r=g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);r.addColorStop(0,'rgba(255,140,50,.75)');r.addColorStop(.4,'rgba(255,120,40,.18)');r.addColorStop(1,'rgba(255,120,40,0)');g.fillStyle=r;g.fillRect(0,0,w,h)}),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));halo.scale.setScalar(4.5);halo.renderOrder=-1;G.add(halo);
+ const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:T((g,w,h)=>{const r=g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);r.addColorStop(0,'rgba(255,140,50,.55)');r.addColorStop(.4,'rgba(255,120,40,.12)');r.addColorStop(1,'rgba(255,120,40,0)');g.fillStyle=r;g.fillRect(0,0,w,h)}),transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));halo.scale.setScalar(4.5);halo.renderOrder=-1;G.add(halo);
  G.userData={core,halo,edges};return G}
-function cubeTick(G,t){const p=.5+.5*Math.sin(t*2.2);G.userData.core.material.emissiveIntensity=.08+p*.14;G.userData.halo.material.opacity=.08+p*.1;G.userData.halo.scale.setScalar(3.8+p*.6);G.rotation.y=t*.25;G.rotation.x=-.4+Math.sin(t*.5)*.06;G.userData.core.rotation.y=-t*.15}
+function cubeTick(G,t){const p=.5+.5*Math.sin(t*2.2);G.userData.core.material.emissiveIntensity=.06+p*.10;G.userData.halo.material.opacity=.05+p*.07;G.userData.halo.scale.setScalar(3.8+p*.6);G.rotation.y=t*.25;G.rotation.x=-.4+Math.sin(t*.5)*.06;G.userData.core.rotation.y=-t*.15}
 
 const stage=document.getElementById('stage'),canvas=document.getElementById('c');
 const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
@@ -73,7 +73,7 @@ const particles=new THREE.Points(pts,new THREE.PointsMaterial({size:.12,map:dotT
 const balls=[];for(let i=0;i<12;i++){const m=new THREE.Mesh(new THREE.SphereGeometry(.06+Math.random()*.1,24,24),i%3?orangeM:glass({thickness:.4}));m.position.set((Math.random()-.5)*10,(Math.random()-.5)*6,(Math.random()-.5)*3);m.userData.p=Math.random()*6;world.add(m);balls.push(m)}
 
 // post
-const comp=new EffectComposer(R);comp.addPass(new RenderPass(scene,cam));const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.55,.5,1.02);comp.addPass(bloom);comp.addPass(new OutputPass());
+const comp=new EffectComposer(R);comp.addPass(new RenderPass(scene,cam));const bloom=new UnrealBloomPass(new THREE.Vector2(1,1),.38,.45,1.04);comp.addPass(bloom);comp.addPass(new OutputPass());
 
 function size(){const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);comp.setSize(w,h);lr.setSize(w,h);cam.aspect=w/h;cam.position.z=w<600?Math.max(15.5,8.3/(Math.tan(THREE.MathUtils.degToRad(18))*w/h)):15.5;root.position.x=w<600?0:-.2;cam.updateProjectionMatrix();lineSvg.setAttribute('viewBox',`0 0 ${w} ${h}`)}
 addEventListener('resize',size);size();
@@ -96,7 +96,7 @@ window.__heroCubeScreen=()=>{const r=canvas.getBoundingClientRect(),p=new THREE.
 let hf=0;function loop(){requestAnimationFrame(loop);if(!heroVis)return;if(document.documentElement.classList.contains("splashing")&&window.__heroReady)return;const t=clock.getElapsedTime();
  // entrance
  const e=ease((t-.2)/1.6);cube.scale.setScalar(.3+.7*e);cube.position.y=(1-e)*-2;rings.forEach((r,i)=>{r.material.opacity=[.7,.5,.35][i]*ease((t-.6-i*.15)/1)});
- cubeTick(cube,t);cube.visible=!window.__splashHideCube;cube.position.y+=Math.sin(t*1.1)*.12;warm.intensity=10+Math.sin(t*2.2)*6;
+ cubeTick(cube,t);cube.visible=!window.__splashHideCube;cube.position.y+=Math.sin(t*1.1)*.12;warm.intensity=7+Math.sin(t*2.2)*3.5;
  if(!down){vy*=.94;vx*=.9}dragY+=vy;dragX=THREE.MathUtils.clamp(dragX+vx,-.5,.5);dragX*=.97;
  if(targetSpin!==null){dragY+=(targetSpin-dragY)*.06;if(Math.abs(targetSpin-dragY)<.01)targetSpin=null}
  root.rotation.y+=((mx*.35)-root.rotation.y)*.05;root.rotation.x+=((my*.2+dragX)-root.rotation.x)*.05;
