@@ -56,3 +56,22 @@ body.dark .chip.on{background:linear-gradient(135deg,#f26a1b,#ff8a3d);color:#fff
 .srow .ic svg {
   display: block;
 }
+
+/* Center 3D Services labels handwritten font */
+.slbl {
+  font-family: 'Kalam', 'Caveat', cursive !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+}
+.slbl.hi {
+  color: var(--o) !important;
+  transform: scale(1.12);
+}
+
+/* Remove harsh circular white glare on services stage */
+#sc {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}

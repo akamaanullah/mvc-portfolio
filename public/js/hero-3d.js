@@ -130,14 +130,13 @@ rows.forEach(r=>{r.addEventListener('mouseenter',()=>{hov=r.dataset.service;show
 const sec=document.getElementById('services');new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&sec.classList.add('in')),{threshold:.12}).observe(sec);
 
 const stage=document.getElementById('sstage'),canvas=document.getElementById('sc');
-const R=new THREE.WebGLRenderer({canvas,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
-const scene=new THREE.Scene();const BGL=new THREE.Color(0xfbf3ea),BGD=new THREE.Color(0x0f0f15);scene.background=document.body.classList.contains('dark')?BGD.clone():BGL.clone();
-new MutationObserver(()=>scene.background=document.body.classList.contains('dark')?BGD.clone():BGL.clone()).observe(document.body,{attributes:true});
+const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();
 scene.environment=new THREE.PMREMGenerator(R).fromScene(new RoomEnvironment(),.04).texture;
 const cam=new THREE.PerspectiveCamera(34,1,.1,100);cam.position.set(0,3.2,15);cam.lookAt(0,-.3,0);
 const lr=new CSS2DRenderer();lr.domElement.style.cssText='position:absolute;inset:0;pointer-events:none';stage.appendChild(lr.domElement);
-scene.add(new THREE.AmbientLight(0xfff1e6,.7));const key=new THREE.DirectionalLight(0xffffff,1.5);key.position.set(4,8,6);key.castShadow=true;key.shadow.radius=8;key.shadow.mapSize.set(1024,1024);scene.add(key);
-const warm=new THREE.PointLight(0xff7a2a,14,10);warm.position.y=-.4;scene.add(warm);
+scene.add(new THREE.AmbientLight(0xfff1e6,.4));const key=new THREE.DirectionalLight(0xffffff,1.0);key.position.set(4,8,6);key.castShadow=true;key.shadow.radius=8;key.shadow.mapSize.set(1024,1024);scene.add(key);
+const warm=new THREE.PointLight(0xff7a2a,10,10);warm.position.y=-.4;scene.add(warm);
 const root=new THREE.Group();scene.add(root);const world=new THREE.Group();root.add(world);
 const mkTex=(draw,w=256,h=256)=>{const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t};
 
@@ -170,7 +169,7 @@ TL.forEach(([k,name,bg,fg,x,y],i)=>{const g=new THREE.Group();
  g.position.set(x,y,0);g.userData={k,base:new THREE.Vector3(x,y,Math.abs(x)<2.5?-1:.6),body,lab,ph:i*1.1,s:0,glow:0};world.add(g);tiles.push(g)});
 
 const sh=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.ShadowMaterial({opacity:.07}));sh.rotation.x=-Math.PI/2;sh.position.y=-2.6;sh.receiveShadow=true;scene.add(sh);
-const comp=new EffectComposer(R);comp.addPass(new RenderPass(scene,cam));comp.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.5,.5,1.02));comp.addPass(new OutputPass());
+const comp=new EffectComposer(R);comp.addPass(new RenderPass(scene,cam));comp.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.22,.4,1.0));comp.addPass(new OutputPass());
 function size(){const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);comp.setSize(w,h);lr.setSize(w,h);cam.aspect=w/h;cam.position.z=w<600?19.5:15;cam.updateProjectionMatrix()}addEventListener('resize',size);size();
 
 // interaction
