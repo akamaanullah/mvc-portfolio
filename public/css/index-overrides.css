@@ -262,6 +262,54 @@ body.dark .cv:hover {
   margin-top: 24px !important;
 }
 
+/* Fix .more button inside .wave preventing .wave svg from breaking inner SVGs */
+.wave > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+}
+.more svg {
+  position: static !important;
+  inset: auto !important;
+}
+.more .mi {
+  display: grid !important;
+  place-items: center !important;
+}
+.more .mi svg {
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
+}
+.more .ar {
+  margin-left: 20px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  display: grid !important;
+  place-items: center !important;
+  transition: all 0.25s ease !important;
+}
+.more .ar svg {
+  width: 15px !important;
+  height: 15px !important;
+  display: block !important;
+  stroke: #ffffff !important;
+  transition: transform 0.25s ease !important;
+}
+.more:hover .ar {
+  background: var(--o) !important;
+  border-color: var(--o) !important;
+  box-shadow: 0 0 16px rgba(242, 106, 27, 0.6) !important;
+}
+.more:hover .ar svg {
+  transform: translateX(3px) !important;
+}
+
+
 
 
 
