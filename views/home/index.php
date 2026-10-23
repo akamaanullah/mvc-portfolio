@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="<?= asset_url('js/index.js') ?>"></script>
+<script src="<?= asset_url('js/splash-gate.js') ?>"></script>
 
 <title>Amaanullah — Web Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&family=Caveat:wght@600&display=swap&family=Kalam:wght@700&display=swap" rel="stylesheet">
@@ -371,8 +371,8 @@
 <?php require view_path('layouts/footer.php'); ?>
 
 
-<script type="module" src="<?= asset_url('js/index-2.js') ?>"></script>
-<script type="module" src="<?= asset_url('js/index-3.js') ?>"></script>
-<script type="module" src="<?= asset_url('js/index-4.js') ?>"></script><script src="<?= asset_url('js/chatbot-config.js') ?>"></script><!-- EDIT: chatbot config -->
+<script type="module" src="<?= asset_url('js/splash-particles.js') ?>"></script>
+<script type="module" src="<?= asset_url('js/splash-portal.js') ?>"></script>
+<script type="module" src="<?= asset_url('js/hero-3d.js') ?>"></script><script src="<?= asset_url('js/chatbot-config.js') ?>"></script><!-- EDIT: chatbot config -->
 <script src="<?= asset_url('js/chatbot.js') ?>" defer></script>
 </body></html>

@@ -21,7 +21,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does a custom CRM cost in Pakistan?", "acceptedAnswer": {"@type": "Answer", "text": "A focused CRM MVP often runs 4–6 weeks of development. Enterprise multi-tenant CRM with automation, integrations and reporting needs a custom quote based on modules, user load and timeline; you’ll get a specific number after the discovery call."}}]}</script><!-- DYNAMIC: JSON-LD built in controller; FAQPage only for answered FAQs; aggregateRating must match the live Google figure -->
 <link rel="stylesheet" href="<?= asset_url('css/landing.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/landing.dark.css') ?>">
+">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>

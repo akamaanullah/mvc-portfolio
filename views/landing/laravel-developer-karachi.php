@@ -21,7 +21,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does Laravel development cost in Karachi?", "acceptedAnswer": {"@type": "Answer", "text": "Cost depends on scope. Focused Laravel MVPs often run 4–8 weeks; enterprise CRM or SaaS builds need a custom quote based on modules, integrations and timeline. Contact me for a clear estimate after a short discovery call."}}]}</script><!-- DYNAMIC: JSON-LD built in controller; FAQPage only for answered FAQs; aggregateRating must match the live Google figure -->
 <link rel="stylesheet" href="<?= asset_url('css/landing.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/landing.dark.css') ?>">
+">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>

@@ -28,7 +28,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which database strategy is best for a new Laravel SaaS?", "acceptedAnswer": {"@type": "Answer", "text": "For most new products, a single database with a tenant_id column is the simplest and cheapest to run. Move to schema- or database-per-tenant when customers require stronger isolation, data residency or individual backups."}}, {"@type": "Question", "name": "Do global scopes protect raw DB queries?", "acceptedAnswer": {"@type": "Answer", "text": "No. Global scopes only apply to Eloquent queries. Raw DB::table() and DB::select() calls, and validation rules such as unique and exists, need explicit tenant conditions."}}, {"@type": "Question", "name": "How do queued jobs know which tenant they belong to?", "acceptedAnswer": {"@type": "Answer", "text": "Pass the tenant ID into the job, then restore the tenant context at the start of handle() before running any queries."}}, {"@type": "Question", "name": "Should I use stancl/tenancy or build my own?", "acceptedAnswer": {"@type": "Answer", "text": "For database-per-tenant setups a package usually saves significant time. For a simple shared-database model, a small trait and middleware may be all you need."}}]}</script>
 <link rel="stylesheet" href="<?= asset_url('css/article.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/article.dark.css') ?>">
+">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>

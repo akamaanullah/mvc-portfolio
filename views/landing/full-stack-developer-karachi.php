@@ -21,7 +21,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does it cost to hire a developer in Karachi, Pakistan?", "acceptedAnswer": {"@type": "Answer", "text": "Project cost depends entirely on scope and complexity. A focused CRM or internal tool MVP typically runs 4–8 weeks. Enterprise-scale multi-tenant CRM or SaaS builds with integrations, reporting and full documentation require a custom quote. Rates in Karachi are significantly more cost-effective than equivalent UK or US agencies while delivering senior-level architecture, not junior execution."}}]}</script><!-- DYNAMIC: JSON-LD built in controller; FAQPage only for answered FAQs; aggregateRating must match the live Google figure -->
 <link rel="stylesheet" href="<?= asset_url('css/landing.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/landing.dark.css') ?>">
+">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>

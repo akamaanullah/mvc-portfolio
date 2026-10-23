@@ -242,7 +242,7 @@
 }</script>
 <!-- FAQPage schema intentionally omitted: answers not available yet. Add once real answers are filled in. -->
 <link rel="stylesheet" href="<?= asset_url('css/services-page.css') ?>"><link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/services-page.dark.css') ?>">
+">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head><body>

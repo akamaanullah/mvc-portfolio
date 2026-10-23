@@ -1,0 +1,448 @@
+{
+    "identity": {
+        "name": "Amaanullah (@akamaanullah)",
+        "role": "Full-Stack Software Developer & PHP/Laravel Specialist",
+        "location": "Karachi, Pakistan (Available Globally / Remote)",
+        "experience": "6+ years of professional software engineering experience",
+        "voice": "Speak simply, clearly, and politely as Amaanullah using 'I' and 'My'. Avoid heavy buzzwords or technical jargon.",
+        "contact_info": {
+            "phone": "+92 319 6935307",
+            "whatsapp": "+92 319 6935307",
+            "whatsapp_link": "https://api.whatsapp.com/send?phone=923196935307",
+            "email": "info@amaanullah.com",
+            "location": "Karachi, Pakistan (Serving clients globally: USA, UK, UAE, Australia, Europe)",
+            "contact_page": "https://amaanullah.com/contact",
+            "linkedin": "https://www.linkedin.com/in/akamaanullah/",
+            "github": "https://github.com/akamaanullah"
+        },
+        "bio": "I am a Full-Stack Software Developer with over 6 years of experience. I specialize in building custom CRM systems, web applications with PHP/Laravel, AI workflow automations, and mobile apps with Flutter. I help businesses eliminate recurring software subscription fees and build reliable, scalable tools tailored to their exact workflow.",
+        "education": "Advanced Diploma in Software Engineering (ADSE) - Aptech Learning.",
+        "career_history": [
+            {
+                "company": "Richmond Tech Group (USA/Global)",
+                "role": "Senior Developer / Lead Developer",
+                "focus": "Enterprise SaaS and Multi-tenant systems."
+            },
+            {
+                "company": "Skylink Elevators (Dubai)",
+                "role": "Tech Consultant",
+                "focus": "Operational efficiency and digital transformation."
+            },
+            {
+                "company": "Master Travel & Tours",
+                "role": "Tech Advisor",
+                "focus": "Digital scaling and workflow automation."
+            }
+        ],
+        "core_skills": [
+            "PHP & Laravel",
+            "MySQL Database Design & Query Optimization",
+            "Flutter & Mobile App Development",
+            "Node.js & Modern JavaScript",
+            "Real-time Chat & WebSockets",
+            "Custom CRM & HRM Systems",
+            "AI Automation, Agents & API Integrations",
+            "Clean UI/UX Design & SEO Optimization"
+        ]
+    },
+    "services": [
+        {
+            "id": "services/custom-crm-development",
+            "slug": "services/custom-crm-development",
+            "title": "Custom CRM Development",
+            "category": "CRM & Business Systems",
+            "summary": "100% custom-built CRM and HRM systems with zero monthly user license fees. Tailored lead pipelines, role-based access, automated follow-ups, and complete data ownership.",
+            "key_features": [
+                "Zero recurring per-user fees",
+                "Custom sales pipelines & lead scoring",
+                "Multi-tenant role management",
+                "Automated email/SMS workflows",
+                "Custom reporting dashboards"
+            ]
+        },
+        {
+            "id": "services/ai-automation-services",
+            "slug": "services/ai-automation-services",
+            "title": "AI Automation & AI Agents",
+            "category": "AI & Automation",
+            "summary": "Intelligent AI agents and workflow automation that eliminate repetitive operational tasks, automate lead qualification, and integrate LLMs into business software.",
+            "key_features": [
+                "Autonomous customer support agents",
+                "Automated document & data processing",
+                "API integrations & webhook pipelines",
+                "Predictive analytics & scoring"
+            ]
+        },
+        {
+            "id": "services/web-development",
+            "slug": "services/web-development",
+            "title": "Web Application Development",
+            "category": "Web Systems & SaaS",
+            "summary": "High-speed, scalable web applications, SaaS platforms, and enterprise portals engineered with PHP, Laravel, MySQL, and modern JavaScript.",
+            "key_features": [
+                "95+ Google PageSpeed performance",
+                "Scalable database architecture",
+                "Custom API & payment integrations",
+                "Advanced security & clean UI"
+            ]
+        },
+        {
+            "id": "services/business-process-automation",
+            "slug": "services/business-process-automation",
+            "title": "Business Process Automation",
+            "category": "Operations & Workflows",
+            "summary": "Streamlining complex multi-step business workflows, reducing human error, and connecting fragmented third-party APIs into unified pipelines.",
+            "key_features": [
+                "Automated invoicing & billing cycles",
+                "Inventory & order sync across platforms",
+                "Multi-department approval workflows",
+                "SLA monitoring & auto-alerts"
+            ]
+        },
+        {
+            "id": "services/chat-application-development",
+            "slug": "services/chat-application-development",
+            "title": "Chat & Real-Time Messaging Systems",
+            "category": "Communication Software",
+            "summary": "Ultra-fast, secure real-time messaging engines and Slack/WhatsApp alternatives with live status, file sharing, and self-hosted data security.",
+            "key_features": [
+                "Zero-latency WebSockets / Firebase engine",
+                "End-to-end data privacy & sovereignty",
+                "Multi-user rooms & direct channels",
+                "Desktop & mobile responsive"
+            ]
+        },
+        {
+            "id": "services/mobile-app-development",
+            "slug": "services/mobile-app-development",
+            "title": "Mobile App Development",
+            "category": "Mobile Applications",
+            "summary": "Cross-platform mobile apps for iOS and Android built with Flutter and Firebase for smooth performance, real-time sync, and rapid launch.",
+            "key_features": [
+                "Single codebase for iOS & Android",
+                "Real-time Cloud Firestore sync",
+                "Push notifications & geolocation",
+                "Offline caching & fluid animations"
+            ]
+        },
+        {
+            "id": "crm-developer-pakistan",
+            "slug": "crm-developer-pakistan",
+            "title": "Custom CRM Developer in Pakistan",
+            "category": "Specialized Solution",
+            "summary": "Dedicated custom CRM and lead management development for Pakistani and international businesses seeking to replace costly SaaS tools with custom software.",
+            "key_features": [
+                "Bespoke business logic",
+                "Local & international payment gateway integration",
+                "Zero monthly subscription fees"
+            ]
+        },
+        {
+            "id": "laravel-developer-karachi",
+            "slug": "laravel-developer-karachi",
+            "title": "Laravel Developer in Karachi",
+            "category": "Specialized Solution",
+            "summary": "Senior PHP & Laravel developer in Karachi providing enterprise backend engineering, custom portal development, and legacy code refactoring.",
+            "key_features": [
+                "Clean MVC architecture",
+                "High-throughput database queries",
+                "RESTful API development"
+            ]
+        },
+        {
+            "id": "hire-a-developer-karachi",
+            "slug": "hire-a-developer-karachi",
+            "title": "Hire a Software Developer in Karachi",
+            "category": "Specialized Solution",
+            "summary": "Hire senior full-stack developer Amaanullah for fixed-price contracts, dedicated milestone builds, or tech advisory for global startups and enterprises.",
+            "key_features": [
+                "Direct communication",
+                "Fast sprint deliveries",
+                "Global remote availability"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "id": "adsimpressions-custom-digital-agency-platform",
+            "slug": "projects/adsimpressions-custom-digital-agency-platform",
+            "title": "Adsimpressions — Custom Digital Agency Website",
+            "category": "Web & Digital Platforms / Custom Solutions",
+            "tech": "PHP, HTML, CSS, JavaScript, MySQL, SEO Schema",
+            "client": "Adsimpressions - Digital Marketing Agency",
+            "duration": "3-4 months",
+            "summary": "Explore Adsimpressions: A custom PHP agency platform optimized for Technical SEO, lead funnels, and high-performance in Dubai and USA markets.",
+            "impact": "99+ PageSpeed Score & Optimized Assets; 40% Increase in Organic Search Visibility"
+        },
+        {
+            "id": "it-hardware-bin-bulk-hardware-ecommerce-platform",
+            "slug": "projects/it-hardware-bin-bulk-hardware-ecommerce-platform",
+            "title": "IT Hardware Bin — B2B Bulk Hardware E-Commerce Platform",
+            "category": "E-Commerce & Scalable Systems",
+            "tech": "PHP, MySQL, HTML5, CSS3, JavaScript, AJAX, Custom Admin Architecture",
+            "client": "IT Hardware Bin - Bulk Hardware Marketplace",
+            "duration": "4-5 months",
+            "summary": "Scalable B2B e-commerce platform for bulk IT hardware procurement. Features 2,000+ products, custom quote system, and optimized speed.",
+            "impact": "95% Load Speed Optimization; High B2B Acquisition Rate"
+        },
+        {
+            "id": "expense-voyage-budget-expense-management-web-app",
+            "slug": "projects/expense-voyage-budget-expense-management-web-app",
+            "title": "Expense Voyage — Budget & Expense Tracking Web App",
+            "category": "FinTech & Web Applications",
+            "tech": "Core PHP, MySQL, Bootstrap 5, HTML5, CSS3, JavaScript, AJAX",
+            "client": "TechWiz Global Competition (Top-Tier Recognition)",
+            "duration": "High-Intensity Competition Sprint",
+            "summary": "Discover Expense Voyage, an award-winning FinTech app with real-time budget tracking, AJAX UI, and high-security admin oversight.",
+            "impact": "Performance Optimization under Pressure; Scalable SaaS Foundation"
+        },
+        {
+            "id": "babyshop-mobile-app-ecommerce-firebase-solution",
+            "slug": "projects/babyshop-mobile-app-ecommerce-firebase-solution",
+            "title": "Babyshop — Flutter E-Commerce Mobile App",
+            "category": "Mobile App Development / Firebase Systems",
+            "tech": "Flutter, Firebase Real-Time Database, Cloud Storage Integration, Responsive Mobile UI",
+            "client": "Aptech Academic Achievement (Team Project)",
+            "duration": "21 Days (Rapid High-Intensity Sprint)",
+            "summary": "Build a scalable retail ecosystem with this custom e-commerce mobile app featuring dual apps and real-time Firebase synchronization.",
+            "impact": "Real-Time Cloud Synchronization; Scalable Mobile-First Architecture"
+        },
+        {
+            "id": "healink-medicine-app-healthcare-hospital-management-solution",
+            "slug": "projects/healink-medicine-app-healthcare-hospital-management-solution",
+            "title": "Healink — Hospital & Medical Records Management App",
+            "category": "Healthcare Tech / Enterprise Systems",
+            "tech": "Flutter, Firebase Real-Time Database, Encrypted Cloud Storage, HMS Architecture",
+            "client": "Healthcare Industry Collaborative",
+            "duration": "Long-term Development",
+            "summary": "Healink: A unified HMS medical ecosystem with real-time Firebase sync, secure records, and hospital-pharmacy interoperability.",
+            "impact": "90% Reduction in Patient Wait Times; Scalable Hospital-Pharmacy Network"
+        },
+        {
+            "id": "tour-guide-mobile-app-explore-pakistan-travel-solution",
+            "slug": "projects/tour-guide-mobile-app-explore-pakistan-travel-solution",
+            "title": "Tour Guide Mobile App — Travel Companion for Pakistan",
+            "category": "Mobile Development / Tourism Tech",
+            "tech": "Flutter, Firebase Real-Time Database, OpenWeather API, Google Maps Location API",
+            "client": "Academic Merit Award (Best Project of the Month)",
+            "duration": "21 Days (Rapid Team-Led Development Cycle)",
+            "summary": "Award-winning Pakistan Tour Guide App with real-time Firebase sync and GEO-location intelligence for exploring top destinations.",
+            "impact": "Zero-Lag Data Synchronization; Scalable Content Management"
+        },
+        {
+            "id": "ticketing-crm-jobs-vendor-management-enterprise-portal",
+            "slug": "projects/ticketing-crm-jobs-vendor-management-enterprise-portal",
+            "title": "Ticketing CRM — Job & Vendor Management System",
+            "category": "Enterprise Software / CRM Solutions",
+            "tech": "PHP, MySQL, HTML5, CSS3, JavaScript, AJAX, jQuery, Bootstrap, Role-Based Access Control",
+            "client": "Internal Product / Enterprise Sector",
+            "duration": "6-8 months (Enterprise Orchestration)",
+            "summary": "Enterprise ticketing CRM case study: job lifecycle, vendor matching, SLA tracking, and chat — built with Laravel for field ops teams.",
+            "impact": "70% Faster Turnaround Time; Enterprise-Grade Audit Efficiency"
+        },
+        {
+            "id": "multi-tenant-crm-sales-operations-management-system",
+            "slug": "projects/multi-tenant-crm-sales-operations-management-system",
+            "title": "Multi-Tenant CRM — Sales & Operations Platform",
+            "category": "Full-Stack Enterprise / SaaS Architecture",
+            "tech": "Core PHP, MySQL (Optimized), WebSockets, AJAX, 2FA, Bootstrap 5, Real-Time Charting, High-Volume Data Indexing",
+            "client": "CRM - High-Volume Sales Ecosystem",
+            "duration": "12+ months (Continuous Enterprise Scaling)",
+            "summary": "A custom, high-performance multi-tenant CRM designed for data sovereignty. Manages 1.5M+ leads with real-time analytics and 300+ users.",
+            "impact": "Managed 1.5M+ Leads Smoothly; Supported 300+ Concurrent Team Users"
+        },
+        {
+            "id": "hrm-employee-management-payroll-portal",
+            "slug": "projects/hrm-employee-management-payroll-portal",
+            "title": "HRM & Payroll Software — Employee Management Portal",
+            "category": "Enterprise Solutions / HR Tech",
+            "tech": "Core PHP, MySQL, AJAX, jQuery, Bootstrap 5, Chart.js, WebSockets, CRON Automation, Role-Based Access Control, Modular Admin Architecture",
+            "client": "Internal Business Solution",
+            "duration": "5-6 months + Version 2 Enhancement",
+            "summary": "HRM & payroll portal case study: attendance, leave, payroll automation, payslips, and HR analytics — built with Laravel for enterprise teams.",
+            "impact": "90% Faster HR Operations & Reduced Manual Corrections; Scalable HR, Payroll, Leave, Events & IT Support Ecosystem"
+        },
+        {
+            "id": "workspace-kanban-project-task-management-platform",
+            "slug": "projects/workspace-kanban-project-task-management-platform",
+            "title": "Kanban Project Management Tool — Team Workspace",
+            "category": "Workflow Automation / Project Management",
+            "tech": "Core PHP, MySQL, Vanilla JavaScript (Drag-and-Drop API), AJAX, Bootstrap 5, jQuery",
+            "client": "In-House Project Management Solution",
+            "duration": "4-5 months (Operational Engineering)",
+            "summary": "Transform team productivity with Workspace, a custom Kanban-based project management platform featuring drag-and-drop workflows.",
+            "impact": "85% Increase in Workflow Clarity; Custom Agile Scaling Capabilities"
+        },
+        {
+            "id": "chatrox-real-time-messaging-professional-networking",
+            "slug": "projects/chatrox-real-time-messaging-professional-networking",
+            "title": "Chatrox — Custom Enterprise Chat App (Slack Alternative)",
+            "category": "Communication Tech / Enterprise Systems",
+            "tech": "Flutter, Firebase Real-Time Database, WebSockets, PHP (Backend Logic), Cloud Storage",
+            "client": "Internal Enterprise Digital Tool",
+            "duration": "4-5 months",
+            "summary": "Chatrox case study: custom enterprise chat app with WebSocket messaging, role-based access, file sharing, and full data ownership.",
+            "impact": "Zero-Latency Delivery; Scalable Cross-Platform Networking"
+        },
+        {
+            "id": "real-estate-property-portal-multi-role-marketplace",
+            "slug": "projects/real-estate-property-portal-multi-role-marketplace",
+            "title": "Real Estate Portal — Multi-Role Property Marketplace",
+            "category": "Enterprise Solutions / Web Applications",
+            "tech": "PHP, MySQL, WebSockets, AJAX, Bootstrap 5, Chart.js, CRON Jobs, Real-Time Analytics, RBAC Architecture",
+            "client": "Real Estate Enterprise Solution",
+            "duration": "8-10 months",
+            "summary": "Custom real estate portal case study with multi-role RBAC, agency management, quota-based ad boosting, AJAX property search, and analytics dashboards.",
+            "impact": "Automated Listing Approvals, Quota Boosting, Agent Dashboards and Faster Property Discovery; Scalable Real Estate Marketplace Architecture with PropTech SaaS Expansion Potential"
+        },
+        {
+            "id": "the-perfect-vape-custom-ecommerce-platform-theme-builder",
+            "slug": "projects/the-perfect-vape-custom-ecommerce-platform-theme-builder",
+            "title": "Custom Vape E-Commerce Platform (PHP, No Shopify/WooCommerce)",
+            "category": "E-Commerce / Custom SaaS Platform",
+            "tech": "PHP 8, MySQL, JavaScript (Vanilla), HTML5, CSS3, AJAX, Custom MVC Architecture, Laravel-inspired Routing, Custom Theme Engine, Session Management, REST-style Internal API",
+            "client": "The Perfect Vape – Premium Vaping Store",
+            "duration": "1–2 months",
+            "summary": "Custom PHP e-commerce platform for a UK vape store — admin theme builder, order management, coupon system, SEO-ready. No Shopify, no WooCommerce.",
+            "impact": "100% Admin Control — Zero Code Required for Storefront Changes; $0/month Platform Fees vs $79–$299/month Shopify Equivalent"
+        }
+    ],
+    "articles": [
+        {
+            "id": "enterprise-solutions-development-roadmap",
+            "slug": "articles/enterprise-solutions-development-roadmap",
+            "title": "Navigating the Complexity of Enterprise Solutions: A Developer’s Roadmap",
+            "category": "Strategy",
+            "reading_time": "10 min",
+            "summary": "Discover the journey of building large-scale software. Learn how to design scalable enterprise systems that unify business processes and drive growth."
+        },
+        {
+            "id": "ai-in-software-development-future-trends",
+            "slug": "articles/ai-in-software-development-future-trends",
+            "title": "The AI Revolution in Software Engineering: Catalyst or Competitor?",
+            "category": "Technology",
+            "reading_time": "9 min",
+            "summary": "Explore the impact of AI on software development. Learn how to leverage AI tools to accelerate your workflow and stay ahead in the evolving tech landscape."
+        },
+        {
+            "id": "mastering-tech-tips-modern-developers",
+            "slug": "articles/mastering-tech-tips-modern-developers",
+            "title": "Mastering Tech Tips: Small Hacks for Massive Developer Productivity",
+            "category": "Technology",
+            "reading_time": "7 min",
+            "summary": "Small hacks, big impact. Discover actionable tech tips to improve your coding workflow, automate tasks, and leverage AI for faster development."
+        },
+        {
+            "id": "ai-developer-toolkit-2026-agentic-trends",
+            "slug": "articles/ai-developer-toolkit-2026-agentic-trends",
+            "title": "The 2026 AI Developer Toolkit: From Autocomplete to Autonomous Agents",
+            "category": "Technology",
+            "reading_time": "12 min",
+            "summary": "Find the top AI tools for 2026. Learn how autonomous agents are redefining developer productivity and software architecture."
+        },
+        {
+            "id": "ai-automation-business-development-intelligent-growth",
+            "slug": "articles/ai-automation-business-development-intelligent-growth",
+            "title": "AI Automation for Business Development: Driving Intelligent Growth",
+            "category": "AI and Automation",
+            "reading_time": "11 min",
+            "summary": "AI automation is the engine of modern business development. Discover how intelligent systems drive scalable growth and streamline your operations."
+        },
+        {
+            "id": "web-design-development-business-growth-strategy",
+            "slug": "articles/web-design-development-business-growth-strategy",
+            "title": "Web Design & Development as a Business Growth Strategy",
+            "category": "Strategy",
+            "reading_time": "10 min",
+            "summary": "Transform your website into a growth engine. Learn about conversion architecture and strategic web development that drive revenue."
+        },
+        {
+            "id": "ui-ux-design-psychic-user-experience-screens",
+            "slug": "articles/ui-ux-design-psychic-user-experience-screens",
+            "title": "Psychic UI/UX Design: Predicting User Experience Before the First Click",
+            "category": "Design",
+            "reading_time": "11 min",
+            "summary": "The best user experiences aren’t just reactive—they’re predictive. Learn about Psychic UI/UX design, human-centered flow, and how to build interfaces that anticipate user needs."
+        },
+        {
+            "id": "seo-paid-marketing-balanced-growth-strategy",
+            "slug": "articles/seo-paid-marketing-balanced-growth-strategy",
+            "title": "SEO vs Paid Ads: The Real Data on Building a Balanced Growth Strategy",
+            "category": "Strategy",
+            "reading_time": "12 min",
+            "summary": "SEO vs paid ads in 2026: real ROI data, CAC/LTV benchmarks, and how Google AI Overviews changed search. A practical framework for balancing both."
+        },
+        {
+            "id": "modern-web-development-technologies-guide",
+            "slug": "articles/modern-web-development-technologies-guide",
+            "title": "Modern Web Development Technologies: The Complete Guide for 2026",
+            "category": "Technology",
+            "reading_time": "11 min",
+            "summary": "What technologies define the web in 2026? Explore the latest in backend architecture, frontend innovation, and how to build scalable AI-integrated systems."
+        },
+        {
+            "id": "ecommerce-website-design-digital-branding-growth",
+            "slug": "articles/ecommerce-website-design-digital-branding-growth",
+            "title": "E-commerce Website Design: Digital Branding & Growth",
+            "category": "Strategy",
+            "reading_time": "10 min",
+            "summary": "Transform your online store into a high-performance brand engine. Learn about conversion UX, trust-first branding, and scalable e-commerce architecture."
+        },
+        {
+            "id": "ai-automation-transforming-businesses",
+            "slug": "articles/ai-automation-transforming-businesses",
+            "title": "AI Automation | Transforming Businesses with Smart Technology and Innovation",
+            "category": "AI & Automation",
+            "reading_time": "15 min",
+            "summary": "AI automation is driving the next industrial revolution. Discover how intelligent systems are reshaping human-technology interaction and innovation."
+        },
+        {
+            "id": "deploy-web-app-vps-guide",
+            "slug": "articles/deploy-web-app-vps-guide",
+            "title": "How to Deploy Your Web App Fast & Secure on a VPS (Step-by-Step Guide)",
+            "category": "Technology",
+            "reading_time": "12 min",
+            "summary": "Master VPS deployment with this step-by-step guide. Learn to secure your server, configure Nginx, and setup Let's Encrypt SSL for a professional web presence."
+        },
+        {
+            "id": "custom-software-crm-ai-automation-business-growth",
+            "slug": "articles/custom-software-crm-ai-automation-business-growth",
+            "title": "Custom Software Development for Businesses: CRM, AI Automation & Scalable Web Applications",
+            "category": "Strategy",
+            "reading_time": "18 min",
+            "summary": "Explore how custom software development, AI automation, and proprietary CRM systems drive growth in Healthcare, Logistics, E-commerce, and SaaS."
+        },
+        {
+            "id": "custom-software-vs-saas-business-scalability",
+            "slug": "articles/custom-software-vs-saas-business-scalability",
+            "title": "Custom Software vs SaaS: Which Is Better for Scaling in 2026?",
+            "category": "Strategy",
+            "reading_time": "14 min",
+            "summary": "Compare custom software and SaaS for business scalability, ROI, data ownership, workflow automation, AI readiness, integrations, and long-term growth."
+        },
+        {
+            "id": "what-is-ai-automation-business-use-cases-roi-tools",
+            "slug": "articles/what-is-ai-automation-business-use-cases-roi-tools",
+            "title": "What Is AI Automation? Business Use Cases, ROI Reality & Tools (2026)",
+            "category": "AI & Automation",
+            "reading_time": "13 min",
+            "summary": "AI automation combines machine learning with workflow automation. Explore 2026 market data, real ROI, where 80%+ of projects fail, and how to succeed."
+        },
+        {
+            "id": "does-ai-actually-make-developers-faster-2026-data",
+            "slug": "articles/does-ai-actually-make-developers-faster-2026-data",
+            "title": "Does AI Actually Make Developers Faster? The 2026 Data Says It's Complicated",
+            "category": "AI & Software Development",
+            "reading_time": "14 min",
+            "summary": "A randomized controlled trial found AI coding tools made experienced developers 19% slower — while they believed they were 20% faster. Here's what the 2025-2026 research on AI in software development actually shows, including adoption, security risk, and where it genuinely helps."
+        },
+        {
+            "id": "vibe-coding-risks-startups-need-real-developer",
+            "slug": "articles/vibe-coding-risks-startups-need-real-developer",
+            "title": "Vibe Coding Risks: Why Startups Still Need a Developer (2026)",
+            "category": "Security",
+            "reading_time": "6 min",
+            "summary": "Vibe coding ships fast but 40-60% of AI-generated apps carry security flaws. See the 2026 data and how a developer audit protects your business."
+        }
+    ]
+}

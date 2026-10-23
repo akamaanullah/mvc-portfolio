@@ -26,7 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Article", "CreativeWork"], "headline": "Chatrox \u2013 Custom Enterprise Chat App (Slack Alternative) Case Study", "description": "How a fully owned, real-time enterprise messaging platform was built with WebSockets, Flutter and PHP.", "image": "https://[your-domain]/images/banners/chatrox.webp", "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "https://[your-domain]/about"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "[YYYY-MM-DD]", "dateModified": "[YYYY-MM-DD]", "mainEntityOfPage": "https://[your-domain]/projects/products/chatrox", "keywords": "custom chat application, Slack alternative, WebSocket, enterprise messaging, Flutter, PHP"}</script>
 <link rel="stylesheet" href="<?= asset_url('css/case-study.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/case-study.dark.css') ?>">
+">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>
