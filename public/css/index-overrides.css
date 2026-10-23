@@ -309,6 +309,18 @@ body.dark .cv:hover {
   transform: translateX(3px) !important;
 }
 
+/* Contact reply note arrow pointing left */
+.chead .reply svg {
+  display: block !important;
+  margin: 4px 0 0 40px !important;
+}
+@media (max-width: 560px) {
+  .chead .reply svg {
+    margin: 4px 0 0 24px !important;
+  }
+}
+
+
 
 
 

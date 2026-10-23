@@ -38,6 +38,58 @@
  </div>
  <div class="stage" id="stage"><canvas id="c"></canvas><svg id="lines"></svg></div>
 </section>
+<!-- ===== ABOUT ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <clipPath id="cpPortrait" clipPathUnits="objectBoundingBox"><path d="M0.04,0.12 Q0.04,0.05 0.12,0.04 L0.78,0 Q0.86,0 0.88,0.04 L0.92,0.09 Q0.94,0.11 0.97,0.11 Q1,0.12 1,0.17 V0.86 Q1,0.93 0.93,0.94 L0.55,0.98 Q0.48,1 0.42,0.97 Q0.36,0.94 0.28,0.95 L0.08,0.96 Q0,0.96 0,0.89 V0.2 Q0,0.15 0.04,0.12Z"/></clipPath>
+ <clipPath id="cpPhoto" clipPathUnits="objectBoundingBox"><path d="M0,0.08 L0.08,0 H0.86 Q0.92,0 0.95,0.05 L1,0.12 V0.9 L0.9,1 H0.1 Q0,1 0,0.92Z"/></clipPath>
+ <clipPath id="cpJourney" clipPathUnits="objectBoundingBox"><path d="M0,0.12 Q0,0.02 0.03,0.02 L0.3,0.02 Q0.34,0.02 0.36,0 H0.97 Q1,0 1,0.08 V0.86 Q1,0.98 0.97,0.98 H0.62 Q0.58,0.98 0.55,1 H0.03 Q0,1 0,0.9Z"/></clipPath>
+</defs></svg>
+<section class="abt" id="about">
+ <div class="cube3" style="--s:30px;right:3%;top:70px"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+ <svg class="crystal" style="left:36%;top:60px" width="40" height="52" viewBox="0 0 54 70"><polygon points="27,0 54,24 40,70 6,62 0,22" fill="url(#gCry)"/><polygon points="27,0 54,24 27,30" fill="#fff" opacity=".35"/></svg>
+ <div class="agrid">
+  <div class="pframe av" id="pframe">
+   <div class="shape"></div>
+   <div class="photo"><!-- SWAP IMAGE: replace images/profile.svg with your own portrait (e.g. images/profile.jpg) --><video class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Portrait of Amaanullah"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"></video></div>
+   <div class="avail"><i></i>Available for projects</div>
+   <div class="tbadge"><b>&lt;/&gt; Full-stack</b><span>Laravel</span><span>React</span><span>Flutter</span></div>
+   <div class="sig">Amaanullah<svg width="170" height="16" viewBox="0 0 170 16"><path d="M2 10 Q60 0 120 8 T168 4" fill="none" stroke="#f26a1b" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+   <div class="cube3" style="--s:20px;right:24px;top:-14px;animation-duration:7s"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="atext" style="position:relative">
+   <div class="av"><span class="pill2">About Me</span>
+    <div class="hand hnote">Clean code,<br>real results ↘</div>
+    <h2>Turning <em>complex problems</em><br>into simple, <em>scalable software</em></h2>
+    <p class="bio">I'm Amaanullah, a web developer focused on software solutions that actually move a business forward. I design and build custom web apps, CRMs, chat platforms, automations and mobile apps, from the first idea to a secure, scalable product. I care about clean architecture, fast interfaces and software that's simple for the people who use it every day.</p></div>
+   <div class="skills av" style="transition-delay:.22s">
+    <!-- EDIT SKILLS: change --w to set each proficiency bar -->
+    <div class="sk"><div class="h"><span class="lg" style="background:#7a86b8">PHP</span>PHP</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#ff2d20">L</span>Laravel</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#512bd4">.N</span>.NET</div><div class="bar"><i style="--w:75%"></i></div><span class="lv">Advanced</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#3776ab">Py</span>Python</div><div class="bar"><i style="--w:70%"></i></div><span class="lv">Advanced</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#00758f">SQL</span>MySQL</div><div class="bar"><i style="--w:90%"></i></div><span class="lv">Expert</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#20232a;color:#61dafb">⚛</span>React</div><div class="bar"><i style="--w:82%"></i></div><span class="lv">Advanced</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#539e43">JS</span>Node.js</div><div class="bar"><i style="--w:80%"></i></div><span class="lv">Advanced</span></div>
+    <div class="sk"><div class="h"><span class="lg" style="background:#47c5fb">F</span>Flutter</div><div class="bar"><i style="--w:78%"></i></div><span class="lv">Advanced</span></div>
+   </div>
+   <div class="actas av" style="transition-delay:.3s">
+    <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
+    <a class="lt2" href="#contact"><!-- URL: contact page or #contact -->Let's Talk <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <span class="hand" style="color:var(--o);transform:rotate(-5deg)">↖ let's work together!</span>
+   </div>
+  </div>
+ </div>
+ <div class="journey av">
+  <div class="jbg"></div>
+  <h3>My <em>Approach</em></h3><p>A simple, transparent process from idea to launch.</p>
+  <div class="steps">
+   <div class="stp"><span class="n">01</span><b>Discover</b><small>Understand your business, users and goals before writing a single line of code.</small></div>
+   <div class="stp"><span class="n">02</span><b>Design</b><small>Plan the architecture and craft clean, intuitive UI/UX flows.</small></div>
+   <div class="stp"><span class="n">03</span><b>Develop</b><small>Build secure, scalable software with regular demos and feedback.</small></div>
+   <div class="stp"><span class="n">04</span><b>Deliver</b><small>Launch, monitor and keep improving with ongoing support.</small></div>
+  </div>
+ </div>
+</section>
 <section class="svc" id="services">
  <div class="shead sv"><span class="pill2">Our Services</span>
   <h2><em>Smart Digital Solutions</em><br>for Your Business</h2>
@@ -151,59 +203,6 @@
  </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
- <clipPath id="cpPortrait" clipPathUnits="objectBoundingBox"><path d="M0.04,0.12 Q0.04,0.05 0.12,0.04 L0.78,0 Q0.86,0 0.88,0.04 L0.92,0.09 Q0.94,0.11 0.97,0.11 Q1,0.12 1,0.17 V0.86 Q1,0.93 0.93,0.94 L0.55,0.98 Q0.48,1 0.42,0.97 Q0.36,0.94 0.28,0.95 L0.08,0.96 Q0,0.96 0,0.89 V0.2 Q0,0.15 0.04,0.12Z"/></clipPath>
- <clipPath id="cpPhoto" clipPathUnits="objectBoundingBox"><path d="M0,0.08 L0.08,0 H0.86 Q0.92,0 0.95,0.05 L1,0.12 V0.9 L0.9,1 H0.1 Q0,1 0,0.92Z"/></clipPath>
- <clipPath id="cpJourney" clipPathUnits="objectBoundingBox"><path d="M0,0.12 Q0,0.02 0.03,0.02 L0.3,0.02 Q0.34,0.02 0.36,0 H0.97 Q1,0 1,0.08 V0.86 Q1,0.98 0.97,0.98 H0.62 Q0.58,0.98 0.55,1 H0.03 Q0,1 0,0.9Z"/></clipPath>
-</defs></svg>
-<section class="abt" id="about">
- <div class="cube3" style="--s:30px;right:3%;top:70px"><i></i><i></i><i></i><i></i><i></i><i></i></div>
- <svg class="crystal" style="left:36%;top:60px" width="40" height="52" viewBox="0 0 54 70"><polygon points="27,0 54,24 40,70 6,62 0,22" fill="url(#gCry)"/><polygon points="27,0 54,24 27,30" fill="#fff" opacity=".35"/></svg>
- <div class="agrid">
-  <div class="pframe av" id="pframe">
-   <div class="shape"></div>
-   <div class="photo"><!-- SWAP IMAGE: replace images/profile.svg with your own portrait (e.g. images/profile.jpg) --><video class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Portrait of Amaanullah"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"></video></div>
-   <div class="avail"><i></i>Available for projects</div>
-   <div class="tbadge"><b>&lt;/&gt; Full-stack</b><span>Laravel</span><span>React</span><span>Flutter</span></div>
-   <div class="sig">Amaanullah<svg width="170" height="16" viewBox="0 0 170 16"><path d="M2 10 Q60 0 120 8 T168 4" fill="none" stroke="#f26a1b" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-   <div class="cube3" style="--s:20px;right:24px;top:-14px;animation-duration:7s"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  </div>
-  <div class="atext" style="position:relative">
-   <div class="av"><span class="pill2">About Me</span>
-    <div class="hand hnote">Clean code,<br>real results ↘</div>
-    <h2>Turning <em>complex problems</em><br>into simple, <em>scalable software</em></h2>
-    <p class="bio">I'm Amaanullah, a web developer focused on software solutions that actually move a business forward. I design and build custom web apps, CRMs, chat platforms, automations and mobile apps, from the first idea to a secure, scalable product. I care about clean architecture, fast interfaces and software that's simple for the people who use it every day.</p></div>
-   <div class="skills av" style="transition-delay:.22s">
-    <!-- EDIT SKILLS: change --w to set each proficiency bar -->
-    <div class="sk"><div class="h"><span class="lg" style="background:#7a86b8">PHP</span>PHP</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#ff2d20">L</span>Laravel</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#512bd4">.N</span>.NET</div><div class="bar"><i style="--w:75%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#3776ab">Py</span>Python</div><div class="bar"><i style="--w:70%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#00758f">SQL</span>MySQL</div><div class="bar"><i style="--w:90%"></i></div><span class="lv">Expert</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#20232a;color:#61dafb">⚛</span>React</div><div class="bar"><i style="--w:82%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#539e43">JS</span>Node.js</div><div class="bar"><i style="--w:80%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#47c5fb">F</span>Flutter</div><div class="bar"><i style="--w:78%"></i></div><span class="lv">Advanced</span></div>
-   </div>
-   <div class="actas av" style="transition-delay:.3s">
-    <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
-    <a class="lt2" href="#contact"><!-- URL: contact page or #contact -->Let's Talk <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <span class="hand" style="color:var(--o);transform:rotate(-5deg)">↖ let's work together!</span>
-   </div>
-  </div>
- </div>
- <div class="journey av">
-  <div class="jbg"></div>
-  <h3>My <em>Approach</em></h3><p>A simple, transparent process from idea to launch.</p>
-  <div class="steps">
-   <div class="stp"><span class="n">01</span><b>Discover</b><small>Understand your business, users and goals before writing a single line of code.</small></div>
-   <div class="stp"><span class="n">02</span><b>Design</b><small>Plan the architecture and craft clean, intuitive UI/UX flows.</small></div>
-   <div class="stp"><span class="n">03</span><b>Develop</b><small>Build secure, scalable software with regular demos and feedback.</small></div>
-   <div class="stp"><span class="n">04</span><b>Deliver</b><small>Launch, monitor and keep improving with ongoing support.</small></div>
-  </div>
- </div>
-</section>
-
 <!-- ===== TESTIMONIALS ===== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
  <clipPath id="cpQuote" clipPathUnits="objectBoundingBox"><path d="M0,0.1 Q0,0.03 0.05,0.03 L0.55,0.03 Q0.6,0.03 0.63,0 H0.95 Q1,0 1,0.06 V0.84 Q1,0.9 0.96,0.92 L0.86,0.98 Q0.83,1 0.79,1 H0.05 Q0,1 0,0.94Z"/></clipPath>
@@ -302,7 +301,7 @@
   <span class="pill2">Get In Touch</span>
   <h2>Let's start your <em>next project</em><br>and make it <em>real</em></h2>
   <p class="sub">Share a few details about what you need and I'll get back to you with ideas, a timeline and a clear estimate.</p>
-  <div class="reply">I usually reply within 24 hours<svg width="60" height="44" viewBox="0 0 60 44" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round"><path d="M4 4C14 20 30 34 54 38M46 30l9 8-11 4"/></svg></div>
+  <div class="reply">I usually reply within 24 hours<svg width="60" height="44" viewBox="0 0 60 44" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M56 4C46 20 30 34 6 38M14 30l-9 8 11 4"/></svg></div>
  </div>
  <div class="cgrid">
   <aside class="icard cv2" style="transition-delay:.1s">
