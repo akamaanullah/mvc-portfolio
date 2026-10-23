@@ -6,7 +6,7 @@ if (!empty($home)): ?><footer class="foot" id="footer">
  <div class="fbody"><div class="fin">
   <button class="btt" id="btt" aria-label="Back to top">↑</button>
   <div class="fcols">
-   <div><div class="logo"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"><div><small>Web Developer | Software Solutions</small></div></div>
+   <div><div class="logo"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></div>
     <p class="fabout">Custom web apps, CRMs, chat platforms, automation and mobile apps, built to be secure, fast and scalable.</p></div>
    <div class="fcol"><h5>Quick Links</h5><a href="#home">Home</a><a href="<?= base_url('/about') ?>">About</a><a href="<?= base_url('/services') ?>">Services</a><a href="<?= base_url('/projects') ?>">Projects</a><a href="<?= base_url('/articles') ?>">Articles</a><a href="#reviews">Reviews</a><a href="<?= base_url('/contact') ?>">Contact</a></div>
    <div class="fcol"><h5>Services</h5><!-- URL: each service page (only CRM has a detail page so far) -->
@@ -24,7 +24,7 @@ if (!empty($home)): ?><footer class="foot" id="footer">
  <div class="fbody"><div class="fin">
   <button class="btt" id="btt" aria-label="Back to top">↑</button>
   <div class="fcols">
-   <div><div class="logo"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"><div><small>Web Developer | Software Solutions</small></div></div>
+   <div><div class="logo"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></div>
     <p class="fabout">Custom web apps, CRMs, chat platforms, automation and mobile apps, built to be secure, fast and scalable.</p></div>
    <div class="fcol"><h5>Quick Links</h5><a href="<?= base_url('/') ?>">Home</a><a href="<?= base_url('/about') ?>">About</a><a href="<?= base_url('/services') ?>">Services</a><a href="<?= base_url('/projects') ?>">Projects</a><a href="<?= base_url('/articles') ?>">Articles</a><a href="<?= base_url('/#reviews') ?>">Reviews</a><a href="<?= base_url('/contact') ?>">Contact</a></div>
    <div class="fcol"><h5>Services</h5><!-- URL: each service page (only CRM has a detail page so far) -->
