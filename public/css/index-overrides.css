@@ -320,9 +320,16 @@ body.dark .cv:hover {
   }
 }
 
-
-
-
-
+/* Tech stack clickable skill cards */
+a.sk {
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+}
+a.sk:hover {
+  text-decoration: none !important;
+  color: inherit !important;
+}
 
 

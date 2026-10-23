@@ -63,14 +63,14 @@
     <p class="bio">I'm Amaanullah, a web developer focused on software solutions that actually move a business forward. I design and build custom web apps, CRMs, chat platforms, automations and mobile apps, from the first idea to a secure, scalable product. I care about clean architecture, fast interfaces and software that's simple for the people who use it every day.</p></div>
    <div class="skills av" style="transition-delay:.22s">
     <!-- EDIT SKILLS: change --w to set each proficiency bar -->
-    <div class="sk"><div class="h"><span class="lg" style="background:#7a86b8">PHP</span>PHP</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#ff2d20">L</span>Laravel</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#512bd4">.N</span>.NET</div><div class="bar"><i style="--w:75%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#3776ab">Py</span>Python</div><div class="bar"><i style="--w:70%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#00758f">SQL</span>MySQL</div><div class="bar"><i style="--w:90%"></i></div><span class="lv">Expert</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#20232a;color:#61dafb">⚛</span>React</div><div class="bar"><i style="--w:82%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#539e43">JS</span>Node.js</div><div class="bar"><i style="--w:80%"></i></div><span class="lv">Advanced</span></div>
-    <div class="sk"><div class="h"><span class="lg" style="background:#47c5fb">F</span>Flutter</div><div class="bar"><i style="--w:78%"></i></div><span class="lv">Advanced</span></div>
+    <a class="sk" href="https://www.php.net/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#7a86b8">PHP</span>PHP</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></a>
+    <a class="sk" href="https://laravel.com/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#ff2d20">L</span>Laravel</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></a>
+    <a class="sk" href="https://dotnet.microsoft.com/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#512bd4">.N</span>.NET</div><div class="bar"><i style="--w:75%"></i></div><span class="lv">Advanced</span></a>
+    <a class="sk" href="https://www.python.org/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#3776ab">Py</span>Python</div><div class="bar"><i style="--w:70%"></i></div><span class="lv">Advanced</span></a>
+    <a class="sk" href="https://www.mysql.com/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#00758f">SQL</span>MySQL</div><div class="bar"><i style="--w:90%"></i></div><span class="lv">Expert</span></a>
+    <a class="sk" href="https://react.dev/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#20232a;color:#61dafb">⚛</span>React</div><div class="bar"><i style="--w:82%"></i></div><span class="lv">Advanced</span></a>
+    <a class="sk" href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#539e43">JS</span>Node.js</div><div class="bar"><i style="--w:80%"></i></div><span class="lv">Advanced</span></a>
+    <a class="sk" href="https://flutter.dev/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#47c5fb">F</span>Flutter</div><div class="bar"><i style="--w:78%"></i></div><span class="lv">Advanced</span></a>
    </div>
    <div class="actas av" style="transition-delay:.3s">
     <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
