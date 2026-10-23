@@ -349,10 +349,7 @@
      </div>
      <span class="glab">Quick pick a service</span>
      <div class="chs" id="svcChips"><button type="button" data-v="web_apps">Web Apps</button><button type="button" data-v="crm">CRM</button><button type="button" data-v="chat">Chat</button><button type="button" data-v="automation">Automation</button><button type="button" data-v="mobile">Mobile</button><button type="button" data-v="ui_ux">UI/UX</button></div>
-     <span class="glab">Budget range</span>
-     <input type="hidden" name="budget" id="f_budget" value=""><!-- LARAVEL: value="{{ old('budget') }}" -->
-     <div class="chs" id="budChips"><button type="button" data-v="under_1k">&lt; $1k</button><button type="button" data-v="1k_5k">$1k – $5k</button><button type="button" data-v="5k_10k">$5k – $10k</button><button type="button" data-v="10k_plus">$10k+</button><button type="button" data-v="not_sure">Not sure yet</button></div>
-     <div class="fl"><textarea id="f_message" name="message" placeholder=" " required minlength="10"></textarea><!-- LARAVEL: {{ old('message') }} inside the textarea --><label for="f_message">Tell me about your project *</label><span class="err">Please write at least 10 characters.</span></div>
+<div class="fl"><textarea id="f_message" name="message" placeholder=" " required minlength="10"></textarea><!-- LARAVEL: {{ old('message') }} inside the textarea --><label for="f_message">Tell me about your project *</label><span class="err">Please write at least 10 characters.</span></div>
      <div class="fsend"><button class="sbtn" id="sbtn" type="submit"><span class="tx">Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="sp"></span></button><span class="fnote">🔒 Your details stay private.</span></div>
     </form>
     <div class="success" role="status" aria-live="polite"><span class="ck"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21l7 7 15-16"/></svg></span><h4>Message sent!</h4><p>Thanks for reaching out. I'll get back to you within 24 hours.</p><button type="button" id="fagain">Send another message</button></div>

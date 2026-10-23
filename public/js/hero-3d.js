@@ -268,7 +268,7 @@ const f=document.getElementById('cform'),sel=f.querySelector('#f_service'),bud=f
 const sc=[...document.querySelectorAll('#svcChips button')],bc=[...document.querySelectorAll('#budChips button')];
 const syncSvc=()=>sc.forEach(b=>b.classList.toggle('on',b.dataset.v===sel.value));
 sc.forEach(b=>b.onclick=()=>{sel.value=b.dataset.v;syncSvc();check(sel)});sel.addEventListener('change',()=>{syncSvc();check(sel)});
-bc.forEach(b=>b.onclick=()=>{bud.value=bud.value===b.dataset.v?'':b.dataset.v;bc.forEach(x=>x.classList.toggle('on',x.dataset.v===bud.value))});
+if(bud)bc.forEach(b=>b.onclick=()=>{bud.value=bud.value===b.dataset.v?'':b.dataset.v;bc.forEach(x=>x.classList.toggle('on',x.dataset.v===bud.value))});
 function check(el){const w=el.closest('.fl');let ok=el.checkValidity();if(el.type==='email'&&el.value)ok=ok&&/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value);
  w.classList.toggle('bad',!ok);w.classList.toggle('ok',ok&&!!el.value);return ok}
 const fields=[...f.querySelectorAll('.fl input,.fl select,.fl textarea')];
@@ -281,7 +281,7 @@ f.addEventListener('submit',e=>{
  btn.classList.add('loading');
  setTimeout(()=>{btn.classList.remove('loading');btn.classList.add('done');btn.querySelector('.tx').textContent='Sent ✓';setTimeout(()=>g.classList.add('sent'),RM?0:500)},RM?100:1400);
 });
-document.getElementById('fagain').onclick=()=>{f.reset();bud.value='';syncSvc();bc.forEach(x=>x.classList.remove('on'));fields.forEach(el=>{el.closest('.fl').classList.remove('ok','bad');delete el.dataset.t});btn.classList.remove('done');btn.querySelector('.tx').innerHTML='Send Message &nbsp;→';g.classList.remove('sent')};
+document.getElementById('fagain').onclick=()=>{f.reset();if(bud)bud.value='';syncSvc();bc.forEach(x=>x.classList.remove('on'));fields.forEach(el=>{el.closest('.fl').classList.remove('ok','bad');delete el.dataset.t});btn.classList.remove('done');btn.querySelector('.tx').innerHTML='Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';g.classList.remove('sent')};
 // newsletter (fake)
 document.getElementById('nlform')?.addEventListener('submit',e=>{e.preventDefault();const i=e.target.newsletter_email,m=document.getElementById('nlmsg');const ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value);m.classList.toggle('bad',!ok);m.textContent=ok?'Thanks! You\'re on the list.':'Please enter a valid email.';if(ok)i.value=''});
 // nav: smooth anchor scroll + active link on scroll
