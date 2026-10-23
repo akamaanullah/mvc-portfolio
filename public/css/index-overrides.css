@@ -142,5 +142,28 @@ body.dark .svc .pill2 {
   border: 1px solid rgba(242, 106, 27, 0.25);
 }
 
+/* Featured project laptop pedestal/rock smooth merge */
+.rock {
+  position: absolute;
+  left: 28% !important;
+  top: 62% !important;
+  width: 48% !important;
+  height: 38% !important;
+  z-index: 1;
+  filter: blur(2px) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.7));
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent 75%);
+  pointer-events: none;
+}
+.rock path:first-of-type {
+  opacity: 0.75;
+}
+.rock path:last-of-type {
+  stroke: #ff7a2a;
+  stroke-opacity: 0.45;
+  filter: drop-shadow(0 0 6px rgba(255, 122, 42, 0.5));
+}
+
+
 
 
