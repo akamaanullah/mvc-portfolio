@@ -98,4 +98,49 @@ body.dark .feat .fi {
   filter: drop-shadow(0 2px 6px rgba(242, 106, 27, 0.35));
 }
 
+/* Section Pills (pill, pill2, pill3) Dark/Light mode fix */
+.prj .pill3 {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.prj .pill3 i {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #f26a1b, #ff8a3d) !important;
+  display: grid;
+  place-items: center;
+  color: #fff !important;
+  font-size: 11px;
+  font-style: normal;
+  box-shadow: 0 2px 8px rgba(242, 106, 27, 0.4);
+}
+body.dark .prj .pill3 {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #f4f1ec !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+body.dark .pill {
+  background: rgba(242, 106, 27, 0.1) !important;
+  border-color: rgba(242, 106, 27, 0.35) !important;
+}
+body.dark .svc .pill2 {
+  background: rgba(242, 106, 27, 0.14) !important;
+  color: #f4f1ec !important;
+  border: 1px solid rgba(242, 106, 27, 0.25);
+}
+
+
 
