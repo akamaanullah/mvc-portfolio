@@ -271,20 +271,20 @@
    <p class="cs">Tell me about your project, whether it's a web app, CRM, chat platform, automation or mobile app, and I'll turn it into a scalable product.</p>
    <div class="cbtns">
     <a class="mag" id="mag" href="#contact"><!-- scrolls to the contact form -->Start a Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a class="bcall" href="javascript:void(0)"><!-- URL: booking link, e.g. Calendly -->☏ Book a Call</a>
+    <a class="bcall" href="javascript:void(0)"><!-- URL: booking link, e.g. Calendly --><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Book a Call</span></a>
    </div>
    <div class="cchips">
-    <a href="javascript:void(0)"><!-- URL: mailto:your@email.com --><i style="background:rgba(242,106,27,.25)">✉</i>your@email.com</a><!-- EDIT: your email -->
-    <a href="javascript:void(0)"><!-- URL: https://wa.me/<your number> --><i style="background:rgba(37,211,102,.25)">✆</i>WhatsApp</a>
+    <a href="javascript:void(0)"><!-- URL: mailto:your@email.com --><i style="background:rgba(242,106,27,.25)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i>your@email.com</a><!-- EDIT: your email -->
+    <a href="javascript:void(0)"><!-- URL: https://wa.me/<your number> --><i style="background:rgba(37,211,102,.25)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></i>WhatsApp</a>
    </div>
   </div>
   <div class="ficons">
-   <span class="fi2" style="left:8%;top:16%;color:#ff8a3d">&lt;/&gt;<small>Web Apps</small></span>
-   <span class="fi2" style="left:52%;top:8%;animation-delay:-1s">☁<small>CRM</small></span>
-   <span class="fi2" style="left:80%;top:36%;animation-delay:-2s">💬<small>Chat</small></span>
-   <span class="fi2" style="left:30%;top:46%;animation-delay:-3s">⚙<small>Automation</small></span>
-   <span class="fi2" style="left:64%;top:66%;animation-delay:-4s">▯<small>Mobile</small></span>
-   <span class="fi2" style="left:4%;top:72%;animation-delay:-5s">🎨<small>UI/UX</small></span>
+   <span class="fi2" style="left:8%;top:16%;color:#ff8a3d"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><small>Web Apps</small></span>
+   <span class="fi2" style="left:52%;top:8%;animation-delay:-1s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg><small>CRM</small></span>
+   <span class="fi2" style="left:80%;top:36%;animation-delay:-2s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#13a37a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><small>Chat</small></span>
+   <span class="fi2" style="left:30%;top:46%;animation-delay:-3s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e84aa5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><small>Automation</small></span>
+   <span class="fi2" style="left:64%;top:66%;animation-delay:-4s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9d7aff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><small>Mobile</small></span>
+   <span class="fi2" style="left:4%;top:72%;animation-delay:-5s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff9a4a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg><small>UI/UX</small></span>
   </div>
   <div class="cnote"><svg width="60" height="44" viewBox="0 0 60 44" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round"><path d="M58 40C40 38 18 30 8 6M4 16l4-11 10 5"/></svg>Let's talk!</div>
  </div>
@@ -311,10 +311,10 @@
    <h3>Contact Information</h3>
    <p>Prefer a direct line? Reach me on any of these, whichever suits you best.</p>
    <div class="irows">
-    <a class="irow" href="javascript:void(0)"><!-- URL: mailto:your@email.com --><span class="ii">✉</span><span><small>Email</small><b>your@email.com</b></span></a><!-- EDIT: your email -->
-    <a class="irow" href="javascript:void(0)"><!-- URL: https://wa.me/92XXXXXXXXXX --><span class="ii">✆</span><span><small>Phone / WhatsApp</small><b>+92 XXX XXXXXXX</b></span></a><!-- EDIT: your number -->
-    <div class="irow"><span class="ii">⌖</span><span><small>Location</small><b>City, Country</b></span></div><!-- EDIT: your location -->
-    <div class="irow"><span class="ii">◷</span><span><small>Working Hours</small><b>Mon – Fri, 9:00 – 18:00</b></span></div><!-- EDIT: your hours -->
+    <a class="irow" href="javascript:void(0)"><!-- URL: mailto:your@email.com --><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span><small>Email</small><b>your@email.com</b></span></a><!-- EDIT: your email -->
+    <a class="irow" href="javascript:void(0)"><!-- URL: https://wa.me/92XXXXXXXXXX --><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span><small>Phone / WhatsApp</small><b>+92 XXX XXXXXXX</b></span></a><!-- EDIT: your number -->
+    <div class="irow"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span><small>Location</small><b>City, Country</b></span></div><!-- EDIT: your location -->
+    <div class="irow"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span><small>Working Hours</small><b>Mon – Fri, 9:00 – 18:00</b></span></div><!-- EDIT: your hours -->
    </div>
    <div class="socials">
     <a href="javascript:void(0)" aria-label="GitHub"><!-- URL: GitHub profile --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg></a>
