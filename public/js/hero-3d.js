@@ -130,7 +130,7 @@ rows.forEach(r=>{r.addEventListener('mouseenter',()=>{hov=r.dataset.service;show
 const sec=document.getElementById('services');new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&sec.classList.add('in')),{threshold:.12}).observe(sec);
 
 const stage=document.getElementById('sstage'),canvas=document.getElementById('sc');
-const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
+const R=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x000000,0);R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
 const scene=new THREE.Scene();
 scene.environment=new THREE.PMREMGenerator(R).fromScene(new RoomEnvironment(),.04).texture;
 const cam=new THREE.PerspectiveCamera(34,1,.1,100);cam.position.set(0,3.2,15);cam.lookAt(0,-.3,0);
@@ -169,8 +169,7 @@ TL.forEach(([k,name,bg,fg,x,y],i)=>{const g=new THREE.Group();
  g.position.set(x,y,0);g.userData={k,base:new THREE.Vector3(x,y,Math.abs(x)<2.5?-1:.6),body,lab,ph:i*1.1,s:0,glow:0};world.add(g);tiles.push(g)});
 
 const sh=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.ShadowMaterial({opacity:.07}));sh.rotation.x=-Math.PI/2;sh.position.y=-2.6;sh.receiveShadow=true;scene.add(sh);
-const comp=new EffectComposer(R);comp.addPass(new RenderPass(scene,cam));comp.addPass(new UnrealBloomPass(new THREE.Vector2(1,1),.22,.4,1.0));comp.addPass(new OutputPass());
-function size(){const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);comp.setSize(w,h);lr.setSize(w,h);cam.aspect=w/h;cam.position.z=w<600?19.5:15;cam.updateProjectionMatrix()}addEventListener('resize',size);size();
+function size(){const w=stage.clientWidth,h=stage.clientHeight;R.setSize(w,h,false);lr.setSize(w,h);cam.aspect=w/h;cam.position.z=w<600?19.5:15;cam.updateProjectionMatrix()}addEventListener('resize',size);size();
 
 // interaction
 const ray=new THREE.Raycaster(),m2=new THREE.Vector2();let tHover=null,mx=0,my=0,down=false,moved=0,lx=0,vy=0,spin=0;
@@ -196,7 +195,7 @@ function loop(){requestAnimationFrame(loop);if(!visible)return;const t=clock.get
   g.position.set(u.base.x,u.base.y+Math.sin(t*1.2+u.ph)*.15,u.base.z+u.glow*1.4);g.scale.setScalar(Math.max(.001,se*1.05*(1+u.glow*.2)));
   g.rotation.set(Math.sin(t*.7+u.ph)*.08,-u.base.x*.06+Math.sin(t*.5+u.ph)*.12,Math.sin(t*.6+u.ph)*.04);
   u.body.material.emissiveIntensity=u.glow*.35;u.lab.classList.toggle('hi',on);u.lab.style.opacity=se});
- comp.render();lr.render(scene,cam)}
+ R.render(scene,cam);lr.render(scene,cam)}
 loop();
 })();
 // ===== FEATURED PROJECTS =====

@@ -70,8 +70,12 @@ body.dark .chip.on{background:linear-gradient(135deg,#f26a1b,#ff8a3d);color:#fff
   transform: scale(1.12);
 }
 
-/* Remove harsh circular white glare on services stage */
+/* Remove harsh circular white glare and dark box on services stage */
+.sstage,
 #sc {
   -webkit-mask-image: none !important;
   mask-image: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
 }
+
