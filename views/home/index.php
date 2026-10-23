@@ -15,7 +15,7 @@
 <!-- ===== SPLASH / WELCOME SCREEN (shown once per session; add ?splash=1 to force) ===== -->
 <div id="splash" role="dialog" aria-label="Loading Amaanullah portfolio">
  <div class="sbg"></div><canvas id="splashC"></canvas><div class="sflash"></div>
- <button class="sskip" id="sSkip" type="button">Skip <span>→</span></button>
+ <button class="sskip" id="sSkip" type="button">Skip <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
  <div class="stxt"><div class="slogo">A</div><div class="sname" id="sName" aria-label="Amaanullah."></div><div class="ssub">Web Developer | Software Solutions</div><div class="shand">Let's build something great</div></div>
  <div class="sprog"><b><span id="sPct">0</span><i>%</i></b>LOADING EXPERIENCE</div>
  <div class="sbar"><i id="sBar"></i></div>
@@ -46,17 +46,17 @@
   <!-- SERVICE LINKS: replace each href="javascript:void(0)" with that service page URL (e.g. href="/services/web-apps.html").
        The matching 3D tile in the scene uses the same link automatically. -->
   <nav class="slist sv" style="transition-delay:.15s">
-   <a class="srow on" href="javascript:void(0)" data-service="web"><!-- URL: Custom Web Apps page --><span class="ic" style="background:linear-gradient(135deg,#f26a1b,#ff9a4a)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span><b>Custom Web Apps</b><small>Tailored web applications with PHP, Laravel, .NET and more.</small></span><span class="ch">›</span></a>
-   <a class="srow" href="javascript:void(0)" data-service="crm"><!-- URL: CRM Development page --><span class="ic" style="background:#dfe6ff;color:#5b7cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><b>CRM Development</b><small>Manage leads, customers and operations with smart CRM systems.</small></span><span class="ch">›</span></a>
-   <a class="srow" href="javascript:void(0)" data-service="chat"><!-- URL: Chat Applications page --><span class="ic" style="background:#d6f5ea;color:#13a37a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><b>Chat Applications</b><small>Real-time chat, team collaboration and communication tools.</small></span><span class="ch">›</span></a>
-   <a class="srow" href="javascript:void(0)" data-service="auto"><!-- URL: Business Process Automation page --><span class="ic" style="background:#fbe0f0;color:#c0287a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span><b>Business Process Automation</b><small>Save time with smart workflows and automation systems.</small></span><span class="ch">›</span></a>
-   <a class="srow" href="javascript:void(0)" data-service="mobile"><!-- URL: Mobile App Development page --><span class="ic" style="background:#ece2ff;color:#7d4cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span><b>Mobile App Development</b><small>Cross-platform apps with Flutter, Firebase and modern tech.</small></span><span class="ch">›</span></a>
-   <a class="srow" href="javascript:void(0)" data-service="ui"><!-- URL: UI/UX & Performance page --><span class="ic" style="background:#ffe9cf;color:#e07b00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg></span><span><b>UI/UX &amp; Performance</b><small>Modern UI/UX, fast, responsive and optimized performance.</small></span><span class="ch">›</span></a>
+   <a class="srow on" href="javascript:void(0)" data-service="web"><!-- URL: Custom Web Apps page --><span class="ic" style="background:linear-gradient(135deg,#f26a1b,#ff9a4a)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span><b>Custom Web Apps</b><small>Tailored web applications with PHP, Laravel, .NET and more.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="javascript:void(0)" data-service="crm"><!-- URL: CRM Development page --><span class="ic" style="background:#dfe6ff;color:#5b7cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><b>CRM Development</b><small>Manage leads, customers and operations with smart CRM systems.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="javascript:void(0)" data-service="chat"><!-- URL: Chat Applications page --><span class="ic" style="background:#d6f5ea;color:#13a37a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><b>Chat Applications</b><small>Real-time chat, team collaboration and communication tools.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="javascript:void(0)" data-service="auto"><!-- URL: Business Process Automation page --><span class="ic" style="background:#fbe0f0;color:#c0287a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span><b>Business Process Automation</b><small>Save time with smart workflows and automation systems.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="javascript:void(0)" data-service="mobile"><!-- URL: Mobile App Development page --><span class="ic" style="background:#ece2ff;color:#7d4cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span><b>Mobile App Development</b><small>Cross-platform apps with Flutter, Firebase and modern tech.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="javascript:void(0)" data-service="ui"><!-- URL: UI/UX & Performance page --><span class="ic" style="background:#ffe9cf;color:#e07b00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg></span><span><b>UI/UX &amp; Performance</b><small>Modern UI/UX, fast, responsive and optimized performance.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
   </nav>
   <div class="sstage sv" id="sstage" style="transition-delay:.05s"><canvas id="sc"></canvas></div>
   <div class="fcard sv" id="fcard" style="transition-delay:.3s"><span class="tag">Featured Service</span>
    <div class="fx"><h3 id="ft"></h3><p id="fd"></p><ul id="fl"></ul></div>
-   <a class="fbtn" href="javascript:void(0)"><!-- URL: consultation / contact page -->Get a Free Consultation →</a></div>
+   <a class="fbtn" href="javascript:void(0)"><!-- URL: consultation / contact page -->Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
  </div>
  <div class="feats sv" style="transition-delay:.45s">
    <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><b>Fast Delivery</b><small>On-time project delivery with agile process.</small></div></div>
@@ -87,7 +87,7 @@
  <div class="phead pv">
   <div><span class="pill3"><i>✦</i>My Recent Work</span><h2>Featured <em>Projects</em></h2><p>Real solutions. Built with modern technologies to help businesses grow and operate more efficiently.</p></div>
   <div class="hand">Ideas<br>→ Code<br>→ Real Impact</div>
-  <a class="vall" href="javascript:void(0)"><!-- URL: all projects page -->View All Projects &nbsp;→</a>
+  <a class="vall" href="javascript:void(0)"><!-- URL: all projects page -->View All Projects <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
  </div>
  <div class="feat-wrap pv" id="featWrap" style="transition-delay:.1s">
   <div class="fshape"></div>
@@ -98,7 +98,7 @@
    <h3 id="fpT">Multi-tenant<br><span>CRM System</span></h3>
    <p id="fpD">A powerful multi-tenant CRM platform with lead management, analytics, real-time updates and 7-level RBAC. Built for scale and security.</p>
    <div class="tchips" id="fpC"><span>PHP</span><span>MySQL</span><span>Laravel</span><span>WebSockets</span></div>
-   <a class="vcs" id="fpL" href="javascript:void(0)"><!-- URL: case study page (per slide, see SLIDES in the script) -->View Case Study <b>→</b></a>
+   <a class="vcs" id="fpL" href="javascript:void(0)"><!-- URL: case study page (per slide, see SLIDES in the script) -->View Case Study <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
   <svg class="rock" viewBox="0 0 400 200" preserveAspectRatio="none"><defs><radialGradient id="rk" cx=".5" cy=".4" r=".55"><stop offset="0%" stop-color="#2a2420" stop-opacity=".85"/><stop offset="50%" stop-color="#161720" stop-opacity=".6"/><stop offset="82%" stop-color="#101118" stop-opacity=".2"/><stop offset="100%" stop-color="#0e0f15" stop-opacity="0"/></radialGradient></defs><path d="M20,70 Q60,20 140,30 Q220,5 300,28 Q380,30 390,80 Q400,150 330,180 Q200,200 80,185 Q0,160 20,70Z" fill="url(#rk)"/><path d="M60,60 Q140,40 200,50 M220,40 Q300,35 350,60" stroke="#ff7a2a" stroke-opacity=".4" fill="none"/></svg>
   <svg class="wire" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M10,250 C80,180 40,80 160,120 S300,260 390,150"/><path d="M30,280 C120,240 200,300 260,220 S350,120 395,60"/></svg>
@@ -112,7 +112,7 @@
    <a href="javascript:void(0)" data-i="2"><img src="<?= asset_url('images/crm-3.svg') ?>" alt="CRM screen 3"></a>
    <a href="javascript:void(0)" data-i="3"><img src="<?= asset_url('images/crm-4.svg') ?>" alt="CRM screen 4"></a>
   </div>
-  <div class="pager"><span id="fpN">01 / 04</span><button id="fpPrev" aria-label="Previous">←</button><button id="fpNext" aria-label="Next">→</button></div>
+  <div class="pager"><span id="fpN">01 / 04</span><button id="fpPrev" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="fpNext" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
  </div>
 
  <div class="pcards">
@@ -121,25 +121,25 @@
    <div class="dev" style="left:30%"><!-- SWAP IMAGE: Chatrox desktop screenshot --><img src="<?= asset_url('images/chatrox.svg') ?>" alt="Chatrox screenshot"></div>
    <div class="phone"><!-- SWAP IMAGE: Chatrox mobile screenshot --><img src="<?= asset_url('images/chatrox-mobile.svg') ?>" alt="Chatrox mobile screenshot"></div>
    <span class="badge" style="background:linear-gradient(135deg,#7d8cff,#4b52e8)">💬</span>
-   <div class="panel"><span class="ty">💬 Chat Application</span><h4>Chatrox</h4><p>Slack-like chat application with channels, files, voice &amp; more. Built for real-time communication.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Flutter</span></div><span class="vp">View Project →</span></div>
+   <div class="panel"><span class="ty">💬 Chat Application</span><h4>Chatrox</h4><p>Slack-like chat application with channels, files, voice &amp; more. Built for real-time communication.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Flutter</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
    <div class="hand">Connect<br>Collaborate<br>Achieve</div></a>
   <a class="pc lt b pv" data-p="rtg" href="javascript:void(0)" style="transition-delay:.25s"><!-- URL: RTG Workspace project page -->
    <div class="sh"></div><div class="bg"></div><div class="img"></div>
    <div class="dev"><!-- SWAP IMAGE: RTG Workspace screenshot --><img src="<?= asset_url('images/rtg-workspace.svg') ?>" alt="RTG Workspace screenshot"></div>
    <span class="badge" style="background:linear-gradient(135deg,#ff9a4a,#f25a0a)">▤</span>
-   <div class="panel"><span class="ty">◉ Web Application</span><h4>RTG Workspace</h4><p>A Trello-style project management tool for internal team collaboration with task tracking and file sharing.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>jQuery</span></div><span class="vp">View Project →</span></div>
+   <div class="panel"><span class="ty">◉ Web Application</span><h4>RTG Workspace</h4><p>A Trello-style project management tool for internal team collaboration with task tracking and file sharing.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>jQuery</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
    <div class="hand">Plan<br>Track<br>Deliver</div></a>
   <a class="pc dk pv" data-p="it" href="javascript:void(0)" style="transition-delay:.35s"><!-- URL: IT Hardware Bin project page -->
    <div class="sh"></div><div class="bg"></div><div class="img"></div>
    <div class="dev"><!-- SWAP IMAGE: IT Hardware Bin screenshot --><img src="<?= asset_url('images/it-hardware-bin.svg') ?>" alt="IT Hardware Bin screenshot"></div>
    <span class="badge" style="background:linear-gradient(135deg,#5b9bff,#2f5bff)">🛒</span>
-   <div class="panel"><span class="ty" style="background:rgba(242,106,27,.2)">● E-Commerce</span><h4>IT Hardware Bin</h4><p>An complete e-commerce platform for IT hardware with quote requests, product catalog and smooth checkout.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Laravel</span></div><span class="vp">View Project →</span></div>
+   <div class="panel"><span class="ty" style="background:rgba(242,106,27,.2)">● E-Commerce</span><h4>IT Hardware Bin</h4><p>An complete e-commerce platform for IT hardware with quote requests, product catalog and smooth checkout.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Laravel</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
    <div class="hand">Hardware<br>Tech<br>Business</div></a>
   <a class="pc lt b pv" data-p="landsfy" href="javascript:void(0)" style="transition-delay:.45s"><!-- URL: Landsfy project page -->
    <div class="sh"></div><div class="bg"></div><div class="img"></div>
    <div class="dev"><!-- SWAP IMAGE: Landsfy screenshot --><img src="<?= asset_url('images/landsfy.svg') ?>" alt="Landsfy screenshot"></div>
    <span class="badge" style="background:linear-gradient(135deg,#3fd08a,#13a36a)">⌂</span>
-   <div class="panel"><span class="ty">◉ Web Application</span><h4>Landsfy</h4><p>Real estate portal with property listings, search filters and RBAC-based access control.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Laravel</span></div><span class="vp">View Project →</span></div>
+   <div class="panel"><span class="ty">◉ Web Application</span><h4>Landsfy</h4><p>Real estate portal with property listings, search filters and RBAC-based access control.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Laravel</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
    <div class="hand">Find<br>Your<br>Dream Home</div></a>
  </div>
 
@@ -147,7 +147,7 @@
   <svg viewBox="0 0 1440 160" preserveAspectRatio="none"><defs><linearGradient id="wv" x1="0" x2="1"><stop offset="0" stop-color="#14151d"/><stop offset=".5" stop-color="#22232e"/><stop offset="1" stop-color="#14151d"/></linearGradient></defs>
    <path d="M0,60 C200,10 380,90 600,50 C820,10 980,80 1180,40 C1300,18 1380,30 1440,50 V128 C1240,150 1040,118 760,136 C480,154 260,120 0,138Z" fill="url(#wv)"/>
    <path d="M0,60 C200,10 380,90 600,50 C820,10 980,80 1180,40 C1300,18 1380,30 1440,50" fill="none" stroke="#ff7a2a" stroke-width="2" stroke-opacity=".7" style="filter:drop-shadow(0 0 6px #ff6a1a)"/></svg>
-  <a class="more" href="javascript:void(0)"><!-- URL: more projects page --><span class="mi">◆</span><span><b>More Projects</b><small>Explore all my work and see how I turn ideas into real solutions.</small></span><span class="ar">→</span></a>
+  <a class="more" href="javascript:void(0)"><!-- URL: more projects page --><span class="mi">◆</span><span><b>More Projects</b><small>Explore all my work and see how I turn ideas into real solutions.</small></span><span class="ar"><svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
  </div>
 </section>
 
@@ -174,13 +174,6 @@
     <div class="hand hnote">Clean code,<br>real results ↘</div>
     <h2>Turning <em>complex problems</em><br>into simple, <em>scalable software</em></h2>
     <p class="bio">I'm Amaanullah, a web developer focused on software solutions that actually move a business forward. I design and build custom web apps, CRMs, chat platforms, automations and mobile apps, from the first idea to a secure, scalable product. I care about clean architecture, fast interfaces and software that's simple for the people who use it every day.</p></div>
-   <div class="stats av" style="transition-delay:.12s">
-    <!-- EDIT STATS: set data-to to your real number and the suffix text; these are placeholders -->
-    <div class="st"><b><span data-ph="X">X</span><em>+</em></b><small>Years Experience</small></div><!-- EDIT: years -->
-    <div class="st"><b><span data-ph="XX">XX</span><em>+</em></b><small>Projects Delivered</small></div><!-- EDIT: projects -->
-    <div class="st"><b><span data-ph="XX">XX</span><em>+</em></b><small>Happy Clients</small></div><!-- EDIT: clients -->
-    <div class="st dk"><b><span data-to="5">0</span>M<em>+</em></b><small>Leads handled by CRM</small></div><!-- EDIT: leads (from your CRM project) -->
-   </div>
    <div class="skills av" style="transition-delay:.22s">
     <!-- EDIT SKILLS: change --w to set each proficiency bar -->
     <div class="sk"><div class="h"><span class="lg" style="background:#7a86b8">PHP</span>PHP</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></div>
@@ -193,8 +186,8 @@
     <div class="sk"><div class="h"><span class="lg" style="background:#47c5fb">F</span>Flutter</div><div class="bar"><i style="--w:78%"></i></div><span class="lv">Advanced</span></div>
    </div>
    <div class="actas av" style="transition-delay:.3s">
-    <a class="cv" href="javascript:void(0)"><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf (add the download attribute) -->⤓ Download CV</a>
-    <a class="lt2" href="javascript:void(0)"><!-- URL: contact page or #contact -->Let's Talk &nbsp;→</a>
+    <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
+    <a class="lt2" href="#contact"><!-- URL: contact page or #contact -->Let's Talk <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <span class="hand" style="color:var(--o);transform:rotate(-5deg)">↖ let's work together!</span>
    </div>
   </div>
@@ -229,7 +222,7 @@
     <span class="big">X.X</span><div><span class="stars">★★★★★</span><small>Average rating · XX reviews</small></div>
     <div class="avs"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""></div>
    </div>
-   <div class="dctl"><button id="dPrev" aria-label="Previous review">←</button><button id="dNext" aria-label="Next review">→</button><div class="dots2" id="dDots"></div><span class="hnt">drag me ↗</span></div>
+   <div class="dctl"><button id="dPrev" aria-label="Previous review"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="dNext" aria-label="Next review"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button><div class="dots2" id="dDots"></div><span class="hnt">drag me ↗</span></div>
   </div>
   <div class="deck tv" id="deck" style="transition-delay:.15s">
    <!-- EDIT: each .qc card is a SAMPLE testimonial; replace the text, name, company, avatar and project with real ones -->
@@ -277,7 +270,7 @@
    <h2>Have an idea?<br><em>Let's build something great.</em></h2>
    <p class="cs">Tell me about your project, whether it's a web app, CRM, chat platform, automation or mobile app, and I'll turn it into a scalable product.</p>
    <div class="cbtns">
-    <a class="mag" id="mag" href="#contact"><!-- scrolls to the contact form -->Start a Project <span>→</span></a>
+    <a class="mag" id="mag" href="#contact"><!-- scrolls to the contact form -->Start a Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <a class="bcall" href="javascript:void(0)"><!-- URL: booking link, e.g. Calendly -->☏ Book a Call</a>
    </div>
    <div class="cchips">
@@ -360,7 +353,7 @@
      <input type="hidden" name="budget" id="f_budget" value=""><!-- LARAVEL: value="{{ old('budget') }}" -->
      <div class="chs" id="budChips"><button type="button" data-v="under_1k">&lt; $1k</button><button type="button" data-v="1k_5k">$1k – $5k</button><button type="button" data-v="5k_10k">$5k – $10k</button><button type="button" data-v="10k_plus">$10k+</button><button type="button" data-v="not_sure">Not sure yet</button></div>
      <div class="fl"><textarea id="f_message" name="message" placeholder=" " required minlength="10"></textarea><!-- LARAVEL: {{ old('message') }} inside the textarea --><label for="f_message">Tell me about your project *</label><span class="err">Please write at least 10 characters.</span></div>
-     <div class="fsend"><button class="sbtn" id="sbtn" type="submit"><span class="tx">Send Message &nbsp;→</span><span class="sp"></span></button><span class="fnote">🔒 Your details stay private.</span></div>
+     <div class="fsend"><button class="sbtn" id="sbtn" type="submit"><span class="tx">Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="sp"></span></button><span class="fnote">🔒 Your details stay private.</span></div>
     </form>
     <div class="success" role="status" aria-live="polite"><span class="ck"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21l7 7 15-16"/></svg></span><h4>Message sent!</h4><p>Thanks for reaching out. I'll get back to you within 24 hours.</p><button type="button" id="fagain">Send another message</button></div>
    </div>

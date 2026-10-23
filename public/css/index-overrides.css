@@ -164,6 +164,105 @@ body.dark .svc .pill2 {
   filter: drop-shadow(0 0 6px rgba(255, 122, 42, 0.5));
 }
 
+/* Button Arrows Micro-interactions & SVGs */
+.btn-arr {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  stroke-width: 2.5;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+button:hover .btn-arr,
+a:hover .btn-arr,
+.srow:hover .ch svg,
+.pc:hover .vp .btn-arr,
+.more:hover .ar .btn-arr {
+  transform: translateX(4px);
+}
+
+/* Pagination arrows centering */
+.pager button,
+.dctl button {
+  display: inline-grid !important;
+  place-items: center !important;
+  transition: all 0.25s ease !important;
+}
+.pager button svg,
+.dctl button svg {
+  display: block;
+}
+
+/* Service row chevron right */
+.srow .ch {
+  display: flex !important;
+  align-items: center !important;
+}
+.srow .ch svg {
+  display: block;
+  stroke: var(--mut);
+  transition: stroke 0.25s, transform 0.25s;
+}
+.srow.on .ch svg,
+.srow:hover .ch svg {
+  stroke: var(--o);
+}
+
+/* Download CV Button Premium UI */
+.cv {
+  display: inline-flex !important;
+  gap: 10px !important;
+  align-items: center !important;
+  padding: 12px 24px !important;
+  border-radius: 99px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+.cv svg {
+  stroke: var(--o) !important;
+  transition: transform 0.25s ease !important;
+}
+.cv:hover svg {
+  transform: translateY(2px) !important;
+}
+
+/* Light mode CV */
+body:not(.dark) .cv {
+  background: #ffffff !important;
+  color: #14141c !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06) !important;
+}
+body:not(.dark) .cv:hover {
+  border-color: var(--o) !important;
+  color: var(--o) !important;
+  box-shadow: 0 8px 22px rgba(242, 106, 27, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Dark mode CV */
+body.dark .cv {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #f4f1ec !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+}
+body.dark .cv:hover {
+  background: rgba(242, 106, 27, 0.14) !important;
+  border-color: var(--o) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(242, 106, 27, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Skills margin fix now that stats row is removed */
+.skills {
+  margin-top: 24px !important;
+}
+
+
 
 
 
