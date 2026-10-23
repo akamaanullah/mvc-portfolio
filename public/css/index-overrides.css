@@ -1,0 +1,7 @@
+/* requested changes: handwritten hero headline + header/footer logo image */
+.hero h1{font-family:'Kalam','Caveat',cursive;font-weight:700;letter-spacing:0;line-height:1.12}
+.logo .hlogo{height:40px;width:auto;display:block}
+.fcols .logo .hlogo{height:46px}
+/* dark-default readability fixes (index's existing dark mode) */
+body.dark .pill{background:rgba(242,106,27,.1)}
+body.dark .chip.on{background:linear-gradient(135deg,#f26a1b,#ff8a3d);color:#fff}

@@ -1,0 +1,64 @@
+/* Shared site header + footer — copied from the home page (index) styles, scoped to #akh / #akf */
+:is(#akh,#akf){--o:#f26a1b;--o2:#ff8a3d;--ink:#14141c;--mut:#5c5f6b;--bg:#fbf6ef;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);text-align:left;line-height:normal;letter-spacing:normal;font-size:16px;-webkit-font-smoothing:auto}
+:is(#akh,#akf) *{margin:0;padding:0;line-height:inherit;letter-spacing:inherit;text-transform:inherit}
+:is(#akh,#akf) *{box-sizing:border-box}
+#akh{position:relative;z-index:50}
+html[data-theme="dark"] :is(#akh,#akf){--bg:#0f0f15;--ink:#f4f1ec;--mut:#a3a3b0}
+:is(#akh,#akf) .aknav{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+:is(#akh,#akf) a{text-decoration:none;display:inline;font-size:inherit;font-weight:inherit;color:inherit}
+:is(#akh,#akf) h5,:is(#akh,#akf) p{margin:0}
+:is(#akh,#akf) footer.foot{background:none;padding:110px 0 0;border:0;margin-top:40px}
+:is(#akh,#akf) .aknav{position:relative;z-index:5;max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px 32px}
+:is(#akh,#akf) .logo{display:flex;gap:12px;align-items:center}
+:is(#akh,#akf) .logo .a{width:42px;height:42px;border-radius:11px;background:linear-gradient(145deg,#2a2a35,#111);color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px;box-shadow:0 6px 16px rgba(0,0,0,.2)}
+:is(#akh,#akf) .logo b{font-size:17px;font-weight:800}
+:is(#akh,#akf) .logo b i{color:var(--o);font-style:normal}
+:is(#akh,#akf) .logo small{display:block;font-size:11.5px;color:var(--mut)}
+:is(#akh,#akf) .links{display:flex;gap:34px}
+:is(#akh,#akf) .links a{font-size:14px;color:var(--mut);text-decoration:none;position:relative;padding:6px 0;transition:color .2s}
+:is(#akh,#akf) .links a:hover,:is(#akh,#akf) .links a.on{color:var(--ink)}
+:is(#akh,#akf) .links a.on{font-weight:600}
+:is(#akh,#akf) .links a.on:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--o)}
+:is(#akh,#akf) .acts{display:flex;gap:12px;align-items:center}
+:is(#akh,#akf) .ib{width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.85);box-shadow:0 4px 14px rgba(0,0,0,.07);cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+html[data-theme="dark"] :is(#akh,#akf) .ib{background:#22222c}
+:is(#akh,#akf) .talk{background:var(--ink);color:var(--bg);border:0;border-radius:99px;padding:12px 22px;font:600 14px inherit;font-family:inherit;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.18);transition:transform .2s}
+:is(#akh,#akf) .talk:hover{transform:translateY(-2px)}
+:is(#akh,#akf) .rev{opacity:0;transform:translateY(24px);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+@media(max-width:980px){:is(#akh,#akf) .links{display:none}}
+@media(max-width:560px){:is(#akh,#akf) .aknav{padding:16px 18px}
+:is(#akh,#akf) .logo small{display:none}
+:is(#akh,#akf) .ib{display:none}
+:is(#akh,#akf) .talk{padding:10px 16px;font-size:13px}}
+:is(#akh,#akf) .hand{font-family:'Caveat',cursive;color:#3a3a46;font-size:20px;line-height:1.05}
+html[data-theme="dark"] :is(#akh,#akf) .hand{color:#bbb}
+:is(#akh,#akf) .phead .hand{position:absolute;left:52%;top:0;transform:rotate(-6deg)}
+:is(#akh,#akf) .pc .hand{position:absolute;z-index:9;right:8px;bottom:-62px;color:var(--o);transform:rotate(-10deg);font-size:16px;text-align:center}
+@media(max-width:1100px){:is(#akh,#akf) .phead .hand{display:none}}
+@media(max-width:560px){:is(#akh,#akf) .pc .hand{display:none}}
+@media (prefers-reduced-motion:reduce){:is(#akh,#akf) .rev{opacity:1!important;transform:none!important}}
+:is(#akh,#akf) .foot{position:relative;z-index:2;margin-top:40px;color:#c9cad4;padding-top:110px;overflow:hidden}
+:is(#akh,#akf) .foot .fwave{position:absolute;left:0;right:0;top:0;height:120px;width:100%}
+:is(#akh,#akf) .foot .fbody{background:linear-gradient(180deg,#14151d,#0b0c11);margin-top:-2px;position:relative}
+:is(#akh,#akf) .fin{max-width:1280px;margin:0 auto;padding:30px 32px 0;position:relative}
+:is(#akh,#akf) .fcols{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1.3fr;gap:30px}
+:is(#akh,#akf) .foot .logo b{color:#fff}
+:is(#akh,#akf) .foot .logo small{color:#8f91a0}
+:is(#akh,#akf) .foot .logo .a{background:linear-gradient(145deg,#f26a1b,#ff9a4a)}
+:is(#akh,#akf) .fabout{font-size:13px;line-height:1.7;margin:18px 0 20px;color:#9a9cab;max-width:260px}
+:is(#akh,#akf) .fcol h5{color:#fff;font-size:14px;margin-bottom:16px;position:relative;padding-bottom:10px}
+:is(#akh,#akf) .fcol h5:after{content:"";position:absolute;left:0;bottom:0;width:22px;height:2px;border-radius:2px;background:var(--o)}
+:is(#akh,#akf) .fcol a{display:block;color:#9a9cab;text-decoration:none;font-size:13px;padding:5px 0;transition:color .2s,transform .2s}
+:is(#akh,#akf) .fcol a:hover{color:#ff8a3d;transform:translateX(3px)}
+:is(#akh,#akf) .wm{font-size:clamp(60px,14vw,210px);font-weight:800;letter-spacing:-.04em;line-height:.9;text-align:center;color:transparent;-webkit-text-stroke:1.5px rgba(255,140,60,.22);margin:60px 0 0;user-select:none;white-space:nowrap;background:linear-gradient(180deg,rgba(242,106,27,.12),transparent);-webkit-background-clip:text}
+:is(#akh,#akf) .fbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08);padding:22px 0 26px;font-size:12.5px;color:#8f91a0}
+:is(#akh,#akf) .fbar .hand{color:var(--o);font-size:20px}
+:is(#akh,#akf) .btt{position:absolute;right:32px;top:-28px;width:56px;height:56px;border-radius:50%;border:0;background:linear-gradient(135deg,#f26a1b,#ff8a3d);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 0 0 8px rgba(242,106,27,.15),0 14px 30px rgba(242,106,27,.5);transition:transform .3s;z-index:3}
+:is(#akh,#akf) .btt:hover{transform:translateY(-4px)}
+@media(max-width:1000px){:is(#akh,#akf) .fcols{grid-template-columns:1fr 1fr}
+:is(#akh,#akf) .fcols>div:first-child,:is(#akh,#akf) .fcols>div:last-child{grid-column:1/-1}}
+@media(max-width:560px){:is(#akh,#akf) .fin{padding:20px 18px 0}
+:is(#akh,#akf) .btt{right:18px}}
+:is(#akh,#akf) .logo .hlogo{height:40px;width:auto;display:block}
+:is(#akh,#akf) .fcols .logo .hlogo{height:46px}

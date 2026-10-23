@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000"><!-- SWAP BANNER: replace with custom banner 1600x1000 (16:10), WebP/JPG, under ~250KB -->
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb27a"/><stop offset="1" stop-color="#f26a1b"/></linearGradient>
+<pattern id="p" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="2"/></pattern></defs>
+<rect width="1600" height="1000" fill="url(#g)"/><rect width="1600" height="1000" fill="url(#p)"/>
+<circle cx="1400" cy="900" r="420" fill="#ff8a3d" opacity=".25"/><circle cx="1240" cy="420" r="210" fill="#fff" opacity=".18"/><circle cx="1240" cy="420" r="130" fill="#fff" opacity=".22"/><path d="M1190 420l40 40 80-90" fill="none" stroke="#14141c" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<text x="110" y="560" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="120" font-weight="800" letter-spacing="-3" fill="#fbf6ef">Chatrox</text>
+<text x="110" y="850" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="5" fill="#14141c">PRODUCTS</text><text x="110" y="900" font-family="Plus Jakarta Sans,Arial,sans-serif" font-size="26" font-weight="600" fill="#fbf6ef" opacity=".5">Banner placeholder · 1600 × 1000</text></svg>
