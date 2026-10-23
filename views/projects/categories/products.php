@@ -55,7 +55,7 @@
 <section class="sec2" id="featured" aria-labelledby="h-feat"><div class="lbl2 rv2"><h2 id="h-feat">Featured products</h2></div>
 <!-- EDIT: featured choice for this page: chatrox -->
 <div class="featg n1"><article class="pc big" data-cat="products"><!-- EDIT: description trimmed from live page (was truncated); tags inferred from description — confirm. Filter: products -->
-<a href="javascript:void(0)" data-project="chatrox" class="pl" aria-label="View case study: Chatrox — Custom Enterprise Chat App (Slack Alternative)"><!-- URL: case study page for chatrox -->
+<a href="<?= base_url('/projects/chatrox') ?>" data-project="chatrox" class="pl" aria-label="View case study: Chatrox — Custom Enterprise Chat App (Slack Alternative)"><!-- URL: case study page for chatrox -->
 <div class="ban"><!-- SWAP BANNER: images/banners/chatrox.svg → your 1600x1000 (16:10) banner --><img src="<?= asset_url('images/banners/chatrox.svg') ?>" alt="Chatrox — Custom Enterprise Chat App (Slack Alternative) — Products project banner" width="1600" height="1000" loading="lazy" decoding="async"><span class="cb">Products</span><span class="pst live">Live</span><!-- EDIT: status Live/Beta --></div>
 <div class="pb"><span class="lab">Communication Tech / Enterprise Systems</span><div class="pt"><h3>Chatrox — Custom Enterprise Chat App (Slack Alternative)</h3><span class="ar" aria-hidden="true">↗</span></div><p>Real-time messaging platform built with Laravel and WebSockets.</p>
 <div class="tg"><span>Laravel</span><span>WebSockets</span></div><span class="vc">View case study <b>→</b></span></div></a></article></div></section>

@@ -204,10 +204,10 @@ const sec=document.getElementById('projects');if(!sec)return;
 new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&sec.classList.add('in')),{threshold:.08}).observe(sec);
 // Featured slides — set img / url to your own files and pages
 const SLIDES=[
- {t:'Multi-tenant<br><span>CRM System</span>',d:'A powerful multi-tenant CRM platform with lead management, analytics, real-time updates and 7-level RBAC. Built for scale and security.',c:['PHP','MySQL','Laravel','WebSockets'],f:['Lead Management','Real-time Analytics','7-Level RBAC','Secure & Scalable'],img:'images/crm-1.svg',url:'javascript:void(0)'},
- {t:'CRM<br><span>Lead Pipelines</span>',d:'Kanban pipelines that move leads from first touch to closed deal, with automatic assignment and reminders.',c:['Laravel','Vue','Redis'],f:['Drag & Drop Stages','Auto Assignment','Follow-up Reminders','Activity Timeline'],img:'images/crm-2.svg',url:'javascript:void(0)'},
- {t:'CRM<br><span>Reports</span>',d:'Live reports and exports for every tenant — conversions, team performance and revenue forecasts.',c:['PHP','MySQL','Chart.js'],f:['Custom Reports','CSV / PDF Export','Scheduled Emails','Team KPIs'],img:'images/crm-3.svg',url:'javascript:void(0)'},
- {t:'CRM<br><span>Analytics</span>',d:'Real-time analytics dashboards powered by WebSockets, so managers see every change the moment it happens.',c:['Node.js','WebSockets','MySQL'],f:['Live Dashboards','Lead Sources','Funnel Analysis','Role-based Views'],img:'images/crm-4.svg',url:'javascript:void(0)'}];
+ {t:'Multi-tenant<br><span>CRM System</span>',d:'A powerful multi-tenant CRM platform with lead management, analytics, real-time updates and 7-level RBAC. Built for scale and security.',c:['PHP','MySQL','Laravel','WebSockets'],f:['Lead Management','Real-time Analytics','7-Level RBAC','Secure & Scalable'],img:'images/crm-1.svg',url:(window.__BASE_URL||'')+'/projects/chatrox'},
+ {t:'CRM<br><span>Lead Pipelines</span>',d:'Kanban pipelines that move leads from first touch to closed deal, with automatic assignment and reminders.',c:['Laravel','Vue','Redis'],f:['Drag & Drop Stages','Auto Assignment','Follow-up Reminders','Activity Timeline'],img:'images/crm-2.svg',url:(window.__BASE_URL||'')+'/projects'},
+ {t:'CRM<br><span>Reports</span>',d:'Live reports and exports for every tenant — conversions, team performance and revenue forecasts.',c:['PHP','MySQL','Chart.js'],f:['Custom Reports','CSV / PDF Export','Scheduled Emails','Team KPIs'],img:'images/crm-3.svg',url:(window.__BASE_URL||'')+'/projects'},
+ {t:'CRM<br><span>Analytics</span>',d:'Real-time analytics dashboards powered by WebSockets, so managers see every change the moment it happens.',c:['Node.js','WebSockets','MySQL'],f:['Live Dashboards','Lead Sources','Funnel Analysis','Role-based Views'],img:'images/crm-4.svg',url:(window.__BASE_URL||'')+'/projects'}];
 const W=document.getElementById('featWrap'),th=[...W.querySelectorAll('.thumbs a')];let cur=0,tm;
 function go(i){i=(i+SLIDES.length)%SLIDES.length;if(i===cur)return;cur=i;W.classList.add('swap');th.forEach((a,k)=>a.classList.toggle('on',k===i));clearTimeout(tm);
  tm=setTimeout(()=>{const s=SLIDES[i];fpT.innerHTML=s.t;fpD.textContent=s.d;fpC.innerHTML=s.c.map(x=>`<span>${x}</span>`).join('');fpF.innerHTML=s.f.map(x=>`<div>${x}</div>`).join('');fpI.src=s.img;fpL.href=s.url;fpN.textContent=`0${i+1} / 0${SLIDES.length}`;W.classList.remove('swap')},420)}
@@ -284,12 +284,6 @@ f.addEventListener('submit',e=>{
 document.getElementById('fagain').onclick=()=>{f.reset();if(bud)bud.value='';syncSvc();bc.forEach(x=>x.classList.remove('on'));fields.forEach(el=>{el.closest('.fl').classList.remove('ok','bad');delete el.dataset.t});btn.classList.remove('done');btn.querySelector('.tx').innerHTML='Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';g.classList.remove('sent')};
 // newsletter (fake)
 document.getElementById('nlform')?.addEventListener('submit',e=>{e.preventDefault();const i=e.target.newsletter_email,m=document.getElementById('nlmsg');const ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value);m.classList.toggle('bad',!ok);m.textContent=ok?'Thanks! You\'re on the list.':'Please enter a valid email.';if(ok)i.value=''});
-// nav: smooth anchor scroll + active link on scroll
-const links=[...document.querySelectorAll('nav .links a')],ids=['home','services','projects','about','reviews','contact'];
-links.forEach((a,i)=>a.setAttribute('href','#'+ids[i]));
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:RM?'auto':'smooth'});history.replaceState(null,'',a.getAttribute('href'))}));
-const secs=ids.map(id=>document.getElementById(id)).filter(Boolean);
-function act(){let cur=secs[0]?.id;const y=innerHeight*.35;secs.forEach(s=>{if(s.getBoundingClientRect().top<=y)cur=s.id});links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur))}
-if(links.length){addEventListener('scroll',act,{passive:true});act()}
-window.__activeNav=()=>document.querySelector('nav .links a.on')?.textContent;
+// nav: smooth anchor scroll for in-page anchors
+document.querySelectorAll('a[href^="#"]').forEach(a=>{const target=a.getAttribute('href');if(!target||target==='#')return;a.addEventListener('click',e=>{const t=document.querySelector(target);if(!t)return;e.preventDefault();t.scrollIntoView({behavior:RM?'auto':'smooth'});history.replaceState(null,'',target)})});
 })();

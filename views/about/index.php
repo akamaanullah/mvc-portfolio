@@ -112,7 +112,7 @@
   <p class="lead2" style="margin-top:14px;font-size:16px">Full-stack developer and team lead — turning messy day-to-day operations into systems that actually hold up under real use.</p>
   <div class="btns"><a class="bo pri" href="javascript:void(0)" download><!-- URL: CV file (e.g. files/Amaanullah-Khan-CV.pdf) -->⬇ Download CV</a><a class="bo sec" href="<?= base_url('/contact') ?>">Let's work together →</a></div>
   <div class="facts"><div><b>PHP &amp; Laravel</b><small>Daily stack</small></div><div><b>React · Node · Flutter</b><small>Web to mobile</small></div><div><b>1.5M+ leads</b><small>CRM built &amp; scaled</small></div></div>
-  <div class="vp">VERIFIED PROFILES <a href="javascript:void(0)" rel="me"><!-- URL: LinkedIn -->LinkedIn</a><a href="javascript:void(0)" rel="me"><!-- URL: GitHub -->GitHub</a></div>
+  <div class="vp">VERIFIED PROFILES <a href="https://linkedin.com" target="_blank" rel="noopener me"><!-- URL: LinkedIn -->LinkedIn</a><a href="https://github.com/akamaanullah" target="_blank" rel="noopener me"><!-- URL: GitHub -->GitHub</a></div>
  </div>
 </header>
 
@@ -139,7 +139,7 @@
 <section class="wrap blk" id="solutions" aria-labelledby="h-sol">
  <div class="fade"><span class="eyebrow">CRM, SaaS &amp; Automation Solutions</span><h2 id="h-sol">Software that <em>solves a business problem</em></h2><p class="sub">I believe the best software doesn't just work — it solves a business problem.</p></div>
  <div class="g3"><article class="card fade"><div class="ic">◆</div><h3>Automation & Efficiency</h3><p>Eliminate manual work with custom workflow automation solutions.</p></article><article class="card fade"><div class="ic">◆</div><h3>Multi-tenant Architectures</h3><p>Secure custom CRM and SaaS systems capable of handling millions of records.</p></article><article class="card fade"><div class="ic">◆</div><h3>Operational Visibility</h3><p>Dashboards that improve performance and team productivity.</p></article></div>
- <div class="spec fade" aria-label="Specialized solutions"><!-- URL: each service page --><a href="javascript:void(0)">Custom CRM</a><a href="javascript:void(0)">Web Systems</a><a href="javascript:void(0)">SaaS & Custom Products</a><a href="javascript:void(0)">Automation</a><a href="javascript:void(0)">Mobile Apps</a></div>
+ <div class="spec fade" aria-label="Specialized solutions"><!-- URL: each service page --><a href="<?= base_url('/services/custom-crm-development') ?>">Custom CRM</a><a href="<?= base_url('/services') ?>">Web Systems</a><a href="<?= base_url('/services') ?>">SaaS & Custom Products</a><a href="<?= base_url('/services') ?>">Automation</a><a href="<?= base_url('/services') ?>">Mobile Apps</a></div>
 </section>
 
 <section class="wrap blk split" id="experience">

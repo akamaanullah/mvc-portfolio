@@ -284,7 +284,7 @@
 <section class="wrap blk" id="services" aria-labelledby="h-core">
  <div class="shead fade"><div><span class="eyebrow">Core services</span><h2 id="h-core">What I build for CRM, automation <em>&amp; web platforms</em></h2></div>
  <p class="sub" style="max-width:380px">Built on Laravel &amp; PHP with a MySQL backend — so you own working software at the end, not a subscription.</p></div>
- <div class="bento"><a class="bc b-crm fade" href="javascript:void(0)" data-service="custom-crm"><!-- data-service="custom-crm" (future page) -->
+ <div class="bento"><a class="bc b-crm fade" href="<?= base_url('/services/custom-crm-development') ?>" data-service="custom-crm"><!-- data-service="custom-crm" (future page) -->
 <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.9 2.6 2.6 3 5.2"/></svg></span><span class="ba" aria-hidden="true">↗</span></div><div class="mk crmk live" data-anim="crm" aria-hidden="true"><div class="mkbar"><i></i><i></i><i></i><span>Pipeline · This month</span><em class="lv">● Live</em></div>
 <div class="crmg"><div class="kpis"><div><small>Leads routed</small><b data-c="1240" data-r="7">1,240</b></div><div><small>Deals won</small><b data-c="86" data-r="1">86</b></div><div><small>Active users</small><b data-c="312" data-r="2">312</b></div></div>
 <div class="bars"><i style="--h:38%"></i><i style="--h:62%"></i><i style="--h:48%"></i><i style="--h:80%"></i><i style="--h:56%"></i><i style="--h:92%"></i><i style="--h:70%"></i><i style="--h:86%"></i></div>

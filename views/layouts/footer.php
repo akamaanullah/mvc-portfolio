@@ -6,9 +6,9 @@ if (!empty($home)): ?><footer class="foot" id="footer">
  <div class="fbody"><div class="fin">
   <button class="btt" id="btt" aria-label="Back to top">↑</button>
   <div class="fcols">
-   <div><div class="logo"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></div>
+   <div><div class="logo"><a href="<?= base_url('/') ?>"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></a></div>
     <p class="fabout">Custom web apps, CRMs, chat platforms, automation and mobile apps, built to be secure, fast and scalable.</p></div>
-   <div class="fcol"><h5>Quick Links</h5><a href="#home">Home</a><a href="<?= base_url('/about') ?>">About</a><a href="<?= base_url('/services') ?>">Services</a><a href="<?= base_url('/projects') ?>">Projects</a><a href="<?= base_url('/articles') ?>">Articles</a><a href="#reviews">Reviews</a><a href="<?= base_url('/contact') ?>">Contact</a></div>
+   <div class="fcol"><h5>Quick Links</h5><a href="<?= base_url('/') ?>">Home</a><a href="<?= base_url('/about') ?>">About</a><a href="<?= base_url('/services') ?>">Services</a><a href="<?= base_url('/projects') ?>">Projects</a><a href="<?= base_url('/articles') ?>">Articles</a><a href="#reviews">Reviews</a><a href="<?= base_url('/contact') ?>">Contact</a></div>
    <div class="fcol"><h5>Services</h5><!-- URL: each service page (only CRM has a detail page so far) -->
     <a href="<?= base_url('/services/custom-crm-development') ?>">Custom CRM Development</a><a href="<?= base_url('/services') ?>">AI Automation Services</a><a href="<?= base_url('/services') ?>">Web App &amp; CMS Development</a><a href="<?= base_url('/services') ?>">SaaS Application Development</a><a href="<?= base_url('/services') ?>">Mobile App Development</a><a href="<?= base_url('/services') ?>">Performance Tuning</a></div>
    <div class="fcol"><h5>Projects</h5><a href="<?= base_url('/projects') ?>">All Projects</a><a href="<?= base_url('/projects/category/web-applications') ?>">Web Applications</a><a href="<?= base_url('/projects/category/web-design-development') ?>">Web Design &amp; Dev</a><a href="<?= base_url('/projects/category/mobile-apps') ?>">Mobile Applications</a><a href="<?= base_url('/projects/category/products') ?>">Products</a></div>
@@ -24,7 +24,7 @@ if (!empty($home)): ?><footer class="foot" id="footer">
  <div class="fbody"><div class="fin">
   <button class="btt" id="btt" aria-label="Back to top">↑</button>
   <div class="fcols">
-   <div><div class="logo"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></div>
+   <div><div class="logo"><a href="<?= base_url('/') ?>"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></a></div>
     <p class="fabout">Custom web apps, CRMs, chat platforms, automation and mobile apps, built to be secure, fast and scalable.</p></div>
    <div class="fcol"><h5>Quick Links</h5><a href="<?= base_url('/') ?>">Home</a><a href="<?= base_url('/about') ?>">About</a><a href="<?= base_url('/services') ?>">Services</a><a href="<?= base_url('/projects') ?>">Projects</a><a href="<?= base_url('/articles') ?>">Articles</a><a href="<?= base_url('/#reviews') ?>">Reviews</a><a href="<?= base_url('/contact') ?>">Contact</a></div>
    <div class="fcol"><h5>Services</h5><!-- URL: each service page (only CRM has a detail page so far) -->
