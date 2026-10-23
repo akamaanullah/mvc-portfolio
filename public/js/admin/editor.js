@@ -96,7 +96,107 @@ var ti=$('#tagsIn input');if(ti){ti.addEventListener('keydown',function(e){if((e
 /* slug auto */
 var ttl=$('[data-m=title]'),sl=$('#slugIn'),slTouched=!!(sl&&sl.value);if(sl){sl.addEventListener('input',function(){slTouched=true});ttl.addEventListener('input',function(){if(!slTouched)sl.value=slug(ttl.value)})}
 function mark(){if(!dirty){dirty=true;var s=$('#saveSt');if(s){s.textContent='● Unsaved changes';s.className='unsaved'}}}
-$$('[data-save]').forEach(function(b){b.addEventListener('click',function(){var bj=$('#bodyJson');if(bj)bj.value=JSON.stringify(blocks.map(function(x){var y=Object.assign({},x);delete y._id;delete y._c;return y}));dirty=false;var s=$('#saveSt');if(s){s.textContent='✓ Saved just now (demo)';s.className='saved'}toast(b.getAttribute('data-save'),'ok')})});
+$$('[data-save]').forEach(function(b){
+  b.addEventListener('click',function(e){
+    e.preventDefault();
+    var isPub = b.textContent.toLowerCase().indexOf('publish') > -1;
+    var targetStatus = isPub ? 'published' : 'draft';
+    var pst = $('#pst');
+    if(pst) pst.value = isPub ? 'published' : 'draft';
+
+    var cleanBlocks = blocks.map(function(x){var y=Object.assign({},x);delete y._id;delete y._c;return y});
+    var bj = $('#bodyJson');
+    if(bj) bj.value = JSON.stringify(cleanBlocks);
+
+    var r = compute();
+    var m = r.meta;
+    var csrf = (document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+    var baseUrl = (document.querySelector('meta[name="base-url"]')||{}).content||'';
+
+    var s = $('#saveSt');
+    if(s){s.textContent='Saving…';s.className='unsaved'}
+
+    var payload = {
+      _token: csrf,
+      id: ($('#projId')||{}).value||'',
+      title: ($('[data-m=title]')||{}).value||'',
+      slug: ($('#slugIn')||{}).value||'',
+      status: targetStatus,
+      published_at: ($('#pdt')||{}).value||'',
+      focus_keyword: ($('#focusKw')||{}).value||'',
+      seo_title: ($('#seoT')||{}).value||'',
+      meta_description: ($('#seoD')||{}).value||'',
+      canonical_url: ($('#canon')||{}).value||'',
+      body_json: JSON.stringify({blocks: cleanBlocks}),
+      body_html: r.html||''
+    };
+
+    if(KIND === 'project'){
+      payload.category_slug = ($('#pcat')||{}).value||'web-applications';
+      payload.highlight_em = ($('#mEm')||{}).value||'';
+      payload.domain = ($('#mDom')||{}).value||'';
+      payload.summary = ($('[data-m=summary]')||{}).value||'';
+      payload.banner = ($('#coverIn')||{}).value||'';
+      payload.banner_alt = ($('#calt')||{}).value||'';
+      payload.client = ($('#fclient')||{}).value||'';
+      payload.industry = ($('#findustry')||{}).value||'';
+      payload.role = ($('#frole')||{}).value||'';
+      payload.timeline = ($('#ftimeline')||{}).value||'';
+      payload.platform = ($('#fplatform')||{}).value||'';
+      payload.project_status = ($('#fstatus')||{}).value||'';
+      payload.tech_chips = ($('#mChips')||{}).value||'';
+      payload.tldr = ($('#mTl')||{}).value||'';
+      payload.key_results = ($('#mKr')||{}).value||'';
+      payload.is_featured = ($('#chkFeatured')||{}).checked ? 1 : 0;
+      payload.show_on_home = ($('#chkHome')||{}).checked ? 1 : 0;
+      payload.cta_title = ($('#ctT')||{}).value||'';
+      payload.cta_text = ($('#ctX')||{}).value||'';
+      payload.cta_label = ($('#ctL')||{}).value||'';
+    } else {
+      payload.category_slug = ($('#pcat')||{}).value||'laravel-php';
+      payload.badge_category = ($('#mCat')||{}).value||'';
+      payload.badge_type = ($('#mType')||{}).value||'Guide';
+      payload.cover_image = ($('#coverIn')||{}).value||'';
+      payload.cover_alt = ($('#calt')||{}).value||'';
+      payload.excerpt = ($('#exc')||$('[data-m=summary]')||{}).value||'';
+      payload.tags = (m.tags||[]).join(', ');
+      payload.reading_time = ($('#rt')||{}).textContent||'5 min';
+    }
+
+    var endpoint = baseUrl + (KIND==='project' ? '/admin/projects/save' : '/admin/articles/save');
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': csrf
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.success){
+        dirty = false;
+        if(s){s.textContent='✓ All changes saved';s.className='saved'}
+        toast(data.message||(isPub?'Published successfully':'Draft saved'),'ok');
+        if(data.id && $('#projId') && !$('#projId').value){
+          $('#projId').value = data.id;
+          if(history.replaceState){
+            history.replaceState(null, '', baseUrl + '/admin/' + (KIND==='project'?'projects':'articles') + '/edit?id=' + data.id);
+          }
+        }
+      } else {
+        if(s){s.textContent='● Save failed';s.className='unsaved'}
+        toast(data.error||'Failed to save','bad');
+      }
+    })
+    .catch(function(){
+      if(s){s.textContent='● Error';s.className='unsaved'}
+      toast('Network error saving content','bad');
+    });
+  });
+});
 /* ---------- compute TOC / words / html ---------- */
 function compute(){var toc=[],html='',used={},secN=0,open=false,words=0;var m=meta();
  function uid(s){var b=s||'section',u=b,i=2;while(used[u])u=b+'-'+(i++);used[u]=1;return u}

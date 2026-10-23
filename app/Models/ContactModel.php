@@ -13,7 +13,7 @@ class ContactModel extends Model
     protected static function data(): array { return []; }
 
     /** Store a contact request in MySQL when DB_ENABLED=true, otherwise in storage/logs/contacts.log (JSON lines). */
-    public static function create(array $input): bool
+    public static function create(array $input): int
     {
         $row = [];
         foreach (self::FIELDS as $f) {
@@ -28,13 +28,15 @@ class ContactModel extends Model
             try {
                 $cols = array_keys($row);
                 $sql = 'INSERT INTO contacts (`' . implode('`,`', $cols) . '`) VALUES (:' . implode(',:', $cols) . ')';
-                return Database::connection()->prepare($sql)->execute($row);
+                $pdo = Database::connection();
+                $pdo->prepare($sql)->execute($row);
+                return (int)$pdo->lastInsertId();
             } catch (\Throwable $e) {
                 Logger::error('Contact insert failed: ' . $e->getMessage());
             }
         }
         $ok = @file_put_contents(BASE_PATH . '/storage/logs/contacts.log', json_encode($row, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX) !== false;
         Logger::info('Contact request stored', ['email' => $row['email']]);
-        return $ok;
+        return $ok ? 1 : 0;
     }
 }

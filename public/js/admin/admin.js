@@ -28,7 +28,67 @@ B.addEventListener('click',function(e){var c=e.target.closest('[data-close]');if
 /* confirm delete */
 var pending=null;
 B.addEventListener('click',function(e){var b=e.target.closest('[data-confirm]');if(!b)return;e.preventDefault();pending=b;var m=$('#mConfirm');if(!m)return;$('#cTitle',m).textContent=b.getAttribute('data-confirm')||'Delete this item?';openM('mConfirm')});
-var cy=$('#cYes');if(cy)cy.addEventListener('click',function(){closeAll();if(pending){var r=pending.closest('tr,.mi2,.pcard,.cv,li[data-row]');if(r){r.style.transition='.3s';r.style.opacity='0';setTimeout(function(){r.remove()},300)}}toast('Deleted (demo, nothing was removed)','bad');pending=null});
+var cy=$('#cYes');if(cy)cy.addEventListener('click',function(){
+  closeAll();
+  if(pending){
+    var r=pending.closest('tr,.mi2,.pcard,.cv,li[data-row]');
+    var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+    var baseUrl=(document.querySelector('meta[name="base-url"]')||{}).content||'';
+    var delProj=pending.getAttribute('data-del-project');
+    var delArt=pending.getAttribute('data-del-article');
+    var delCat=pending.getAttribute('data-del-category');
+    var delMsg=pending.getAttribute('data-del-message');
+    var delLead=pending.getAttribute('data-del-lead');
+
+    var url='', id=null;
+    if(delProj){url=baseUrl+'/admin/projects/delete';id=delProj}
+    else if(delArt){url=baseUrl+'/admin/articles/delete';id=delArt}
+    else if(delCat){url=baseUrl+'/admin/categories/delete';id=delCat}
+    else if(delMsg){url=baseUrl+'/admin/messages/delete';id=delMsg}
+    else if(delLead){url=baseUrl+'/admin/leads/delete';id=delLead}
+
+    if(url && id){
+      fetch(url,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':csrf},
+        body:JSON.stringify({_token:csrf,id:id})
+      }).then(function(res){return res.json()}).then(function(d){
+        if(d.success){
+          if(r){r.style.transition='.3s';r.style.opacity='0';setTimeout(function(){r.remove()},300)}
+          toast(d.message||'Deleted','ok');
+          if(!r && window.location.pathname.indexOf('/edit')>-1){
+            window.location.href=baseUrl+(delProj?'/admin/projects':'/admin/articles');
+          }
+        }else{
+          toast(d.error||'Failed to delete','bad');
+        }
+      }).catch(function(){toast('Error deleting item','bad')});
+    }else{
+      if(r){r.style.transition='.3s';r.style.opacity='0';setTimeout(function(){r.remove()},300)}
+      toast('Deleted','bad');
+    }
+    pending=null;
+  }
+});
+
+/* toggle featured */
+document.addEventListener('change',function(e){
+  var sw=e.target.closest('[data-toggle-featured]');
+  if(!sw)return;
+  var id=sw.getAttribute('data-toggle-featured'),feat=sw.checked?1:0;
+  var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+  var baseUrl=(document.querySelector('meta[name="base-url"]')||{}).content||'';
+  fetch(baseUrl+'/admin/projects/toggle-featured',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':csrf},
+    body:JSON.stringify({_token:csrf,id:id,is_featured:feat})
+  }).then(function(res){return res.json()}).then(function(d){
+    toast(d.message||(feat?'Marked as featured':'Removed from featured'),'ok');
+  }).catch(function(){
+    toast('Error updating featured','bad');
+    sw.checked=!sw.checked;
+  });
+});
 /* toast */
 window.toast=function(msg,type){var w=$('.toasts');if(!w){w=document.createElement('div');w.className='toasts';w.setAttribute('aria-live','polite');B.appendChild(w)}var t=document.createElement('div');t.className='toast '+(type||'');t.innerHTML='<span>'+(type==='bad'?'🗑️':type==='ok'?'✅':'ℹ️')+'</span><span>'+msg+'</span>';w.appendChild(t);setTimeout(function(){t.style.transition='.3s';t.style.opacity='0';setTimeout(function(){t.remove()},300)},3200)};
 $$('[data-toast]').forEach(function(b){b.addEventListener('click',function(e){if(b.tagName==='A')e.preventDefault();toast(b.getAttribute('data-toast'),b.getAttribute('data-tt')||'ok')})});
@@ -59,8 +119,55 @@ $$('.drop').forEach(function(d){var inp=$('input[type=file]',d);d.addEventListen
 $$('.mi2[data-name]').forEach(function(m){m.addEventListener('click',function(){$$('.mi2.sel').forEach(function(x){x.classList.remove('sel')});m.classList.add('sel');var dr=$('#dMedia');if(!dr)return;$('#mdImg',dr).src=$('img',m).src;$('#mdName',dr).textContent=m.getAttribute('data-name');$('#mdMeta',dr).textContent=m.getAttribute('data-meta');$('#mdUrl',dr).value=m.getAttribute('data-url')||'';$('#mdAlt',dr).value=m.getAttribute('data-alt')||'';openM('dMedia')})});
 $$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var t=document.querySelector(b.getAttribute('data-copy'));try{navigator.clipboard.writeText(t.value||t.textContent)}catch(e){}toast('Copied to clipboard','ok')})});
 /* lead drawer */
-$$('[data-lead]').forEach(function(r){r.addEventListener('click',function(e){if(e.target.closest('input,button,a,select'))return;var d=JSON.parse(r.getAttribute('data-lead'));var dr=$('#dLead');$('#ldName',dr).textContent=d.n;$('#ldMail',dr).textContent=d.e;$('#ldSrc',dr).textContent=d.s;$('#ldInt',dr).textContent=d.i;$('#ldScore',dr).style.setProperty('--s',d.sc);$('#ldScoreN',dr).textContent=d.sc;$$('.pipe button',dr).forEach(function(b){b.classList.toggle('on',b.textContent===d.st)});$('#ldAva',dr).textContent=d.n.split(' ').map(function(x){return x[0]}).join('').slice(0,2);openM('dLead')})});
-$$('.pipe').forEach(function(p){$$('button',p).forEach(function(b){b.addEventListener('click',function(){$$('button',p).forEach(function(x){x.classList.toggle('on',x===b)});toast('Status changed to “'+b.textContent+'” (demo)','ok')})})});
+var curLead = null;
+$$('[data-lead]').forEach(function(r){
+  r.addEventListener('click',function(e){
+    if(e.target.closest('input,button,a,select'))return;
+    var d=JSON.parse(r.getAttribute('data-lead'));
+    curLead = { data: d, row: r };
+    var dr=$('#dLead');
+    $('#ldName',dr).textContent=d.n;
+    $('#ldMail',dr).textContent=d.e;
+    $('#ldSrc',dr).textContent=d.s;
+    $('#ldInt',dr).textContent=d.i;
+    $('#ldScore',dr).style.setProperty('--s',d.sc);
+    $('#ldScoreN',dr).textContent=d.sc;
+    $$('.pipe button',dr).forEach(function(b){
+      b.classList.toggle('on',b.textContent.trim().toLowerCase()===(d.st||'').toLowerCase());
+    });
+    $('#ldAva',dr).textContent=d.n.split(' ').map(function(x){return x[0]}).join('').slice(0,2);
+    openM('dLead');
+  });
+});
+
+$$('#dLead .pipe button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var st = b.textContent.trim().toLowerCase();
+    $$('#dLead .pipe button').forEach(function(x){x.classList.toggle('on',x===b)});
+    if(curLead && curLead.data && curLead.data.id){
+      var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+      var baseUrl=(document.querySelector('meta[name="base-url"]')||{}).content||'';
+      fetch(baseUrl+'/admin/leads/status',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':csrf},
+        body:JSON.stringify({_token:csrf,id:curLead.data.id,status:st})
+      }).then(function(res){return res.json()}).then(function(d){
+        if(d.success){
+          toast('Status updated to “'+b.textContent+'”','ok');
+          if(curLead.row){
+            var pill=$('.pill',curLead.row);
+            if(pill){
+              pill.textContent=b.textContent;
+              pill.className='pill '+(st==='won'?'ok':(st==='proposal'?'warn':(st==='contacted'?'info':(st==='lost'?'bad':''))));
+            }
+            curLead.row.setAttribute('data-k',b.textContent);
+          }
+        }
+      }).catch(function(){toast('Error updating status','bad')});
+    }
+  });
+});
+
 /* CSV export (real client-side export of the visible demo table) */
 $$('[data-csv]').forEach(function(b){b.addEventListener('click',function(){var t=$(b.getAttribute('data-csv'));var rows=$$('tr',t).filter(function(r){return r.style.display!=='none'}).map(function(r){return $$('th,td',r).slice(1).map(function(c){return '"'+c.innerText.replace(/\s+/g,' ').trim().replace(/"/g,'""')+'"'}).join(',')});var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'}));a.download=(b.getAttribute('data-file')||'export')+'.csv';a.click();toast('CSV exported (demo data)','ok')})});
 /* ---------- charts (inline SVG, no library) ---------- */
@@ -92,5 +199,29 @@ if(thr){thr.scrollTop=thr.scrollHeight;var tk=$('#takeover'),cmp=$('#cmpTxt'),se
  var ib=$('[data-info]');if(ib)ib.addEventListener('click',function(){$('.inbox').classList.toggle('showinfo')});
 }
 /* messages inbox */
-$$('[data-msg]').forEach(function(r){r.addEventListener('click',function(){$$('[data-msg]').forEach(function(x){x.classList.toggle('on',x===r)});r.classList.remove('unr');var d=JSON.parse(r.getAttribute('data-msg'));$('#rmSub').textContent=d.s;$('#rmFrom').textContent=d.n+' <'+d.e+'>';$('#rmBody').textContent=d.b;$('#rmAva').textContent=d.n[0]})});
+$$('[data-msg]').forEach(function(r){
+  r.addEventListener('click',function(){
+    $$('[data-msg]').forEach(function(x){x.classList.toggle('on',x===r)});
+    r.classList.remove('unr');
+    var dot = $('.dot', r);
+    if(dot) dot.remove();
+    var d=JSON.parse(r.getAttribute('data-msg'));
+    $('#rmSub').textContent=d.s;
+    $('#rmFrom').textContent=d.n+' <'+d.e+'>';
+    $('#rmBody').innerHTML=(d.b||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    $('#rmAva').textContent=(d.n||'U')[0];
+    var bg=$('#rmBudget');if(bg)bg.textContent=d.budget||'Not specified';
+    var sv=$('#rmService');if(sv)sv.textContent=d.service||'General';
+    var ip=$('#rmIp');if(ip)ip.textContent=d.ip||'—';
+    var del=$('#btnDelCurMsg');if(del)del.setAttribute('data-del-message',d.id);
+
+    var csrf=(document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+    var baseUrl=(document.querySelector('meta[name="base-url"]')||{}).content||'';
+    fetch(baseUrl+'/admin/messages/status',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json','X-CSRF-TOKEN':csrf},
+      body:JSON.stringify({_token:csrf,id:d.id,status:'read'})
+    });
+  });
+});
 })();

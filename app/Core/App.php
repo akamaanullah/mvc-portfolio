@@ -39,6 +39,24 @@ class App
         $this->get('/admin/logout', [$C . 'AdminController', 'logout']);
         $this->post('/admin/logout', [$C . 'AdminController', 'logout']);
         $this->post('/admin/login', [$C . 'AdminController', 'postLogin']);
+
+        // Admin CRUD endpoints
+        $this->post('/admin/projects/save', [$C . 'AdminController', 'saveProject']);
+        $this->post('/admin/projects/delete', [$C . 'AdminController', 'deleteProject']);
+        $this->post('/admin/projects/toggle-featured', [$C . 'AdminController', 'toggleProjectFeatured']);
+
+        $this->post('/admin/articles/save', [$C . 'AdminController', 'saveArticle']);
+        $this->post('/admin/articles/delete', [$C . 'AdminController', 'deleteArticle']);
+
+        $this->post('/admin/categories/save', [$C . 'AdminController', 'saveCategory']);
+        $this->post('/admin/categories/delete', [$C . 'AdminController', 'deleteCategory']);
+
+        $this->post('/admin/messages/status', [$C . 'AdminController', 'updateMessageStatus']);
+        $this->post('/admin/messages/delete', [$C . 'AdminController', 'deleteMessage']);
+
+        $this->post('/admin/leads/status', [$C . 'AdminController', 'updateLeadStatus']);
+        $this->post('/admin/leads/delete', [$C . 'AdminController', 'deleteLead']);
+
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);
         $this->get('/', [$C . 'HomeController', 'index']);

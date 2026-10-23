@@ -1,2 +1,74 @@
-<?php /* Admin · Categories & tags — static UI. Replace demo data with controller vars (see @dynamic comments). */ ?>
-<div class="ph-h"><div><div class="crumbs">Admin / Content</div><h1>Categories &amp; tags </h1><p>Each category is its own SEO page (title, intro, canonical).</p></div><div class="acts"><button class="btn o" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> New category</button></div></div><div class="grid g2"><section class="card "><div class="hd"><h3>Article categories</h3><div class="r"></div></div><div class=""><div class="tw"><table class="t"><thead><tr><th>Name</th><th>Slug</th><th class="num">Items</th><th></th></tr></thead><tbody><tr data-row><td><b>Laravel &amp; PHP</b></td><td class="mut">laravel-php</td><td class="num">6</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Laravel &amp; PHP”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>SaaS &amp; CRM</b></td><td class="mut">saas-crm</td><td class="num">4</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “SaaS &amp; CRM”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Automation &amp; AI</b></td><td class="mut">automation-ai</td><td class="num">4</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Automation &amp; AI”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Mobile &amp; Flutter</b></td><td class="mut">mobile-flutter</td><td class="num">4</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Mobile &amp; Flutter”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Web Development</b></td><td class="mut">web-development</td><td class="num">3</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Web Development”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Career Insights</b></td><td class="mut">career-insights</td><td class="num">3</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Career Insights”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr></tbody></table></div></div></section><section class="card "><div class="hd"><h3>Project categories</h3><div class="r"></div></div><div class=""><div class="tw"><table class="t"><thead><tr><th>Name</th><th>Slug</th><th class="num">Items</th><th></th></tr></thead><tbody><tr data-row><td><b>Web Design &amp; Development</b></td><td class="mut">web-design-development</td><td class="num">3</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Web Design &amp; Development”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Web Applications</b></td><td class="mut">web-applications</td><td class="num">5</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Web Applications”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Products</b></td><td class="mut">products</td><td class="num">2</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Products”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr><tr data-row><td><b>Mobile Apps</b></td><td class="mut">mobile-apps</td><td class="num">3</td><td><button class="btn sm g" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button><button class="btn sm g d" data-confirm="Delete category “Mobile Apps”?"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button></td></tr></tbody></table></div></div></section></div><div class="mt"><section class="card "><div class="hd"><h3>Tags</h3><div class="r"><input class=inp placeholder="Add tag + Enter" style=height:32px onkeydown="if(event.key==='Enter'){toast('Tag added (demo)','ok');this.value=''}"></div></div><div class="bd2"><div class=row style=flex-wrap:wrap;gap:8px><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Laravel <small class="mut">2</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Laravel?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Multi-Tenancy <small class="mut">7</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Multi-Tenancy?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#SaaS Architecture <small class="mut">7</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #SaaS Architecture?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Database Design <small class="mut">8</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Database Design?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Eloquent <small class="mut">9</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Eloquent?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Security <small class="mut">5</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Security?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Flutter <small class="mut">9</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Flutter?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#REST API <small class="mut">1</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #REST API?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Queues <small class="mut">2</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Queues?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Performance <small class="mut">9</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Performance?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#CRM <small class="mut">5</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #CRM?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Automation <small class="mut">6</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Automation?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#AI <small class="mut">2</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #AI?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#E-commerce <small class="mut">5</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #E-commerce?" aria-label="Delete">×</button></span><span class="tag" style="padding:5px 10px;font-size:13px" data-row>#Career <small class="mut">7</small> <button class="btn sm g" style="height:20px;padding:0 4px" data-confirm="Delete tag #Career?" aria-label="Delete">×</button></span></div></div></section></div><div class="modal" id="mCat"><div class="mh2"><h3>Category</h3><button class="ib" data-close aria-label="Close"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><form data-validate data-msg="Category saved (demo)"><div class="mb"><div class="fld"><label for="cn">Name</label><input class="inp" id="cn" required minlength="2"><span class="err">Name is required.</span></div><div class="fld"><label for="cs">Slug</label><input class="inp" id="cs" placeholder="auto"></div><div class="fld"><label for="ct">Type</label><select class="sel" id="ct"><option>Article category</option><option>Project category</option></select></div><div class="fld"><label for="cd">SEO intro (shown on category page)</label><textarea class="inp" id="cd" rows="3"></textarea></div></div><div class="mf"><button class="btn" type="button" data-close>Cancel</button><button class="btn o" type="submit">Save</button></div></form></div>
+<?php /* Admin · Categories & tags — dynamic UI. */ 
+$categoriesList = $categories ?? [];
+$artCats = array_filter($categoriesList, fn($c) => ($c['type'] ?? '') === 'article');
+$projCats = array_filter($categoriesList, fn($c) => ($c['type'] ?? '') === 'project');
+?>
+<div class="ph-h"><div><div class="crumbs">Admin / Content</div><h1>Categories &amp; tags </h1><p>Each category is its own SEO page (title, intro, canonical).</p></div><div class="acts"><button class="btn o" data-open="mCat"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> New category</button></div></div>
+<div class="grid g2">
+<section class="card "><div class="hd"><h3>Article categories (<?= count($artCats) ?>)</h3><div class="r"></div></div><div class=""><div class="tw"><table class="t"><thead><tr><th>Name</th><th>Slug</th><th></th></tr></thead><tbody>
+<?php foreach ($artCats as $c): ?>
+<tr data-row data-id="<?= $c['id'] ?>">
+  <td><b><?= htmlspecialchars($c['name']) ?></b></td>
+  <td class="mut"><?= htmlspecialchars($c['slug']) ?></td>
+  <td>
+    <button class="btn sm g d" data-confirm="Delete category “<?= htmlspecialchars($c['name']) ?>”?" data-del-category="<?= $c['id'] ?>" aria-label="Delete"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button>
+  </td>
+</tr>
+<?php endforeach; ?>
+</tbody></table></div></div></section>
+
+<section class="card "><div class="hd"><h3>Project categories (<?= count($projCats) ?>)</h3><div class="r"></div></div><div class=""><div class="tw"><table class="t"><thead><tr><th>Name</th><th>Slug</th><th></th></tr></thead><tbody>
+<?php foreach ($projCats as $c): ?>
+<tr data-row data-id="<?= $c['id'] ?>">
+  <td><b><?= htmlspecialchars($c['name']) ?></b></td>
+  <td class="mut"><?= htmlspecialchars($c['slug']) ?></td>
+  <td>
+    <button class="btn sm g d" data-confirm="Delete category “<?= htmlspecialchars($c['name']) ?>”?" data-del-category="<?= $c['id'] ?>" aria-label="Delete"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg></button>
+  </td>
+</tr>
+<?php endforeach; ?>
+</tbody></table></div></div></section>
+</div>
+
+<div class="modal" id="mCat"><div class="mh2"><h3>Category</h3><button class="ib" data-close aria-label="Close"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><form id="catForm" onsubmit="event.preventDefault(); saveCatAjax();"><div class="mb"><div class="fld"><label for="cn">Name</label><input class="inp" id="cn" required minlength="2"><span class="err">Name is required.</span></div><div class="fld"><label for="cs">Slug</label><input class="inp" id="cs" placeholder="auto"></div><div class="fld"><label for="ct">Type</label><select class="sel" id="ct"><option value="article">Article category</option><option value="project">Project category</option></select></div><div class="fld"><label for="cd">SEO intro (shown on category page)</label><textarea class="inp" id="cd" rows="3"></textarea></div></div><div class="mf"><button class="btn" type="button" data-close>Cancel</button><button class="btn o" type="submit">Save</button></div></form></div>
+
+<script>
+function saveCatAjax() {
+  var csrf = (document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+  var baseUrl = (document.querySelector('meta[name="base-url"]')||{}).content||'';
+  var name = document.getElementById('cn').value.trim();
+  var slug = document.getElementById('cs').value.trim();
+  var type = document.getElementById('ct').value;
+  var intro = document.getElementById('cd').value.trim();
+
+  if (!name) return;
+
+  fetch(baseUrl + '/admin/categories/save', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CSRF-TOKEN': csrf
+    },
+    body: JSON.stringify({
+      _token: csrf,
+      name: name,
+      slug: slug,
+      type: type,
+      seo_intro: intro
+    })
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(d){
+    if (d.success) {
+      toast(d.message || 'Category saved', 'ok');
+      setTimeout(function(){ window.location.reload(); }, 600);
+    } else {
+      toast(d.error || 'Failed to save', 'bad');
+    }
+  })
+  .catch(function(){
+    toast('Error saving category', 'bad');
+  });
+}
+</script>
