@@ -80,13 +80,17 @@ function view(string $name, array $data = []): string {
 }
 
 function csrf_token(): string {
-    if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+    if (session_status() !== PHP_SESSION_ACTIVE && !headers_sent()) {
+        session_start();
+    }
     if (empty($_SESSION['_token'])) $_SESSION['_token'] = bin2hex(random_bytes(32));
-    return $_SESSION['_token'];
+    return $_SESSION['_token'] ?? '';
 }
 
 function csrf_verify(?string $token): bool {
-    if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+    if (session_status() !== PHP_SESSION_ACTIVE && !headers_sent()) {
+        session_start();
+    }
     return is_string($token) && !empty($_SESSION['_token']) && hash_equals($_SESSION['_token'], $token);
 }
 

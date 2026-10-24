@@ -39,15 +39,16 @@ class UserModel extends Model
     /**
      * Find a user by ID using parameterized PDO query.
      */
-    public static function findById(int $id): ?array
+    public static function findById(int|string $id): ?array
     {
-        if ($id <= 0 || !Database::enabled()) {
+        $intId = (int)$id;
+        if ($intId <= 0 || !Database::enabled()) {
             return null;
         }
 
         try {
             $stmt = Database::connection()->prepare('SELECT id, name, email, role, avatar, created_at, updated_at FROM `users` WHERE id = :id LIMIT 1');
-            $stmt->execute(['id' => $id]);
+            $stmt->execute(['id' => $intId]);
             $user = $stmt->fetch();
             return $user ?: null;
         } catch (\Throwable $e) {
