@@ -10,8 +10,13 @@ class ServiceModel extends Model
     protected static function data(): array
     {
         return [
-            // Only CRM has a designed detail page so far; add rows + views for the other services.
             ['slug' => 'custom-crm-development', 'title' => 'Custom CRM Development in Laravel', 'view' => 'services/show'],
+            ['slug' => 'web-development', 'title' => 'Custom Web Application Development', 'view' => 'services/show'],
+            ['slug' => 'saas-development', 'title' => 'SaaS Application Development', 'view' => 'services/show'],
+            ['slug' => 'chat-application-development', 'title' => 'Chat Application Development', 'view' => 'services/show'],
+            ['slug' => 'business-process-automation', 'title' => 'Business Process Automation', 'view' => 'services/show'],
+            ['slug' => 'ai-automation-services', 'title' => 'AI Automation Services', 'view' => 'services/show'],
+            ['slug' => 'mobile-app-development', 'title' => 'Mobile App Development', 'view' => 'services/show'],
         ];
     }
 }

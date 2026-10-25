@@ -10,6 +10,27 @@
 <link rel="stylesheet" href="<?= asset_url('css/media.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/index-overrides.css') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Amaanullah Khan",
+  "jobTitle": "Custom Software Developer",
+  "url": "https://amaanullah.com",
+  "email": "info@amaanullah.com",
+  "telephone": "+923196935307",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Karachi",
+    "addressCountry": "PK"
+  },
+  "sameAs": [
+    "https://maps.google.com/?cid=AmaanullahKhan",
+    "https://github.com/akamaanullah",
+    "https://linkedin.com"
+  ]
+}
+</script>
 </head><body>
 <script src="<?= asset_url('js/theme.js') ?>"></script>
 <!-- ===== SPLASH / WELCOME SCREEN (shown once per session; add ?splash=1 to force) ===== -->
@@ -26,11 +47,11 @@
 
 <section class="hero" id="home">
  <div class="left">
-  <div class="pill rev" style="animation-delay:.2s">✦ MY SERVICES</div>
-  <h1 class="rev" style="animation-delay:.35s">I build systems<br>that work <em>harder.</em></h1>
-  <p class="lead rev" style="animation-delay:.5s">From custom web applications to automation and team collaboration tools — I turn ideas into scalable digital solutions.</p>
+  <div class="pill rev" style="animation-delay:.2s">Software Developer · Karachi, Pakistan</div>
+  <h1 class="rev" style="animation-delay:.35s">Custom software<br>that works <em>harder.</em></h1>
+  <p class="lead rev" style="animation-delay:.5s">CRM systems, SaaS platforms and web apps built with Laravel &amp; PHP for businesses in Pakistan, the UAE, Saudi Arabia, the US and UK.</p>
   <div class="chips rev" style="animation-delay:.65s">
-   <button class="chip on" data-i="0"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Web Apps</span></button><button class="chip" data-i="1"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>CRM</span></button><button class="chip" data-i="2"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Chat</span></button><button class="chip" data-i="3"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Automation</span></button>
+   <button class="chip on" data-i="0"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Web Apps</span></button><button class="chip" data-i="1"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>CRM</span></button><button class="chip" data-i="2"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span>SaaS</span></button><button class="chip" data-i="3"><svg class="chip-ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Automation</span></button>
   </div>
   <div class="tech rev" style="animation-delay:.8s">
    <span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="16" height="16" loading="lazy">PHP</span><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" width="16" height="16" loading="lazy">Laravel</span><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="16" height="16" loading="lazy">React</span><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="16" height="16" loading="lazy">Node.js</span><span><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="16" height="16" loading="lazy">Flutter</span>
@@ -50,7 +71,7 @@
  <div class="agrid">
   <div class="pframe av" id="pframe">
    <div class="shape"></div>
-   <div class="photo"><!-- SWAP IMAGE: replace images/profile.svg with your own portrait (e.g. images/profile.jpg) --><video class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Portrait of Amaanullah"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"></video></div>
+   <div class="photo"><!-- SWAP IMAGE: replace images/profile.svg with your own portrait (e.g. images/profile.jpg) --><video class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Amaanullah Khan, custom software developer in Karachi"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"><img src="<?= asset_url('media/profile-poster.jpg') ?>" alt="Amaanullah Khan, custom software developer in Karachi"></video></div>
    <div class="avail"><i></i>Available for projects</div>
    <div class="tbadge"><b>&lt;/&gt; Full-stack</b><span>Laravel</span><span>React</span><span>Flutter</span></div>
    <div class="sig">Amaanullah<svg width="170" height="16" viewBox="0 0 170 16"><path d="M2 10 Q60 0 120 8 T168 4" fill="none" stroke="#f26a1b" stroke-width="2.5" stroke-linecap="round"/></svg></div>
@@ -60,7 +81,7 @@
    <div class="av"><span class="pill2">About Me</span>
     <div class="hand hnote">Clean code,<br>real results ↘</div>
     <h2>Turning <em>complex problems</em><br>into simple, <em>scalable software</em></h2>
-    <p class="bio">I'm Amaanullah, a web developer focused on software solutions that actually move a business forward. I design and build custom web apps, CRMs, chat platforms, automations and mobile apps, from the first idea to a secure, scalable product. I care about clean architecture, fast interfaces and software that's simple for the people who use it every day.</p></div>
+    <p class="bio">I’m Amaanullah Khan, a custom software developer based in Karachi. I handle <a href="<?= base_url('/services') ?>">web development</a>, <a href="<?= base_url('/services') ?>">business process automation</a> and <a href="<?= base_url('/services') ?>">mobile apps</a> from start to finish, from planning and database design to launch and ongoing support, so you always deal directly with the person building your product. I focus on clean architecture, fast interfaces and software that stays simple for the people who use it every day.</p></div>
    <div class="skills av" style="transition-delay:.22s">
     <!-- EDIT SKILLS: change --w to set each proficiency bar -->
     <a class="sk" href="https://www.php.net/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#7a86b8">PHP</span>PHP</div><div class="bar"><i style="--w:95%"></i></div><span class="lv">Expert</span></a>
@@ -75,46 +96,129 @@
    <div class="actas av" style="transition-delay:.3s">
     <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
     <a class="lt2" href="<?= base_url('/contact') ?>"><!-- URL: contact page or #contact -->Let's Talk <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <span class="hand" style="color:var(--o);transform:rotate(-5deg)">↖ let's work together!</span>
+    <a class="story-link" href="<?= base_url('/about') ?>">Read my full story →</a>
    </div>
   </div>
  </div>
  <div class="journey av">
   <div class="jbg"></div>
-  <h3>My <em>Approach</em></h3><p>A simple, transparent process from idea to launch.</p>
+  <h2>My Development <em>Process</em></h2><p>From first call to launch, you see working software at every stage.</p>
   <div class="steps">
-   <div class="stp"><span class="n">01</span><b>Discover</b><small>Understand your business, users and goals before writing a single line of code.</small></div>
-   <div class="stp"><span class="n">02</span><b>Design</b><small>Plan the architecture and craft clean, intuitive UI/UX flows.</small></div>
-   <div class="stp"><span class="n">03</span><b>Develop</b><small>Build secure, scalable software with regular demos and feedback.</small></div>
-   <div class="stp"><span class="n">04</span><b>Deliver</b><small>Launch, monitor and keep improving with ongoing support.</small></div>
+   <div class="stp"><span class="n">01</span><b>Discover</b><small>I map your current workflow, users and goals before writing a line of code.</small></div>
+   <div class="stp"><span class="n">02</span><b>Design</b><small>Database, architecture and UI/UX flows are planned in phases, not guessed.</small></div>
+   <div class="stp"><span class="n">03</span><b>Develop</b><small>Secure, scalable code built in stages, with regular demos and your feedback.</small></div>
+   <div class="stp"><span class="n">04</span><b>Deliver</b><small>Tested on a staging copy first, then launched with documentation, a walkthrough and ongoing support.</small></div>
   </div>
  </div>
 </section>
 <section class="svc" id="services">
  <div class="shead sv"><span class="pill2">Our Services</span>
-  <h2><em>Smart Digital Solutions</em><br>for Your Business</h2>
-  <p class="sub">We build custom software, automate workflows and create digital solutions that help your business grow, scale and stay ahead in the digital world.</p></div>
+  <h2><span class="nowrap">Custom Software Services</span><br>for <em>Your Business</em></h2>
+  <p class="sub">Six services, each built around how your business actually runs. Pick one, or combine them into a single custom software system.</p></div>
  <div class="sgrid">
   <!-- SERVICE LINKS: replace each href="javascript:void(0)" with that service page URL (e.g. href="/services/web-apps.html").
        The matching 3D tile in the scene uses the same link automatically. -->
   <nav class="slist sv" style="transition-delay:.15s">
-   <a class="srow on" href="<?= base_url('/services') ?>" data-service="web"><!-- URL: Custom Web Apps page --><span class="ic" style="background:linear-gradient(135deg,#f26a1b,#ff9a4a)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span><b>Custom Web Apps</b><small>Tailored web applications with PHP, Laravel, .NET and more.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
-   <a class="srow" href="<?= base_url('/services/custom-crm-development') ?>" data-service="crm"><!-- URL: CRM Development page --><span class="ic" style="background:#dfe6ff;color:#5b7cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><b>CRM Development</b><small>Manage leads, customers and operations with smart CRM systems.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
-   <a class="srow" href="<?= base_url('/services') ?>" data-service="chat"><!-- URL: Chat Applications page --><span class="ic" style="background:#d6f5ea;color:#13a37a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><b>Chat Applications</b><small>Real-time chat, team collaboration and communication tools.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
-   <a class="srow" href="<?= base_url('/services') ?>" data-service="auto"><!-- URL: Business Process Automation page --><span class="ic" style="background:#fbe0f0;color:#c0287a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span><b>Business Process Automation</b><small>Save time with smart workflows and automation systems.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
-   <a class="srow" href="<?= base_url('/services') ?>" data-service="mobile"><!-- URL: Mobile App Development page --><span class="ic" style="background:#ece2ff;color:#7d4cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span><b>Mobile App Development</b><small>Cross-platform apps with Flutter, Firebase and modern tech.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
-   <a class="srow" href="<?= base_url('/services') ?>" data-service="ui"><!-- URL: UI/UX & Performance page --><span class="ic" style="background:#ffe9cf;color:#e07b00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg></span><span><b>UI/UX &amp; Performance</b><small>Modern UI/UX, fast, responsive and optimized performance.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow on" href="<?= base_url('/services/web-development') ?>" data-service="web"><!-- URL: Custom Web Applications page --><span class="ic" style="background:linear-gradient(135deg,#f26a1b,#ff9a4a)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span><b>Custom Web Applications</b><small>Scalable web applications and SaaS platforms built with Laravel &amp; PHP.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="<?= base_url('/services/custom-crm-development') ?>" data-service="crm"><!-- URL: CRM Development page --><span class="ic" style="background:#dfe6ff;color:#5b7cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span><b>CRM Development</b><small>Custom CRM systems for leads, customers and sales operations.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="<?= base_url('/services/chat-application-development') ?>" data-service="chat"><!-- URL: Chat Applications page --><span class="ic" style="background:#d6f5ea;color:#13a37a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span><b>Chat Applications</b><small>Real-time chat, team collaboration and communication tools.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="<?= base_url('/services/business-process-automation') ?>" data-service="auto"><!-- URL: Business Process Automation page --><span class="ic" style="background:#fbe0f0;color:#c0287a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span><b>Business Process Automation</b><small>Replace manual work and spreadsheets with automated workflows.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="<?= base_url('/services/mobile-app-development') ?>" data-service="mobile"><!-- URL: Mobile App Development page --><span class="ic" style="background:#ece2ff;color:#7d4cff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span><b>Mobile App Development</b><small>Android &amp; iOS apps with Flutter and Firebase.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <a class="srow" href="<?= base_url('/services') ?>" data-service="ui"><!-- URL: UI/UX & Performance page --><span class="ic" style="background:#ffe9cf;color:#e07b00"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg></span><span><b>UI/UX &amp; Performance</b><small>Fast, responsive interfaces designed around how people use your product.</small></span><span class="ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span></a>
+   <div class="slist-all"><a href="<?= base_url('/services') ?>" class="vall-services">View all services →</a></div>
   </nav>
-  <div class="sstage sv" id="sstage" style="transition-delay:.05s"><canvas id="sc"></canvas></div>
+  <div class="sstage sv" id="sstage" style="transition-delay:.05s" aria-label="Custom software services: web apps, CRM, chat, automation and mobile apps"><canvas id="sc" aria-label="Custom software services: web apps, CRM, chat, automation and mobile apps"></canvas></div>
   <div class="fcard sv" id="fcard" style="transition-delay:.3s"><span class="tag">Featured Service</span>
-   <div class="fx"><h3 id="ft"></h3><p id="fd"></p><ul id="fl"></ul></div>
-   <a class="fbtn" href="<?= base_url('/contact') ?>"><!-- URL: consultation / contact page -->Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+   <div class="fx fpanel on" data-panel="web">
+    <h3>Custom Web Application Development</h3>
+    <p>Scalable web applications, customer portals, admin dashboards and SaaS products built on Laravel, PHP and .NET for businesses in Pakistan and abroad. Planned around your workflow, not forced into a template.</p>
+    <ul>
+     <li>Laravel, PHP &amp; .NET</li>
+     <li><a href="<?= base_url('/services/saas-development') ?>">SaaS &amp; Multi-user Platforms</a></li>
+     <li>Dashboards &amp; Customer Portals</li>
+     <li>API Integrations</li>
+     <li>Scalable Architecture</li>
+    </ul>
+    <a class="fbtn" href="<?= base_url('/contact') ?>">Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="fmore" href="<?= base_url('/services/web-development') ?>">Learn more about Custom Web Applications →</a>
+   </div>
+
+   <div class="fx fpanel" data-panel="crm">
+    <h3>Custom CRM Development</h3>
+    <p>Custom CRM software that centralises your leads, customers and deals, with pipelines, reports and automations shaped around how your team actually sells. Replace per-seat CRM subscriptions with a system you own.</p>
+    <ul>
+     <li>Lead &amp; Pipeline Management</li>
+     <li>Multi-tenant Architecture</li>
+     <li>Role-based Access</li>
+     <li>Reports &amp; Dashboards</li>
+     <li>Email / WhatsApp Integration</li>
+    </ul>
+    <a class="fbtn" href="<?= base_url('/contact') ?>">Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="fmore" href="<?= base_url('/services/custom-crm-development') ?>">Learn more about Custom CRM Development →</a>
+   </div>
+
+   <div class="fx fpanel" data-panel="chat">
+    <h3>Chat Application Development</h3>
+    <p>Real-time chat and team collaboration platforms built on WebSockets, for teams that want their own Slack-style workspace without per-seat pricing.</p>
+    <ul>
+     <li>Real-time Messaging</li>
+     <li>Channels &amp; Direct Messages</li>
+     <li>File Sharing</li>
+     <li>Roles &amp; Admin Controls</li>
+     <li>No Per-seat Fees</li>
+    </ul>
+    <a class="fbtn" href="<?= base_url('/contact') ?>">Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="fmore" href="<?= base_url('/services/chat-application-development') ?>">Learn more about Chat Application Development →</a>
+   </div>
+
+   <div class="fx fpanel" data-panel="auto">
+    <h3>Business Process Automation</h3>
+    <p>Custom-coded workflows that replace repetitive manual work: approvals, reports, alerts and data syncing between your tools, instead of a fragile chain of no-code connectors.</p>
+    <ul>
+     <li>Workflow &amp; Approval Automation</li>
+     <li>API &amp; Third-party Integrations</li>
+     <li>Spreadsheet-to-System Migration</li>
+     <li>Automated Reports &amp; Alerts</li>
+     <li><a href="<?= base_url('/services/ai-automation-services') ?>">AI Automation</a></li>
+    </ul>
+    <a class="fbtn" href="<?= base_url('/contact') ?>">Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="fmore" href="<?= base_url('/services/business-process-automation') ?>">Learn more about Business Process Automation →</a>
+   </div>
+
+   <div class="fx fpanel" data-panel="mobile">
+    <h3>Mobile App Development</h3>
+    <p>Cross-platform Android and iOS apps built with Flutter and Firebase, from first prototype to store release, connected to your backend and an admin panel you can manage yourself.</p>
+    <ul>
+     <li>Android &amp; iOS from One Codebase</li>
+     <li>Flutter &amp; Firebase</li>
+     <li>REST API &amp; Backend Integration</li>
+     <li>Push Notifications</li>
+     <li>Admin Panel &amp; Store Release</li>
+    </ul>
+    <a class="fbtn" href="<?= base_url('/contact') ?>">Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="fmore" href="<?= base_url('/services/mobile-app-development') ?>">Learn more about Mobile App Development →</a>
+   </div>
+
+   <div class="fx fpanel" data-panel="ui">
+    <h3>UI/UX Design &amp; Performance</h3>
+    <p>Clean, responsive interfaces and fast page loads for web and mobile apps, from UI/UX design and prototyping to React front-ends and performance tuning.</p>
+    <ul>
+     <li>UI/UX Design &amp; Prototyping</li>
+     <li>Responsive Front-end (React)</li>
+     <li>Page Speed &amp; Core Web Vitals</li>
+     <li>Dashboard &amp; Admin Panel Design</li>
+     <li>Database &amp; Query Tuning</li>
+    </ul>
+    <a class="fbtn" href="<?= base_url('/contact') ?>">Get a Free Consultation <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="fmore" href="<?= base_url('/services') ?>">Learn more about UI/UX &amp; Performance →</a>
+   </div>
+  </div>
  </div>
  <div class="feats sv" style="transition-delay:.45s">
-   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><b>Fast Delivery</b><small>On-time project delivery with agile process.</small></div></div>
-   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Secure Solutions</b><small>Your data and business are always protected.</small></div></div>
-   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b>Expert Team</b><small>Skilled developers with real-world experience.</small></div></div>
-   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><div><b>24/7 Support</b><small>We're always here when you need us.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><div><b>Clear Timelines</b><small>Agreed milestones and dates before work starts.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><div><b>Reply Within 24 Hours</b><small>Clear answers and next steps within one working day.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Secure by Design</b><small>Role-based access and staging tests before anything goes live.</small></div></div>
+   <div class="feat"><span class="fi"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span><div><b>Support After Launch</b><small>Documentation, a walkthrough and help after go-live.</small></div></div>
    <div class="note"><svg class="note-arrow" width="42" height="42" viewBox="0 0 40 40" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34 C 14 26, 22 16, 26 6 M 17 9 L 26 6 L 27 16"/></svg>Let's Build<br>Something Great</div>
   </div>
 </section>
@@ -203,6 +307,119 @@
  </div>
 </section>
 
+<!-- ===== DEVELOPER VS SOFTWARE HOUSE COMPARISON ===== -->
+<section class="vs-sec" id="developer-vs-agency">
+ <div class="vs-card">
+  <div class="vs-head">
+   <span class="pill2">One developer vs a software house</span>
+   <h2>Why hire a custom software developer <em>instead of a software house?</em></h2>
+   <p class="vs-lead">When one developer plans, builds and deploys your software, there are no handoffs, no account managers and no requirements lost along the way. You talk directly to the person writing the code, decisions are faster, and one name is accountable for the result. A larger agency makes sense when a project needs many specialists at once. For most CRMs, web apps and SaaS products, one experienced developer is simpler and quicker.</p>
+  </div>
+
+  <div class="vs-table-wrap">
+   <table class="vs-table">
+    <caption class="sr-only">Comparison of hiring one custom software developer versus a typical software house</caption>
+    <thead>
+     <tr>
+      <th scope="col" class="th-factor">Comparison</th>
+      <th scope="col" class="th-dev">
+       <span class="th-badge">Recommended</span>
+       <span class="th-title">One developer (me)</span>
+      </th>
+      <th scope="col" class="th-agency">
+       <span class="th-title">Typical software house</span>
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <th scope="row">Who you talk to</th>
+      <td class="td-dev">
+       <span class="cell-highlight">
+        <svg class="check-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>The developer building your project</span>
+       </span>
+      </td>
+      <td class="td-agency">
+       <span class="cell-subtle">
+        <svg class="dash-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>An account or project manager</span>
+       </span>
+      </td>
+     </tr>
+     <tr>
+      <th scope="row">Handoffs</th>
+      <td class="td-dev">
+       <span class="cell-highlight">
+        <svg class="check-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>None, from planning to deployment</span>
+       </span>
+      </td>
+      <td class="td-agency">
+       <span class="cell-subtle">
+        <svg class="dash-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Between sales, managers, designers and developers</span>
+       </span>
+      </td>
+     </tr>
+     <tr>
+      <th scope="row">Decisions</th>
+      <td class="td-dev">
+       <span class="cell-highlight">
+        <svg class="check-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Same conversation, same day</span>
+       </span>
+      </td>
+      <td class="td-agency">
+       <span class="cell-subtle">
+        <svg class="dash-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Passed through the team</span>
+       </span>
+      </td>
+     </tr>
+     <tr>
+      <th scope="row">Accountability</th>
+      <td class="td-dev">
+       <span class="cell-highlight">
+        <svg class="check-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>One name</span>
+       </span>
+      </td>
+      <td class="td-agency">
+       <span class="cell-subtle">
+        <svg class="dash-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Spread across a team</span>
+       </span>
+      </td>
+     </tr>
+     <tr>
+      <th scope="row">Best for</th>
+      <td class="td-dev">
+       <span class="cell-highlight">
+        <svg class="check-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>CRMs, web apps, SaaS, automation, mobile apps</span>
+       </span>
+      </td>
+      <td class="td-agency">
+       <span class="cell-subtle">
+        <svg class="dash-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span>Large projects needing many specialists at once</span>
+       </span>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+
+  <div class="vs-action">
+   <a href="<?= base_url('/about') ?>" class="vs-btn">
+    <span>Read the full story of how I got here</span>
+    <svg class="btn-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+   </a>
+  </div>
+ </div>
+</section>
+
 <!-- ===== TESTIMONIALS ===== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
  <clipPath id="cpQuote" clipPathUnits="objectBoundingBox"><path d="M0,0.1 Q0,0.03 0.05,0.03 L0.55,0.03 Q0.6,0.03 0.63,0 H0.95 Q1,0 1,0.06 V0.84 Q1,0.9 0.96,0.92 L0.86,0.98 Q0.83,1 0.79,1 H0.05 Q0,1 0,0.94Z"/></clipPath>
@@ -215,47 +432,128 @@
  <div class="tgrid">
   <div class="tv">
    <span class="pill2">Client Reviews</span>
-   <h2>What <em>clients say</em><br>about <em>working</em> with me</h2>
-   <p class="sub">Feedback from the teams and businesses I've built software for. Drag or swipe the cards to read more.</p>
-   <div class="agg"><!-- EDIT: replace X.X and XX with your real rating and review count -->
-    <span class="big">X.X</span><div><span class="stars">★★★★★</span><small>Average rating · XX reviews</small></div>
-    <div class="avs"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""></div>
+   <h2>What <em>clients say</em><br>about working with me</h2>
+   <p class="sub">Real reviews from my Google Business Profile. Drag or swipe the cards to read more.</p>
+   <a class="agg" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer" aria-label="4.8 rating based on 27 Google reviews. Read on Google.">
+    <span class="big">4.8</span>
+    <div>
+     <span class="stars">★★★★★</span>
+     <small>Average rating · 27 Google reviews</small>
+    </div>
+    <div class="avs">
+     <img src="<?= asset_url('images/avatar-1.svg') ?>" alt="">
+     <img src="<?= asset_url('images/avatar-2.svg') ?>" alt="">
+     <img src="<?= asset_url('images/avatar-3.svg') ?>" alt="">
+     <img src="<?= asset_url('images/avatar-4.svg') ?>" alt="">
+    </div>
+   </a>
+   <div class="dctl">
+    <button id="dPrev" aria-label="Previous review"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+    <button id="dNext" aria-label="Next review"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    <span class="rcounter" id="dCounter">1 / 9</span>
+    <span class="hnt">drag me ↗</span>
    </div>
-   <div class="dctl"><button id="dPrev" aria-label="Previous review"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="dNext" aria-label="Next review"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button><div class="dots2" id="dDots"></div><span class="hnt">drag me ↗</span></div>
   </div>
   <div class="deck tv" id="deck" style="transition-delay:.15s">
-   <!-- EDIT: each .qc card is a SAMPLE testimonial; replace the text, name, company, avatar and project with real ones -->
-   <div class="qc"><!-- EDIT: replace with real testimonial --><div class="qbg"></div><span class="qm">“</span><span class="pj">◆ Multi-tenant CRM</span><div class="stars">★★★★★</div>
-    <blockquote>Sample testimonial: the CRM changed how our team handles leads. Everything is in one place, it's fast, and the permission levels fit exactly how we work.</blockquote>
-    <div class="who"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt="Client avatar"><div><b>Client Name</b><small>Role, Company Name</small></div></div><span class="smp">SAMPLE REVIEW</span></div>
-   <div class="qc"><!-- EDIT: replace with real testimonial --><div class="qbg"></div><span class="qm">“</span><span class="pj">◆ Chatrox</span><div class="stars">★★★★★</div>
-    <blockquote>Sample testimonial: our team moved its internal communication to Chatrox. Channels, files and real-time messaging just work, on desktop and mobile.</blockquote>
-    <div class="who"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt="Client avatar"><div><b>Client Name</b><small>Role, Company Name</small></div></div><span class="smp">SAMPLE REVIEW</span></div>
-   <div class="qc lite"><!-- EDIT: replace with real testimonial --><div class="qbg"></div><span class="qm">“</span><span class="pj">◆ RTG Workspace</span><div class="stars">★★★★★</div>
-    <blockquote>Sample testimonial: RTG Workspace gave us a clear board for every project. Task tracking and file sharing replaced three separate tools.</blockquote>
-    <div class="who"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt="Client avatar"><div><b>Client Name</b><small>Role, Company Name</small></div></div><span class="smp">SAMPLE REVIEW</span></div>
-   <div class="qc"><!-- EDIT: replace with real testimonial --><div class="qbg"></div><span class="qm">“</span><span class="pj">◆ IT Hardware Bin</span><div class="stars">★★★★★</div>
-    <blockquote>Sample testimonial: the store, quote requests and checkout were delivered on time and are easy for our staff to manage day to day.</blockquote>
-    <div class="who"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt="Client avatar"><div><b>Client Name</b><small>Role, Company Name</small></div></div><span class="smp">SAMPLE REVIEW</span></div>
-   <div class="qc lite"><!-- EDIT: replace with real testimonial --><div class="qbg"></div><span class="qm">“</span><span class="pj">◆ Landsfy</span><div class="stars">★★★★★</div>
-    <blockquote>Sample testimonial: Landsfy made our listings easy to search and manage, and the role-based access keeps agents and admins in the right places.</blockquote>
-    <div class="who"><img src="<?= asset_url('images/avatar-5.svg') ?>" alt="Client avatar"><div><b>Client Name</b><small>Role, Company Name</small></div></div><span class="smp">SAMPLE REVIEW</span></div>
+   <div class="qc">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Software Development</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“Amanullah is a skilled and reliable software developer. He delivers high-quality work, writes clean and efficient code, and communicates professionally throughout the project. He is knowledgeable”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><cite class="rname">Mr. Abdullah</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc lite">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Web Development</span>
+    <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="dim">★</span></div>
+    <blockquote>“I had a great experience working with Amaanullah. He is highly skilled in web development and backend systems. The website he developed was fast, secure, and very well structured.”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><cite class="rname">faisal khan</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Web Development</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“The web developer has strong technical skills and a deep understanding of web development. They are proficient in various programming languages and frameworks, and have a good eye for design and functionality.”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><cite class="rname">Syed Hamza Qadri</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc lite">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">LMS System</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“I love to work with his team, he build LMS system for my school. Good job guys”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><cite class="rname">steve harington</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Website Maintenance</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“Great job I love to working with them. They’re very supportive and don’t charge extra for additional work such as website maintenance and technical tasks. Thank you guys”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-5.svg') ?>" alt=""><div><cite class="rname">Ruben</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc lite">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Google review</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“Great productivity highly recommended no matter which country you’re in. The team is reliable, professional and won’t charge extra for additional work, fully satisfied with the services”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><cite class="rname">Sonny Hayce</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Google review</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“Satisfied and timely results. Thanks for your service. Highly recommended”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><cite class="rname">Khujista Azhar</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc lite">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Google review</span>
+    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“Amanullah is professional, responsible, and easy to work with”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><cite class="rname">AZFAR BILAL</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
+   <div class="qc">
+    <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
+    <span class="pj">Google review</span>
+    <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="dim">★</span></div>
+    <blockquote>“Great team, professional, helpful and always willing to go the extra mile. Highly recommended!”</blockquote>
+    <div class="who"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><cite class="rname">Johnson Pest Control</cite></div></div>
+    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+   </div>
   </div>
  </div>
  <div class="mq tv" style="transition-delay:.25s">
-  <!-- EDIT: marquee chips are SAMPLE reviews; replace with real short quotes (row content is duplicated by script for the loop) -->
+  <div class="mq-hdr">
+   <span class="mq-pill">More Google reviews</span>
+  </div>
   <div class="mrow" id="mr1">
-   <div class="chipr"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small>"Sample: fast, clear communication."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
-   <div class="chipr dk"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small style="color:#aaa">"Sample: delivered exactly what we needed."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
-   <div class="chipr"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small>"Sample: clean code and great support."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
-   <div class="chipr"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small>"Sample: our workflows run themselves now."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
+   <div class="chipr"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><cite class="cname">Syedmahad Bukhari</cite><blockquote class="cquote">“Great to work with him!”</blockquote></div><span class="s">★★★★★</span></div>
+   <div class="chipr dk"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><cite class="cname">Abdul Moiz</cite><blockquote class="cquote">“Amazing work! Really happy to work with him”</blockquote></div><span class="s">★★★★★</span></div>
+   <div class="chipr"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><cite class="cname">Shaheer Naveed</cite><blockquote class="cquote">“Good software developer with vast experience with dealing clients also.”</blockquote></div><span class="s">★★★★<span class="dim">★</span></span></div>
+   <div class="chipr dk"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><cite class="cname">Usman Khan</cite><blockquote class="cquote">“Nice work!!”</blockquote></div><span class="s">★★★★<span class="dim">★</span></span></div>
+   <div class="chipr"><img src="<?= asset_url('images/avatar-5.svg') ?>" alt=""><div><cite class="cname">Sheikh Unzila</cite><blockquote class="cquote">“I am truly fortunate to have you as a guide.”</blockquote></div><span class="s">★★★★★</span></div>
+  </div>
+  <div class="mq-hdr" style="margin-top:16px">
+   <span class="mq-pill">Software built for</span>
   </div>
   <div class="mrow rev2" id="mr2">
-   <div class="chipr dk"><img src="<?= asset_url('images/avatar-5.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small style="color:#aaa">"Sample: the app feels native on both phones."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
-   <div class="chipr"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small>"Sample: dashboards our managers love."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
-   <div class="chipr"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small>"Sample: secure, scalable and on budget."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
-   <div class="chipr"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><b>Client Name · Company Name</b><small>"Sample: would happily work together again."</small></div><span class="s">★★★★★</span></div><!-- EDIT: replace with real testimonial -->
+   <a class="chipr dk chipr-link" href="<?= base_url('/projects/multi-tenant-crm') ?>"><span class="p-ico" style="background:rgba(242,106,27,.2);color:#ff8a3d"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg></span><div><b class="pname">Multi-Tenant CRM</b><small class="pdesc">Sales &amp; operations platform</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+   <a class="chipr chipr-link" href="<?= base_url('/projects/chatrox') ?>"><span class="p-ico" style="background:rgba(19,163,122,.2);color:#13a37a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><b class="pname">Chatrox</b><small class="pdesc">Real-time team chat</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+   <a class="chipr dk chipr-link" href="<?= base_url('/projects/hrm-payroll') ?>"><span class="p-ico" style="background:rgba(122,162,255,.2);color:#7aa2ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b class="pname">RTG HRM Portal</b><small class="pdesc">HR &amp; payroll</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+   <a class="chipr chipr-link" href="<?= base_url('/projects/it-hardware-bin') ?>"><span class="p-ico" style="background:rgba(232,74,165,.2);color:#e84aa5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><div><b class="pname">IT Hardware Bin</b><small class="pdesc">Bulk hardware e-commerce</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+   <a class="chipr dk chipr-link" href="<?= base_url('/projects/real-estate-portal') ?>"><span class="p-ico" style="background:rgba(255,176,32,.2);color:#ffb020"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><div><b class="pname">Landsfy</b><small class="pdesc">Real estate portal</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+   <a class="chipr chipr-link" href="<?= base_url('/projects/adsimpressions') ?>"><span class="p-ico" style="background:rgba(157,122,255,.2);color:#9d7aff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span><div><b class="pname">Adsimpressions</b><small class="pdesc">Digital agency platform</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
   </div>
+ </div>
+ <div class="tst-more tv" style="transition-delay:.3s">
+  <a href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer" class="btn-g-all"><span>Read all 27 reviews on Google</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
  </div>
 </section>
 <!-- ===== CTA ===== -->
@@ -266,18 +564,18 @@
   <div class="cube3" style="--s:24px;left:46%;top:-12px;animation-duration:8s"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="cin">
    <span class="pill2">✦ Let's work together</span>
-   <h2>Have an idea?<br><em>Let's build something great.</em></h2>
-   <p class="cs">Tell me about your project, whether it's a web app, CRM, chat platform, automation or mobile app, and I'll turn it into a scalable product.</p>
+   <p class="cta-hd">Have a project in mind?<br><em>Let's build it.</em></p>
+   <p class="cs">Share a few details about what you need, and I’ll get back to you with clear next steps.</p>
    <div class="cbtns">
-    <a class="mag" id="mag" href="#contact"><!-- scrolls to the contact form -->Start a Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a class="bcall" href="<?= base_url('/contact') ?>"><!-- URL: booking link, e.g. Calendly --><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Book a Call</span></a>
+    <a class="mag" id="mag" href="#contact" data-event="cta_start_project">Start a Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a class="bcall" href="tel:+923196935307" data-event="cta_call_me" aria-label="Call +92 319 6935307"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call Me</span></a>
    </div>
    <div class="cchips">
-    <a href="mailto:info@amaanullah.com"><i style="background:rgba(242,106,27,.25)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i>info@amaanullah.com</a>
-    <a href="https://wa.me/923196935307" target="_blank" rel="noopener"><i style="background:rgba(37,211,102,.25)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></i>WhatsApp</a>
+    <a href="mailto:info@amaanullah.com" data-event="cta_email"><i style="background:rgba(242,106,27,.25)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></i>info@amaanullah.com</a>
+    <a href="https://wa.me/923196935307?text=Hi%20Amaanullah%2C%20I%20have%20a%20project%20to%20discuss." target="_blank" rel="noopener noreferrer" data-event="cta_whatsapp"><i style="background:rgba(37,211,102,.25)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></i>WhatsApp</a>
    </div>
   </div>
-  <div class="ficons">
+  <div class="ficons" aria-hidden="true">
    <span class="fi2" style="left:8%;top:16%;color:#ff8a3d"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><small>Web Apps</small></span>
    <span class="fi2" style="left:52%;top:8%;animation-delay:-1s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7aa2ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg><small>CRM</small></span>
    <span class="fi2" style="left:80%;top:36%;animation-delay:-2s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#13a37a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><small>Chat</small></span>
@@ -299,59 +597,63 @@
  <svg class="crystal" style="left:-10px;top:52%" width="40" height="52" viewBox="0 0 54 70"><polygon points="27,0 54,24 40,70 6,62 0,22" fill="url(#gCry)"/><polygon points="27,0 54,24 27,30" fill="#fff" opacity=".35"/></svg>
  <div class="chead cv2">
   <span class="pill2">Get In Touch</span>
-  <h2>Let's start your <em>next project</em><br>and make it <em>real</em></h2>
-  <p class="sub">Share a few details about what you need and I'll get back to you with ideas, a timeline and a clear estimate.</p>
-  <div class="reply">I usually reply within 24 hours<svg width="60" height="44" viewBox="0 0 60 44" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M56 4C46 20 30 34 6 38M14 30l-9 8 11 4"/></svg></div>
+  <h2>Get a free consultation<br>for <em>your software project</em></h2>
+  <p class="sub">Share a few details about what you need, and I’ll get back to you with ideas, a timeline and a clear estimate.</p>
+  <div class="reply">I usually reply within 24 hours<svg width="60" height="44" viewBox="0 0 60 44" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M56 4C46 20 30 34 6 38M14 30l-9 8 11 4"/></svg></div>
  </div>
  <div class="cgrid">
   <aside class="icard cv2" style="transition-delay:.1s">
    <div class="ibg"></div>
    <span class="avail2"><i></i>Available for projects</span>
-   <h3>Contact Information</h3>
-   <p>Prefer a direct line? Reach me on any of these, whichever suits you best.</p>
+   <p class="ic-title">Contact Information</p>
+   <p class="ic-sub">Prefer a direct line? Reach me on any of these, whichever suits you best.</p>
    <div class="irows">
-    <a class="irow" href="mailto:info@amaanullah.com"><!-- URL: mailto:your@email.com --><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span><small>Email</small><b>info@amaanullah.com</b></span></a><!-- EDIT: your email -->
-    <a class="irow" href="https://wa.me/923196935307" target="_blank" rel="noopener"><!-- URL: https://wa.me/92XXXXXXXXXX --><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span><small>Phone / WhatsApp</small><b>+92 319 6935307</b></span></a><!-- EDIT: your number -->
-    <div class="irow"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span><small>Location</small><b>City, Country</b></span></div><!-- EDIT: your location -->
-    <div class="irow"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span><small>Working Hours</small><b>Mon – Fri, 9:00 – 18:00</b></span></div><!-- EDIT: your hours -->
+    <a class="irow" href="mailto:info@amaanullah.com" aria-label="Email info@amaanullah.com"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span><small>Email</small><b>info@amaanullah.com</b></span></a>
+    <a class="irow" href="tel:+923196935307" aria-label="Call +92 319 6935307"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span><small>Phone / WhatsApp</small><b>+92 319 6935307</b></span></a>
+    <div class="irow"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span><small>Location</small><b>Karachi, Pakistan</b></span></div>
+    <div class="irow"><span class="ii"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span><small>Working Hours</small><b>Mon – Fri, 9:00 – 18:00 PKT</b></span></div>
    </div>
    <div class="socials">
-    <a href="https://github.com/akamaanullah" target="_blank" rel="noopener" aria-label="GitHub"><!-- URL: GitHub profile --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg></a>
-    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><!-- URL: LinkedIn profile --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
-    <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><!-- URL: X profile --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9L1 2h7l4.8 6.4zm-1.2 18h1.9L7.1 3.9H5.1z"/></svg></a>
-    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><!-- URL: Instagram profile --><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-    <a href="https://wa.me/923196935307" target="_blank" rel="noopener" aria-label="WhatsApp"><!-- URL: https://wa.me/92XXXXXXXXXX --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+    <a href="https://github.com/akamaanullah" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+    <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) profile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9L1 2h7l4.8 6.4zm-1.2 18h1.9L7.1 3.9H5.1z"/></svg></a>
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+    <a href="https://wa.me/923196935307?text=Hi%20Amaanullah%2C%20I%20have%20a%20project%20to%20discuss." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp chat"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
    </div>
   </aside>
   <div style="position:relative" class="cv2">
    <div class="fglow"></div>
    <div class="fglass" id="fglass" style="transition-delay:.2s">
-    <!-- LARAVEL: change action to {{ route('contact.store') }} and remove the fake submit handler in the script (search "FAKE SUBMIT").
-         Controller example: Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-         Alternatives: Formspree (action="https://formspree.io/f/XXXX") or any backend endpoint. -->
     <form id="cform" method="POST" action="javascript:void(0)" novalidate>
-     <!-- LARAVEL: uncomment the next line in a Blade view -->
-     <!-- @csrf -->
-     <input type="hidden" name="_token" value=""><!-- LARAVEL: @csrf renders this token automatically; delete this placeholder -->
-     <!-- LARAVEL: show a global error list here if needed:
-          @if ($errors->any()) <div class="alert">{{ $errors->first() }}</div> @endif
-          For each field use value="{{ old('name') }}" and render @error('name') <span class="err">{{ $message }}</span> @enderror in its .err span. -->
-     <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div><!-- honeypot: reject the request server-side if "website" is filled -->
+     <input type="hidden" name="_token" value="">
+     <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
      <div class="frow">
-      <div class="fl"><input id="f_name" name="name" type="text" placeholder=" " autocomplete="name" required minlength="2"><!-- LARAVEL: value="{{ old('name') }}" --><label for="f_name">Your Name *</label><span class="err">Please enter your name.</span></div>
-      <div class="fl"><input id="f_email" name="email" type="email" placeholder=" " autocomplete="email" required><!-- LARAVEL: value="{{ old('email') }}" --><label for="f_email">Email Address *</label><span class="err">Please enter a valid email.</span></div>
+      <div class="fl"><input id="f_name" name="name" type="text" placeholder=" " autocomplete="name" required minlength="2"><label for="f_name">Your Name *</label><span class="err">Please enter your name.</span></div>
+      <div class="fl"><input id="f_email" name="email" type="email" placeholder=" " autocomplete="email" required><label for="f_email">Email Address *</label><span class="err">Please enter a valid email.</span></div>
      </div>
      <div class="frow">
-      <div class="fl"><input id="f_phone" name="phone" type="tel" placeholder=" " autocomplete="tel" pattern="[0-9+ ()\-]{7,20}"><!-- LARAVEL: value="{{ old('phone') }}" --><label for="f_phone">Phone (optional)</label><span class="err">Please enter a valid phone number.</span></div>
-      <div class="fl"><select id="f_service" name="service" required><!-- LARAVEL: mark the option matching old('service') as selected -->
-        <option value="">Choose a service…</option><option value="web_apps">Custom Web Apps</option><option value="crm">CRM Development</option><option value="chat">Chat Applications</option><option value="automation">Business Process Automation</option><option value="mobile">Mobile App Development</option><option value="ui_ux">UI/UX &amp; Performance</option></select><label for="f_service">Service *</label><span class="err">Please choose a service.</span></div>
+      <div class="fl"><input id="f_phone" name="phone" type="tel" placeholder=" " autocomplete="tel" pattern="[0-9+ ()\-]{7,20}"><label for="f_phone">Phone (optional)</label><span class="err">Please enter a valid phone number.</span></div>
+      <div class="fl"><select id="f_service" name="service" required>
+        <option value="">Choose a service…</option>
+        <option value="web_apps">Custom Web Application / SaaS Platform</option>
+        <option value="crm">CRM Development</option>
+        <option value="chat">Chat Application</option>
+        <option value="automation">Business Process Automation</option>
+        <option value="mobile">Mobile App</option>
+        <option value="ui_ux">UI/UX &amp; Performance</option>
+        <option value="other">Something else</option>
+       </select><label for="f_service">Service *</label><span class="err">Please choose a service.</span></div>
      </div>
      <span class="glab">Quick pick a service</span>
      <div class="chs" id="svcChips"><button type="button" data-v="web_apps">Web Apps</button><button type="button" data-v="crm">CRM</button><button type="button" data-v="chat">Chat</button><button type="button" data-v="automation">Automation</button><button type="button" data-v="mobile">Mobile</button><button type="button" data-v="ui_ux">UI/UX</button></div>
-<div class="fl"><textarea id="f_message" name="message" placeholder=" " required minlength="10"></textarea><!-- LARAVEL: {{ old('message') }} inside the textarea --><label for="f_message">Tell me about your project *</label><span class="err">Please write at least 10 characters.</span></div>
-     <div class="fsend"><button class="sbtn" id="sbtn" type="submit"><span class="tx">Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="sp"></span></button><span class="fnote">🔒 Your details stay private.</span></div>
+     <div class="fl"><textarea id="f_message" name="message" placeholder=" " required minlength="10"></textarea><label for="f_message">Tell me about your project * (what you want to build, who will use it, and any deadline)</label><span class="err">Please write at least 10 characters.</span></div>
+     <div class="fsend">
+      <button class="sbtn" id="sbtn" type="submit"><span class="tx">Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span class="sp"></span></button>
+      <p class="f-privacy">Your details are only used to reply to your enquiry. See my <a href="<?= base_url('/about') ?>">Privacy Policy</a>.</p>
+      <div class="f-err-msg" id="fErrMsg" style="display:none" role="alert">Something went wrong. Please try again, or email me at <a href="mailto:info@amaanullah.com">info@amaanullah.com</a>.</div>
+     </div>
     </form>
-    <div class="success" role="status" aria-live="polite"><span class="ck"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21l7 7 15-16"/></svg></span><h4>Message sent!</h4><p>Thanks for reaching out. I'll get back to you within 24 hours.</p><button type="button" id="fagain">Send another message</button></div>
+    <div class="success" role="status" aria-live="polite"><span class="ck"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21l7 7 15-16"/></svg></span><h4>Thanks! I’ve received your message and will reply within 24 hours.</h4><p>Thanks for reaching out. I'll get back to you with clear next steps.</p><button type="button" id="fagain">Send another message</button></div>
    </div>
   </div>
  </div>

@@ -57,7 +57,7 @@ const scr=new THREE.Mesh(new THREE.PlaneGeometry(1.75,1.2),new THREE.MeshBasicMa
 const lp=[];nodes.forEach(v=>{lp.push(new THREE.Vector3(),v)});g.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(lp),new THREE.LineBasicMaterial({color:0xff7a2a})));
 const u=new THREE.Mesh(new THREE.CircleGeometry(.24,32),new THREE.MeshBasicMaterial({map:tex((c,w,h)=>{c.fillStyle='#3a3f55';c.beginPath();c.arc(128,128,128,0,7);c.fill();c.fillStyle='#fff';c.beginPath();c.arc(128,100,38,0,7);c.fill();c.beginPath();c.ellipse(128,200,64,46,0,Math.PI,0);c.fill()})}));u.position.z=.3;g.add(u);g.userData.spin=u;g.userData.lbl=[1.2,.9];sats.push({g,name:'CRM Systems',r:1,phase:.6,a:3.9,b:2.5});}
 // 3 Chat
-{const g=sphereSat(0xc9c6ff,0x7d6cff);const b=new THREE.Mesh(new RoundedBoxGeometry(.95,.7,.3,4,.15),new THREE.MeshPhysicalMaterial({color:0x6a5cff,emissive:0x4a3cff,emissiveIntensity:.5,roughness:.2,clearcoat:1}));g.add(b);for(let i=-1;i<=1;i++){const d=new THREE.Mesh(new THREE.SphereGeometry(.07,16,16),new THREE.MeshBasicMaterial({color:0xffffff}));d.position.set(i*.22,0,.17);g.add(d)}const tail=new THREE.Mesh(new THREE.ConeGeometry(.12,.25,12),b.material);tail.position.set(-.3,-.4,0);tail.rotation.z=.6;g.add(tail);g.userData.lbl=[-.4,-1.25];sats.push({g,name:'Team Chat',r:0,phase:3.9,a:3.9,b:2.5});}
+{const g=sphereSat(0xc9c6ff,0x7d6cff);const b=new THREE.Mesh(new RoundedBoxGeometry(.95,.7,.3,4,.15),new THREE.MeshPhysicalMaterial({color:0x6a5cff,emissive:0x4a3cff,emissiveIntensity:.5,roughness:.2,clearcoat:1}));g.add(b);for(let i=-1;i<=1;i++){const d=new THREE.Mesh(new THREE.SphereGeometry(.07,16,16),new THREE.MeshBasicMaterial({color:0xffffff}));d.position.set(i*.22,0,.17);g.add(d)}const tail=new THREE.Mesh(new THREE.ConeGeometry(.12,.25,12),b.material);tail.position.set(-.3,-.4,0);tail.rotation.z=.6;g.add(tail);g.userData.lbl=[-.4,-1.25];sats.push({g,name:'SaaS Platforms',r:0,phase:3.9,a:3.9,b:2.5});}
 // 4 Automation
 {const g=sphereSat(0xffffff,0xffa060);const gs=new THREE.Shape();const N=8;for(let i=0;i<N*2;i++){const a=i/(N*2)*Math.PI*2,r=i%2?.32:.42;const a2=a+Math.PI/(N*2);i?gs.lineTo(Math.cos(a)*r,Math.sin(a)*r):gs.moveTo(Math.cos(a)*r,Math.sin(a)*r);gs.lineTo(Math.cos(a2)*r,Math.sin(a2)*r)}const hole=new THREE.Path();hole.absarc(0,0,.13,0,Math.PI*2,true);gs.holes.push(hole);
 const gear=new THREE.Mesh(new THREE.ExtrudeGeometry(gs,{depth:.18,bevelEnabled:true,bevelSize:.02,bevelThickness:.02}),new THREE.MeshStandardMaterial({color:0x3a3d4a,metalness:.7,roughness:.3}));gear.position.z=-.09;g.add(gear);
@@ -115,18 +115,20 @@ let hf=0;function loop(){requestAnimationFrame(loop);if(!heroVis)return;if(docum
 loop();
 // ===== SERVICES SCENE =====
 (()=>{
-const SV={web:{t:'Custom Web Apps',d:'We build high-performance, scalable and secure web applications tailored to your business needs. From simple websites to complex systems — we turn your ideas into powerful digital products.',l:['PHP / Laravel','.NET & Python','API Integrations','Scalable Architecture','Ongoing Support']},
-crm:{t:'CRM Development',d:'Custom CRM platforms that centralise leads, customers and deals — with pipelines, reports and automations shaped around how your team actually sells.',l:['Lead & Pipeline Management','Multi-tenant Architecture','Role-based Access','Reports & Dashboards','Email / WhatsApp Integration']},
-chat:{t:'Chat Applications',d:'Real-time messaging and collaboration tools — channels, direct messages, file sharing and notifications, built to stay fast as your team grows.',l:['WebSockets / Real-time','Channels & DMs','File & Media Sharing','Push Notifications','End-to-end Security']},
-auto:{t:'Business Process Automation',d:'We map your repetitive work and replace it with reliable workflows — approvals, data syncing, reminders and reports that run on their own.',l:['Workflow Design','Third-party API Sync','Scheduled Jobs & Triggers','Automated Reporting','Error Monitoring']},
-mobile:{t:'Mobile App Development',d:'Cross-platform iOS and Android apps with Flutter and Firebase — one codebase, native feel, and smooth release to the app stores.',l:['Flutter (iOS & Android)','Firebase Backend','Offline Support','Push Notifications','Store Deployment']},
-ui:{t:'UI/UX & Performance',d:'Clean, modern interfaces that convert — plus performance tuning so every page loads fast and scores well on Core Web Vitals.',l:['UX Research & Wireframes','Design Systems','Responsive Layouts','Core Web Vitals Tuning','Accessibility']}};
 const rows=[...document.querySelectorAll('.srow')],card=document.getElementById('fcard');
+const panels=[...document.querySelectorAll('.fpanel')];
 let active='web',hov=null;
-function fill(k){document.getElementById('ft').textContent=SV[k].t;document.getElementById('fd').textContent=SV[k].d;document.getElementById('fl').innerHTML=SV[k].l.map(x=>`<li>${x}</li>`).join('')}
-fill('web');let swapT;
-function show(k){if(k===active)return;active=k;rows.forEach(r=>r.classList.toggle('on',r.dataset.service===k));card.classList.add('swap');clearTimeout(swapT);swapT=setTimeout(()=>{fill(k);card.classList.remove('swap')},300)}
-rows.forEach(r=>{r.addEventListener('mouseenter',()=>{hov=r.dataset.service;show(hov)});r.addEventListener('mouseleave',()=>hov=null);r.addEventListener('click',()=>{show(r.dataset.service);window.__svcClicked=r.dataset.service})});
+function show(k){
+  if(k===active)return;
+  active=k;
+  rows.forEach(r=>r.classList.toggle('on',r.dataset.service===k));
+  panels.forEach(p=>p.classList.toggle('on',p.dataset.panel===k));
+}
+rows.forEach(r=>{
+  r.addEventListener('mouseenter',()=>{hov=r.dataset.service;show(hov)});
+  r.addEventListener('mouseleave',()=>hov=null);
+  r.addEventListener('click',()=>{show(r.dataset.service);window.__svcClicked=r.dataset.service});
+});
 const sec=document.getElementById('services');new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&sec.classList.add('in')),{threshold:.12}).observe(sec);
 
 const stage=document.getElementById('sstage'),canvas=document.getElementById('sc');
@@ -234,25 +236,28 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.tv').forEach(el=>io.observe(el));
 const cta=document.getElementById('cta');new IntersectionObserver(e=>e[0].isIntersecting&&cta.classList.add('in'),{threshold:.3}).observe(cta);
 // marquee loop: duplicate content
-['mr1','mr2'].forEach(id=>{const r=document.getElementById(id);r.innerHTML+=r.innerHTML;[...r.children].slice(r.children.length/2).forEach(c=>c.setAttribute('aria-hidden','true'))});
+['mr1','mr2'].forEach(id=>{const r=document.getElementById(id);if(r){r.innerHTML+=r.innerHTML;[...r.children].slice(r.children.length/2).forEach(c=>c.setAttribute('aria-hidden','true'))}});
 // stacked deck
-const deck=document.getElementById('deck'),cards=[...deck.querySelectorAll('.qc')],dots=document.getElementById('dDots');let top=0;
-cards.forEach((_,i)=>{const d=document.createElement('i');d.onclick=()=>{top=i;lay()};dots.appendChild(d)});
-function lay(dx=0){const n=cards.length;cards.forEach((c,i)=>{const k=(i-top+n)%n;
+const deck=document.getElementById('deck'),cards=deck?[...deck.querySelectorAll('.qc')]:[],dots=document.getElementById('dDots'),counter=document.getElementById('dCounter');let top=0;
+if(dots)cards.forEach((_,i)=>{const d=document.createElement('i');d.onclick=()=>{top=i;lay()};dots.appendChild(d)});
+function lay(dx=0){const n=cards.length;if(!n)return;cards.forEach((c,i)=>{const k=(i-top+n)%n;
  if(k===0){c.style.transform=`translateX(${dx}px) rotate(${dx*.03}deg)`;c.style.zIndex=n;c.style.opacity=1;c.style.filter='none'}
  else{c.style.transform=`translate(${k*22}px,${-k*16}px) rotate(${k*2.5}deg) scale(${1-k*.05})`;c.style.zIndex=n-k;c.style.opacity=k>3?0:1-k*.12;c.style.filter=`blur(${k*.4}px)`}
- c.setAttribute('aria-hidden',k?'true':'false')});[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===top))}
+ c.setAttribute('aria-hidden',k?'true':'false')});if(dots)[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===top));if(counter)counter.textContent=`${top+1} / ${n}`}
 lay();window.__deckTop=()=>top;
-const go=s=>{top=(top+s+cards.length)%cards.length;lay()};dPrev.onclick=()=>go(-1);dNext.onclick=()=>go(1);
-let sx=null,dx=0;deck.addEventListener('pointerdown',e=>{sx=e.clientX;dx=0;cards[top].style.transition='none';deck.setPointerCapture(e.pointerId)});
+const dPrev=document.getElementById('dPrev'),dNext=document.getElementById('dNext');
+const go=s=>{if(!cards.length)return;top=(top+s+cards.length)%cards.length;lay()};if(dPrev)dPrev.onclick=()=>go(-1);if(dNext)dNext.onclick=()=>go(1);
+let sx=null,dx=0;if(deck){deck.addEventListener('pointerdown',e=>{sx=e.clientX;dx=0;if(cards[top])cards[top].style.transition='none';deck.setPointerCapture(e.pointerId)});
 deck.addEventListener('pointermove',e=>{if(sx===null)return;dx=e.clientX-sx;lay(dx)});
-const end=()=>{if(sx===null)return;cards[top].style.transition='';sx=null;if(Math.abs(dx)>80)go(dx<0?1:-1);else lay();dx=0};deck.addEventListener('pointerup',end);deck.addEventListener('pointercancel',end);
+const end=()=>{if(sx===null)return;if(cards[top])cards[top].style.transition='';sx=null;if(Math.abs(dx)>80)go(dx<0?1:-1);else lay();dx=0};deck.addEventListener('pointerup',end);deck.addEventListener('pointercancel',end);
 addEventListener('keydown',e=>{if(!deck.matches(':hover'))return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
-let auto=RM?null:setInterval(()=>go(1),6500);deck.addEventListener('pointerenter',()=>clearInterval(auto));
+let auto=RM?null:setInterval(()=>go(1),6500);deck.addEventListener('pointerenter',()=>clearInterval(auto));}
 // CTA spotlight + magnetic button
 const cb=document.getElementById('cblock'),mag=document.getElementById('mag');
 cb.addEventListener('pointermove',e=>{const r=cb.getBoundingClientRect();cb.style.setProperty('--mx',(e.clientX-r.left)+'px');cb.style.setProperty('--my',(e.clientY-r.top)+'px')});
 if(!RM&&matchMedia('(hover:hover)').matches){mag.addEventListener('pointermove',e=>{const r=mag.getBoundingClientRect();mag.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.4}px)`});mag.addEventListener('pointerleave',()=>mag.style.transform='')}
+// GA4 CTA tracking
+document.querySelectorAll('#cta [data-event]').forEach(el=>{el.addEventListener('click',()=>{const ev=el.dataset.event;if(typeof window.gtag==='function'){window.gtag('event',ev,{event_category:'CTA_Section',event_label:el.textContent.trim()||el.getAttribute('href')})}})});
 })();
 // ===== CONTACT + FOOTER =====
 (()=>{
@@ -273,15 +278,22 @@ function check(el){const w=el.closest('.fl');let ok=el.checkValidity();if(el.typ
  w.classList.toggle('bad',!ok);w.classList.toggle('ok',ok&&!!el.value);return ok}
 const fields=[...f.querySelectorAll('.fl input,.fl select,.fl textarea')];
 fields.forEach(el=>{el.addEventListener('blur',()=>{if(el.value||el.dataset.t)check(el);el.dataset.t=1});el.addEventListener('input',()=>{if(el.closest('.fl').classList.contains('bad'))check(el)})});
-const btn=document.getElementById('sbtn'),g=document.getElementById('fglass');
+const btn=document.getElementById('sbtn'),g=document.getElementById('fglass'),fErr=document.getElementById('fErrMsg');
 f.addEventListener('submit',e=>{
- e.preventDefault();// FAKE SUBMIT: remove this handler's fake part when the form posts to {{ route('contact.store') }} (or send with fetch to your endpoint)
+ e.preventDefault();
  if(f.website.value){return}// honeypot filled → silently ignore (bots)
  const ok=fields.map(check).every(Boolean);if(!ok){const b=f.querySelector('.fl.bad input,.fl.bad select,.fl.bad textarea');b&&b.focus();return}
+ if(fErr)fErr.style.display='none';
  btn.classList.add('loading');
+ if(typeof window.gtag==='function'){
+  window.gtag('event','generate_lead',{
+   event_category:'Contact_Form',
+   event_label:sel.value||'General_Enquiry'
+  });
+ }
  setTimeout(()=>{btn.classList.remove('loading');btn.classList.add('done');btn.querySelector('.tx').textContent='Sent ✓';setTimeout(()=>g.classList.add('sent'),RM?0:500)},RM?100:1400);
 });
-document.getElementById('fagain').onclick=()=>{f.reset();if(bud)bud.value='';syncSvc();bc.forEach(x=>x.classList.remove('on'));fields.forEach(el=>{el.closest('.fl').classList.remove('ok','bad');delete el.dataset.t});btn.classList.remove('done');btn.querySelector('.tx').innerHTML='Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';g.classList.remove('sent')};
+document.getElementById('fagain').onclick=()=>{f.reset();if(bud)bud.value='';syncSvc();bc.forEach(x=>x.classList.remove('on'));fields.forEach(el=>{el.closest('.fl').classList.remove('ok','bad');delete el.dataset.t});btn.classList.remove('done');btn.querySelector('.tx').innerHTML='Send Message <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';if(fErr)fErr.style.display='none';g.classList.remove('sent')};
 // newsletter (fake)
 document.getElementById('nlform')?.addEventListener('submit',e=>{e.preventDefault();const i=e.target.newsletter_email,m=document.getElementById('nlmsg');const ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value);m.classList.toggle('bad',!ok);m.textContent=ok?'Thanks! You\'re on the list.':'Please enter a valid email.';if(ok)i.value=''});
 // nav: smooth anchor scroll for in-page anchors
