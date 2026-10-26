@@ -63,6 +63,11 @@ class App
         $this->post('/admin/leads/status', [$C . 'AdminController', 'updateLeadStatus']);
         $this->post('/admin/leads/delete', [$C . 'AdminController', 'deleteLead']);
 
+        // Search Console & Performance live endpoints
+        $this->post('/admin/search-console/sync', [$C . 'AdminController', 'syncSearchConsole']);
+        $this->post('/admin/performance/run', [$C . 'AdminController', 'runPerformanceAudit']);
+        $this->get('/admin/performance/download-log', [$C . 'AdminController', 'downloadErrorLog']);
+
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);
         $this->get('/', [$C . 'HomeController', 'index']);

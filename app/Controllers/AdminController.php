@@ -11,6 +11,8 @@ use App\Models\LandingPageModel;
 use App\Models\LeadModel;
 use App\Models\ProjectModel;
 use App\Models\ServiceModel;
+use App\Services\GoogleSearchConsoleService;
+use App\Services\PageSpeedService;
 
 class AdminController extends Controller
 {
@@ -233,6 +235,20 @@ class AdminController extends Controller
 
             case 'leads':
                 $viewData['leads'] = LeadModel::all('created_at DESC');
+                break;
+
+            case 'search-console':
+                $range = $_GET['range'] ?? '30d';
+                $from = $_GET['from'] ?? null;
+                $to = $_GET['to'] ?? null;
+                $viewData['gsc'] = GoogleSearchConsoleService::getData(false, $from, $to);
+                $viewData['currentRange'] = $range;
+                break;
+
+            case 'performance':
+                $strategy = $_GET['strategy'] ?? 'mobile';
+                $viewData['perf'] = PageSpeedService::getData(false, $strategy);
+                $viewData['currentStrategy'] = $strategy;
                 break;
         }
 
@@ -823,5 +839,90 @@ class AdminController extends Controller
             Logger::error('Admin deleteLead error: ' . $e->getMessage());
             return $this->json(['success' => false, 'error' => 'Failed to delete lead.'], 500);
         }
+    }
+
+    /**
+     * POST /admin/search-console/sync
+     * Live sync from Google Search Console API.
+     */
+    public function syncSearchConsole(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $from = $_POST['from'] ?? null;
+            $to = $_POST['to'] ?? null;
+            $data = GoogleSearchConsoleService::getData(true, $from, $to);
+            if ($this->wantsJson()) {
+                return $this->json([
+                    'success' => true,
+                    'message' => 'Search Console data successfully synced from Google API!',
+                    'data' => $data
+                ]);
+            }
+            $_SESSION['toast'] = 'Search Console data synced successfully!';
+            redirect('/admin/search-console');
+            return '';
+        } catch (\Throwable $e) {
+            Logger::error('Search Console sync error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Sync failed: ' . $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * POST /admin/performance/run
+     * Run live Lighthouse audit using Google PageSpeed Insights API.
+     */
+    public function runPerformanceAudit(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $strategy = $_POST['strategy'] ?? 'mobile';
+            $data = PageSpeedService::getData(true, $strategy);
+            if ($this->wantsJson()) {
+                return $this->json([
+                    'success' => true,
+                    'message' => 'Lighthouse audit completed via Google PageSpeed API!',
+                    'data' => $data
+                ]);
+            }
+            $_SESSION['toast'] = 'Lighthouse audit completed successfully!';
+            redirect('/admin/performance?strategy=' . urlencode($strategy));
+            return '';
+        } catch (\Throwable $e) {
+            Logger::error('PageSpeed audit error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Audit failed: ' . $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * GET /admin/performance/download-log
+     */
+    public function downloadErrorLog(): void
+    {
+        $this->requireAuth();
+        $logFile = BASE_PATH . '/storage/logs/app.log';
+        if (!file_exists($logFile) || filesize($logFile) === 0) {
+            header('Content-Type: text/plain; charset=utf-8');
+            echo "[" . date('Y-m-d H:i:s') . "] INFO: System initialized. No errors recorded.\n";
+            exit;
+        }
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: text/plain; charset=utf-8');
+        header('Content-Disposition: attachment; filename="app-log-' . date('Y-m-d') . '.log"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($logFile));
+        readfile($logFile);
+        exit;
     }
 }
