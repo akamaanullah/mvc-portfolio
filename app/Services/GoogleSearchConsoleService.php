@@ -62,42 +62,52 @@ class GoogleSearchConsoleService
     public static function submitSitemap(string $sitemapPath): array
     {
         $siteUrl = (string) env('GSC_SITE_URL', 'https://amaanullah.com/');
-        $token = self::getValidToken();
-        if (!$token) {
-            return ['success' => false, 'error' => 'Could not authenticate with Google API'];
-        }
-
         $fullPath = str_starts_with($sitemapPath, 'http') ? $sitemapPath : rtrim($siteUrl, '/') . '/' . ltrim($sitemapPath, '/');
-        $url = 'https://www.googleapis.com/webmasters/v3/sites/' . urlencode($siteUrl) . '/sitemaps/' . urlencode($fullPath);
 
-        $ch = curl_init($url);
-        curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_TIMEOUT => 20,
-            CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer ' . $token,
-                'Content-Length: 0'
-            ]
-        ]);
+        for ($attempt = 1; $attempt <= 2; $attempt++) {
+            $token = self::getValidToken();
+            if (!$token) {
+                return ['success' => false, 'error' => 'Could not authenticate with Google API'];
+            }
 
-        $res = curl_exec($ch);
-        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+            $url = 'https://www.googleapis.com/webmasters/v3/sites/' . urlencode($siteUrl) . '/sitemaps/' . urlencode($fullPath);
 
-        if ($code === 200 || $code === 204) {
-            // Invalidate cache to pick up updated sitemaps
-            @unlink(self::CACHE_FILE);
+            $ch = curl_init($url);
+            curl_setopt_array($ch, [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_CUSTOMREQUEST => 'PUT',
+                CURLOPT_TIMEOUT => 20,
+                CURLOPT_HTTPHEADER => [
+                    'Authorization: Bearer ' . $token,
+                    'Content-Length: 0'
+                ]
+            ]);
+
+            $res = curl_exec($ch);
+            $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($code === 200 || $code === 204) {
+                @unlink(self::CACHE_FILE);
+                return [
+                    'success' => true,
+                    'message' => 'Sitemap ' . htmlspecialchars($fullPath) . ' successfully submitted to Google Search Console!'
+                ];
+            }
+
+            if (($code === 403 || $code === 401) && $attempt === 1) {
+                // If old token had readonly scope, purge and retry with full scope
+                @unlink(self::TOKEN_CACHE_FILE);
+                continue;
+            }
+
             return [
-                'success' => true,
-                'message' => 'Sitemap ' . htmlspecialchars($fullPath) . ' successfully submitted to Google Search Console!'
+                'success' => false,
+                'error' => 'Google returned HTTP ' . $code . ': ' . ($res ?: 'Submission rejected')
             ];
         }
 
-        return [
-            'success' => false,
-            'error' => 'Google returned HTTP ' . $code . ': ' . ($res ?: 'Submission rejected')
-        ];
+        return ['success' => false, 'error' => 'Failed to submit sitemap.'];
     }
 
     /**
@@ -182,9 +192,15 @@ class GoogleSearchConsoleService
      */
     private static function getAccessToken(array $keyData): ?string
     {
+        $requiredScope = 'https://www.googleapis.com/auth/webmasters';
+
         if (file_exists(self::TOKEN_CACHE_FILE)) {
             $cached = json_decode((string) file_get_contents(self::TOKEN_CACHE_FILE), true);
-            if (is_array($cached) && !empty($cached['access_token']) && ($cached['expires_at'] ?? 0) > (time() + 180)) {
+            if (is_array($cached) 
+                && !empty($cached['access_token']) 
+                && ($cached['scope'] ?? '') === $requiredScope 
+                && ($cached['expires_at'] ?? 0) > (time() + 180)
+            ) {
                 return $cached['access_token'];
             }
         }
@@ -193,7 +209,7 @@ class GoogleSearchConsoleService
         $header = ['alg' => 'RS256', 'typ' => 'JWT'];
         $claim = [
             'iss' => $keyData['client_email'],
-            'scope' => 'https://www.googleapis.com/auth/webmasters', // full read and submit scope
+            'scope' => $requiredScope,
             'aud' => 'https://oauth2.googleapis.com/token',
             'exp' => $now + 3600,
             'iat' => $now
@@ -236,6 +252,7 @@ class GoogleSearchConsoleService
             $expiresIn = (int) ($json['expires_in'] ?? 3600);
             @file_put_contents(self::TOKEN_CACHE_FILE, json_encode([
                 'access_token' => $token,
+                'scope' => $requiredScope,
                 'expires_at' => $now + $expiresIn
             ]));
             return $token;
