@@ -236,7 +236,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.tv').forEach(el=>io.observe(el));
 const cta=document.getElementById('cta');new IntersectionObserver(e=>e[0].isIntersecting&&cta.classList.add('in'),{threshold:.3}).observe(cta);
 // marquee loop: duplicate content
-['mr1','mr2'].forEach(id=>{const r=document.getElementById(id);if(r){r.innerHTML+=r.innerHTML;[...r.children].slice(r.children.length/2).forEach(c=>c.setAttribute('aria-hidden','true'))}});
+['mr2'].forEach(id=>{const r=document.getElementById(id);if(r){r.innerHTML+=r.innerHTML;[...r.children].slice(r.children.length/2).forEach(c=>c.setAttribute('aria-hidden','true'))}});
 // stacked deck
 const deck=document.getElementById('deck'),cards=deck?[...deck.querySelectorAll('.qc')]:[],dots=document.getElementById('dDots'),counter=document.getElementById('dCounter');let top=0;
 if(dots)cards.forEach((_,i)=>{const d=document.createElement('i');d.onclick=()=>{top=i;lay()};dots.appendChild(d)});

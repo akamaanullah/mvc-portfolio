@@ -531,16 +531,6 @@
  </div>
  <div class="mq tv" style="transition-delay:.25s">
   <div class="mq-hdr">
-   <span class="mq-pill">More Google reviews</span>
-  </div>
-  <div class="mrow" id="mr1">
-   <div class="chipr"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><cite class="cname">Syedmahad Bukhari</cite><blockquote class="cquote">“Great to work with him!”</blockquote></div><span class="s">★★★★★</span></div>
-   <div class="chipr dk"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><cite class="cname">Abdul Moiz</cite><blockquote class="cquote">“Amazing work! Really happy to work with him”</blockquote></div><span class="s">★★★★★</span></div>
-   <div class="chipr"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><cite class="cname">Shaheer Naveed</cite><blockquote class="cquote">“Good software developer with vast experience with dealing clients also.”</blockquote></div><span class="s">★★★★<span class="dim">★</span></span></div>
-   <div class="chipr dk"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><cite class="cname">Usman Khan</cite><blockquote class="cquote">“Nice work!!”</blockquote></div><span class="s">★★★★<span class="dim">★</span></span></div>
-   <div class="chipr"><img src="<?= asset_url('images/avatar-5.svg') ?>" alt=""><div><cite class="cname">Sheikh Unzila</cite><blockquote class="cquote">“I am truly fortunate to have you as a guide.”</blockquote></div><span class="s">★★★★★</span></div>
-  </div>
-  <div class="mq-hdr" style="margin-top:16px">
    <span class="mq-pill">Software built for</span>
   </div>
   <div class="mrow rev2" id="mr2">
