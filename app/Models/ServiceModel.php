@@ -29,20 +29,4 @@ class ServiceModel extends Model
         }
         return null;
     }
-
-    protected static function data(): array
-    {
-        return [
-            ['slug' => 'custom-crm-development', 'title' => 'Custom CRM Development in Laravel', 'view' => 'services/show'],
-            ['slug' => 'ai-automation-services', 'title' => 'AI Automation Services', 'view' => 'services/show'],
-            ['slug' => 'chat-app-development', 'title' => 'Chat App Development', 'view' => 'services/show'],
-            ['slug' => 'web-app-cms-development', 'title' => 'Web App & CMS Development', 'view' => 'services/show'],
-            ['slug' => 'saas-application-development', 'title' => 'SaaS Application Development', 'view' => 'services/show'],
-            ['slug' => 'mobile-app-development', 'title' => 'Mobile App Development', 'view' => 'services/show'],
-            ['slug' => 'business-process-automation', 'title' => 'Business Process Automation', 'view' => 'services/show'],
-            ['slug' => 'saas-product-strategy', 'title' => 'SaaS Product Strategy', 'view' => 'services/show'],
-            ['slug' => 'performance-tuning', 'title' => 'Performance Tuning', 'view' => 'services/show'],
-            ['slug' => 'free-technical-audit', 'title' => 'Free Technical Audit', 'view' => 'services/show'],
-        ];
-    }
 }

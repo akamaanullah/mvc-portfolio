@@ -7,10 +7,10 @@ class ProjectModel extends Model
 {
     protected static string $table = 'projects';
 
-    /** Project categories (tabs on /projects). Markup: views/projects/categories/<slug>.php */
     public static function categories(): array
     {
-        return [
+        $cats = CategoryModel::where('type', 'project', 'sort_order ASC, id ASC');
+        return !empty($cats) ? $cats : [
             ['slug' => 'web-design-development', 'name' => 'Web Design & Development'],
             ['slug' => 'web-applications',       'name' => 'Web Applications'],
             ['slug' => 'products',               'name' => 'Products'],
@@ -22,12 +22,5 @@ class ProjectModel extends Model
     {
         foreach (self::categories() as $c) if ($c['slug'] === $slug) return $c;
         return null;
-    }
-
-    protected static function data(): array
-    {
-        return [
-            ['slug' => 'chatrox', 'title' => 'Chatrox — Custom Enterprise Chat App', 'category' => 'products', 'view' => 'projects/show'],
-        ];
     }
 }

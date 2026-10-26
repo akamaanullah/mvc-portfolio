@@ -9,8 +9,11 @@ abstract class Model
 {
     protected static string $table = '';
 
-    /** Hard-coded rows fallback (if database is not enabled or empty). */
-    abstract protected static function data(): array;
+    /** Default fallback when table is empty or database not enabled */
+    protected static function data(): array
+    {
+        return [];
+    }
 
     public static function all(string $orderBy = 'id DESC'): array
     {
