@@ -173,6 +173,7 @@ CREATE TABLE `services` (
   `status` ENUM('draft', 'published', 'archived') NOT NULL DEFAULT 'published',
   `seo_title` VARCHAR(255) NULL,
   `meta_description` TEXT NULL,
+  `schema_json` LONGTEXT NULL,
   `sort_order` INT NOT NULL DEFAULT 0,
   `view` VARCHAR(100) NOT NULL DEFAULT 'services/show',
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

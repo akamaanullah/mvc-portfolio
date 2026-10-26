@@ -51,6 +51,9 @@ class App
         $this->post('/admin/categories/save', [$C . 'AdminController', 'saveCategory']);
         $this->post('/admin/categories/delete', [$C . 'AdminController', 'deleteCategory']);
 
+        $this->post('/admin/services/save', [$C . 'AdminController', 'saveService']);
+        $this->post('/admin/services/delete', [$C . 'AdminController', 'deleteService']);
+
         $this->post('/admin/messages/status', [$C . 'AdminController', 'updateMessageStatus']);
         $this->post('/admin/messages/delete', [$C . 'AdminController', 'deleteMessage']);
 

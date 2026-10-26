@@ -9,6 +9,7 @@ use App\Models\CategoryModel;
 use App\Models\ContactModel;
 use App\Models\LeadModel;
 use App\Models\ProjectModel;
+use App\Models\ServiceModel;
 
 class AdminController extends Controller
 {
@@ -197,6 +198,17 @@ class AdminController extends Controller
                 $viewData['article'] = $id ? ArticleModel::findById($id) : ($slug ? ArticleModel::find($slug) : null);
                 $viewData['categories'] = CategoryModel::where('type', 'article');
                 $viewData['allArticles'] = ArticleModel::all('title ASC');
+                break;
+
+            case 'services':
+                $viewData['services'] = ServiceModel::all('sort_order ASC, id ASC');
+                break;
+
+            case 'service-edit':
+                $id = $_GET['id'] ?? null;
+                $slug = $_GET['slug'] ?? null;
+                $viewData['service'] = $id ? ServiceModel::findById($id) : ($slug ? ServiceModel::find($slug) : null);
+                $viewData['allServices'] = ServiceModel::all('title ASC');
                 break;
 
             case 'categories':
@@ -464,6 +476,101 @@ class AdminController extends Controller
         } catch (\Throwable $e) {
             Logger::error('Admin deleteArticle error: ' . $e->getMessage());
             return $this->json(['success' => false, 'error' => 'Failed to delete article.'], 500);
+        }
+    }
+
+    public function saveService(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired. Please reload the page.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $title = trim((string)($p['title'] ?? ''));
+            if ($title === '') {
+                return $this->json(['success' => false, 'error' => 'Service title is required.'], 422);
+            }
+
+            $slug = trim((string)($p['slug'] ?? ''));
+            if ($slug === '') {
+                $slug = $title;
+            }
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $slug), '-'));
+            if ($slug === '') {
+                $slug = 'service-' . time();
+            }
+
+            $id = !empty($p['id']) ? (int)$p['id'] : null;
+
+            $existing = ServiceModel::find($slug);
+            if ($existing && (!$id || (int)$existing['id'] !== $id)) {
+                $slug .= '-' . time();
+            }
+
+            $status = in_array($p['status'] ?? '', ['draft', 'published', 'archived'], true) ? $p['status'] : 'published';
+
+            $data = [
+                'title' => $title,
+                'slug' => $slug,
+                'highlight_em' => trim((string)($p['highlight_em'] ?? '')),
+                'summary' => trim((string)($p['summary'] ?? '')),
+                'tags' => trim((string)($p['tags'] ?? '')),
+                'banner' => trim((string)($p['banner'] ?? '')),
+                'banner_alt' => trim((string)($p['banner_alt'] ?? '')),
+                'status' => $status,
+                'seo_title' => trim((string)($p['seo_title'] ?? '')),
+                'meta_description' => trim((string)($p['meta_description'] ?? '')),
+                'schema_json' => !empty($p['schema_json']) ? trim((string)$p['schema_json']) : null,
+                'sort_order' => isset($p['sort_order']) ? (int)$p['sort_order'] : 0,
+                'view' => 'services/show',
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+
+            if (isset($p['body_html'])) {
+                $data['body_html'] = (string)$p['body_html'];
+            }
+
+            if ($id) {
+                ServiceModel::update($id, $data);
+            } else {
+                $data['created_at'] = date('Y-m-d H:i:s');
+                $id = ServiceModel::create($data);
+            }
+
+            return $this->json([
+                'success' => true,
+                'message' => 'Service saved successfully!',
+                'id' => $id,
+                'slug' => $slug,
+                'redirect' => base_url('/admin/services/edit?id=' . $id)
+            ]);
+        } catch (\Throwable $e) {
+            Logger::error('Admin saveService error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to save service. Please check server logs.'], 500);
+        }
+    }
+
+    public function deleteService(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $id = (int)($p['id'] ?? 0);
+            if ($id <= 0) {
+                return $this->json(['success' => false, 'error' => 'Invalid service ID.'], 422);
+            }
+
+            ServiceModel::delete($id);
+            return $this->json(['success' => true, 'message' => 'Service deleted successfully.']);
+        } catch (\Throwable $e) {
+            Logger::error('Admin deleteService error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to delete service.'], 500);
         }
     }
 
