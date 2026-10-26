@@ -21,32 +21,36 @@ class GoogleSearchConsoleService
      */
     public static function getData(bool $forceRefresh = false, ?string $from = null, ?string $to = null): array
     {
-        if (!$forceRefresh && file_exists(self::CACHE_FILE)) {
-            $mtime = filemtime(self::CACHE_FILE);
-            if ((time() - $mtime) < self::CACHE_TTL) {
-                $cached = json_decode((string) file_get_contents(self::CACHE_FILE), true);
-                if (is_array($cached) && !empty($cached['is_live'])) {
-                    return $cached;
-                }
+        $startDate = $from ?: date('Y-m-d', strtotime('-31 days'));
+        $endDate = $to ?: date('Y-m-d', strtotime('-2 days'));
+        $cacheKey = $startDate . '_' . $endDate;
+
+        $allCache = [];
+        if (file_exists(self::CACHE_FILE)) {
+            $allCache = json_decode((string) file_get_contents(self::CACHE_FILE), true);
+            if (!is_array($allCache)) $allCache = [];
+        }
+
+        if (!$forceRefresh && isset($allCache[$cacheKey])) {
+            $entry = $allCache[$cacheKey];
+            if ((time() - ($entry['_time'] ?? 0)) < self::CACHE_TTL && !empty($entry['data']['is_live'])) {
+                return $entry['data'];
             }
         }
 
         try {
-            $liveData = self::fetchFromApi($from, $to);
+            $liveData = self::fetchFromApi($startDate, $endDate);
             if (!empty($liveData)) {
-                @file_put_contents(self::CACHE_FILE, json_encode($liveData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+                $allCache[$cacheKey] = ['_time' => time(), 'data' => $liveData];
+                @file_put_contents(self::CACHE_FILE, json_encode($allCache, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
                 return $liveData;
             }
         } catch (Throwable $e) {
             Logger::error('GSC Fetch Error: ' . $e->getMessage());
         }
 
-        // If cache exists even if expired, use it
-        if (file_exists(self::CACHE_FILE)) {
-            $cached = json_decode((string) file_get_contents(self::CACHE_FILE), true);
-            if (is_array($cached)) {
-                return $cached;
-            }
+        if (isset($allCache[$cacheKey]['data'])) {
+            return $allCache[$cacheKey]['data'];
         }
 
         return self::fallbackData();
@@ -116,7 +120,7 @@ class GoogleSearchConsoleService
             'startDate' => $startDate,
             'endDate' => $endDate,
             'dimensions' => ['date'],
-            'rowLimit' => 60
+            'rowLimit' => 100
         ]);
 
         // 2. Fetch Top Queries

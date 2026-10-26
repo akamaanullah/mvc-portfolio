@@ -241,6 +241,27 @@ class AdminController extends Controller
                 $range = $_GET['range'] ?? '30d';
                 $from = $_GET['from'] ?? null;
                 $to = $_GET['to'] ?? null;
+
+                if (empty($from) || empty($to)) {
+                    $to = date('Y-m-d', strtotime('-2 days'));
+                    switch ($range) {
+                        case 'today':
+                            $from = $to;
+                            break;
+                        case '7d':
+                            $from = date('Y-m-d', strtotime('-8 days'));
+                            break;
+                        case '90d':
+                            $from = date('Y-m-d', strtotime('-91 days'));
+                            break;
+                        case '30d':
+                        default:
+                            $range = '30d';
+                            $from = date('Y-m-d', strtotime('-31 days'));
+                            break;
+                    }
+                }
+
                 $viewData['gsc'] = GoogleSearchConsoleService::getData(false, $from, $to);
                 $viewData['currentRange'] = $range;
                 break;
