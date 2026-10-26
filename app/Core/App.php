@@ -65,6 +65,7 @@ class App
 
         // Search Console & Performance live endpoints
         $this->post('/admin/search-console/sync', [$C . 'AdminController', 'syncSearchConsole']);
+        $this->post('/admin/search-console/sitemap', [$C . 'AdminController', 'submitSitemap']);
         $this->post('/admin/performance/run', [$C . 'AdminController', 'runPerformanceAudit']);
         $this->get('/admin/performance/download-log', [$C . 'AdminController', 'downloadErrorLog']);
 

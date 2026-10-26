@@ -873,6 +873,38 @@ class AdminController extends Controller
     }
 
     /**
+     * POST /admin/search-console/sitemap
+     * Live submit/ping sitemap to Google Search Console API.
+     */
+    public function submitSitemap(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $sitemap = trim((string)($p['sitemap'] ?? '/sitemap.xml'));
+            if ($sitemap === '') {
+                $sitemap = '/sitemap.xml';
+            }
+
+            $res = GoogleSearchConsoleService::submitSitemap($sitemap);
+            if ($this->wantsJson()) {
+                return $this->json($res, $res['success'] ? 200 : 400);
+            }
+
+            $_SESSION['toast'] = $res['message'] ?? ($res['error'] ?? 'Sitemap processed');
+            redirect('/admin/search-console');
+            return '';
+        } catch (\Throwable $e) {
+            Logger::error('Search Console submitSitemap error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Submission error: ' . $e->getMessage()], 500);
+        }
+    }
+
+    /**
      * POST /admin/performance/run
      * Run live Lighthouse audit using Google PageSpeed Insights API.
      */

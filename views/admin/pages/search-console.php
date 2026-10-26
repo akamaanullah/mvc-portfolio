@@ -220,9 +220,9 @@ $siteUrl = $gsc['site_url'] ?? 'https://amaanullah.com/';
           </tbody>
         </table>
       </div>
-      <form class="row" style="padding:14px 18px" onsubmit="event.preventDefault();toast('Sitemap ping sent to Google Search Console','ok');">
-        <input class="inp" style="flex:1" placeholder="/sitemap.xml" value="/sitemap.xml" readonly>
-        <button class="btn o" type="submit">Ping Google</button>
+      <form class="row" style="padding:14px 18px" onsubmit="event.preventDefault();submitSitemapLive();">
+        <input class="inp" id="inpSitemap" style="flex:1" placeholder="/sitemap.xml" value="/sitemap.xml">
+        <button class="btn o" id="btnPingGoogle" type="submit">Ping Google</button>
       </form>
     </div>
   </section>
@@ -267,6 +267,44 @@ function syncGscData() {
     toast('Error connecting to Search Console API', 'bad');
     if (btn) btn.disabled = false;
     if (txt) txt.textContent = 'Sync';
+  });
+}
+
+function submitSitemapLive() {
+  var inp = document.getElementById('inpSitemap');
+  var btn = document.getElementById('btnPingGoogle');
+  var val = (inp ? inp.value.trim() : '') || '/sitemap.xml';
+  var csrf = (document.querySelector('meta[name="csrf-token"]') || {}).content || '';
+  var baseUrl = (document.querySelector('meta[name="base-url"]') || {}).content || '';
+
+  if (btn) btn.disabled = true;
+  toast('Submitting ' + val + ' to Google Search Console API...', 'ok');
+
+  fetch(baseUrl + '/admin/search-console/sitemap', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CSRF-TOKEN': csrf
+    },
+    body: JSON.stringify({
+      _token: csrf,
+      sitemap: val
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(d) {
+    if (btn) btn.disabled = false;
+    if (d.success) {
+      toast(d.message || 'Sitemap submitted to Google Search Console!', 'ok');
+      setTimeout(function() { window.location.reload(); }, 800);
+    } else {
+      toast(d.error || 'Submission failed', 'bad');
+    }
+  })
+  .catch(function() {
+    if (btn) btn.disabled = false;
+    toast('Error submitting sitemap to Google', 'bad');
   });
 }
 
