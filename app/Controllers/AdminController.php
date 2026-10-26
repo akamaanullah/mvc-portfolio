@@ -7,6 +7,7 @@ use App\Core\Logger;
 use App\Models\ArticleModel;
 use App\Models\CategoryModel;
 use App\Models\ContactModel;
+use App\Models\LandingPageModel;
 use App\Models\LeadModel;
 use App\Models\ProjectModel;
 use App\Models\ServiceModel;
@@ -209,6 +210,17 @@ class AdminController extends Controller
                 $slug = $_GET['slug'] ?? null;
                 $viewData['service'] = $id ? ServiceModel::findById($id) : ($slug ? ServiceModel::find($slug) : null);
                 $viewData['allServices'] = ServiceModel::all('title ASC');
+                break;
+
+            case 'landing-pages':
+                $viewData['landingPages'] = LandingPageModel::all('id ASC');
+                break;
+
+            case 'landing-edit':
+                $id = $_GET['id'] ?? null;
+                $slug = $_GET['slug'] ?? null;
+                $viewData['landing'] = $id ? LandingPageModel::findById($id) : ($slug ? LandingPageModel::find($slug) : null);
+                $viewData['allLandings'] = LandingPageModel::all('title ASC');
                 break;
 
             case 'categories':
@@ -571,6 +583,93 @@ class AdminController extends Controller
         } catch (\Throwable $e) {
             Logger::error('Admin deleteService error: ' . $e->getMessage());
             return $this->json(['success' => false, 'error' => 'Failed to delete service.'], 500);
+        }
+    }
+
+    public function saveLandingPage(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired. Please reload the page.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $title = trim((string)($p['title'] ?? ''));
+            if ($title === '') {
+                return $this->json(['success' => false, 'error' => 'Landing page title is required.'], 422);
+            }
+
+            $slug = trim((string)($p['slug'] ?? ''));
+            if ($slug === '') {
+                $slug = $title;
+            }
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $slug), '-'));
+            if ($slug === '') {
+                $slug = 'landing-' . time();
+            }
+
+            $id = !empty($p['id']) ? (int)$p['id'] : null;
+
+            $existing = LandingPageModel::find($slug);
+            if ($existing && (!$id || (int)$existing['id'] !== $id)) {
+                $slug .= '-' . time();
+            }
+
+            $data = [
+                'title' => $title,
+                'slug' => $slug,
+                'city' => trim((string)($p['city'] ?? 'Karachi')),
+                'seo_title' => trim((string)($p['seo_title'] ?? '')),
+                'meta_description' => trim((string)($p['meta_description'] ?? '')),
+                'schema_json' => !empty($p['schema_json']) ? trim((string)$p['schema_json']) : null,
+                'is_active' => !empty($p['is_active']) ? 1 : 0,
+                'updated_at' => date('Y-m-d H:i:s'),
+            ];
+
+            if (isset($p['content_html'])) {
+                $data['content_html'] = (string)$p['content_html'];
+            }
+
+            if ($id) {
+                LandingPageModel::update($id, $data);
+            } else {
+                $data['created_at'] = date('Y-m-d H:i:s');
+                $id = LandingPageModel::create($data);
+            }
+
+            return $this->json([
+                'success' => true,
+                'message' => 'Landing page saved successfully!',
+                'id' => $id,
+                'slug' => $slug,
+                'redirect' => base_url('/admin/landing-pages/edit?id=' . $id)
+            ]);
+        } catch (\Throwable $e) {
+            Logger::error('Admin saveLandingPage error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to save landing page. Please check server logs.'], 500);
+        }
+    }
+
+    public function deleteLandingPage(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $id = (int)($p['id'] ?? 0);
+            if ($id <= 0) {
+                return $this->json(['success' => false, 'error' => 'Invalid landing page ID.'], 422);
+            }
+
+            LandingPageModel::delete($id);
+            return $this->json(['success' => true, 'message' => 'Landing page deleted successfully.']);
+        } catch (\Throwable $e) {
+            Logger::error('Admin deleteLandingPage error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to delete landing page.'], 500);
         }
     }
 

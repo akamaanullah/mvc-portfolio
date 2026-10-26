@@ -1,5 +1,272 @@
-<?php /* Admin · Edit landing page — static UI. Replace demo data with controller vars (see @dynamic comments). */ ?>
-<div class="ph-h"><div><div class="crumbs">Admin / <a href="<?= base_url('/admin/landing-pages') ?>">Landing pages</a> / Edit</div><h1>Edit landing page · Laravel Developer in Karachi </h1><p>Section-based editor matching the live template. Toggle a section off to hide it.</p></div><div class="acts"><a class="btn" href="<?= base_url('/laravel-developer-karachi') ?>" target="_blank"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg> View live</a><button class="btn o" data-toast="Saved (demo)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Save</button></div></div>
-<div class="grid g21"><div><!-- @dynamic: $page->sections (JSON) --><form onsubmit="return false"><details class="blk" open data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#hero</span><span class="pv" style="font-weight:700;color:var(--ink)">Hero</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>H1</label><input class="inp" value="Laravel Developer in Karachi"></div><div class="fld"><label>Intro</label><input class="inp" value="Senior Laravel development for startups and businesses in Karachi."></div></div></details><details class="blk" open data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#why</span><span class="pv" style="font-weight:700;color:var(--ink)">Why Laravel</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Why Laravel"></div><div class="fld"><label>Items <span class="cnt">Points: title | text</span></label><textarea class="inp" rows="4" placeholder="Points: title | text"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#services</span><span class="pv" style="font-weight:700;color:var(--ink)">Services</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Services"></div><div class="fld"><label>Items <span class="cnt">Cards: title | text</span></label><textarea class="inp" rows="4" placeholder="Cards: title | text"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#audit</span><span class="pv" style="font-weight:700;color:var(--ink)">Code audit (dark band)</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Code audit (dark band)"></div><div class="fld"><label>Items <span class="cnt">Checklist</span></label><textarea class="inp" rows="4" placeholder="Checklist"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#performance</span><span class="pv" style="font-weight:700;color:var(--ink)">Performance & security</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Performance & security"></div><div class="fld"><label>Items <span class="cnt">Points</span></label><textarea class="inp" rows="4" placeholder="Points"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#process</span><span class="pv" style="font-weight:700;color:var(--ink)">Process</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Process"></div><div class="fld"><label>Items <span class="cnt">Steps</span></label><textarea class="inp" rows="4" placeholder="Steps"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#stack</span><span class="pv" style="font-weight:700;color:var(--ink)">Tech stack</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Tech stack"></div><div class="fld"><label>Items <span class="cnt">Chips</span></label><textarea class="inp" rows="4" placeholder="Chips"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#projects</span><span class="pv" style="font-weight:700;color:var(--ink)">Projects</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Projects"></div><div class="fld"><label>Items <span class="cnt">Pick projects</span></label><textarea class="inp" rows="4" placeholder="Pick projects"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#local</span><span class="pv" style="font-weight:700;color:var(--ink)">Why Karachi (tinted band)</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Why Karachi (tinted band)"></div><div class="fld"><label>Items <span class="cnt">Local proof points</span></label><textarea class="inp" rows="4" placeholder="Local proof points"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#faq</span><span class="pv" style="font-weight:700;color:var(--ink)">FAQ</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="FAQ"></div><div class="fld"><label>Items <span class="cnt">Q | A</span></label><textarea class="inp" rows="4" placeholder="Q | A"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#relp</span><span class="pv" style="font-weight:700;color:var(--ink)">Related landing pages</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="Related landing pages"></div><div class="fld"><label>Items <span class="cnt">Cross-links</span></label><textarea class="inp" rows="4" placeholder="Cross-links"></textarea></div></div></details><details class="blk"  data-row><summary class="bh" style="cursor:pointer;list-style:none"><span class="hdl">⋮⋮</span><span class="ty">#cta</span><span class="pv" style="font-weight:700;color:var(--ink)">CTA</span><label class="sw" title="Show section" onclick="event.stopPropagation()"><input type="checkbox" checked><i></i></label></summary><div class="bb"><div class="fld"><label>Heading (H2)</label><input class="inp" placeholder="CTA"></div><div class="fld"><label>Items <span class="cnt">Title, text, button</span></label><textarea class="inp" rows="4" placeholder="Title, text, button"></textarea></div></div></details></form></div>
-<aside style="display:flex;flex-direction:column;gap:14px"><section class="card "><div class="hd"><h3>Page settings</h3><div class="r"></div></div><div class="bd2"><div class="fld"><label>Status</label><select class="sel"><option>Published</option><option>Draft</option></select></div><div class="fld"><label>Slug</label><input class="inp" value="laravel-developer-karachi"></div><div class="fld"><label>Banner</label><div class="drop" style="padding:14px"><input type="file" hidden><small><b>Upload</b> 1600×900</small></div></div></div></section>
-<section class="card "><div class="hd"><h3>SEO</h3><div class="r"></div></div><div class="bd2"><div class="fld"><label for="sT">Meta title <span class="cnt" id="sTc"></span></label><input class="inp" id="sT" data-count="sTc" data-min="30" data-max="60" value="Laravel Developer in Karachi | Amaanullah Khan"></div><div class="fld"><label for="sD">Meta description <span class="cnt" id="sDc"></span></label><textarea class="inp" id="sD" rows="3" data-count="sDc" data-min="120" data-max="160">Hire a Laravel developer in Karachi for custom web apps, APIs, CRM and SaaS. Code audits, performance tuning and clean, maintainable Laravel code.</textarea></div><div class="chk-row">FAQPage schema <label class="sw"><input type="checkbox" checked><i></i></label></div></div></section></aside></div>
+<?php /* Admin · Edit landing page — dynamic view. */ 
+$lp = $landing ?? [];
+$isEdit = !empty($lp['id']);
+$slug = $lp['slug'] ?? '';
+$liveUrl = !empty($slug) ? base_url('/' . $slug) : base_url('/');
+?>
+<div class="ph-h">
+  <div>
+    <div class="crumbs">Admin / <a href="<?= base_url('/admin/landing-pages') ?>">Landing pages</a> / <?= $isEdit ? 'Edit' : 'New' ?></div>
+    <h1><?= $isEdit ? ('Edit landing page · ' . htmlspecialchars($lp['title'] ?? '')) : 'New landing page' ?></h1>
+    <p>Manage localized SEO landing pages targeting specific regions, roles, and tech stacks.</p>
+  </div>
+  <div class="acts">
+    <a class="btn" href="<?= base_url('/admin/landing-pages') ?>">Back to landing pages</a>
+    <?php if ($isEdit && !empty($slug)): ?>
+      <a class="btn" href="<?= $liveUrl ?>" target="_blank">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg> View live
+      </a>
+    <?php endif; ?>
+    <button class="btn o" type="button" id="btnSaveLanding">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Save landing page
+    </button>
+  </div>
+</div>
+
+<form id="landingForm" action="javascript:void(0)" method="post">
+  <input type="hidden" id="lpId" name="id" value="<?= htmlspecialchars((string)($lp['id'] ?? '')) ?>">
+  
+  <div class="grid g21">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <!-- General Info -->
+      <section class="card">
+        <div class="hd">
+          <h3>General information</h3>
+        </div>
+        <div class="bd2">
+          <div class="fld">
+            <label for="lpTitle">Page Title (H1) *</label>
+            <input class="inp" id="lpTitle" name="title" required value="<?= htmlspecialchars($lp['title'] ?? '') ?>" placeholder="e.g. Laravel Developer in Karachi">
+          </div>
+
+          <div class="fld">
+            <label for="lpCity">Target City / Region</label>
+            <input class="inp" id="lpCity" name="city" value="<?= htmlspecialchars($lp['city'] ?? 'Karachi') ?>" placeholder="e.g. Karachi, Pakistan">
+          </div>
+        </div>
+      </section>
+
+      <!-- Full Body HTML Card -->
+      <section class="card">
+        <div class="hd">
+          <h3>Landing Page HTML Content</h3>
+          <div class="r">
+            <small class="mut">Rendered inside &lt;main&gt; wrapper</small>
+          </div>
+        </div>
+        <div class="bd2">
+          <p class="mut" style="font-size:13px;margin:0 0 10px">
+            Contains all sections for this landing page (Hero, Why, Services, Takeover/Audit, Process, Projects, FAQ, CTA).
+          </p>
+          <div class="fld">
+            <textarea class="inp code-in" id="lpContentHtml" name="content_html" rows="22" style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5" spellcheck="false"><?= htmlspecialchars($lp['content_html'] ?? '') ?></textarea>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar Settings -->
+    <aside style="display:flex;flex-direction:column;gap:16px">
+      <!-- Page Settings -->
+      <section class="card">
+        <div class="hd"><h3>Settings</h3></div>
+        <div class="bd2">
+          <div class="chk-row">
+            Active / Published
+            <label class="sw">
+              <input type="checkbox" id="lpActive" name="is_active" <?= (!isset($lp['is_active']) || !empty($lp['is_active'])) ? 'checked' : '' ?>>
+              <i></i>
+            </label>
+          </div>
+
+          <div class="fld">
+            <label for="lpSlug">URL Slug *</label>
+            <div class="row">
+              <span class="mut sm" style="white-space:nowrap">/</span>
+              <input class="inp" id="lpSlug" name="slug" style="flex:1" value="<?= htmlspecialchars($lp['slug'] ?? '') ?>" placeholder="laravel-developer-karachi">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEO Settings -->
+      <section class="card">
+        <div class="hd"><h3>SEO &amp; Metadata</h3></div>
+        <div class="bd2">
+          <div class="fld">
+            <label for="lpSeoTitle">Meta Title <span class="cnt" id="seoTitleCnt"></span></label>
+            <input class="inp" id="lpSeoTitle" name="seo_title" data-count="seoTitleCnt" data-min="30" data-max="60" value="<?= htmlspecialchars($lp['seo_title'] ?? '') ?>" placeholder="e.g. Laravel Developer in Karachi, Pakistan | Amaanullah Khan">
+          </div>
+
+          <div class="fld">
+            <label for="lpMetaDesc">Meta Description <span class="cnt" id="metaDescCnt"></span></label>
+            <textarea class="inp" id="lpMetaDesc" name="meta_description" rows="3" data-count="metaDescCnt" data-min="120" data-max="160" placeholder="150–160 character description..."><?= htmlspecialchars($lp['meta_description'] ?? '') ?></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- JSON-LD Structured Data -->
+      <section class="card">
+        <div class="hd">
+          <h3>JSON-LD Schema</h3>
+          <div class="r"><small class="mut">Structured Data</small></div>
+        </div>
+        <div class="bd2">
+          <div class="fld">
+            <label for="lpSchema">Schema Markup</label>
+            <textarea class="inp code-in" id="lpSchema" name="schema_json" rows="6" style="font-family:'JetBrains Mono',monospace;font-size:12px"><?= htmlspecialchars($lp['schema_json'] ?? '') ?></textarea>
+          </div>
+        </div>
+      </section>
+
+      <?php if ($isEdit): ?>
+      <section class="card">
+        <div class="bd2">
+          <button class="btn d" style="width:100%" type="button" id="btnDeleteLanding" data-confirm="Delete this landing page permanently?">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg> Delete landing page
+          </button>
+        </div>
+      </section>
+      <?php endif; ?>
+    </aside>
+  </div>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+  var baseUrl = '<?= base_url() ?>';
+  var saveBtn = document.getElementById('btnSaveLanding');
+
+  // Slug auto-generation from title if empty
+  var titleIn = document.getElementById('lpTitle');
+  var slugIn = document.getElementById('lpSlug');
+  if (titleIn && slugIn && !slugIn.value) {
+    titleIn.addEventListener('input', function(){
+      if (!slugIn.dataset.manual) {
+        slugIn.value = titleIn.value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      }
+    });
+    slugIn.addEventListener('input', function(){
+      slugIn.dataset.manual = 'true';
+    });
+  }
+
+  // Live character counters
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = document.getElementById(el.getAttribute('data-count'));
+    if (!target) return;
+    function updateCount(){
+      var len = el.value.length;
+      var min = parseInt(el.getAttribute('data-min') || '0', 10);
+      var max = parseInt(el.getAttribute('data-max') || '0', 10);
+      target.textContent = len + (max ? ' / ' + max : ' chars');
+      if (max && len > max) {
+        target.style.color = 'var(--bad, #ef4444)';
+      } else if (min && len < min) {
+        target.style.color = 'var(--warn, #f59e0b)';
+      } else {
+        target.style.color = 'var(--ok, #10b981)';
+      }
+    }
+    el.addEventListener('input', updateCount);
+    updateCount();
+  });
+
+  // Save Landing Page
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      var title = (document.getElementById('lpTitle')?.value || '').trim();
+      if (!title) {
+        alert('Please enter a landing page title.');
+        document.getElementById('lpTitle')?.focus();
+        return;
+      }
+
+      var payload = {
+        _token: csrf,
+        id: document.getElementById('lpId')?.value || '',
+        title: title,
+        city: document.getElementById('lpCity')?.value || 'Karachi',
+        content_html: document.getElementById('lpContentHtml')?.value || '',
+        is_active: document.getElementById('lpActive')?.checked ? 1 : 0,
+        slug: document.getElementById('lpSlug')?.value || '',
+        seo_title: document.getElementById('lpSeoTitle')?.value || '',
+        meta_description: document.getElementById('lpMetaDesc')?.value || '',
+        schema_json: document.getElementById('lpSchema')?.value || ''
+      };
+
+      saveBtn.disabled = true;
+      var originalHtml = saveBtn.innerHTML;
+      saveBtn.innerHTML = 'Saving...';
+
+      fetch(baseUrl + '/admin/landing-pages/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': csrf
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = originalHtml;
+
+        if (data.success) {
+          if (typeof AK !== 'undefined' && AK.toast) {
+            AK.toast(data.message || 'Landing page saved successfully!', 'ok');
+          } else {
+            alert(data.message || 'Landing page saved successfully!');
+          }
+          if (data.id && (!payload.id || payload.id !== String(data.id))) {
+            window.location.href = baseUrl + '/admin/landing-pages/edit?id=' + data.id;
+          }
+        } else {
+          alert(data.error || 'Failed to save landing page.');
+        }
+      })
+      .catch(function(){
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = originalHtml;
+        alert('Network error saving landing page.');
+      });
+    });
+  }
+
+  // Delete Landing Page
+  var delBtn = document.getElementById('btnDeleteLanding');
+  if (delBtn) {
+    delBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = document.getElementById('lpId')?.value;
+      if (!id) return;
+      var msg = delBtn.getAttribute('data-confirm') || 'Are you sure you want to delete this landing page?';
+      if (!confirm(msg)) return;
+
+      fetch(baseUrl + '/admin/landing-pages/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': csrf
+        },
+        body: JSON.stringify({ id: id, _token: csrf })
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data.success) {
+          window.location.href = baseUrl + '/admin/landing-pages';
+        } else {
+          alert(data.error || 'Failed to delete landing page.');
+        }
+      })
+      .catch(function(){
+        alert('Network error deleting landing page.');
+      });
+    });
+  }
+});
+</script>

@@ -188,10 +188,12 @@ DROP TABLE IF EXISTS `landing_pages`;
 CREATE TABLE `landing_pages` (
   `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(255) NOT NULL,
+  `seo_title` VARCHAR(255) NULL,
   `slug` VARCHAR(150) NOT NULL UNIQUE,
   `city` VARCHAR(100) NULL,
   `meta_description` TEXT NULL,
   `content_html` LONGTEXT NULL,
+  `schema_json` LONGTEXT NULL,
   `is_active` TINYINT(1) NOT NULL DEFAULT 1,
   `views_count` INT UNSIGNED NOT NULL DEFAULT 0,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

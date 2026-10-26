@@ -2,14 +2,22 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Models\LandingPageModel;
 
-/** SEO landing pages: /laravel-developer-karachi, /crm-developers-pakistan, /full-stack-developer-karachi */
+/** Dynamic SEO landing pages */
 class LandingController extends Controller
 {
-    public const PAGES = ['laravel-developer-karachi', 'crm-developers-pakistan', 'full-stack-developer-karachi'];
-
     public function show(string $slug): string
     {
-        return in_array($slug, self::PAGES, true) ? $this->render('landing/show', ['slug' => $slug]) : $this->notFound();
+        $page = LandingPageModel::findActive($slug);
+        if (!$page) {
+            return $this->notFound();
+        }
+
+        return $this->render('landing/show', [
+            'landing' => $page,
+            'page' => $page,
+            'slug' => $slug,
+        ]);
     }
 }

@@ -54,6 +54,9 @@ class App
         $this->post('/admin/services/save', [$C . 'AdminController', 'saveService']);
         $this->post('/admin/services/delete', [$C . 'AdminController', 'deleteService']);
 
+        $this->post('/admin/landing-pages/save', [$C . 'AdminController', 'saveLandingPage']);
+        $this->post('/admin/landing-pages/delete', [$C . 'AdminController', 'deleteLandingPage']);
+
         $this->post('/admin/messages/status', [$C . 'AdminController', 'updateMessageStatus']);
         $this->post('/admin/messages/delete', [$C . 'AdminController', 'deleteMessage']);
 
