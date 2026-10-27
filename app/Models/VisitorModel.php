@@ -606,7 +606,12 @@ class VisitorModel extends Model
                 'sessions' => $sessions,
                 'pages' => $pagesCount,
                 'source' => $src,
-                'last_seen' => $timeAgo
+                'last_seen' => $timeAgo,
+                'time_ago' => $timeAgo,
+                'city' => (string) ($r['city'] ?? ''),
+                'country' => (string) ($r['country'] ?? ''),
+                'country_code' => (string) ($r['country_code'] ?? 'PK'),
+                'url' => (string) ($r['url'] ?? '/')
             ];
         }
 

@@ -102,14 +102,17 @@ $totalViews = $analytics['kpis']['views'] ?? number_format((int)($viewsCount ?? 
           <?php foreach ($liveVisitors as $lv): 
             $devIcon = str_contains(strtolower($lv['device'] ?? ''), 'mobile') ? 'Mobile' : (str_contains(strtolower($lv['device'] ?? ''), 'tablet') ? 'Tablet' : 'Desktop');
             $cCode = strtoupper($lv['country_code'] ?? 'PK');
+            $city = !empty($lv['city']) ? $lv['city'] : (!empty($lv['country']) ? $lv['country'] : (!empty($lv['location']) ? $lv['location'] : 'Direct Visitor'));
+            $url = !empty($lv['url']) ? $lv['url'] : '/';
+            $timeAgo = !empty($lv['time_ago']) ? $lv['time_ago'] : (!empty($lv['last_seen']) ? $lv['last_seen'] : 'now');
           ?>
             <li>
               <span class="tag" style="font-weight:700"><?= htmlspecialchars($cCode) ?></span>
               <div class="who">
-                <b><?= htmlspecialchars($lv['city'] ?: ($lv['country'] ?: 'Direct Visitor')) ?> <small class="mut">· <?= $devIcon ?></small></b>
-                <small><?= htmlspecialchars($lv['url'] ?? '/') ?></small>
+                <b><?= htmlspecialchars(strip_tags((string)$city)) ?> <small class="mut">· <?= $devIcon ?></small></b>
+                <small><?= htmlspecialchars($url) ?></small>
               </div>
-              <small class="mut"><?= htmlspecialchars($lv['time_ago'] ?? 'now') ?></small>
+              <small class="mut"><?= $timeAgo ?></small>
             </li>
           <?php endforeach; ?>
         <?php endif; ?>

@@ -464,7 +464,7 @@ class AdminController extends Controller
                 $stmt = $db->prepare('SELECT id, name, email, role, avatar FROM `users` WHERE id = :id LIMIT 1');
                 $stmt->execute(['id' => $uId]);
                 $fullUser = $stmt->fetch() ?: $currentUser;
-                $fullUser['bio'] = SettingsModel::get('admin_bio', 'PHP & Laravel developer building custom CRM, SaaS and enterprise web apps, plus Flutter mobile apps.');
+                $fullUser['bio'] = (string) setting('admin_bio', 'PHP & Laravel developer building custom CRM, SaaS and enterprise web apps, plus Flutter mobile apps.');
                 $viewData['userProfile'] = $fullUser;
                 $viewData['currentSession'] = [
                     'ip' => client_ip(),
