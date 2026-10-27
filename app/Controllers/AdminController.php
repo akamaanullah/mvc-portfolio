@@ -374,6 +374,56 @@ class AdminController extends Controller
                 $viewData['currentTab'] = $filter;
                 $viewData['needsHumanCount'] = \App\Models\ChatModel::countNeedsHuman();
                 break;
+
+            case 'settings':
+                $db = Database::connection();
+                $raw = $db->query("SELECT `key`, `value` FROM settings")->fetchAll(\PDO::FETCH_KEY_PAIR);
+                $viewData['settings'] = $raw;
+                $viewData['integrations'] = [
+                    'gsc' => [
+                        'connected' => file_exists(BASE_PATH . '/config/keys/search-console-key.json'),
+                        'title' => 'Google Search Console',
+                        'desc' => 'Queries, impressions, sitemaps (https://amaanullah.com/)',
+                        'badge' => 'Connected',
+                        'link' => base_url('/admin/search-console')
+                    ],
+                    'pagespeed' => [
+                        'connected' => !empty(env('PAGESPEED_API_KEY')),
+                        'title' => 'Google PageSpeed Insights',
+                        'desc' => 'Lighthouse Core Web Vitals auditing engine',
+                        'badge' => 'Connected',
+                        'link' => base_url('/admin/performance')
+                    ],
+                    'whatsapp' => [
+                        'connected' => true,
+                        'title' => 'WhatsApp Direct Integration',
+                        'desc' => env('CONTACT_PHONE', '+92 319 6935307') . ' · Chat Handoff',
+                        'badge' => 'Connected',
+                        'link' => env('CONTACT_WHATSAPP', 'https://api.whatsapp.com/send?phone=923196935307')
+                    ],
+                    'smtp' => [
+                        'connected' => true,
+                        'title' => 'SMTP / Mail Server',
+                        'desc' => env('SMTP_HOST', 'smtp.gmail.com') . ':465 (' . env('SMTP_USER', 'akamaanullah@gmail.com') . ')',
+                        'badge' => 'Connected',
+                        'link' => 'javascript:void(0)'
+                    ],
+                    'alerts' => [
+                        'connected' => true,
+                        'title' => 'Email Alerts & Notifications',
+                        'desc' => 'Live takeover alerts & lead briefs sent to ' . env('SMTP_USER', 'akamaanullah@gmail.com'),
+                        'badge' => 'Connected',
+                        'link' => 'javascript:void(0)'
+                    ],
+                    'cloudflare' => [
+                        'connected' => !empty(env('CF_API_TOKEN')),
+                        'title' => 'Cloudflare Workers AI',
+                        'desc' => '@cf/meta/llama-3.1-8b-instruct-fast (Active)',
+                        'badge' => 'Connected',
+                        'link' => 'javascript:void(0)'
+                    ]
+                ];
+                break;
         }
 
         $content = view('admin/pages/' . $key, $viewData);
@@ -1171,5 +1221,53 @@ class AdminController extends Controller
         \App\Models\ChatModel::addMessage($convId, 'admin', '__CLOSED__');
 
         return $this->json(['success' => true]);
+    }
+
+    /**
+     * POST /admin/settings/save
+     */
+    public function saveSettings(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+
+        $db = Database::connection();
+        $fields = [
+            'site_name', 'tagline', 'site_domain', 'contact_email', 'phone_number', 'whatsapp_number',
+            'meta_default_title', 'meta_default_desc', 'robots_txt',
+            'chatbot_name', 'chatbot_welcome', 'chatbot_timeout', 'chatbot_handoff_trigger',
+            'chatbot_capture_leads', 'chatbot_notify_needs_human', 'chatbot_show_mobile'
+        ];
+
+        $stmt = $db->prepare("INSERT INTO settings (`key`, `value`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`)");
+        foreach ($fields as $k) {
+            if (isset($_POST[$k])) {
+                $stmt->execute([$k, trim((string)$_POST[$k])]);
+            }
+        }
+
+        $_SESSION['toast'] = 'Settings saved successfully!';
+        redirect('/admin/settings');
+        return '';
+    }
+
+    /**
+     * POST /admin/settings/test-chatbot
+     */
+    public function testChatbotConnection(): string
+    {
+        $this->requireAuth();
+
+        $start = microtime(true);
+        $testPrompt = "Hi! Quick connection check from admin settings. In 1 short polite sentence, introduce yourself.";
+        $reply = \App\Services\ChatbotService::ask($testPrompt, []);
+        $elapsed = round((microtime(true) - $start) * 1000);
+
+        return $this->json([
+            'success' => true,
+            'latency' => $elapsed . 'ms',
+            'model'   => env('CF_AI_MODEL', '@cf/meta/llama-3.1-8b-instruct-fast'),
+            'reply'   => $reply
+        ]);
     }
 }

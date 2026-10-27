@@ -241,6 +241,6 @@
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image preview"><button aria-label="Close">✕</button><figure><img alt=""><p></p></figure></div>
 <script src="<?= asset_url('js/case-study.js') ?>"></script>
 <script src="<?= asset_url('js/layout.js') ?>"></script>
-<script src="<?= asset_url('js/chatbot-config.js') ?>"></script><!-- EDIT: chatbot config -->
-<script src="<?= asset_url('js/chatbot.js') ?>" defer></script>
+<script>window.__BASE_URL = '<?= base_path_url() ?>';</script><script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script><!-- EDIT: chatbot config -->
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
 </body></html>

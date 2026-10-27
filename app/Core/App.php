@@ -82,6 +82,10 @@ class App
         $this->post('/admin/live-chat/takeover', [$C . 'AdminController', 'liveChatTakeover']);
         $this->post('/admin/live-chat/close', [$C . 'AdminController', 'liveChatClose']);
 
+        // Admin Settings Endpoints
+        $this->post('/admin/settings/save', [$C . 'AdminController', 'saveSettings']);
+        $this->post('/admin/settings/test-chatbot', [$C . 'AdminController', 'testChatbotConnection']);
+
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);
         $this->get('/', [$C . 'HomeController', 'index']);

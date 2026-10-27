@@ -176,6 +176,6 @@
 
 <div class="cur" id="cur" aria-hidden="true">Read ↗</div>
 <script src="<?= asset_url('js/articles.js') ?>"></script><script src="<?= asset_url('js/layout.js') ?>"></script>
-<script src="<?= asset_url('js/chatbot-config.js') ?>"></script><!-- EDIT: chatbot config -->
-<script src="<?= asset_url('js/chatbot.js') ?>" defer></script>
+<script>window.__BASE_URL = '<?= base_path_url() ?>';</script><script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script><!-- EDIT: chatbot config -->
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
 </body></html>

@@ -1,24 +1,37 @@
-var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/\/js\/chatbot\.js.*$/,'');
-/*! AK Chatbot widget — Powered by Cloudflare Workers AI + Real-time Human Takeover.
- *  Vanilla JS, zero dependencies, responsive glass design.
+/*! Amaanullah AI Assistant & Real-time Live Takeover Widget
+ *  Powered by Cloudflare Workers AI (Llama 3.1)
+ *  Zero external dependencies, vanilla modern JavaScript.
  */
 (function () {
   'use strict';
+  if (window.__AK_CHATBOT_LOADED) return;
+  window.__AK_CHATBOT_LOADED = true;
+
+  // Auto-detect base path
+  var path = window.location.pathname || '';
+  var defaultBase = path.indexOf('/web3d-full') !== -1 ? '/web3d-full' : '';
+
   var CFG = Object.assign({
-    endpoint: (window.__BASE_URL || '') + '/api/chat/message',
-    leadEndpoint: (window.__BASE_URL || '') + '/api/chat/lead',
-    initLiveEndpoint: (window.__BASE_URL || '') + '/api/chat/init-live',
-    pollEndpoint: (window.__BASE_URL || '') + '/api/chat/poll',
-    closeEndpoint: (window.__BASE_URL || '') + '/api/chat/close',
-    botName: 'Amaanullah (Assistant)',
+    endpoint: defaultBase + '/api/chat/message',
+    leadEndpoint: defaultBase + '/api/chat/lead',
+    initLiveEndpoint: defaultBase + '/api/chat/init-live',
+    pollEndpoint: defaultBase + '/api/chat/poll',
+    closeEndpoint: defaultBase + '/api/chat/close',
+    botName: 'Amaanullah AI',
     whatsapp: 'https://api.whatsapp.com/send?phone=923196935307',
     poweredBy: 'Amaanullah Khan',
-    poweredUrl: (window.__BASE_URL || '') + '/about',
+    poweredUrl: defaultBase + '/about',
     greetingDelay: 3500, maxChars: 500, timeout: 25000
   }, window.AK_CHATBOT_CONFIG || {});
 
-  var SKEY = 'akc_state_v2', TKEY = 'akc_tip_dismissed';
+  var SKEY = 'akc_state_v3', TKEY = 'akc_tip_dismissed';
   var CHIPS = ['Services', 'Get a quote', 'See projects', 'Book a call', 'Pricing'];
+
+  // Purge legacy demo states
+  try {
+    sessionStorage.removeItem('akc_state_v1');
+    sessionStorage.removeItem('akc_state_v2');
+  } catch(e) {}
 
   /* ---------------- API ---------------- */
   function sid() {
@@ -38,17 +51,15 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
 
   var ChatbotAPI = {
     send: function (p) {
-      if (CFG.endpoint) return post(CFG.endpoint, p).then(function (d) { return typeof d === 'string' ? { reply: d } : d; });
-      return Promise.resolve({ reply: "Hello! How can I help you today?" });
+      return post(CFG.endpoint, p).then(function (d) { return typeof d === 'string' ? { reply: d } : d; });
     },
     lead: function (p) {
-      return CFG.leadEndpoint ? post(CFG.leadEndpoint, p) : Promise.resolve({ ok: true });
+      return post(CFG.leadEndpoint, p);
     },
     initLive: function (p) {
-      return CFG.initLiveEndpoint ? post(CFG.initLiveEndpoint, p) : Promise.resolve({ success: true });
+      return post(CFG.initLiveEndpoint, p);
     },
     poll: function (sessionId, lastId) {
-      if (!CFG.pollEndpoint) return Promise.resolve({ status: 'bot', messages: [] });
       return fetch(CFG.pollEndpoint + '?session_id=' + encodeURIComponent(sessionId) + '&last_id=' + (lastId || 0) + '&_=' + Date.now(), {
         headers: { 'Accept': 'application/json' }
       }).then(function (r) { return r.json(); });
@@ -89,7 +100,16 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
 
   /* ---------------- state ---------------- */
   var S = { open: false, msgs: [], unread: true };
-  try { var saved = JSON.parse(sessionStorage.getItem(SKEY)); if (saved) S = Object.assign(S, saved); } catch (e) {}
+  try { 
+    var saved = JSON.parse(sessionStorage.getItem(SKEY)); 
+    if (saved && Array.isArray(saved.msgs)) {
+      // Clean any legacy mock text
+      saved.msgs = saved.msgs.filter(function(m) {
+        return !m.text || m.text.indexOf('Demo mode') === -1;
+      });
+      S = Object.assign(S, saved);
+    } 
+  } catch (e) {}
   function save() { try { sessionStorage.setItem(SKEY, JSON.stringify({ open: S.open, msgs: S.msgs.slice(-60), unread: S.unread })); } catch (e) {} }
 
   /* ---------------- live mode state ---------------- */
@@ -189,13 +209,11 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
 
     // Check if live session already open
     setTimeout(function () {
-      if (CFG.pollEndpoint) {
-        ChatbotAPI.poll(sid(), 0).then(function (res) {
-          if (res.status === 'active' || res.status === 'needs_human') {
-            setLiveMode(true);
-          }
-        }).catch(function () {});
-      }
+      ChatbotAPI.poll(sid(), 0).then(function (res) {
+        if (res.status === 'active' || res.status === 'needs_human') {
+          setLiveMode(true);
+        }
+      }).catch(function () {});
     }, 600);
   }
 
@@ -232,7 +250,7 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     S.msgs.forEach(function (m, i) { draw(m, i === S.msgs.length - 1); });
   }
   function welcome() {
-    var w = el('div', 'akc-welcome', '<div class="akc-big" aria-hidden="true">' + eyes(2) + '</div><h3>Hi there <em>👋</em></h3><p>I\'m ' + esc(CFG.botName) + ', Amaanullah\'s assistant. Ask about services, custom CRMs, Laravel apps or discuss your project.</p>');
+    var w = el('div', 'akc-welcome', '<div class="akc-big" aria-hidden="true">' + eyes(2) + '</div><h3>Hi there <em>👋</em></h3><p>I\'m ' + esc(CFG.botName) + ', Amaanullah\'s AI assistant. Ask about custom CRMs, Laravel web applications, AI automation, or start your project inquiry.</p>');
     w.appendChild(chips(CHIPS, true)); body.appendChild(w);
   }
   function chips(list, center) {
@@ -349,8 +367,9 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
       var showLead = !!(r.lead || (r.reply && (r.reply.indexOf('LEAD_FORM_REQUEST:') !== -1 || r.reply.indexOf('DEAL_CLOSE:') !== -1)));
       var m = { role: 'bot', text: cleanText, cards: r.cards, chips: r.chips, lead: showLead, ts: Date.now() };
       S.msgs.push(m); if (!S.open) { S.unread = true; root.classList.add('unread'); } save(); draw(m, true);
-    }).catch(function () {
-      t.remove(); var m = { role: 'bot', error: true, retry: text, text: 'Sorry, something went wrong. Please check your connection and try again.', ts: Date.now() };
+    }).catch(function (err) {
+      console.error('Chat error:', err);
+      t.remove(); var m = { role: 'bot', error: true, retry: text, text: 'Sorry, I had trouble connecting. Please try again or reach out on WhatsApp (+92 319 6935307).', ts: Date.now() };
       S.msgs.push(m); save(); draw(m, true);
     }).then(function () { waiting = false; ta.removeAttribute('aria-busy'); onInput(); toBottom(); });
   }

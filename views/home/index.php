@@ -654,6 +654,8 @@
 
 <script type="module" src="<?= asset_url('js/splash-particles.js') ?>"></script>
 <script type="module" src="<?= asset_url('js/splash-portal.js') ?>"></script>
-<script type="module" src="<?= asset_url('js/hero-3d.js') ?>"></script><script src="<?= asset_url('js/chatbot-config.js') ?>"></script><!-- EDIT: chatbot config -->
-<script src="<?= asset_url('js/chatbot.js') ?>" defer></script>
+<script type="module" src="<?= asset_url('js/hero-3d.js') ?>"></script>
+<script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
+<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script>
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
 </body></html>

@@ -246,4 +246,23 @@ class ChatbotService
 
         return self::sendEmail(env('SMTP_USER', 'akamaanullah@gmail.com'), $subject, $body);
     }
+
+    /**
+     * Test Cloudflare AI connection and return latency + test response.
+     */
+    public static function testConnection(): array
+    {
+        $start = microtime(true);
+        $testPrompt = "Hi! Quick connection check from admin settings. In 1 short polite sentence, introduce yourself.";
+        $reply = self::ask($testPrompt, []);
+        $elapsed = round((microtime(true) - $start) * 1000);
+
+        return [
+            'success' => true,
+            'latency' => $elapsed . 'ms',
+            'model'   => env('CF_AI_MODEL', '@cf/meta/llama-3.1-8b-instruct-fast'),
+            'reply'   => $reply
+        ];
+    }
 }
+

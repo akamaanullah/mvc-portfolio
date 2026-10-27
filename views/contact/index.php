@@ -79,6 +79,6 @@
 </div></section>
 <section class="cta2"><div class="band rv2"><div><h2>Prefer a quick chat first?</h2><p>Send a WhatsApp message or email — whichever is easier for you.</p></div><div class="btns" style="margin:0"><a class="bo w" href="https://wa.me/923196935307" target="_blank" rel="noopener">WhatsApp →</a><a class="bo g" href="mailto:info@amaanullah.com">Email me</a></div></div></section>
 </main><?php require view_path('layouts/footer.php'); ?><script src="<?= asset_url('js/contact-page.js') ?>"></script><script src="<?= asset_url('js/layout.js') ?>"></script>
-<script src="<?= asset_url('js/chatbot-config.js') ?>"></script><!-- EDIT: chatbot config -->
-<script src="<?= asset_url('js/chatbot.js') ?>" defer></script>
+<script>window.__BASE_URL = '<?= base_path_url() ?>';</script><script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script><!-- EDIT: chatbot config -->
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
 </body></html>
