@@ -59,9 +59,20 @@ class App
 
         $this->post('/admin/messages/status', [$C . 'AdminController', 'updateMessageStatus']);
         $this->post('/admin/messages/delete', [$C . 'AdminController', 'deleteMessage']);
+        $this->post('/admin/messages/reply', [$C . 'AdminController', 'replyMessage']);
+        $this->post('/admin/messages/mark-all-read', [$C . 'AdminController', 'markAllMessagesRead']);
 
         $this->post('/admin/leads/status', [$C . 'AdminController', 'updateLeadStatus']);
         $this->post('/admin/leads/delete', [$C . 'AdminController', 'deleteLead']);
+        $this->post('/admin/leads/note', [$C . 'AdminController', 'saveLeadNote']);
+
+        // Profile & Account Endpoints
+        $this->post('/admin/profile/update', [$C . 'AdminController', 'updateProfile']);
+        $this->post('/admin/profile/password', [$C . 'AdminController', 'updatePassword']);
+
+        // Media Library Endpoints
+        $this->post('/admin/media/upload', [$C . 'AdminController', 'uploadMedia']);
+        $this->post('/admin/media/delete', [$C . 'AdminController', 'deleteMedia']);
 
         // Search Console & Performance live endpoints
         $this->post('/admin/search-console/sync', [$C . 'AdminController', 'syncSearchConsole']);

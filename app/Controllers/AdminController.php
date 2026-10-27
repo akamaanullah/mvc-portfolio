@@ -12,6 +12,8 @@ use App\Models\LandingPageModel;
 use App\Models\LeadModel;
 use App\Models\ProjectModel;
 use App\Models\ServiceModel;
+use App\Models\SettingsModel;
+use App\Models\UserModel;
 use App\Models\VisitorModel;
 use App\Services\GoogleSearchConsoleService;
 use App\Services\PageSpeedService;
@@ -177,6 +179,18 @@ class AdminController extends Controller
                 $viewData['messagesCount'] = ContactModel::count();
                 $viewData['recentProjects'] = ProjectModel::all('id DESC LIMIT 5');
                 $viewData['recentArticles'] = ArticleModel::all('id DESC LIMIT 5');
+                $viewData['recentLeads'] = LeadModel::all('id DESC LIMIT 5');
+                $viewData['recentChats'] = \App\Models\ChatModel::listConversations('all', '', 4);
+
+                $anFrom = date('Y-m-d', strtotime('-29 days'));
+                $anTo = date('Y-m-d');
+                $analytics = VisitorModel::getAnalyticsData($anFrom, $anTo);
+                $viewData['analytics'] = $analytics;
+                $viewData['trafficChart'] = $analytics['chart'] ?? null;
+                $viewData['trafficSources'] = $analytics['donut'] ?? [];
+                $viewData['topPages'] = array_slice($analytics['pages'] ?? [], 0, 7);
+                $viewData['liveVisitors'] = VisitorModel::getVisitorsList('online', null, null, 5);
+                $viewData['totalOnline'] = count(VisitorModel::getVisitorsList('online'));
                 break;
 
             case 'projects':
@@ -431,11 +445,85 @@ class AdminController extends Controller
                     ]
                 ];
                 break;
+
+            case 'media':
+                $med = $this->getMediaLibrary();
+                $viewData['media'] = $med['files'];
+                $viewData['mediaCount'] = $med['count'];
+                $viewData['mediaSizeMb'] = $med['size_mb'];
+                break;
+
+            case 'profile':
+                $uId = Auth::id();
+                $db = Database::connection();
+                $stmt = $db->prepare('SELECT id, name, email, role, avatar FROM `users` WHERE id = :id LIMIT 1');
+                $stmt->execute(['id' => $uId]);
+                $fullUser = $stmt->fetch() ?: $currentUser;
+                $fullUser['bio'] = SettingsModel::get('admin_bio', 'PHP & Laravel developer building custom CRM, SaaS and enterprise web apps, plus Flutter mobile apps.');
+                $viewData['userProfile'] = $fullUser;
+                $viewData['currentSession'] = [
+                    'ip' => client_ip(),
+                    'ua' => $_SERVER['HTTP_USER_AGENT'] ?? 'Desktop Browser',
+                    'time' => date('M j, Y H:i'),
+                ];
+                break;
         }
+
+        // Global layout counts and notifications for sidebar & topbar
+        $db = Database::connection();
+        $navCounts = [
+            'projects' => ProjectModel::count(),
+            'articles' => ArticleModel::count(),
+            'leads' => LeadModel::count(),
+            'messages' => ContactModel::count(),
+            'unread_messages' => (int)($db->query("SELECT COUNT(*) FROM `contacts` WHERE `status` = 'new'")->fetchColumn() ?: 0),
+            'new_leads' => (int)($db->query("SELECT COUNT(*) FROM `leads` WHERE `status` = 'new'")->fetchColumn() ?: 0),
+            'needs_human_chats' => \App\Models\ChatModel::countNeedsHuman(),
+        ];
+        $badgeCount = $navCounts['unread_messages'] + $navCounts['new_leads'] + $navCounts['needs_human_chats'];
+
+        $recentNotifications = [];
+        $latestLeads = LeadModel::all('id DESC LIMIT 3');
+        foreach ($latestLeads as $nl) {
+            $recentNotifications[] = [
+                'type' => 'lead',
+                'title' => 'New chat lead: ' . htmlspecialchars($nl['name'] ?? 'Visitor'),
+                'desc' => htmlspecialchars(substr($nl['requirement'] ?? 'Inquiry', 0, 45)),
+                'time' => !empty($nl['created_at']) ? date('M d, H:i', strtotime($nl['created_at'])) : 'Recent',
+                'url' => base_url('/admin/leads'),
+                'unread' => ($nl['status'] ?? 'new') === 'new',
+            ];
+        }
+        $latestMsgs = ContactModel::all('id DESC LIMIT 3');
+        foreach ($latestMsgs as $nm) {
+            $recentNotifications[] = [
+                'type' => 'message',
+                'title' => 'Contact: ' . htmlspecialchars($nm['name'] ?? 'Visitor'),
+                'desc' => htmlspecialchars(substr($nm['message'] ?? 'Inquiry', 0, 45)),
+                'time' => !empty($nm['created_at']) ? date('M d, H:i', strtotime($nm['created_at'])) : 'Recent',
+                'url' => base_url('/admin/messages'),
+                'unread' => ($nm['status'] ?? 'new') === 'new',
+            ];
+        }
+        $waitingChats = \App\Models\ChatModel::listConversations('human');
+        foreach (array_slice($waitingChats, 0, 2) as $wc) {
+            $recentNotifications[] = [
+                'type' => 'chat',
+                'title' => 'Live chat waiting: ' . htmlspecialchars($wc['visitor_name'] ?? 'Visitor'),
+                'desc' => htmlspecialchars(substr($wc['last_message'] ?? 'Waiting for operator', 0, 45)),
+                'time' => !empty($wc['updated_at']) ? date('H:i', strtotime($wc['updated_at'])) : 'Active',
+                'url' => base_url('/admin/live-chat?session=' . urlencode($wc['session_id'] ?? '')),
+                'unread' => true,
+            ];
+        }
+
+        $viewData['navCounts'] = $navCounts;
+        $viewData['recentNotifications'] = $recentNotifications;
+        $viewData['badgeCount'] = $badgeCount;
 
         $content = view('admin/pages/' . $key, $viewData);
 
-        return $this->render('admin/layouts/app', compact('title', 'active', 'editor', 'bare', 'content', 'currentUser'));
+        return $this->render('admin/layouts/app', compact('title', 'active', 'editor', 'bare', 'content', 'currentUser', 'navCounts', 'recentNotifications', 'badgeCount'));
     }
 
     private function verifyAdminCsrf(): bool
@@ -1020,6 +1108,339 @@ class AdminController extends Controller
             Logger::error('Admin deleteLead error: ' . $e->getMessage());
             return $this->json(['success' => false, 'error' => 'Failed to delete lead.'], 500);
         }
+    }
+
+    public function saveLeadNote(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $id = (int)($p['id'] ?? 0);
+            $note = trim((string)($p['note'] ?? ''));
+
+            if ($id <= 0 || $note === '') {
+                return $this->json(['success' => false, 'error' => 'Note cannot be empty.'], 422);
+            }
+
+            $lead = LeadModel::findById($id);
+            if (!$lead) {
+                return $this->json(['success' => false, 'error' => 'Lead not found.'], 404);
+            }
+
+            $existing = trim((string)($lead['notes'] ?? ''));
+            $newEntry = '[' . date('Y-m-d H:i') . ' Admin]: ' . $note;
+            $combined = $existing !== '' ? $existing . "\n" . $newEntry : $newEntry;
+
+            LeadModel::update($id, ['notes' => $combined, 'updated_at' => date('Y-m-d H:i:s')]);
+            return $this->json(['success' => true, 'message' => 'Note saved successfully.', 'notes' => $combined]);
+        } catch (\Throwable $e) {
+            Logger::error('Admin saveLeadNote error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to save note.'], 500);
+        }
+    }
+
+    public function replyMessage(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $id = (int)($p['id'] ?? 0);
+            $replyBody = trim((string)($p['reply'] ?? $p['message'] ?? ''));
+
+            if ($id <= 0 || $replyBody === '') {
+                return $this->json(['success' => false, 'error' => 'Reply message cannot be empty.'], 422);
+            }
+
+            $msg = ContactModel::findById($id);
+            if (!$msg) {
+                return $this->json(['success' => false, 'error' => 'Message not found.'], 404);
+            }
+
+            $toEmail = $msg['email'] ?? '';
+            $toName = $msg['name'] ?? 'Client';
+            if (empty($toEmail)) {
+                return $this->json(['success' => false, 'error' => 'Recipient email missing.'], 422);
+            }
+
+            $subject = 'Re: ' . ($msg['project_type'] ?: (!empty($msg['service']) ? ucfirst($msg['service']) . ' Inquiry' : 'Your Inquiry with Amaanullah'));
+            $sent = \App\Services\IntegrationService::sendEmail(
+                $toEmail,
+                $subject,
+                nl2br(htmlspecialchars($replyBody)),
+                $replyBody,
+                $toName
+            );
+
+            ContactModel::update($id, ['status' => 'replied']);
+
+            if (!$sent) {
+                return $this->json([
+                    'success' => true,
+                    'warning' => 'Message marked as replied in DB, but SMTP email delivery was skipped or failed. Verify SMTP settings in Settings > Integrations.',
+                    'message' => 'Status updated to Replied.'
+                ]);
+            }
+
+            return $this->json([
+                'success' => true,
+                'message' => 'Reply sent successfully to ' . htmlspecialchars($toEmail) . '!'
+            ]);
+        } catch (\Throwable $e) {
+            Logger::error('Admin replyMessage error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to process reply.'], 500);
+        }
+    }
+
+    public function markAllMessagesRead(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            Database::connection()->exec("UPDATE `contacts` SET `status` = 'read' WHERE `status` = 'new'");
+            return $this->json(['success' => true, 'message' => 'All messages marked as read.']);
+        } catch (\Throwable $e) {
+            Logger::error('Admin markAllMessagesRead error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to mark messages read.'], 500);
+        }
+    }
+
+    public function updateProfile(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $name = trim((string)($p['name'] ?? ''));
+            $email = trim(strtolower((string)($p['email'] ?? '')));
+            $bio = trim((string)($p['bio'] ?? ''));
+
+            if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                return $this->json(['success' => false, 'error' => 'Valid name and email are required.'], 422);
+            }
+
+            $uId = Auth::id();
+            if ($uId > 0) {
+                UserModel::update($uId, [
+                    'name' => $name,
+                    'email' => $email,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
+                $_SESSION['admin_user_name'] = $name;
+                $_SESSION['admin_user_email'] = $email;
+            }
+
+            if ($bio !== '') {
+                SettingsModel::set('admin_bio', $bio, 'general');
+            }
+
+            return $this->json(['success' => true, 'message' => 'Profile updated successfully!']);
+        } catch (\Throwable $e) {
+            Logger::error('Admin updateProfile error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to update profile.'], 500);
+        }
+    }
+
+    public function updatePassword(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $currPass = (string)($p['current_password'] ?? '');
+            $newPass = (string)($p['new_password'] ?? '');
+
+            if ($currPass === '' || strlen($newPass) < 8) {
+                return $this->json(['success' => false, 'error' => 'Current password and new password (min 8 chars) required.'], 422);
+            }
+
+            $uId = Auth::id();
+            $user = UserModel::findById($uId);
+            if (!$user) {
+                return $this->json(['success' => false, 'error' => 'User not found.'], 404);
+            }
+
+            if (!UserModel::verifyPassword($currPass, $user['password'])) {
+                return $this->json(['success' => false, 'error' => 'Current password is incorrect.'], 422);
+            }
+
+            $newHash = UserModel::hashPassword($newPass);
+            UserModel::update($uId, [
+                'password' => $newHash,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+
+            return $this->json(['success' => true, 'message' => 'Password changed successfully!']);
+        } catch (\Throwable $e) {
+            Logger::error('Admin updatePassword error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to update password.'], 500);
+        }
+    }
+
+    public function uploadMedia(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            if (empty($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+                return $this->json(['success' => false, 'error' => 'No file uploaded or upload error.'], 422);
+            }
+
+            $file = $_FILES['file'];
+            $origName = pathinfo($file['name'], PATHINFO_FILENAME);
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+
+            $allowed = ['svg', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'mp4', 'webm', 'pdf'];
+            if (!in_array($ext, $allowed, true)) {
+                return $this->json(['success' => false, 'error' => 'File extension .' . $ext . ' not allowed.'], 422);
+            }
+
+            $cleanName = strtolower(trim(preg_replace('/[^a-zA-Z0-9_-]+/', '-', $origName), '-'));
+            $finalName = $cleanName . '-' . time() . '.' . $ext;
+
+            $destDir = dirname(__DIR__, 2) . '/public/uploads';
+            if (!is_dir($destDir)) {
+                @mkdir($destDir, 0755, true);
+            }
+
+            $destPath = $destDir . '/' . $finalName;
+            if (!move_uploaded_file($file['tmp_name'], $destPath)) {
+                return $this->json(['success' => false, 'error' => 'Failed to save uploaded file.'], 500);
+            }
+
+            $relUrl = '/uploads/' . $finalName;
+            return $this->json([
+                'success' => true,
+                'message' => 'File uploaded successfully!',
+                'url' => $relUrl,
+                'asset_url' => asset_url('uploads/' . $finalName),
+                'name' => $finalName
+            ]);
+        } catch (\Throwable $e) {
+            Logger::error('Admin uploadMedia error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Upload failed.'], 500);
+        }
+    }
+
+    public function deleteMedia(): string
+    {
+        $this->requireAuth();
+        if (!$this->verifyAdminCsrf()) {
+            return $this->json(['success' => false, 'error' => 'Security token expired.'], 419);
+        }
+
+        try {
+            $p = $this->getPayload();
+            $url = trim((string)($p['url'] ?? ''));
+
+            if ($url === '') {
+                return $this->json(['success' => false, 'error' => 'File URL is required.'], 422);
+            }
+
+            $cleanRel = ltrim(parse_url($url, PHP_URL_PATH) ?? '', '/');
+            $basePathUrl = trim(base_path_url(), '/');
+            if ($basePathUrl !== '' && str_starts_with($cleanRel, $basePathUrl . '/')) {
+                $cleanRel = substr($cleanRel, strlen($basePathUrl) + 1);
+            }
+
+            if (str_contains($cleanRel, '..')) {
+                return $this->json(['success' => false, 'error' => 'Invalid file path.'], 403);
+            }
+
+            $basePublic = realpath(dirname(__DIR__, 2) . '/public');
+            $target = realpath($basePublic . '/' . $cleanRel);
+
+            if (!$target || !str_starts_with($target, $basePublic) || !is_file($target)) {
+                return $this->json(['success' => false, 'error' => 'File not found on server.'], 404);
+            }
+
+            @unlink($target);
+            return $this->json(['success' => true, 'message' => 'Media file deleted.']);
+        } catch (\Throwable $e) {
+            Logger::error('Admin deleteMedia error: ' . $e->getMessage());
+            return $this->json(['success' => false, 'error' => 'Failed to delete file.'], 500);
+        }
+    }
+
+    private function getMediaLibrary(): array
+    {
+        $basePublic = dirname(__DIR__, 2) . '/public';
+        $folders = [
+            'banners' => $basePublic . '/images/banners',
+            'covers'  => $basePublic . '/images/covers',
+            'images'  => $basePublic . '/images',
+            'media'   => $basePublic . '/media',
+            'uploads' => $basePublic . '/uploads',
+        ];
+
+        if (!is_dir($folders['uploads'])) {
+            @mkdir($folders['uploads'], 0755, true);
+        }
+
+        $items = [];
+        $totalBytes = 0;
+
+        foreach ($folders as $folderName => $path) {
+            if (!is_dir($path)) continue;
+            $files = scandir($path);
+            foreach ($files as $file) {
+                if ($file === '.' || $file === '..' || is_dir($path . '/' . $file)) continue;
+                $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                if (!in_array($ext, ['svg', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'mp4', 'webm', 'pdf'], true)) continue;
+
+                $filePath = $path . '/' . $file;
+                $size = filesize($filePath) ?: 0;
+                $totalBytes += $size;
+
+                $sizeKb = round($size / 1024);
+                $meta = strtoupper($ext) . ' · ' . ($sizeKb > 1024 ? round($sizeKb / 1024, 1) . ' MB' : $sizeKb . ' KB');
+
+                $relUrl = '';
+                if ($folderName === 'banners') $relUrl = 'images/banners/' . $file;
+                elseif ($folderName === 'covers') $relUrl = 'images/covers/' . $file;
+                elseif ($folderName === 'media') $relUrl = 'media/' . $file;
+                elseif ($folderName === 'uploads') $relUrl = 'uploads/' . $file;
+                else $relUrl = 'images/' . $file;
+
+                $items[] = [
+                    'name' => $file,
+                    'folder' => $folderName,
+                    'ext' => $ext,
+                    'size' => $size,
+                    'meta' => $meta,
+                    'url' => '/' . $relUrl,
+                    'asset_url' => asset_url($relUrl),
+                    'mtime' => filemtime($filePath),
+                ];
+            }
+        }
+
+        usort($items, fn($a, $b) => $b['mtime'] <=> $a['mtime']);
+
+        return [
+            'files' => $items,
+            'count' => count($items),
+            'size_mb' => round($totalBytes / (1024 * 1024), 1),
+        ];
     }
 
     /**

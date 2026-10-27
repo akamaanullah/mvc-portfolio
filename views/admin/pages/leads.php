@@ -29,11 +29,14 @@ $cntTot = count($leadsList) ?: 1;
         'id' => $l['id'],
         'n' => $l['name'] ?? '',
         'e' => $l['email'] ?? '',
+        'p' => $l['phone'] ?? '',
         's' => $l['source_url'] ?? '/',
         'i' => $l['requirement'] ?? 'General inquiry',
         'sc' => $score,
         'st' => $st,
         'b' => $l['budget'] ?? '',
+        'notes' => $l['notes'] ?? '',
+        'created' => $l['created_at'] ?? '',
     ];
     $timeAgo = !empty($l['created_at']) ? date('M d', strtotime($l['created_at'])) : 'Recently';
 ?>
@@ -42,7 +45,7 @@ $cntTot = count($leadsList) ?: 1;
   <td>
     <div class="row">
       <span class="ava"><?= htmlspecialchars($init) ?></span>
-      <div><b><?= htmlspecialchars($l['name']) ?></b><br><small class="mut"><?= htmlspecialchars($l['email']) ?></small></div>
+      <div><b><?= htmlspecialchars($l['name']) ?></b><br><small class="mut"><?= htmlspecialchars($l['email']) ?><?php if (!empty($l['phone'])): ?> · <?= htmlspecialchars($l['phone']) ?><?php endif; ?></small></div>
     </div>
   </td>
   <td class="mut"><?= htmlspecialchars($l['source_url'] ?? '/') ?></td>
@@ -56,12 +59,67 @@ $cntTot = count($leadsList) ?: 1;
 <div class="pg"><span class="info">Showing 1–<?= count($leadsList) ?> of <?= count($leadsList) ?></span><button aria-label="Previous">‹</button><button class="on" data-p>1</button><button aria-label="Next">›</button></div>
 </section>
 
-<div class="drawer" id="dLead" role="dialog" aria-label="Lead details"><div class="dh"><span class="ava" id="ldAva">BR</span><div><h3 id="ldName">Lead</h3><small class="mut" id="ldMail"></small></div><button class="ib" data-close aria-label="Close"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="db">
-<div class="row sb2" style="margin-bottom:14px"><div><small class="mut">Lead score</small><br><span class="score" id="ldScore" style="--s:50;width:54px;height:54px"><span id="ldScoreN">50</span></span></div><div style="text-align:right"><small class="mut">Source page</small><br><b id="ldSrc"></b><br><small class="mut">Intent: <b id="ldInt"></b></small></div></div>
-<div class="fld"><label>Status</label><div class="pipe"><button type=button>New</button><button type=button>Contacted</button><button type=button>Qualified</button><button type=button>Proposal</button><button type=button>Won</button><button type=button>Lost</button></div></div>
-<div class="tabs" data-tabs="ld"><button class="on" data-tab="ldT">Conversation</button><button data-tab="ldN">Notes</button><button data-tab="ldJ">Journey</button></div>
-<div class="pane on" id="ldT" data-pane="ld" style="padding-top:12px"><div class="msgs" style="padding:0;background:none">
-<div class="m b">Hi! I’m Amaanullah’s assistant. What are you looking to build?<small>Bot · Assistant</small></div><div class="m v">We need a custom software solution.<small>Visitor</small></div><div class="m b">Understood! Our engineering team will review requirements.<small>Bot</small></div><div class="m sys">— Lead captured in database —</div></div></div>
-<div class="pane" id="ldN" data-pane="ld" style="padding-top:12px"><div class="fld" style="margin-top:10px"><textarea class="inp" rows="3" placeholder="Add private note…"></textarea></div><button class="btn sm o" data-toast="Note saved">Add note</button></div>
-<div class="pane" id="ldJ" data-pane="ld" style="padding-top:14px"><ul class="tl"><li><b>Captured via Chatbot / Form</b><small>Organic web inquiry</small></li><li class="f"><b>Verified in CRM</b><small>Ready for follow-up</small></li></ul></div>
-</div><div class="df"><button class="btn o" data-toast="Draft email opened"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Reply by email</button></div></div>
+<div class="drawer" id="dLead" role="dialog" aria-label="Lead details">
+  <div class="dh">
+    <span class="ava" id="ldAva">BR</span>
+    <div>
+      <h3 id="ldName">Lead</h3>
+      <small class="mut" id="ldMail"></small>
+    </div>
+    <button class="ib" data-close aria-label="Close">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="db">
+    <div class="row sb2" style="margin-bottom:14px">
+      <div>
+        <small class="mut">Lead score</small><br>
+        <span class="score" id="ldScore" style="--s:50;width:54px;height:54px"><span id="ldScoreN">50</span></span>
+      </div>
+      <div style="text-align:right">
+        <small class="mut">Source page</small><br>
+        <b id="ldSrc"></b><br>
+        <small class="mut">Intent: <b id="ldInt"></b></small>
+      </div>
+    </div>
+    <div class="fld">
+      <label>Status</label>
+      <div class="pipe">
+        <button type="button">New</button>
+        <button type="button">Contacted</button>
+        <button type="button">Qualified</button>
+        <button type="button">Proposal</button>
+        <button type="button">Won</button>
+        <button type="button">Lost</button>
+      </div>
+    </div>
+    <div class="tabs" data-tabs="ld">
+      <button class="on" data-tab="ldT">Conversation</button>
+      <button data-tab="ldN">Notes</button>
+      <button data-tab="ldJ">Journey</button>
+    </div>
+    <div class="pane on" id="ldT" data-pane="ld" style="padding-top:12px">
+      <div class="msgs" id="ldMsgs" style="padding:0;background:none">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+    <div class="pane" id="ldN" data-pane="ld" style="padding-top:12px">
+      <div id="ldExistingNotes" style="font-size:13px;line-height:1.6;color:var(--ink);white-space:pre-wrap;background:var(--subtle);padding:10px;border-radius:6px;margin-bottom:10px"></div>
+      <div class="fld" style="margin-top:10px">
+        <textarea class="inp" id="ldNoteInput" rows="3" placeholder="Add private note…"></textarea>
+      </div>
+      <button class="btn sm o" type="button" id="btnSaveLeadNote">Add note</button>
+    </div>
+    <div class="pane" id="ldJ" data-pane="ld" style="padding-top:14px">
+      <ul class="tl" id="ldJourney">
+        <li><b>Captured via Chatbot / Form</b><small id="ldJourneySource">Organic web inquiry</small></li>
+        <li class="f"><b>Verified in CRM</b><small id="ldJourneyDate">Ready for follow-up</small></li>
+      </ul>
+    </div>
+  </div>
+  <div class="df">
+    <a class="btn o" id="btnMailLead" href="mailto:" style="display:inline-flex;align-items:center;text-decoration:none">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Reply by email
+    </a>
+  </div>
+</div>

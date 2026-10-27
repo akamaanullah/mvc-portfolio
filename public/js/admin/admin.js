@@ -136,6 +136,52 @@ $$('[data-lead]').forEach(function(r){
       b.classList.toggle('on',b.textContent.trim().toLowerCase()===(d.st||'').toLowerCase());
     });
     $('#ldAva',dr).textContent=d.n.split(' ').map(function(x){return x[0]}).join('').slice(0,2);
+
+    // Update mailto link
+    var mailBtn = $('#btnMailLead', dr);
+    if (mailBtn && d.e) {
+      mailBtn.href = 'mailto:' + encodeURIComponent(d.e) + '?subject=' + encodeURIComponent('Re: ' + (d.i || 'Your Web / Software Inquiry') + ' - Amaanullah Khan');
+    }
+
+    // Populate dynamic conversation transcript
+    var msgsBox = $('#ldMsgs', dr);
+    if (msgsBox) {
+      msgsBox.innerHTML = '';
+      var rawNotes = d.notes ? d.notes.trim() : '';
+      if (rawNotes) {
+        var lines = rawNotes.split('\n');
+        lines.forEach(function(line){
+          line = line.trim();
+          if (!line) return;
+          var div = document.createElement('div');
+          if (/^(user|visitor):/i.test(line)) {
+            div.className = 'm v';
+            div.innerHTML = line.replace(/^(user|visitor):\s*/i, '').replace(/</g,'&lt;') + '<small>Visitor</small>';
+          } else if (/^(bot|assistant|ai):/i.test(line)) {
+            div.className = 'm b';
+            div.innerHTML = line.replace(/^(bot|assistant|ai):\s*/i, '').replace(/</g,'&lt;') + '<small>Bot · Assistant</small>';
+          } else if (/^\[.*admin\]:/i.test(line)) {
+            div.className = 'm a';
+            div.innerHTML = line.replace(/</g,'&lt;') + '<small>Admin Note</small>';
+          } else {
+            div.className = 'm sys';
+            div.textContent = line;
+          }
+          msgsBox.appendChild(div);
+        });
+      } else {
+        msgsBox.innerHTML = '<div class="m sys">— Captured directly via web brief on ' + (d.s||'/') + ' —</div>' +
+          '<div class="m v">' + (d.i || 'General inquiry').replace(/</g,'&lt;') + '<small>' + d.n.replace(/</g,'&lt;') + '</small></div>' +
+          '<div class="m b">Inquiry captured in CRM database. Ready for client follow-up.<small>System</small></div>';
+      }
+    }
+
+    // Populate existing notes tab
+    var exNotes = $('#ldExistingNotes', dr);
+    if (exNotes) {
+      exNotes.textContent = d.notes || 'No private notes added yet.';
+    }
+
     openM('dLead');
   });
 });
@@ -167,6 +213,41 @@ $$('#dLead .pipe button').forEach(function(b){
     }
   });
 });
+
+// Save Lead Private Note
+var btnSaveNote = $('#btnSaveLeadNote');
+if (btnSaveNote) {
+  btnSaveNote.addEventListener('click', function(){
+    if (!curLead || !curLead.data || !curLead.data.id) return;
+    var inp = $('#ldNoteInput');
+    var text = inp ? inp.value.trim() : '';
+    if (!text) return;
+
+    var csrf = (document.querySelector('meta[name="csrf-token"]')||{}).content||'';
+    var baseUrl = (document.querySelector('meta[name="base-url"]')||{}).content||'';
+
+    btnSaveNote.disabled = true;
+    fetch(baseUrl + '/admin/leads/note', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-TOKEN': csrf },
+      body: JSON.stringify({ _token: csrf, id: curLead.data.id, note: text })
+    }).then(function(res){ return res.json(); }).then(function(d){
+      btnSaveNote.disabled = false;
+      if (d.success) {
+        inp.value = '';
+        curLead.data.notes = d.notes;
+        var exNotes = $('#ldExistingNotes');
+        if (exNotes) exNotes.textContent = d.notes;
+        toast('Note saved successfully!', 'ok');
+      } else {
+        toast(d.error || 'Failed to save note', 'bad');
+      }
+    }).catch(function(){
+      btnSaveNote.disabled = false;
+      toast('Error saving note', 'bad');
+    });
+  });
+}
 
 /* CSV export (real client-side export of the visible demo table) */
 $$('[data-csv]').forEach(function(b){b.addEventListener('click',function(){var t=$(b.getAttribute('data-csv'));var rows=$$('tr',t).filter(function(r){return r.style.display!=='none'}).map(function(r){return $$('th,td',r).slice(1).map(function(c){return '"'+c.innerText.replace(/\s+/g,' ').trim().replace(/"/g,'""')+'"'}).join(',')});var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'}));a.download=(b.getAttribute('data-file')||'export')+'.csv';a.click();toast('CSV exported (demo data)','ok')})});
