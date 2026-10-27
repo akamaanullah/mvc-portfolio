@@ -6,7 +6,17 @@ use App\Models\ProjectModel;
 
 class ProjectController extends Controller
 {
-    public function index(): string { return $this->render('projects/index', ['categories' => ProjectModel::categories()]); }
+    public function index(): string 
+    { 
+        $projects = ProjectModel::where('status', 'published', 'sort_order ASC, id ASC');
+        if (empty($projects)) {
+            $projects = ProjectModel::all('sort_order ASC, id ASC');
+        }
+        return $this->render('projects/index', [
+            'categories' => ProjectModel::categories(),
+            'projects'   => $projects
+        ]); 
+    }
 
     public function category(string $cat): string
     {
@@ -17,6 +27,40 @@ class ProjectController extends Controller
     public function show(string $slug): string
     {
         $item = ProjectModel::find($slug);
-        return $item ? $this->render($item['view'] ?? 'projects/show', ['item' => $item]) : $this->notFound();
+        if (!$item) {
+            return $this->notFound();
+        }
+
+        $all = ProjectModel::all('sort_order ASC, id ASC');
+        $prev = null;
+        $next = null;
+        $currentIndex = null;
+
+        foreach ($all as $idx => $p) {
+            if ($p['slug'] === $item['slug']) {
+                $currentIndex = $idx;
+                break;
+            }
+        }
+
+        if ($currentIndex !== null) {
+            $prev = $all[$currentIndex - 1] ?? null;
+            $next = $all[$currentIndex + 1] ?? null;
+        }
+
+        $related = [];
+        foreach ($all as $p) {
+            if ($p['slug'] !== $item['slug']) {
+                $related[] = $p;
+                if (count($related) >= 3) break;
+            }
+        }
+
+        return $this->render($item['view'] ?? 'projects/show', [
+            'item'    => $item,
+            'prev'    => $prev,
+            'next'    => $next,
+            'related' => $related,
+        ]);
     }
 }

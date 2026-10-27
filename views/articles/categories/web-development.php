@@ -44,7 +44,6 @@
 }</script>
 <!-- NOTE: all articles are SAMPLE placeholders -->
 <link rel="stylesheet" href="<?= asset_url('css/articles.css') ?>"><link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head><body>
@@ -62,15 +61,15 @@
 <div id="swap">
 <section class="sec2" aria-labelledby="h-feat"><div class="lbl2 rv2"><h2 id="h-feat">Latest in Web Development</h2></div>
 <!-- EDIT: featured article choice --><div class="afeat" style="grid-template-columns:1fr"><article class="ac pc big"><!-- SAMPLE article: replace title, excerpt, cover, date -->
-<a class="pl al" href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="fast-websites-checklist"><!-- URL: /articles/fast-websites-checklist -->
+<a class="pl al" href="<?= base_url('/articles/fast-websites-checklist') ?>" data-article="fast-websites-checklist"><!-- URL: /articles/fast-websites-checklist -->
 <div class="cov"><!-- SWAP COVER: images/covers/fast-websites-checklist.svg → 1600x900 --><img src="<?= asset_url('images/covers/fast-websites-checklist.svg') ?>" alt="A page-speed checklist for business websites — cover image" width="1600" height="900" loading="lazy" decoding="async"><span class="cb">Web Development</span></div>
 <div class="ab"><h3>A page-speed checklist for business websites</h3><p>Images, fonts, caching and the small fixes that make a site feel instant.</p><div class="am"><img src="<?= asset_url('media/profile-poster.jpg') ?>" alt="" width="28" height="28" loading="lazy"><!-- SWAP: author avatar --><span><b>Amaanullah Khan</b><small><time datetime="">[Date]</time><!-- EDIT: publish date --> · 5 min read</small></span></div></div></a></article></div></section>
 <section class="sec2" aria-labelledby="h-all"><div class="lbl2 rv2"><h2 id="h-all">More articles</h2></div>
 <div class="alay"><div><div class="agrid"><article class="ac pc "><!-- SAMPLE article: replace title, excerpt, cover, date -->
-<a class="pl al" href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="custom-ecommerce-vs-shopify"><!-- URL: /articles/custom-ecommerce-vs-shopify -->
+<a class="pl al" href="<?= base_url('/articles/custom-ecommerce-vs-shopify') ?>" data-article="custom-ecommerce-vs-shopify"><!-- URL: /articles/custom-ecommerce-vs-shopify -->
 <div class="cov"><!-- SWAP COVER: images/covers/custom-ecommerce-vs-shopify.svg → 1600x900 --><img src="<?= asset_url('images/covers/custom-ecommerce-vs-shopify.svg') ?>" alt="Custom e-commerce vs Shopify: how to choose — cover image" width="1600" height="900" loading="lazy" decoding="async"><span class="cb">Web Development</span></div>
 <div class="ab"><h3>Custom e-commerce vs Shopify: how to choose</h3><p>When a hosted platform is enough and when a custom build is worth it.</p><div class="am"><img src="<?= asset_url('media/profile-poster.jpg') ?>" alt="" width="28" height="28" loading="lazy"><!-- SWAP: author avatar --><span><b>Amaanullah Khan</b><small><time datetime="">[Date]</time><!-- EDIT: publish date --> · 6 min read</small></span></div></div></a></article></div></div><aside class="aside" aria-label="Sidebar">
- <section class="box rv2"><h3>Most read</h3><!-- EDIT: populate from analytics; SAMPLE list --><ol class="mr"><li><a href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="multi-tenant-laravel">How I structure multi-tenant SaaS apps in Laravel</a></li><li><a href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="crm-around-your-sales-process">Build your CRM around your sales process — not the other way round</a></li><li><a href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="flutter-with-laravel-api">Connecting a Flutter app to a Laravel REST API</a></li><li><a href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="ai-wont-replace-fundamentals">AI speeds up coding — it doesn&#x27;t replace fundamentals</a></li></ol></section>
+ <section class="box rv2"><h3>Most read</h3><!-- EDIT: populate from analytics; SAMPLE list --><ol class="mr"><li><a href="<?= base_url('/articles/multi-tenant-saas-laravel') ?>" data-article="multi-tenant-laravel">How I structure multi-tenant SaaS apps in Laravel</a></li><li><a href="<?= base_url('/articles/crm-around-your-sales-process') ?>" data-article="crm-around-your-sales-process">Build your CRM around your sales process — not the other way round</a></li><li><a href="<?= base_url('/articles/flutter-with-laravel-api') ?>" data-article="flutter-with-laravel-api">Connecting a Flutter app to a Laravel REST API</a></li><li><a href="<?= base_url('/articles/ai-wont-replace-fundamentals') ?>" data-article="ai-wont-replace-fundamentals">AI speeds up coding — it doesn&#x27;t replace fundamentals</a></li></ol></section>
  <section class="box nlb rv2" aria-labelledby="h-nl"><h3 id="h-nl">Get new articles by email</h3><p>Occasional, practical posts on Laravel, SaaS and automation. No spam.</p>
   <!-- Laravel: action="{{ route('newsletter.subscribe') }}" method="POST" + @csrf ; show $errors->first('email') ; old('email') -->
   <form class="nlf" action="javascript:void(0)" method="post" novalidate><!-- @csrf -->

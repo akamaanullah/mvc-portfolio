@@ -87,7 +87,6 @@
  ]
 }</script>
 <link rel="stylesheet" href="<?= asset_url('css/about-page.css') ?>"><link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-">
 <link rel="stylesheet" href="<?= asset_url('css/media.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
@@ -112,7 +111,7 @@
   <p class="lead2" style="margin-top:14px;font-size:16px">Full-stack developer and team lead — turning messy day-to-day operations into systems that actually hold up under real use.</p>
   <div class="btns"><a class="bo pri" href="javascript:void(0)" download><!-- URL: CV file (e.g. files/Amaanullah-Khan-CV.pdf) --><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download CV</a><a class="bo sec" href="<?= base_url('/contact') ?>">Let's work together →</a></div>
   <div class="facts"><div><b>PHP &amp; Laravel</b><small>Daily stack</small></div><div><b>React · Node · Flutter</b><small>Web to mobile</small></div><div><b>1.5M+ leads</b><small>CRM built &amp; scaled</small></div></div>
-  <div class="vp">VERIFIED PROFILES <a href="https://linkedin.com" target="_blank" rel="noopener me"><!-- URL: LinkedIn -->LinkedIn</a><a href="https://github.com/akamaanullah" target="_blank" rel="noopener me"><!-- URL: GitHub -->GitHub</a></div>
+  <div class="vp">VERIFIED PROFILES <a href="<?= htmlspecialchars((string) setting('linkedin_url', 'https://linkedin.com')) ?>" target="_blank" rel="noopener me">LinkedIn</a><a href="<?= htmlspecialchars((string) setting('github_url', 'https://github.com/akamaanullah')) ?>" target="_blank" rel="noopener me">GitHub</a></div>
  </div>
 </header>
 
@@ -151,7 +150,7 @@
 
 <section class="wrap blk" id="faq" aria-labelledby="h-faq" style="max-width:860px">
  <div class="fade" style="text-align:center"><span class="eyebrow">FAQ</span><h2 id="h-faq">Frequently asked questions</h2></div>
- <div class="fade" style="margin-top:30px"><details><summary>Do you only work with Laravel, or do you handle full projects?</summary><!-- EDIT: answer not visible in screenshot (accordion collapsed); also update FAQPage JSON-LD --><p>[Answer coming soon — EDIT]</p></details><details><summary>Do you work with clients outside Pakistan?</summary><!-- EDIT: answer not visible in screenshot (accordion collapsed); also update FAQPage JSON-LD --><p>[Answer coming soon — EDIT]</p></details><details><summary>What kind of projects do you usually take on?</summary><!-- EDIT: answer not visible in screenshot (accordion collapsed); also update FAQPage JSON-LD --><p>[Answer coming soon — EDIT]</p></details><details><summary>Do you use AI tools when building software?</summary><!-- EDIT: answer not visible in screenshot (accordion collapsed); also update FAQPage JSON-LD --><p>[Answer coming soon — EDIT]</p></details></div>
+ <div class="fade" style="margin-top:30px"><details><summary>Do you only work with Laravel, or do you handle full projects?</summary><p>I handle complete end-to-end projects from scoping, database schema and API architecture to front-end interfaces, mobile apps in Flutter, cloud deployment and post-launch support.</p></details><details><summary>Do you work with clients outside Pakistan?</summary><p>Yes, I regularly collaborate with founders and enterprises across the US, UK, UAE, and Saudi Arabia, offering flexible timezone overlap and clear asynchronous milestone reporting.</p></details><details><summary>What kind of projects do you usually take on?</summary><p>I focus on custom CRM systems, multi-tenant SaaS platforms, internal operations tools, real-time chat applications, and workflow automation that replaces slow manual spreadsheets.</p></details><details><summary>Do you use AI tools when building software?</summary><p>I use AI tools to speed up boilerplate and code generation, but all system architecture, security rules, data schemas, and edge-case handling are carefully planned and verified by hand.</p></details></div>
 </section>
 
 <section class="wrap"><div class="cta fade"><div><h2>Have a system that needs to <span style="color:var(--o2)">work harder?</span></h2><p>Tell me what's slowing your business down.</p></div>
