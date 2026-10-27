@@ -263,19 +263,26 @@ class ChatModel
         $db = self::db();
         $pages = [];
         $sessionsCount = 1;
-        $totalTime = '1m 20s';
         $source = 'Direct';
-        $location = 'Karachi, Pakistan';
+        $visitorId = 1;
 
         if (!empty($ip)) {
-            $stmt = $db->prepare("SELECT url, referrer, created_at FROM visitors WHERE ip = ? ORDER BY id DESC LIMIT 10");
+            $stmt = $db->prepare("SELECT id, url, referrer, created_at FROM visitors 
+                WHERE ip = ? AND url NOT LIKE '/api/%' AND url NOT LIKE '/admin/%' AND url NOT LIKE '%poll%' 
+                ORDER BY id DESC LIMIT 15");
             $stmt->execute([$ip]);
             $visits = $stmt->fetchAll();
 
             if (!empty($visits)) {
+                $visitorId = (int)$visits[0]['id'];
+                $seen = [];
                 foreach ($visits as $v) {
+                    $cleanUrl = preg_replace('#^/web3d-full#', '', $v['url'] ?: '/');
+                    if (empty($cleanUrl) || $cleanUrl === '') $cleanUrl = '/';
+                    if (isset($seen[$cleanUrl])) continue;
+                    $seen[$cleanUrl] = true;
                     $pages[] = [
-                        'path' => $v['url'],
+                        'path' => $cleanUrl,
                         'time' => date('H:i', strtotime($v['created_at']))
                     ];
                     if (!empty($v['referrer']) && $source === 'Direct') {
@@ -286,14 +293,20 @@ class ChatModel
                 $cnt = $db->prepare("SELECT COUNT(DISTINCT DATE(created_at)) FROM visitors WHERE ip = ?");
                 $cnt->execute([$ip]);
                 $sessionsCount = max(1, (int)$cnt->fetchColumn());
+            } else {
+                $vIdStmt = $db->prepare("SELECT id FROM visitors WHERE ip = ? ORDER BY id DESC LIMIT 1");
+                $vIdStmt->execute([$ip]);
+                $vId = (int)$vIdStmt->fetchColumn();
+                if ($vId > 0) $visitorId = $vId;
             }
         }
 
         return [
+            'visitor_id' => $visitorId,
             'sessions_count' => $sessionsCount,
             'source' => $source,
             'pages' => $pages,
-            'lead_score' => min(95, 40 + (count($pages) * 8))
+            'lead_score' => min(95, 45 + (count($pages) * 12))
         ];
     }
 }

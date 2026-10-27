@@ -330,18 +330,7 @@ class AdminController extends Controller
 
             case 'visitor':
                 $id = (int) ($_GET['id'] ?? 1);
-                $viewData['visitorProfile'] = VisitorModel::findById($id) ?: [
-                    'id' => $id,
-                    'name' => 'Visitor #' . (4800 + $id),
-                    'ip' => '111.119.187.' . ($id % 250 + 1),
-                    'country' => 'Pakistan',
-                    'city' => 'Karachi',
-                    'device' => 'desktop',
-                    'browser' => 'Chrome',
-                    'url' => '/crm-developer-pakistan',
-                    'referrer' => 'google.com',
-                    'created_at' => date('Y-m-d H:i:s')
-                ];
+                $viewData['visitorProfile'] = VisitorModel::getVisitorDetailProfile($id);
                 break;
 
             case 'live-chat':

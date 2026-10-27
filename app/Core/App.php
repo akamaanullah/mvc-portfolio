@@ -135,7 +135,7 @@ class App
             $regex = '#^' . preg_replace('#\{(\w+)\}#', '(?P<$1>[a-z0-9-]+)', $pattern) . '$#';
             if (preg_match($regex, $path, $m)) {
                 $params = array_values(array_filter($m, 'is_string', ARRAY_FILTER_USE_KEY));
-                if ($method === 'GET' && !str_starts_with($path, '/admin')) {
+                if ($method === 'GET' && !str_starts_with($path, '/admin') && !str_starts_with($path, '/api')) {
                     \App\Models\VisitorModel::trackCurrentRequest($path);
                 }
                 echo (new $class())->$action(...$params);

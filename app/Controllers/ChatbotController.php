@@ -17,7 +17,15 @@ class ChatbotController extends Controller
         $userMessage = trim($input['message'] ?? '');
         $sessionId   = trim($input['session_id'] ?? $input['session_key'] ?? '');
         $history     = $input['history'] ?? [];
-        $currentPage = trim($input['current_page'] ?? $_SERVER['HTTP_REFERER'] ?? '/');
+        $rawPage     = trim($input['current_page'] ?? $_SERVER['HTTP_REFERER'] ?? '/');
+        $base        = base_path_url();
+        if ($base !== '' && str_starts_with($rawPage, $base)) {
+            $rawPage = substr($rawPage, strlen($base));
+        }
+        $currentPage = '/' . ltrim($rawPage, '/');
+        if (str_starts_with($currentPage, '/api') || str_starts_with($currentPage, '/admin') || empty($rawPage) || $currentPage === '//') {
+            $currentPage = '/';
+        }
 
         if (empty($userMessage)) {
             return $this->json(['error' => 'Empty message'], 400);

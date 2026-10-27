@@ -195,7 +195,11 @@ function getAvatarColor(?string $name): string {
                 <dt>IP Address</dt>
                 <dd><code><?= htmlspecialchars($active['visitor_ip'] ?: '127.0.0.1') ?></code></dd>
                 <dt>Current Page</dt>
-                <dd style="word-break:break-all; font-size:12px;"><?= htmlspecialchars($active['current_page'] ?: '/') ?></dd>
+                <?php 
+                    $currPageDisplay = preg_replace('#^/web3d-full#', '', $active['current_page'] ?: '/');
+                    if (empty($currPageDisplay) || $currPageDisplay === '') $currPageDisplay = '/';
+                ?>
+                <dd style="word-break:break-all; font-size:12px;"><b><?= htmlspecialchars($currPageDisplay) ?></b></dd>
                 <dt>Source</dt>
                 <dd><?= htmlspecialchars($profile['source'] ?? 'Direct') ?></dd>
                 <dt>Sessions</dt>
@@ -218,7 +222,7 @@ function getAvatarColor(?string $name): string {
                 <?php else: ?>
                     <li>
                         <div class="who">
-                            <b><?= htmlspecialchars($active['current_page'] ?: '/') ?></b>
+                            <b><?= htmlspecialchars($currPageDisplay) ?></b>
                             <small>current</small>
                         </div>
                     </li>
@@ -227,10 +231,10 @@ function getAvatarColor(?string $name): string {
             <hr class="s">
             <div class="sec-t" style="font-size:14px; margin-bottom:10px">Session details</div>
             <ul class="tl">
-                <li><b><?= date('H:i', strtotime($active['created_at'])) ?> · Landed</b><small><?= htmlspecialchars($active['current_page'] ?: 'Home') ?></small></li>
+                <li><b><?= date('H:i', strtotime($active['created_at'])) ?> · Landed</b><small><?= htmlspecialchars($currPageDisplay) ?></small></li>
                 <li class="c"><b><?= date('H:i', strtotime($active['updated_at'])) ?> · Chat active</b><small><?= htmlspecialchars($active['status']) ?></small></li>
             </ul>
-            <a class="btn" style="width:100%;margin-top:6px" href="<?= base_url('/admin/visitors') ?>">Full visitor analytics</a>
+            <a class="btn" style="width:100%;margin-top:6px" href="<?= base_url('/admin/visitors/show?id=' . (int)($profile['visitor_id'] ?? 1)) ?>">Full visitor analytics</a>
         </aside>
     <?php endif; ?>
 </section>
