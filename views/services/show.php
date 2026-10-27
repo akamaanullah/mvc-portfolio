@@ -20,7 +20,6 @@
 <?php endif; ?>
 <link rel="stylesheet" href="<?= asset_url('css/service-detail.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/service-detail.dark.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>
