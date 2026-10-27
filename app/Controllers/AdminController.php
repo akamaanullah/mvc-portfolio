@@ -189,8 +189,13 @@ class AdminController extends Controller
                 $viewData['trafficChart'] = $analytics['chart'] ?? null;
                 $viewData['trafficSources'] = $analytics['donut'] ?? [];
                 $viewData['topPages'] = array_slice($analytics['pages'] ?? [], 0, 7);
-                $viewData['liveVisitors'] = VisitorModel::getVisitorsList('online', null, null, 5);
-                $viewData['totalOnline'] = count(VisitorModel::getVisitorsList('online'));
+                $live = VisitorModel::getVisitorsList('online', null, null, 5);
+                $totalOnline = count($live);
+                if (empty($live)) {
+                    $live = VisitorModel::getVisitorsList(null, null, null, 5);
+                }
+                $viewData['liveVisitors'] = $live;
+                $viewData['totalOnline'] = $totalOnline;
                 break;
 
             case 'projects':

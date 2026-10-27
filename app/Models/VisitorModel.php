@@ -549,6 +549,14 @@ class VisitorModel extends Model
         $where = ["url NOT LIKE '/api/%' AND url NOT LIKE '/admin/%' AND url NOT LIKE '%poll%'"];
         $params = [];
 
+        if ($filter === 'online') {
+            $where[] = '`created_at` >= (NOW() - INTERVAL 15 MINUTE)';
+        } elseif ($filter === 'direct') {
+            $where[] = "(`referrer` IS NULL OR `referrer` = '' OR `referrer` = 'direct')";
+        } elseif ($filter === 'google') {
+            $where[] = "`referrer` LIKE '%google%'";
+        }
+
         if ($country && $country !== 'Any country') {
             $where[] = '`country` = :country';
             $params['country'] = $country;
@@ -950,10 +958,44 @@ class VisitorModel extends Model
         if ($ip === '127.0.0.1' || $ip === '::1' || str_starts_with($ip, '192.168.') || str_starts_with($ip, '10.')) {
             return ['country' => 'Pakistan', 'country_code' => 'PK', 'city' => 'Karachi'];
         }
-        // Cloudflare Geo headers if present
-        $country = $_SERVER['HTTP_CF_IPCOUNTRY'] ?? 'PK';
-        $city = $_SERVER['HTTP_CF_IPCITY'] ?? 'Karachi';
-        return ['country' => ($country === 'PK' ? 'Pakistan' : 'United States'), 'country_code' => $country, 'city' => $city];
+
+        $countryCode = strtoupper(trim((string) ($_SERVER['HTTP_CF_IPCOUNTRY'] ?? '')));
+        $city = trim((string) ($_SERVER['HTTP_CF_IPCITY'] ?? ''));
+
+        $countryNames = [
+            'PK' => 'Pakistan',
+            'US' => 'United States',
+            'GB' => 'United Kingdom',
+            'AE' => 'United Arab Emirates',
+            'SA' => 'Saudi Arabia',
+            'CA' => 'Canada',
+            'DE' => 'Germany',
+            'AU' => 'Australia',
+            'FR' => 'France',
+            'IN' => 'India',
+            'SG' => 'Singapore',
+            'NL' => 'Netherlands',
+            'QA' => 'Qatar',
+            'OM' => 'Oman',
+            'KW' => 'Kuwait',
+            'BH' => 'Bahrain',
+            'MY' => 'Malaysia',
+            'TR' => 'Turkey',
+        ];
+
+        if ($countryCode !== '' && isset($countryNames[$countryCode])) {
+            return [
+                'country' => $countryNames[$countryCode],
+                'country_code' => $countryCode,
+                'city' => $city ?: $countryNames[$countryCode]
+            ];
+        }
+
+        return [
+            'country' => $countryNames[$countryCode] ?? ($countryCode ?: 'Pakistan'),
+            'country_code' => $countryCode ?: 'PK',
+            'city' => $city ?: 'Karachi'
+        ];
     }
 
     private static function formatTimeAgo(string $dt): string
