@@ -381,6 +381,7 @@ class AdminController extends Controller
                 $raw = $db->query("SELECT `key`, `value` FROM settings")->fetchAll(\PDO::FETCH_KEY_PAIR);
                 $viewData['settings'] = $raw;
                 $viewData['seoFiles'] = \App\Services\SeoFilesService::getFilesList();
+                $viewData['integrationsConfig'] = \App\Services\IntegrationService::getAll();
                 $viewData['integrations'] = [
                     'gsc' => [
                         'connected' => file_exists(BASE_PATH . '/config/keys/search-console-key.json'),
@@ -1360,5 +1361,78 @@ class AdminController extends Controller
         $this->verifyAdminCsrf();
         $res = \App\Services\SeoFilesService::generateLlmsFull();
         return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/integration/save
+     */
+    public function saveIntegrationAction(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $type = trim((string)($input['type'] ?? ''));
+        $data = $input['data'] ?? [];
+
+        $res = \App\Services\IntegrationService::saveIntegration($type, $data);
+        return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/integration/test-smtp
+     */
+    public function testSmtpAction(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $to = trim((string)($input['to_email'] ?? env('SMTP_USER', 'akamaanullah@gmail.com')));
+
+        $res = \App\Services\IntegrationService::testSmtp($to);
+        return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/integration/test-gsc
+     */
+    public function testGscAction(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $siteUrl = env('GSC_SITE_URL', 'https://amaanullah.com/');
+        $data = \App\Services\GoogleSearchConsoleService::getAnalytics($siteUrl, '28d');
+        if (!empty($data['connected'])) {
+            return $this->json([
+                'success' => true,
+                'message' => 'Connected to Google Search Console! Fetched ' . count($data['queries'] ?? []) . ' search queries.',
+                'site_url' => $siteUrl
+            ]);
+        }
+        return $this->json([
+            'success' => false,
+            'error' => $data['error'] ?? 'Could not connect to Google Search Console API. Please verify service account credentials.'
+        ]);
+    }
+
+    /**
+     * POST /admin/settings/integration/test-pagespeed
+     */
+    public function testPageSpeedAction(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $url = env('SITE_URL', 'https://amaanullah.com');
+        $data = \App\Services\PageSpeedService::audit($url, 'mobile', false);
+        if (!empty($data['connected']) || !empty($data['score'])) {
+            return $this->json([
+                'success' => true,
+                'message' => "PageSpeed API connected! Mobile Performance Score: {$data['score']}/100.",
+                'score' => $data['score']
+            ]);
+        }
+        return $this->json([
+            'success' => false,
+            'error' => 'Failed to connect to Google PageSpeed Insights. Please check your API key.'
+        ]);
     }
 }

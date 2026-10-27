@@ -92,6 +92,12 @@ class App
         $this->post('/admin/settings/file/generate-sitemap', [$C . 'AdminController', 'generateSitemapAction']);
         $this->post('/admin/settings/file/generate-llms', [$C . 'AdminController', 'generateLlmsAction']);
 
+        // Admin Integrations Management Endpoints
+        $this->post('/admin/settings/integration/save', [$C . 'AdminController', 'saveIntegrationAction']);
+        $this->post('/admin/settings/integration/test-smtp', [$C . 'AdminController', 'testSmtpAction']);
+        $this->post('/admin/settings/integration/test-gsc', [$C . 'AdminController', 'testGscAction']);
+        $this->post('/admin/settings/integration/test-pagespeed', [$C . 'AdminController', 'testPageSpeedAction']);
+
         // Public Web & AI Crawler Specification Files
         $this->get('/robots.txt', [$C . 'HomeController', 'robotsTxt']);
         $this->get('/sitemap.xml', [$C . 'HomeController', 'sitemapXml']);

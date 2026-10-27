@@ -1,9 +1,10 @@
 <?php
 /**
- * Admin · Settings — 100% Dynamic Site, SEO, Web & LLM Files, Chatbot & Integrations.
+ * Admin · Settings — 100% Dynamic Site, SEO, Web & LLM Files, Chatbot & Full Integrations Management.
  */
 $settings = $settings ?? [];
 $integrations = $integrations ?? [];
+$integrationsConfig = $integrationsConfig ?? [];
 $seoFiles = $seoFiles ?? [];
 ?>
 
@@ -130,6 +131,31 @@ $seoFiles = $seoFiles ?? [];
     border-top: 1px solid var(--line);
     flex-wrap: wrap;
     gap: 12px;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    place-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+.modal-box {
+    background: #14151d;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 620px;
+    padding: 26px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 </style>
 
@@ -269,7 +295,7 @@ $seoFiles = $seoFiles ?? [];
             </div>
         </section>
 
-        <!-- TAB 3: FILES & LLMs (ROBOTS, SITEMAP, LLMS.TXT, DETAIL LLMS, SECURITY) -->
+        <!-- TAB 3: FILES & LLMs -->
         <section class="card pane" id="sF" data-pane="set">
             <div class="bd2">
                 <div class="row sb2" style="margin-bottom:12px; flex-wrap:wrap; gap:10px;">
@@ -383,7 +409,6 @@ $seoFiles = $seoFiles ?? [];
                     </div>
                 </div>
 
-                <!-- Modern Clean Toggle Cards for Chatbot -->
                 <div class="toggle-card">
                     <div class="toggle-info">
                         <div class="toggle-title">Capture leads (ask for email)</div>
@@ -417,7 +442,6 @@ $seoFiles = $seoFiles ?? [];
                     </label>
                 </div>
 
-                <!-- Test Connection Button -->
                 <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--line); display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
                     <button class="btn o" type="button" id="btnTestChatbot">
                         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> 
@@ -429,19 +453,25 @@ $seoFiles = $seoFiles ?? [];
             </div>
         </section>
 
-        <!-- TAB 5: INTEGRATIONS -->
+        <!-- TAB 5: INTEGRATIONS (FULL DYNAMIC MANAGEMENT) -->
         <section class="pane" id="sI" data-pane="set">
             <div class="grid g2">
                 <?php foreach ($integrations as $key => $int): ?>
-                    <div class="card" style="padding:18px;">
-                        <div class="row sb2">
-                            <b><?= htmlspecialchars($int['title']) ?></b>
-                            <span class="pill good" style="font-size:11px;">● <?= htmlspecialchars($int['badge']) ?></span>
+                    <div class="card" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div>
+                            <div class="row sb2">
+                                <b style="font-size:15px;"><?= htmlspecialchars($int['title']) ?></b>
+                                <span class="pill good" style="font-size:11px;">● <?= htmlspecialchars($int['badge']) ?></span>
+                            </div>
+                            <p class="mut sm" style="margin:10px 0 16px; line-height:1.5;"><?= htmlspecialchars($int['desc']) ?></p>
                         </div>
-                        <p class="mut sm" style="margin:8px 0 14px;"><?= htmlspecialchars($int['desc']) ?></p>
-                        <a class="btn sm o" href="<?= htmlspecialchars($int['link']) ?>" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                            Manage Integration →
-                        </a>
+                        <div class="row sb2" style="border-top:1px solid var(--line); padding-top:14px; margin-top:10px;">
+                            <button type="button" class="btn sm o btn-open-integration" data-int="<?= $key ?>">
+                                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                Configure &amp; Manage →
+                            </button>
+                            <span class="mut" style="font-size:11px;">Active</span>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -475,11 +505,11 @@ $seoFiles = $seoFiles ?? [];
 </form>
 
 <!-- Modal: Add Custom File -->
-<div id="newFileModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); backdrop-filter:blur(4px); z-index:999; place-items:center; padding:20px;">
-    <div style="background:#14151d; border:1px solid var(--line); border-radius:16px; width:100%; max-width:540px; padding:24px; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
+<div id="newFileModal" class="modal-overlay">
+    <div class="modal-box">
         <div class="row sb2" style="margin-bottom:16px;">
             <h3 style="margin:0; font-size:1.15rem;">+ Add Custom Web File</h3>
-            <button type="button" id="btnCloseNewFileModal" style="background:none; border:none; color:var(--mut); font-size:20px; cursor:pointer;">&times;</button>
+            <button type="button" class="btn-close-modal" data-target="newFileModal" style="background:none; border:none; color:var(--mut); font-size:22px; cursor:pointer;">&times;</button>
         </div>
         <div class="fld">
             <label>Filename (e.g. ai-plugin.json, custom-rules.txt)</label>
@@ -491,8 +521,187 @@ $seoFiles = $seoFiles ?? [];
             <textarea class="inp code-in" id="newFileContentInput" rows="6" placeholder="File content here..."></textarea>
         </div>
         <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
-            <button class="btn sm" type="button" id="btnCancelNewFile" style="background:var(--card2); border:1px solid var(--line);">Cancel</button>
+            <button class="btn sm" type="button" class="btn-close-modal" data-target="newFileModal" style="background:var(--card2); border:1px solid var(--line);">Cancel</button>
             <button class="btn o sm" type="button" id="btnSubmitNewFile">Create &amp; Save File</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Manage Integration (Dedicated Configuration Controls) -->
+<div id="integrationModal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="row sb2" style="margin-bottom:16px; border-bottom:1px solid var(--line); padding-bottom:14px;">
+            <div>
+                <h3 id="modalIntTitle" style="margin:0; font-size:1.25rem;">Configure Integration</h3>
+                <small id="modalIntSub" class="mut">Manage credentials and test connection live</small>
+            </div>
+            <button type="button" class="btn-close-modal" data-target="integrationModal" style="background:none; border:none; color:var(--mut); font-size:22px; cursor:pointer;">&times;</button>
+        </div>
+
+        <!-- 1. Google Search Console Form -->
+        <div id="intBox_gsc" class="int-subform" style="display:none;">
+            <div class="fld">
+                <label>Verified Domain / Site URL</label>
+                <input class="inp code-in" id="gscSiteUrl" value="<?= htmlspecialchars($integrationsConfig['gsc']['site_url'] ?? 'https://amaanullah.com/') ?>">
+            </div>
+            <div class="fld">
+                <label>Service Account Email</label>
+                <input class="inp code-in" value="<?= htmlspecialchars($integrationsConfig['gsc']['client_email'] ?? '') ?>" readonly style="background:var(--bg-main); opacity:0.85;">
+                <span class="hint">Must be added as 'Owner' in Google Search Console permissions.</span>
+            </div>
+            <div class="fld">
+                <label>Service Account JSON Key</label>
+                <textarea class="inp code-in" id="gscKeyJson" rows="6" placeholder="Paste full service_account.json here..."><?= htmlspecialchars($integrationsConfig['gsc']['key_json'] ?? '') ?></textarea>
+                <span class="hint">Stored securely at <?= htmlspecialchars($integrationsConfig['gsc']['key_path'] ?? 'config/keys/search-console-key.json') ?></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; margin-top:16px; flex-wrap:wrap;">
+                <button class="btn o sm" type="button" id="btnTestGsc">⚡ Test GSC Connection</button>
+                <a class="btn sm" href="<?= base_url('/admin/search-console') ?>" style="background:var(--card2); border:1px solid var(--line); text-decoration:none;">Open Search Console Page →</a>
+            </div>
+        </div>
+
+        <!-- 2. Google PageSpeed Insights Form -->
+        <div id="intBox_pagespeed" class="int-subform" style="display:none;">
+            <div class="fld">
+                <label>Google PageSpeed API Key</label>
+                <input class="inp code-in" id="psApiKey" value="<?= htmlspecialchars($integrationsConfig['pagespeed']['api_key'] ?? '') ?>" placeholder="AIzaSy...">
+                <span class="hint">Used for live Core Web Vitals audits &amp; Lighthouse scoring.</span>
+            </div>
+            <div class="fld">
+                <label>Default Audit URL</label>
+                <input class="inp code-in" id="psAuditUrl" value="<?= htmlspecialchars($integrationsConfig['pagespeed']['audit_url'] ?? 'https://amaanullah.com') ?>">
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; margin-top:16px; flex-wrap:wrap;">
+                <button class="btn o sm" type="button" id="btnTestPageSpeed">⚡ Run Test Audit</button>
+                <a class="btn sm" href="<?= base_url('/admin/performance') ?>" style="background:var(--card2); border:1px solid var(--line); text-decoration:none;">Open Performance Dashboard →</a>
+            </div>
+        </div>
+
+        <!-- 3. WhatsApp Direct Form -->
+        <div id="intBox_whatsapp" class="int-subform" style="display:none;">
+            <div class="fld">
+                <label>WhatsApp Phone Number</label>
+                <input class="inp code-in" id="waPhone" value="<?= htmlspecialchars($integrationsConfig['whatsapp']['phone'] ?? '+92 319 6935307') ?>">
+                <span class="hint">Include country code (e.g. +92 319 6935307).</span>
+            </div>
+            <div class="fld">
+                <label>Live WhatsApp API Link</label>
+                <input class="inp code-in" id="waUrlPreview" value="<?= htmlspecialchars($integrationsConfig['whatsapp']['whatsapp_url'] ?? 'https://api.whatsapp.com/send?phone=923196935307') ?>" readonly style="background:var(--bg-main); opacity:0.85;">
+            </div>
+            <div style="margin-top:16px;">
+                <a class="btn o sm" id="waTestLink" href="<?= htmlspecialchars($integrationsConfig['whatsapp']['whatsapp_url'] ?? '') ?>" target="_blank" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    ⚡ Test WhatsApp Chat (Open in New Tab) ↗
+                </a>
+            </div>
+        </div>
+
+        <!-- 4. SMTP / Mail Server Form -->
+        <div id="intBox_smtp" class="int-subform" style="display:none;">
+            <div class="fg2" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:10px;">
+                <div class="fld">
+                    <label>SMTP Host</label>
+                    <input class="inp code-in" id="smtpHost" value="<?= htmlspecialchars($integrationsConfig['smtp']['host'] ?? 'smtp.gmail.com') ?>">
+                </div>
+                <div class="fld">
+                    <label>Port</label>
+                    <input class="inp code-in" type="number" id="smtpPort" value="<?= htmlspecialchars($integrationsConfig['smtp']['port'] ?? '465') ?>">
+                </div>
+                <div class="fld">
+                    <label>Encryption</label>
+                    <select class="sel" id="smtpEncryption">
+                        <option value="ssl" <?= ($integrationsConfig['smtp']['encryption'] ?? '') === 'ssl' ? 'selected' : '' ?>>SSL (465)</option>
+                        <option value="tls" <?= ($integrationsConfig['smtp']['encryption'] ?? '') === 'tls' ? 'selected' : '' ?>>TLS (587)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fg2" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div class="fld">
+                    <label>SMTP Username / Email</label>
+                    <input class="inp code-in" id="smtpUser" value="<?= htmlspecialchars($integrationsConfig['smtp']['user'] ?? 'akamaanullah@gmail.com') ?>">
+                </div>
+                <div class="fld">
+                    <label>SMTP Password / App Password</label>
+                    <input class="inp code-in" type="password" id="smtpPass" value="<?= htmlspecialchars($integrationsConfig['smtp']['pass'] ?? '') ?>" placeholder="Leave blank to keep unchanged">
+                </div>
+            </div>
+            <div class="fg2" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div class="fld">
+                    <label>Sender Name</label>
+                    <input class="inp" id="smtpFromName" value="<?= htmlspecialchars($integrationsConfig['smtp']['from_name'] ?? 'Amaanullah Khan Portfolio') ?>">
+                </div>
+                <div class="fld">
+                    <label>Sender Email</label>
+                    <input class="inp code-in" id="smtpFrom" value="<?= htmlspecialchars($integrationsConfig['smtp']['from'] ?? 'akamaanullah@gmail.com') ?>">
+                </div>
+            </div>
+
+            <!-- Send Live Test Email Box -->
+            <div style="background:rgba(255,255,255,0.02); border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:10px;">
+                <label style="font-weight:700; font-size:12.5px; display:block; margin-bottom:6px;">⚡ Send Live Test Email</label>
+                <div style="display:flex; gap:10px;">
+                    <input class="inp code-in" id="smtpTestRecipient" value="<?= htmlspecialchars($integrationsConfig['smtp']['user'] ?? 'akamaanullah@gmail.com') ?>" placeholder="recipient@example.com" style="flex:1;">
+                    <button class="btn sm o" type="button" id="btnSendTestEmail">Send Test Email</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Email Alerts & Notifications Form -->
+        <div id="intBox_alerts" class="int-subform" style="display:none;">
+            <div class="fld">
+                <label>Primary Alert Recipient Email</label>
+                <input class="inp code-in" id="alertsEmail" value="<?= htmlspecialchars($integrationsConfig['alerts']['alert_email'] ?? 'info@amaanullah.com') ?>">
+                <span class="hint">Where instant notifications for leads, live chat requests, and contact forms are dispatched.</span>
+            </div>
+            <div class="toggle-card">
+                <div class="toggle-info">
+                    <div class="toggle-title">New Chat Lead Alerts</div>
+                    <div class="toggle-desc">Instant notification whenever a chatbot visitor submits their project proposal.</div>
+                </div>
+                <label class="sw"><input type="checkbox" id="alertsNotifyLeads" checked><i></i></label>
+            </div>
+            <div class="toggle-card">
+                <div class="toggle-info">
+                    <div class="toggle-title">Urgent Live Chat Takeover Alerts</div>
+                    <div class="toggle-desc">Emergency high-priority notification when a visitor requests to talk live right now.</div>
+                </div>
+                <label class="sw"><input type="checkbox" id="alertsNotifyHuman" checked><i></i></label>
+            </div>
+            <div class="toggle-card">
+                <div class="toggle-info">
+                    <div class="toggle-title">Contact Form Message Alerts</div>
+                    <div class="toggle-desc">Forward contact form submissions directly to your inbox.</div>
+                </div>
+                <label class="sw"><input type="checkbox" id="alertsNotifyMessages" checked><i></i></label>
+            </div>
+        </div>
+
+        <!-- 6. Cloudflare Workers AI Form -->
+        <div id="intBox_cloudflare" class="int-subform" style="display:none;">
+            <div class="fld">
+                <label>Cloudflare Account ID</label>
+                <input class="inp code-in" id="cfAccountId" value="<?= htmlspecialchars($integrationsConfig['cloudflare']['account_id'] ?? '9f63cf53ac893a6a5f2725278f7f86d3') ?>">
+            </div>
+            <div class="fld">
+                <label>Cloudflare API Token</label>
+                <input class="inp code-in" type="password" id="cfApiToken" value="<?= htmlspecialchars($integrationsConfig['cloudflare']['api_token'] ?? '') ?>" placeholder="Leave blank to keep unchanged">
+                <span class="hint">Workers AI permissions required.</span>
+            </div>
+            <div class="fld">
+                <label>AI Model Identifier</label>
+                <input class="inp code-in" id="cfModel" value="<?= htmlspecialchars($integrationsConfig['cloudflare']['model'] ?? '@cf/meta/llama-3.1-8b-instruct-fast') ?>">
+            </div>
+            <div style="margin-top:14px;">
+                <button class="btn o sm" type="button" id="btnTestCfAi">⚡ Test Cloudflare AI Model</button>
+            </div>
+        </div>
+
+        <!-- Shared Status Box inside Modal -->
+        <div id="intModalStatus" style="display:none; margin-top:14px; padding:12px; border-radius:10px; font-size:12.5px; font-weight:600;"></div>
+
+        <!-- Modal Footer Actions -->
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:22px; border-top:1px solid var(--line); padding-top:16px;">
+            <button class="btn sm btn-close-modal" type="button" data-target="integrationModal" style="background:var(--card2); border:1px solid var(--line);">Cancel</button>
+            <button class="btn o sm" type="button" id="btnSaveIntegration">Save &amp; Update Integration</button>
         </div>
     </div>
 </div>
@@ -514,6 +723,295 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetPane) targetPane.classList.add('on');
         });
     });
+
+    // Modal Close handler
+    document.querySelectorAll('.btn-close-modal').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+            const m = document.getElementById(target);
+            if (m) m.style.display = 'none';
+        });
+    });
+
+    // ==========================================
+    // INTEGRATION MANAGEMENT SYSTEM
+    // ==========================================
+    let currentIntType = '';
+    const modalInt = document.getElementById('integrationModal');
+    const modalIntTitle = document.getElementById('modalIntTitle');
+    const modalIntSub = document.getElementById('modalIntSub');
+    const modalIntStatus = document.getElementById('intModalStatus');
+    const btnSaveIntegration = document.getElementById('btnSaveIntegration');
+
+    const intTitles = {
+        gsc: { title: 'Google Search Console Configuration', sub: 'Manage verified site URL and service account credentials' },
+        pagespeed: { title: 'Google PageSpeed Insights Settings', sub: 'Configure API key and audit targets' },
+        whatsapp: { title: 'WhatsApp Direct Configuration', sub: 'Update phone number and routing rules' },
+        smtp: { title: 'SMTP / Mail Server Configuration', sub: 'Configure mail host, port, credentials and test live dispatch' },
+        alerts: { title: 'Email Alerts & Notification Triggers', sub: 'Manage notification recipients and event toggles' },
+        cloudflare: { title: 'Cloudflare Workers AI Configuration', sub: 'Configure Account ID, API token, and LLM model' }
+    };
+
+    document.querySelectorAll('.btn-open-integration').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.getAttribute('data-int');
+            currentIntType = type;
+            modalIntStatus.style.display = 'none';
+
+            // Hide all subforms
+            document.querySelectorAll('.int-subform').forEach(el => el.style.display = 'none');
+
+            // Show selected subform
+            const targetBox = document.getElementById('intBox_' + type);
+            if (targetBox) targetBox.style.display = 'block';
+
+            const info = intTitles[type] || { title: 'Manage Integration', sub: '' };
+            modalIntTitle.textContent = info.title;
+            modalIntSub.textContent = info.sub;
+
+            modalInt.style.display = 'grid';
+        });
+    });
+
+    // Save Integration Settings
+    btnSaveIntegration.addEventListener('click', async () => {
+        btnSaveIntegration.disabled = true;
+        btnSaveIntegration.innerHTML = 'Saving configuration...';
+        modalIntStatus.style.display = 'none';
+
+        let payload = {};
+        if (currentIntType === 'gsc') {
+            payload = {
+                site_url: document.getElementById('gscSiteUrl').value,
+                key_json: document.getElementById('gscKeyJson').value
+            };
+        } else if (currentIntType === 'pagespeed') {
+            payload = {
+                api_key: document.getElementById('psApiKey').value,
+                audit_url: document.getElementById('psAuditUrl').value
+            };
+        } else if (currentIntType === 'whatsapp') {
+            payload = {
+                phone: document.getElementById('waPhone').value
+            };
+        } else if (currentIntType === 'smtp') {
+            payload = {
+                host: document.getElementById('smtpHost').value,
+                port: document.getElementById('smtpPort').value,
+                encryption: document.getElementById('smtpEncryption').value,
+                user: document.getElementById('smtpUser').value,
+                pass: document.getElementById('smtpPass').value,
+                from: document.getElementById('smtpFrom').value,
+                from_name: document.getElementById('smtpFromName').value
+            };
+        } else if (currentIntType === 'alerts') {
+            payload = {
+                alert_email: document.getElementById('alertsEmail').value
+            };
+        } else if (currentIntType === 'cloudflare') {
+            payload = {
+                account_id: document.getElementById('cfAccountId').value,
+                api_token: document.getElementById('cfApiToken').value,
+                model: document.getElementById('cfModel').value
+            };
+        }
+
+        try {
+            const res = await fetch('<?= base_url('/admin/settings/integration/save') ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': CSRF_TOKEN
+                },
+                body: JSON.stringify({ type: currentIntType, data: payload })
+            });
+            const data = await res.json();
+            modalIntStatus.style.display = 'block';
+            if (data.success) {
+                modalIntStatus.style.background = 'rgba(16, 185, 129, 0.15)';
+                modalIntStatus.style.color = '#10b981';
+                modalIntStatus.textContent = '✅ ' + data.message;
+            } else {
+                modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                modalIntStatus.style.color = '#ef4444';
+                modalIntStatus.textContent = '❌ ' + (data.error || 'Failed to save settings.');
+            }
+        } catch (e) {
+            modalIntStatus.style.display = 'block';
+            modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+            modalIntStatus.style.color = '#ef4444';
+            modalIntStatus.textContent = '❌ Network error during save.';
+        } finally {
+            btnSaveIntegration.disabled = false;
+            btnSaveIntegration.innerHTML = 'Save &amp; Update Integration';
+        }
+    });
+
+    // Test SMTP Button
+    const btnSendTestEmail = document.getElementById('btnSendTestEmail');
+    if (btnSendTestEmail) {
+        btnSendTestEmail.addEventListener('click', async () => {
+            const to = document.getElementById('smtpTestRecipient').value.trim();
+            if (!to) {
+                alert('Please enter a recipient email.');
+                return;
+            }
+            btnSendTestEmail.disabled = true;
+            btnSendTestEmail.innerHTML = 'Sending...';
+            modalIntStatus.style.display = 'block';
+            modalIntStatus.style.background = 'rgba(255, 255, 255, 0.05)';
+            modalIntStatus.style.color = 'var(--mut)';
+            modalIntStatus.textContent = 'Connecting to SMTP host and sending test email...';
+
+            try {
+                const res = await fetch('<?= base_url('/admin/settings/integration/test-smtp') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': CSRF_TOKEN
+                    },
+                    body: JSON.stringify({ to_email: to })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    modalIntStatus.style.background = 'rgba(16, 185, 129, 0.15)';
+                    modalIntStatus.style.color = '#10b981';
+                    modalIntStatus.textContent = '✅ ' + data.message;
+                } else {
+                    modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                    modalIntStatus.style.color = '#ef4444';
+                    modalIntStatus.textContent = '❌ SMTP Error: ' + (data.error || 'Failed to send test email.');
+                }
+            } catch (e) {
+                modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                modalIntStatus.style.color = '#ef4444';
+                modalIntStatus.textContent = '❌ Network error testing SMTP.';
+            } finally {
+                btnSendTestEmail.disabled = false;
+                btnSendTestEmail.innerHTML = 'Send Test Email';
+            }
+        });
+    }
+
+    // Test GSC Button
+    const btnTestGsc = document.getElementById('btnTestGsc');
+    if (btnTestGsc) {
+        btnTestGsc.addEventListener('click', async () => {
+            btnTestGsc.disabled = true;
+            btnTestGsc.innerHTML = 'Testing GSC API...';
+            modalIntStatus.style.display = 'block';
+            modalIntStatus.style.background = 'rgba(255, 255, 255, 0.05)';
+            modalIntStatus.style.color = 'var(--mut)';
+            modalIntStatus.textContent = 'Authenticating with Google Search Console API...';
+
+            try {
+                const res = await fetch('<?= base_url('/admin/settings/integration/test-gsc') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': CSRF_TOKEN
+                    }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    modalIntStatus.style.background = 'rgba(16, 185, 129, 0.15)';
+                    modalIntStatus.style.color = '#10b981';
+                    modalIntStatus.textContent = '✅ ' + data.message;
+                } else {
+                    modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                    modalIntStatus.style.color = '#ef4444';
+                    modalIntStatus.textContent = '❌ ' + (data.error || 'GSC test failed.');
+                }
+            } catch (e) {
+                modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                modalIntStatus.style.color = '#ef4444';
+                modalIntStatus.textContent = '❌ Network error testing GSC.';
+            } finally {
+                btnTestGsc.disabled = false;
+                btnTestGsc.innerHTML = '⚡ Test GSC Connection';
+            }
+        });
+    }
+
+    // Test PageSpeed Button
+    const btnTestPageSpeed = document.getElementById('btnTestPageSpeed');
+    if (btnTestPageSpeed) {
+        btnTestPageSpeed.addEventListener('click', async () => {
+            btnTestPageSpeed.disabled = true;
+            btnTestPageSpeed.innerHTML = 'Auditing...';
+            modalIntStatus.style.display = 'block';
+            modalIntStatus.style.background = 'rgba(255, 255, 255, 0.05)';
+            modalIntStatus.style.color = 'var(--mut)';
+            modalIntStatus.textContent = 'Querying Google PageSpeed Insights API...';
+
+            try {
+                const res = await fetch('<?= base_url('/admin/settings/integration/test-pagespeed') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': CSRF_TOKEN
+                    }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    modalIntStatus.style.background = 'rgba(16, 185, 129, 0.15)';
+                    modalIntStatus.style.color = '#10b981';
+                    modalIntStatus.textContent = '✅ ' + data.message;
+                } else {
+                    modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                    modalIntStatus.style.color = '#ef4444';
+                    modalIntStatus.textContent = '❌ ' + (data.error || 'PageSpeed test failed.');
+                }
+            } catch (e) {
+                modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                modalIntStatus.style.color = '#ef4444';
+                modalIntStatus.textContent = '❌ Network error testing PageSpeed.';
+            } finally {
+                btnTestPageSpeed.disabled = false;
+                btnTestPageSpeed.innerHTML = '⚡ Run Test Audit';
+            }
+        });
+    }
+
+    // Test Cloudflare in modal
+    const btnTestCfAi = document.getElementById('btnTestCfAi');
+    if (btnTestCfAi) {
+        btnTestCfAi.addEventListener('click', async () => {
+            btnTestCfAi.disabled = true;
+            btnTestCfAi.innerHTML = 'Calling Cloudflare...';
+            modalIntStatus.style.display = 'block';
+            modalIntStatus.style.background = 'rgba(255, 255, 255, 0.05)';
+            modalIntStatus.style.color = 'var(--mut)';
+            modalIntStatus.textContent = 'Running test inference with Llama 3.1...';
+
+            try {
+                const res = await fetch('<?= base_url('/admin/settings/test-chatbot') ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': CSRF_TOKEN
+                    }
+                });
+                const data = await res.json();
+                if (data.success) {
+                    modalIntStatus.style.background = 'rgba(16, 185, 129, 0.15)';
+                    modalIntStatus.style.color = '#10b981';
+                    modalIntStatus.textContent = `✅ Connected in ${data.latency}! Response: "${data.reply}"`;
+                } else {
+                    modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                    modalIntStatus.style.color = '#ef4444';
+                    modalIntStatus.textContent = '❌ Cloudflare AI connection failed.';
+                }
+            } catch (e) {
+                modalIntStatus.style.background = 'rgba(239, 68, 68, 0.15)';
+                modalIntStatus.style.color = '#ef4444';
+                modalIntStatus.textContent = '❌ Network error testing Cloudflare.';
+            } finally {
+                btnTestCfAi.disabled = false;
+                btnTestCfAi.innerHTML = '⚡ Test Cloudflare AI Model';
+            }
+        });
+    }
 
     // ==========================================
     // FILE MANAGER & EDITOR
@@ -570,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadFileContent(fn);
     });
 
-    // Initial load
+    // Initial load of robots.txt
     loadFileContent('robots.txt');
 
     // Save File Button
@@ -695,23 +1193,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Modal Add Custom File
-    const modal = document.getElementById('newFileModal');
+    const modalFile = document.getElementById('newFileModal');
     const btnOpenModal = document.getElementById('btnOpenNewFileModal');
-    const btnCloseModal = document.getElementById('btnCloseNewFileModal');
-    const btnCancelModal = document.getElementById('btnCancelNewFile');
     const btnSubmitModal = document.getElementById('btnSubmitNewFile');
     const inputFn = document.getElementById('newFilenameInput');
     const inputContent = document.getElementById('newFileContentInput');
 
     btnOpenModal.addEventListener('click', () => {
-        modal.style.display = 'grid';
+        modalFile.style.display = 'grid';
         inputFn.value = '';
         inputContent.value = '';
         inputFn.focus();
     });
-    const closeModal = () => modal.style.display = 'none';
-    btnCloseModal.addEventListener('click', closeModal);
-    btnCancelModal.addEventListener('click', closeModal);
 
     btnSubmitModal.addEventListener('click', async () => {
         const fn = inputFn.value.trim();
@@ -747,7 +1240,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // CHATBOT TEST CONNECTION
+    // CHATBOT TAB TEST CONNECTION
     // ==========================================
     const btnTest = document.getElementById('btnTestChatbot');
     const resSpan = document.getElementById('testChatbotResult');
