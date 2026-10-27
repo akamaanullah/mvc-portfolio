@@ -221,7 +221,7 @@ class SeoFilesService
      */
     public static function generateSitemap(): array
     {
-        $siteUrl = rtrim(env('SITE_URL', 'https://amaanullah.com'), '/');
+        $siteUrl = rtrim((string) setting('site_domain', ''), '/');
         $urls = [];
 
         // 1. Static Core Pages
@@ -348,10 +348,10 @@ class SeoFilesService
      */
     public static function generateLlmsFull(): array
     {
-        $siteUrl = rtrim(env('SITE_URL', 'https://amaanullah.com'), '/');
-        $phone = env('CONTACT_PHONE', '+92 319 6935307');
-        $email = env('CONTACT_EMAIL', 'info@amaanullah.com');
-        $whatsapp = env('CONTACT_WHATSAPP', 'https://api.whatsapp.com/send?phone=923196935307');
+        $siteUrl = rtrim((string) setting('site_domain', ''), '/');
+        $phone = (string) setting('phone_number', '');
+        $email = (string) setting('contact_email', '');
+        $whatsapp = (string) setting('whatsapp_url', '');
 
         $services = ServiceModel::all();
         $projects = ProjectModel::all('is_featured DESC, id DESC LIMIT 10');
@@ -422,9 +422,9 @@ class SeoFilesService
      */
     private static function initDefaultFile(string $filename): void
     {
-        $siteUrl = rtrim(env('SITE_URL', 'https://amaanullah.com'), '/');
-        $phone = env('CONTACT_PHONE', '+92 319 6935307');
-        $email = env('CONTACT_EMAIL', 'info@amaanullah.com');
+        $siteUrl = rtrim((string) setting('site_domain', ''), '/');
+        $phone = (string) setting('phone_number', '');
+        $email = (string) setting('contact_email', '');
 
         switch ($filename) {
             case 'robots.txt':

@@ -423,7 +423,7 @@ $seoFiles = $seoFiles ?? [];
                 <div class="toggle-card">
                     <div class="toggle-info">
                         <div class="toggle-title">Notify me on “needs human”</div>
-                        <div class="toggle-desc">Sends an instant high-priority SMTP email alert to <?= env('SMTP_USER', 'akamaanullah@gmail.com') ?> with direct chat takeover link.</div>
+                        <div class="toggle-desc">Sends an instant high-priority SMTP email alert to <?= htmlspecialchars(setting('alert_email', setting('smtp_user', ''))) ?> with direct chat takeover link.</div>
                     </div>
                     <label class="sw">
                         <input type="checkbox" name="chatbot_notify_needs_human" value="1" <?= (!isset($settings['chatbot_notify_needs_human']) || !empty($settings['chatbot_notify_needs_human'])) ? 'checked' : '' ?>>

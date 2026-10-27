@@ -375,12 +375,12 @@ class AdminController extends Controller
                     'gsc' => [
                         'connected' => file_exists(BASE_PATH . '/config/keys/search-console-key.json'),
                         'title' => 'Google Search Console',
-                        'desc' => 'Queries, impressions, sitemaps (https://amaanullah.com/)',
+                        'desc' => 'Queries, impressions, sitemaps (' . setting('gsc_site_url', 'https://amaanullah.com/') . ')',
                         'badge' => 'Connected',
                         'link' => base_url('/admin/search-console')
                     ],
                     'pagespeed' => [
-                        'connected' => !empty(env('PAGESPEED_API_KEY')),
+                        'connected' => !empty(setting('pagespeed_api_key')),
                         'title' => 'Google PageSpeed Insights',
                         'desc' => 'Lighthouse Core Web Vitals auditing engine',
                         'badge' => 'Connected',
@@ -389,28 +389,28 @@ class AdminController extends Controller
                     'whatsapp' => [
                         'connected' => true,
                         'title' => 'WhatsApp Direct Integration',
-                        'desc' => env('CONTACT_PHONE', '+92 319 6935307') . ' · Chat Handoff',
+                        'desc' => setting('phone_number', '+92 319 6935307') . ' · Chat Handoff',
                         'badge' => 'Connected',
-                        'link' => env('CONTACT_WHATSAPP', 'https://api.whatsapp.com/send?phone=923196935307')
+                        'link' => setting('whatsapp_url', 'https://api.whatsapp.com/send?phone=923196935307')
                     ],
                     'smtp' => [
-                        'connected' => true,
+                        'connected' => !empty(setting('smtp_user')),
                         'title' => 'SMTP / Mail Server',
-                        'desc' => env('SMTP_HOST', 'smtp.gmail.com') . ':465 (' . env('SMTP_USER', 'akamaanullah@gmail.com') . ')',
+                        'desc' => setting('smtp_host', 'smtp.gmail.com') . ':' . setting('smtp_port', '465') . ' (' . setting('smtp_user', 'akamaanullah@gmail.com') . ')',
                         'badge' => 'Connected',
                         'link' => 'javascript:void(0)'
                     ],
                     'alerts' => [
                         'connected' => true,
                         'title' => 'Email Alerts & Notifications',
-                        'desc' => 'Live takeover alerts & lead briefs sent to ' . env('SMTP_USER', 'akamaanullah@gmail.com'),
+                        'desc' => 'Live takeover alerts & lead briefs sent to ' . setting('alert_email', setting('contact_email', 'info@amaanullah.com')),
                         'badge' => 'Connected',
                         'link' => 'javascript:void(0)'
                     ],
                     'cloudflare' => [
-                        'connected' => !empty(env('CF_API_TOKEN')),
+                        'connected' => !empty(setting('cf_api_token')),
                         'title' => 'Cloudflare Workers AI',
-                        'desc' => '@cf/meta/llama-3.1-8b-instruct-fast (Active)',
+                        'desc' => setting('cf_ai_model', '@cf/meta/llama-3.1-8b-instruct-fast') . ' (Active)',
                         'badge' => 'Connected',
                         'link' => 'javascript:void(0)'
                     ]
@@ -1273,7 +1273,7 @@ class AdminController extends Controller
         return $this->json([
             'success' => true,
             'latency' => $elapsed . 'ms',
-            'model'   => env('CF_AI_MODEL', '@cf/meta/llama-3.1-8b-instruct-fast'),
+            'model'   => setting('cf_ai_model', '@cf/meta/llama-3.1-8b-instruct-fast'),
             'reply'   => $reply
         ]);
     }
@@ -1375,7 +1375,7 @@ class AdminController extends Controller
         $this->requireAuth();
         $this->verifyAdminCsrf();
         $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
-        $to = trim((string)($input['to_email'] ?? env('SMTP_USER', 'akamaanullah@gmail.com')));
+        $to = trim((string)($input['to_email'] ?? setting('smtp_user', 'akamaanullah@gmail.com')));
 
         $res = \App\Services\IntegrationService::testSmtp($to);
         return $this->json($res);
@@ -1388,7 +1388,7 @@ class AdminController extends Controller
     {
         $this->requireAuth();
         $this->verifyAdminCsrf();
-        $siteUrl = env('GSC_SITE_URL', 'https://amaanullah.com/');
+        $siteUrl = setting('gsc_site_url', 'https://amaanullah.com/');
         $data = \App\Services\GoogleSearchConsoleService::getAnalytics($siteUrl, '28d');
         if (!empty($data['connected'])) {
             return $this->json([
@@ -1410,7 +1410,7 @@ class AdminController extends Controller
     {
         $this->requireAuth();
         $this->verifyAdminCsrf();
-        $url = env('SITE_URL', 'https://amaanullah.com');
+        $url = setting('pagespeed_audit_url', setting('site_domain', 'https://amaanullah.com'));
         $data = \App\Services\PageSpeedService::audit($url, 'mobile', false);
         if (!empty($data['connected']) || !empty($data['score'])) {
             return $this->json([

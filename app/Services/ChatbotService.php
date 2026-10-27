@@ -34,9 +34,9 @@ class ChatbotService
         $brainFile = BASE_PATH . '/config/brain.json';
         $brain = file_exists($brainFile) ? json_decode(file_get_contents($brainFile), true) : [];
 
-        $contactPhone = env('CONTACT_PHONE', '+92 319 6935307');
-        $whatsappUrl = env('CONTACT_WHATSAPP', 'https://api.whatsapp.com/send?phone=923196935307');
-        $contactEmail = env('CONTACT_EMAIL', 'info@amaanullah.com');
+        $contactPhone = setting('phone_number', '+92 319 6935307');
+        $whatsappUrl = setting('whatsapp_url', 'https://api.whatsapp.com/send?phone=923196935307');
+        $contactEmail = setting('contact_email', 'info@amaanullah.com');
         $contactLoc = "Karachi, Pakistan (Serving clients worldwide: USA, UAE, UK, Europe, Australia, etc.)";
         $contactPage = base_url('/contact');
 
@@ -119,9 +119,15 @@ class ChatbotService
      */
     public static function ask(string $userMessage, array $history = []): string
     {
-        $accountId = env('CF_ACCOUNT_ID', '9f63cf53ac893a6a5f2725278f7f86d3');
-        $apiToken  = env('CF_API_TOKEN', 'IBC_S6M6VaP-os0EOJF6CeK-0lunySidP-crvIEf');
-        $model     = env('CF_AI_MODEL', '@cf/meta/llama-3.1-8b-instruct-fast');
+        $accountId = (string) setting('cf_account_id', '');
+        $apiToken  = (string) setting('cf_api_token', '');
+        $model     = (string) setting('cf_ai_model', '');
+
+        if (empty($accountId) || empty($apiToken) || empty($model)) {
+            $phone = (string) setting('phone_number', '');
+            $email = (string) setting('contact_email', '');
+            return "AI service is currently not configured. Please reach out directly" . ($phone ? " via WhatsApp ({$phone})" : "") . ($email ? " or Email ({$email})" : "") . ".";
+        }
 
         $url = "https://api.cloudflare.com/client/v4/accounts/{$accountId}/ai/run/{$model}";
 
@@ -174,16 +180,26 @@ class ChatbotService
         }
 
         Logger::warning('Cloudflare AI request failed', ['code' => $code, 'error' => $err, 'resp' => $response]);
-        return "I'm having a brief connection issue. Please feel free to reach me directly on WhatsApp (+92 319 6935307) or email (info@amaanullah.com).";
+        $phone = (string) setting('phone_number', '');
+        $email = (string) setting('contact_email', '');
+        return "I'm having a brief connection issue. Please feel free to reach me directly" . ($phone ? " on WhatsApp ({$phone})" : "") . ($email ? " or email ({$email})" : "") . ".";
     }
 
     /**
-     * Send email via PHPMailer or native mail.
+     * Send email via PHPMailer or native mail using database credentials.
      */
     public static function sendEmail(string $to, string $subject, string $htmlBody): bool
     {
+        $host = (string) setting('smtp_host', '');
+        $user = (string) setting('smtp_user', '');
+        $pass = trim((string) setting('smtp_pass', ''), '"\'');
+        $port = (int) setting('smtp_port', 0) ?: 465;
+        $enc  = strtolower((string) setting('smtp_encryption', ''));
+        $from = (string) setting('smtp_from', $user);
+        $fromName = (string) setting('smtp_from_name', (string) setting('site_name', ''));
+
         $phpmailerPath = BASE_PATH . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-        if (file_exists($phpmailerPath)) {
+        if (file_exists($phpmailerPath) && !empty($host) && !empty($user)) {
             require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/Exception.php';
             require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
             require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -192,14 +208,27 @@ class ChatbotService
                 $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
                 $mail->CharSet = 'UTF-8';
                 $mail->isSMTP();
-                $mail->Host       = env('SMTP_HOST', 'smtp.gmail.com');
+                $mail->Host       = $host;
                 $mail->SMTPAuth   = true;
-                $mail->Username   = env('SMTP_USER', 'akamaanullah@gmail.com');
-                $mail->Password   = trim(env('SMTP_PASS', 'gxju qxxb xddo vwgq'), '"\'');
-                $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port       = (int)env('SMTP_PORT', 465);
+                $mail->Username   = $user;
+                $mail->Password   = $pass;
+                $mail->Port       = $port;
 
-                $mail->setFrom(env('SMTP_FROM', 'akamaanullah@gmail.com'), env('SMTP_FROM_NAME', 'Amaanullah Khan Portfolio'));
+                if ($enc === 'tls' || $mail->Port == 587) {
+                    $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                } else {
+                    $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+                }
+
+                $mail->SMTPOptions = [
+                    'ssl' => [
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    ]
+                ];
+
+                $mail->setFrom($from, $fromName);
                 $mail->addAddress($to);
                 $mail->isHTML(true);
                 $mail->Subject = $subject;
@@ -212,7 +241,7 @@ class ChatbotService
         }
 
         // Fallback to mail()
-        $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: " . env('SMTP_FROM', 'info@amaanullah.com') . "\r\n";
+        $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: {$from}\r\n";
         return @mail($to, $subject, $htmlBody, $headers);
     }
 
@@ -247,7 +276,10 @@ class ChatbotService
             </div>
         </div>';
 
-        return self::sendEmail(env('SMTP_USER', 'akamaanullah@gmail.com'), $subject, $body);
+        $alertEmail = (string) setting('alert_email', (string) setting('smtp_user', ''));
+        if (empty($alertEmail)) return false;
+
+        return self::sendEmail($alertEmail, $subject, $body);
     }
 
     /**
@@ -263,7 +295,7 @@ class ChatbotService
         return [
             'success' => true,
             'latency' => $elapsed . 'ms',
-            'model'   => env('CF_AI_MODEL', '@cf/meta/llama-3.1-8b-instruct-fast'),
+            'model'   => (string) setting('cf_ai_model', ''),
             'reply'   => $reply
         ];
     }

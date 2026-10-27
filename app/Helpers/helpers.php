@@ -32,6 +32,47 @@ function config(string $key, $default = null) {
     return $item === null ? $cache[$file] : ($cache[$file][$item] ?? $default);
 }
 
+/**
+ * Retrieve dynamic configuration setting from database 'settings' table.
+ * Caches all settings in static memory on first call for zero query overhead.
+ */
+if (!function_exists('setting')) {
+    function setting(string $key, $default = null, bool $refresh = false) {
+        static $settings = null;
+        if ($settings === null || $refresh) {
+            try {
+                $db = \App\Core\Database::connection();
+                $stmt = $db->query("SELECT `key`, `value` FROM settings");
+                $settings = $stmt ? ($stmt->fetchAll(PDO::FETCH_KEY_PAIR) ?: []) : [];
+            } catch (\Throwable $e) {
+                $settings = [];
+            }
+        }
+        if (array_key_exists($key, $settings) && $settings[$key] !== null && $settings[$key] !== '') {
+            return $settings[$key];
+        }
+        return $default;
+    }
+}
+
+/**
+ * Save or update a dynamic configuration setting in database.
+ */
+if (!function_exists('save_setting')) {
+    function save_setting(string $key, $value): bool {
+        try {
+            $db = \App\Core\Database::connection();
+            $stmt = $db->prepare("INSERT INTO settings (`key`, `value`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`)");
+            $ok = $stmt->execute([$key, (string)$value]);
+            setting($key, null, true);
+            return $ok;
+        } catch (\Throwable $e) {
+            \App\Core\Logger::error("Failed to save setting [{$key}]: " . $e->getMessage());
+            return false;
+        }
+    }
+}
+
 /** Base path of the app, e.g. "" at the web root or "/web3d" in a XAMPP sub-folder. */
 function base_path_url(): string {
     static $base = null;

@@ -19,8 +19,8 @@
   "addressLocality": "Karachi",
   "addressCountry": "PK"
  },
- "email": "mailto:info@amaanullah.com",
- "telephone": "+92 319 6935307",
+ "email": "mailto:<?= htmlspecialchars((string) setting('contact_email', '')) ?>",
+ "telephone": "<?= htmlspecialchars((string) setting('phone_number', '')) ?>",
  "worksFor": {
   "@type": "Organization",
   "name": "Richmond Tech Group"

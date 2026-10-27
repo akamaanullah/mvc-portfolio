@@ -52,9 +52,9 @@ class PageSpeedService
      */
     public static function auditUrl(string $url, string $strategy = 'mobile'): ?array
     {
-        $apiKey = (string) env('PAGESPEED_API_KEY');
+        $apiKey = (string) setting('pagespeed_api_key', '');
         if (empty($apiKey)) {
-            Logger::warning('PAGESPEED_API_KEY not configured');
+            Logger::warning('PAGESPEED_API_KEY not configured in database settings');
             return null;
         }
 
@@ -121,7 +121,7 @@ class PageSpeedService
      */
     private static function runAuditSuite(string $strategy): array
     {
-        $siteUrl = (string) env('GSC_SITE_URL', 'https://amaanullah.com/');
+        $siteUrl = (string) setting('pagespeed_audit_url', (string) setting('site_domain', ''));
         $audit = self::auditUrl($siteUrl, $strategy);
 
         $perfScore = $audit['scores']['performance'] ?? 88;

@@ -61,7 +61,7 @@ class GoogleSearchConsoleService
      */
     public static function submitSitemap(string $sitemapPath): array
     {
-        $siteUrl = (string) env('GSC_SITE_URL', 'https://amaanullah.com/');
+        $siteUrl = (string) setting('gsc_site_url', '');
         $fullPath = str_starts_with($sitemapPath, 'http') ? $sitemapPath : rtrim($siteUrl, '/') . '/' . ltrim($sitemapPath, '/');
 
         for ($attempt = 1; $attempt <= 2; $attempt++) {
@@ -121,7 +121,7 @@ class GoogleSearchConsoleService
             return null;
         }
 
-        $siteUrl = (string) env('GSC_SITE_URL', 'https://amaanullah.com/');
+        $siteUrl = (string) setting('gsc_site_url', '');
         $startDate = $from ?: date('Y-m-d', strtotime('-30 days'));
         $endDate = $to ?: date('Y-m-d', strtotime('-2 days'));
 
@@ -168,7 +168,7 @@ class GoogleSearchConsoleService
      */
     private static function getValidToken(): ?string
     {
-        $keyPath = env('GSC_KEY_PATH', 'config/keys/search-console-key.json');
+        $keyPath = (string) setting('gsc_key_path', 'config/keys/search-console-key.json');
         if (!str_starts_with($keyPath, '/') && !preg_match('#^[A-Za-z]:#', $keyPath)) {
             $keyPath = BASE_PATH . '/' . $keyPath;
         }

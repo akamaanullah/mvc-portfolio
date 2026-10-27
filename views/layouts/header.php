@@ -1,6 +1,15 @@
 <?php
 /* Shared site header. $active = Home|Services|Projects|About|Articles|Contact. */
-?><script>window.__BASE_URL = '<?= rtrim(base_url(), '/') ?>';</script><?php
+?><script>
+window.__BASE_URL = '<?= rtrim(base_url(), '/') ?>';
+window.__SITE_SETTINGS = {
+    botName: <?= json_encode((string) setting('chatbot_name', '')) ?>,
+    welcomeMsg: <?= json_encode((string) setting('chatbot_welcome', '')) ?>,
+    phone: <?= json_encode((string) setting('phone_number', '')) ?>,
+    whatsapp: <?= json_encode((string) setting('whatsapp_url', '')) ?>,
+    showMobile: <?= json_encode((bool) setting('chatbot_show_mobile', 1)) ?>
+};
+</script><?php
 if (!empty($home)): ?><nav class="rev" style="animation-delay:.05s">
  <div class="logo"><a href="<?= base_url('/') ?>" aria-label="Amaanullah — home"><img class="hlogo" src="<?= asset_url('images/logo.png') ?>" alt="Amaanullah" width="1722" height="444" decoding="async"></a></div>
  <div class="links"><a class="on" href="<?= base_url('/') ?>">Home</a><a href="<?= base_url('/services') ?>">Services</a><a href="<?= base_url('/projects') ?>">Projects</a><a href="<?= base_url('/about') ?>">About</a><a href="<?= base_url('/articles') ?>">Articles</a><a href="<?= base_url('/contact') ?>">Contact</a></div>
