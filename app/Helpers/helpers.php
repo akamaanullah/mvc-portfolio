@@ -1,6 +1,10 @@
 <?php
 /* Global helpers: env(), config(), base_url(), asset_url(), e()/sanitize(), view(), csrf_token(). */
 
+if (!defined('PUBLIC_PATH')) {
+    define('PUBLIC_PATH', (defined('BASE_PATH') ? BASE_PATH : dirname(__DIR__, 2)) . '/public');
+}
+
 if (!function_exists('env')) {
     function env(string $key, $default = null) {
         static $vars = null;

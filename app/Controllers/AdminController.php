@@ -370,48 +370,63 @@ class AdminController extends Controller
                 $raw = $db->query("SELECT `key`, `value` FROM settings")->fetchAll(\PDO::FETCH_KEY_PAIR);
                 $viewData['settings'] = $raw;
                 $viewData['seoFiles'] = \App\Services\SeoFilesService::getFilesList();
-                $viewData['integrationsConfig'] = \App\Services\IntegrationService::getAll();
+                $intConfig = \App\Services\IntegrationService::getAll();
+                $viewData['integrationsConfig'] = $intConfig;
+
+                $gscConn = !empty($intConfig['gsc']['connected']);
+                $psConn  = !empty($intConfig['pagespeed']['connected']);
+                $waConn  = !empty($intConfig['whatsapp']['connected']);
+                $smtpConn = !empty($intConfig['smtp']['connected']);
+                $alertsConn = !empty($intConfig['alerts']['connected']);
+                $cfConn  = !empty($intConfig['cloudflare']['connected']);
+
                 $viewData['integrations'] = [
                     'gsc' => [
-                        'connected' => file_exists(BASE_PATH . '/config/keys/search-console-key.json'),
+                        'connected' => $gscConn,
                         'title' => 'Google Search Console',
-                        'desc' => 'Queries, impressions, sitemaps (' . setting('gsc_site_url', 'https://amaanullah.com/') . ')',
-                        'badge' => 'Connected',
+                        'desc' => $gscConn ? 'Queries, impressions, sitemaps (' . ($intConfig['gsc']['site_url'] ?: 'Site verified') . ')' : 'Service account credentials required',
+                        'badge' => $gscConn ? 'Connected' : 'Not Connected',
+                        'badge_class' => $gscConn ? 'good' : 'bad',
                         'link' => base_url('/admin/search-console')
                     ],
                     'pagespeed' => [
-                        'connected' => !empty(setting('pagespeed_api_key')),
+                        'connected' => $psConn,
                         'title' => 'Google PageSpeed Insights',
-                        'desc' => 'Lighthouse Core Web Vitals auditing engine',
-                        'badge' => 'Connected',
+                        'desc' => $psConn ? 'Lighthouse Core Web Vitals auditing engine (Active)' : 'Google PageSpeed Insights API key required',
+                        'badge' => $psConn ? 'Connected' : 'Not Configured',
+                        'badge_class' => $psConn ? 'good' : 'warn',
                         'link' => base_url('/admin/performance')
                     ],
                     'whatsapp' => [
-                        'connected' => true,
+                        'connected' => $waConn,
                         'title' => 'WhatsApp Direct Integration',
-                        'desc' => setting('phone_number', '+92 319 6935307') . ' · Chat Handoff',
-                        'badge' => 'Connected',
-                        'link' => setting('whatsapp_url', 'https://api.whatsapp.com/send?phone=923196935307')
+                        'desc' => $waConn ? ($intConfig['whatsapp']['phone'] . ' · Live Chat Direct Handoff') : 'WhatsApp phone number not configured',
+                        'badge' => $waConn ? 'Connected' : 'Not Configured',
+                        'badge_class' => $waConn ? 'good' : 'warn',
+                        'link' => $intConfig['whatsapp']['whatsapp_url'] ?: 'javascript:void(0)'
                     ],
                     'smtp' => [
-                        'connected' => !empty(setting('smtp_user')),
+                        'connected' => $smtpConn,
                         'title' => 'SMTP / Mail Server',
-                        'desc' => setting('smtp_host', 'smtp.gmail.com') . ':' . setting('smtp_port', '465') . ' (' . setting('smtp_user', 'akamaanullah@gmail.com') . ')',
-                        'badge' => 'Connected',
+                        'desc' => $smtpConn ? ($intConfig['smtp']['host'] . ':' . $intConfig['smtp']['port'] . ' (' . $intConfig['smtp']['user'] . ')') : 'SMTP credentials required for email delivery',
+                        'badge' => $smtpConn ? 'Connected' : 'Not Configured',
+                        'badge_class' => $smtpConn ? 'good' : 'warn',
                         'link' => 'javascript:void(0)'
                     ],
                     'alerts' => [
-                        'connected' => true,
+                        'connected' => $alertsConn,
                         'title' => 'Email Alerts & Notifications',
-                        'desc' => 'Live takeover alerts & lead briefs sent to ' . setting('alert_email', setting('contact_email', 'info@amaanullah.com')),
-                        'badge' => 'Connected',
+                        'desc' => $alertsConn ? ('Live takeover alerts & lead briefs sent to ' . $intConfig['alerts']['alert_email']) : 'Alert recipient email not configured',
+                        'badge' => $alertsConn ? 'Active' : 'Disabled',
+                        'badge_class' => $alertsConn ? 'good' : 'warn',
                         'link' => 'javascript:void(0)'
                     ],
                     'cloudflare' => [
-                        'connected' => !empty(setting('cf_api_token')),
+                        'connected' => $cfConn,
                         'title' => 'Cloudflare Workers AI',
-                        'desc' => setting('cf_ai_model', '@cf/meta/llama-3.1-8b-instruct-fast') . ' (Active)',
-                        'badge' => 'Connected',
+                        'desc' => $cfConn ? ($intConfig['cloudflare']['model'] . ' (Active AI Engine)') : 'Cloudflare Workers AI API Token & Account ID required',
+                        'badge' => $cfConn ? 'Connected' : 'Not Configured',
+                        'badge_class' => $cfConn ? 'good' : 'warn',
                         'link' => 'javascript:void(0)'
                     ]
                 ];

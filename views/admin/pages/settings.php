@@ -461,7 +461,7 @@ $seoFiles = $seoFiles ?? [];
                         <div>
                             <div class="row sb2">
                                 <b style="font-size:15px;"><?= htmlspecialchars($int['title']) ?></b>
-                                <span class="pill good" style="font-size:11px;">● <?= htmlspecialchars($int['badge']) ?></span>
+                                <span class="pill <?= htmlspecialchars($int['badge_class'] ?? ($int['connected'] ? 'good' : 'warn')) ?>" style="font-size:11px;">● <?= htmlspecialchars($int['badge']) ?></span>
                             </div>
                             <p class="mut sm" style="margin:10px 0 16px; line-height:1.5;"><?= htmlspecialchars($int['desc']) ?></p>
                         </div>
@@ -470,7 +470,7 @@ $seoFiles = $seoFiles ?? [];
                                 <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                                 Configure &amp; Manage →
                             </button>
-                            <span class="mut" style="font-size:11px;">Active</span>
+                            <span class="mut" style="font-size:11px;"><?= $int['connected'] ? 'Active' : 'Needs Setup' ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
