@@ -96,7 +96,7 @@
    <div class="actas av" style="transition-delay:.3s">
     <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
     <a class="lt2" href="<?= base_url('/contact') ?>"><!-- URL: contact page or #contact -->Let's Talk <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    <a class="story-link" href="<?= base_url('/about') ?>">Read my full story →</a>
+    <a class="story-link" href="<?= base_url('/about') ?>">About Amaanullah Khan →</a>
    </div>
   </div>
  </div>
