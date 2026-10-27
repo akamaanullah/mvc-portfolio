@@ -462,3 +462,34 @@ INSERT INTO `settings` (`key`, `value`, `type`) VALUES
 ('meta_default_title', 'Amaanullah Khan — Web Developer & Software Solutions', 'text'),
 ('meta_default_desc', 'Web developer and software architect based in Karachi, building custom CRMs, SaaS products, and high-performance web systems.', 'textarea')
 ON DUPLICATE KEY UPDATE `value`=VALUES(`value`);
+
+-- ---------------------------------------------------------------------
+-- 14. LIVE CHAT & CONVERSATIONS
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `chat_conversations` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `session_id` VARCHAR(100) NOT NULL UNIQUE,
+  `visitor_name` VARCHAR(150) NULL,
+  `visitor_email` VARCHAR(150) NULL,
+  `visitor_ip` VARCHAR(45) NULL,
+  `location` VARCHAR(255) NULL,
+  `user_agent` VARCHAR(255) NULL,
+  `current_page` VARCHAR(255) NULL,
+  `status` ENUM('bot', 'needs_human', 'active', 'closed') NOT NULL DEFAULT 'bot',
+  `last_message` TEXT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_status` (`status`),
+  INDEX `idx_updated` (`updated_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `conversation_id` INT UNSIGNED NOT NULL,
+  `sender` ENUM('visitor', 'bot', 'admin') NOT NULL,
+  `message` TEXT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_conversation` (`conversation_id`),
+  FOREIGN KEY (`conversation_id`) REFERENCES `chat_conversations`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

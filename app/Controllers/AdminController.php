@@ -342,6 +342,38 @@ class AdminController extends Controller
                     'created_at' => date('Y-m-d H:i:s')
                 ];
                 break;
+
+            case 'live-chat':
+                $filter = $_GET['tab'] ?? 'active';
+                $search = trim($_GET['q'] ?? '');
+                $conversations = \App\Models\ChatModel::listConversations($filter, $search);
+                $activeSessionKey = $_GET['session'] ?? '';
+
+                $activeConversation = null;
+                if (!empty($activeSessionKey)) {
+                    $activeConversation = \App\Models\ChatModel::getConversationBySession($activeSessionKey);
+                }
+                if (!$activeConversation && !empty($conversations)) {
+                    $activeConversation = $conversations[0];
+                }
+
+                $activeMessages = [];
+                $visitorProfile = null;
+                if ($activeConversation) {
+                    $activeMessages = \App\Models\ChatModel::getMessages($activeConversation['id']);
+                    $visitorProfile = \App\Models\ChatModel::getVisitorProfile(
+                        $activeConversation['visitor_ip'], 
+                        $activeConversation['session_id']
+                    );
+                }
+
+                $viewData['conversations'] = $conversations;
+                $viewData['activeConversation'] = $activeConversation;
+                $viewData['activeMessages'] = $activeMessages;
+                $viewData['visitorProfile'] = $visitorProfile;
+                $viewData['currentTab'] = $filter;
+                $viewData['needsHumanCount'] = \App\Models\ChatModel::countNeedsHuman();
+                break;
         }
 
         $content = view('admin/pages/' . $key, $viewData);
@@ -1048,5 +1080,96 @@ class AdminController extends Controller
         header('Content-Length: ' . filesize($logFile));
         readfile($logFile);
         exit;
+    }
+
+    /**
+     * GET /admin/live-chat/poll — Admin side polling for active conversations & messages.
+     */
+    public function liveChatPoll(): string
+    {
+        $this->requireAuth();
+        $convId = (int)($_GET['conversation_id'] ?? 0);
+        $lastMsgId = (int)($_GET['last_msg_id'] ?? 0);
+        $filter = $_GET['tab'] ?? 'active';
+
+        $conversations = \App\Models\ChatModel::listConversations($filter);
+        $needsHumanCount = \App\Models\ChatModel::countNeedsHuman();
+
+        $newMessages = [];
+        $activeConv = null;
+        if ($convId > 0) {
+            $activeConv = \App\Models\ChatModel::getConversation($convId);
+            $newMessages = \App\Models\ChatModel::getMessages($convId, $lastMsgId);
+        }
+
+        return $this->json([
+            'conversations'     => $conversations,
+            'needs_human_count' => $needsHumanCount,
+            'active_status'     => $activeConv['status'] ?? null,
+            'messages'          => $newMessages
+        ]);
+    }
+
+    /**
+     * POST /admin/live-chat/send — Admin replies to visitor.
+     */
+    public function liveChatSend(): string
+    {
+        $this->requireAuth();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $convId = (int)($input['conversation_id'] ?? 0);
+        $message = trim($input['message'] ?? '');
+
+        if (!$convId || empty($message)) {
+            return $this->json(['success' => false, 'error' => 'Missing conversation or message'], 400);
+        }
+
+        $msgId = \App\Models\ChatModel::addMessage($convId, 'admin', $message);
+        \App\Models\ChatModel::updateStatus($convId, 'active');
+
+        return $this->json([
+            'success' => true,
+            'message_id' => $msgId,
+            'created_at' => date('H:i')
+        ]);
+    }
+
+    /**
+     * POST /admin/live-chat/takeover — Toggle bot/human handling.
+     */
+    public function liveChatTakeover(): string
+    {
+        $this->requireAuth();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $convId = (int)($input['conversation_id'] ?? 0);
+        $takeover = !empty($input['takeover']);
+
+        if (!$convId) {
+            return $this->json(['success' => false, 'error' => 'Missing conversation ID'], 400);
+        }
+
+        $newStatus = $takeover ? 'active' : 'bot';
+        \App\Models\ChatModel::updateStatus($convId, $newStatus);
+
+        return $this->json(['success' => true, 'status' => $newStatus]);
+    }
+
+    /**
+     * POST /admin/live-chat/close — Admin closes conversation.
+     */
+    public function liveChatClose(): string
+    {
+        $this->requireAuth();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $convId = (int)($input['conversation_id'] ?? 0);
+
+        if (!$convId) {
+            return $this->json(['success' => false, 'error' => 'Missing conversation ID'], 400);
+        }
+
+        \App\Models\ChatModel::updateStatus($convId, 'closed');
+        \App\Models\ChatModel::addMessage($convId, 'admin', '__CLOSED__');
+
+        return $this->json(['success' => true]);
     }
 }

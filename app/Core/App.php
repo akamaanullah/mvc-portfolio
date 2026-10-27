@@ -69,6 +69,19 @@ class App
         $this->post('/admin/performance/run', [$C . 'AdminController', 'runPerformanceAudit']);
         $this->get('/admin/performance/download-log', [$C . 'AdminController', 'downloadErrorLog']);
 
+        // Chatbot Public Endpoints
+        $this->post('/api/chat/message', [$C . 'ChatbotController', 'message']);
+        $this->post('/api/chat/init-live', [$C . 'ChatbotController', 'initLive']);
+        $this->get('/api/chat/poll', [$C . 'ChatbotController', 'poll']);
+        $this->post('/api/chat/lead', [$C . 'ChatbotController', 'lead']);
+        $this->post('/api/chat/close', [$C . 'ChatbotController', 'close']);
+
+        // Admin Live Chat Management Endpoints
+        $this->get('/admin/live-chat/poll', [$C . 'AdminController', 'liveChatPoll']);
+        $this->post('/admin/live-chat/send', [$C . 'AdminController', 'liveChatSend']);
+        $this->post('/admin/live-chat/takeover', [$C . 'AdminController', 'liveChatTakeover']);
+        $this->post('/admin/live-chat/close', [$C . 'AdminController', 'liveChatClose']);
+
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);
         $this->get('/', [$C . 'HomeController', 'index']);

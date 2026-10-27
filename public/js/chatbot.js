@@ -1,25 +1,26 @@
 var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/\/js\/chatbot\.js.*$/,'');
-/*! AK Chatbot widget — UI only, vanilla JS, no dependencies.
- *  Configure BEFORE this script loads:
- *    window.AK_CHATBOT_CONFIG = { endpoint: '/chatbot/message' }   // null => DEMO mock
- *  Backend contract:  POST endpoint  JSON {message, history, session_id}
- *    -> JSON { reply: "markdown-lite text", chips?: [..], cards?: [{tag,title,text,button,url}], lead?: true }
+/*! AK Chatbot widget — Powered by Cloudflare Workers AI + Real-time Human Takeover.
+ *  Vanilla JS, zero dependencies, responsive glass design.
  */
 (function () {
   'use strict';
   var CFG = Object.assign({
-    endpoint: null,                       // EDIT: '/chatbot/message' when your trained bot is ready
-    leadEndpoint: null,                   // EDIT: '/chatbot/lead' (optional)
-    botName: '[Bot Name]',                // EDIT
-    whatsapp: 'https://wa.me/[NUMBER]',   // EDIT: talk-to-human link
-    poweredBy: '[Powered by]', poweredUrl: 'javascript:void(0)', // EDIT
-    greetingDelay: 4000, maxChars: 500, timeout: 20000
+    endpoint: (window.__BASE_URL || '') + '/api/chat/message',
+    leadEndpoint: (window.__BASE_URL || '') + '/api/chat/lead',
+    initLiveEndpoint: (window.__BASE_URL || '') + '/api/chat/init-live',
+    pollEndpoint: (window.__BASE_URL || '') + '/api/chat/poll',
+    closeEndpoint: (window.__BASE_URL || '') + '/api/chat/close',
+    botName: 'Amaanullah (Assistant)',
+    whatsapp: 'https://api.whatsapp.com/send?phone=923196935307',
+    poweredBy: 'Amaanullah Khan',
+    poweredUrl: (window.__BASE_URL || '') + '/about',
+    greetingDelay: 3500, maxChars: 500, timeout: 25000
   }, window.AK_CHATBOT_CONFIG || {});
 
-  var SKEY = 'akc_state_v1', TKEY = 'akc_tip_dismissed';
+  var SKEY = 'akc_state_v2', TKEY = 'akc_tip_dismissed';
   var CHIPS = ['Services', 'Get a quote', 'See projects', 'Book a call', 'Pricing'];
 
-  /* ---------------- API stub ---------------- */
+  /* ---------------- API ---------------- */
   function sid() {
     var s = sessionStorage.getItem('akc_sid');
     if (!s) { s = 'akc_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); sessionStorage.setItem('akc_sid', s); }
@@ -34,47 +35,26 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
       body: JSON.stringify(body)
     }).then(function (r) { clearTimeout(t); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
   }
+
   var ChatbotAPI = {
     send: function (p) {
       if (CFG.endpoint) return post(CFG.endpoint, p).then(function (d) { return typeof d === 'string' ? { reply: d } : d; });
-      return DEMO.reply(p.message);
+      return Promise.resolve({ reply: "Hello! How can I help you today?" });
     },
-    lead: function (p) { return CFG.leadEndpoint ? post(CFG.leadEndpoint, p) : new Promise(function (r) { setTimeout(function () { r({ ok: true }); }, 900); }); }
-  };
-  window.ChatbotAPI = ChatbotAPI;
-
-  /* ============ DEMO MOCK — remove/ignore once CFG.endpoint is set ============
-     Generic canned replies only. No prices or claims. */
-  var DEMO = {
-    fail: false, // set true in console to preview the error/retry state
-    rules: [
-      [/servic/i, { reply: "Here are the main things I can help with. Tap one to learn more:", cards: [
-        { tag: 'Service', title: 'Web Development', text: 'Websites and web apps built around your business goals.', button: 'View services', url: AK_BASE + '/services' },
-        { tag: 'Service', title: 'CRM & SaaS', text: 'Custom CRMs and multi-tenant SaaS platforms.', button: 'View services', url: AK_BASE + '/services' },
-        { tag: 'Service', title: 'Automation & AI', text: 'Workflows and chatbots that save your team time.', button: 'View services', url: AK_BASE + '/services' }],
-        chips: ['Get a quote', 'See projects'] }],
-      [/quote|estimate|start a project/i, { reply: "Happy to help! Share your **name** and **email** below and a short note about the project — you'll get a reply with next steps.", lead: true }],
-      [/project|portfolio|work/i, { reply: "Here are a few recent projects:", cards: [
-        { tag: 'Product', title: 'Chatrox', text: 'Real-time chat platform for web & mobile.', button: 'Read case study', url: AK_BASE + '/projects/chatrox' },
-        { tag: 'Web App', title: 'Multi-Tenant CRM', text: 'One platform, many businesses, isolated data.', button: 'View project', url: AK_BASE + '/projects' },
-        { tag: 'Web App', title: 'HRM', text: 'People, attendance and payroll in one place.', button: 'View project', url: AK_BASE + '/projects' }],
-        chips: ['Get a quote', 'Services'] }],
-      [/call|meet|book|schedule/i, { reply: "Sure! You can:\n- Book a call via the **[Contact page](" + AK_BASE + "/contact)**\n- Or message directly on **[WhatsApp](" + CFG.whatsapp + ")**\n\nWant me to take your details instead?", chips: ['Get a quote'] }],
-      [/pric|cost|budget|rate|how much/i, { reply: "Pricing **depends on the scope** — features, integrations and timeline all play a part. The best way to get an accurate number is a free quote.\n\nShall I take your details?", chips: ['Get a quote', 'Book a call'] }],
-      [/^(hi|hello|hey|salam|assalam)/i, { reply: "Hi there! 👋 How can I help you today?", chips: CHIPS }]
-    ],
-    reply: function (msg) {
-      var self = this;
-      return new Promise(function (res, rej) {
-        setTimeout(function () {
-          if (self.fail) return rej(new Error('demo failure'));
-          for (var i = 0; i < self.rules.length; i++) if (self.rules[i][0].test(msg)) return res(JSON.parse(JSON.stringify(self.rules[i][1])));
-          res({ reply: "*(Demo mode)* Thanks for your message! Once the trained assistant is connected, I'll answer this properly. Meanwhile, pick an option:", chips: CHIPS });
-        }, 1100 + Math.random() * 700);
-      });
+    lead: function (p) {
+      return CFG.leadEndpoint ? post(CFG.leadEndpoint, p) : Promise.resolve({ ok: true });
+    },
+    initLive: function (p) {
+      return CFG.initLiveEndpoint ? post(CFG.initLiveEndpoint, p) : Promise.resolve({ success: true });
+    },
+    poll: function (sessionId, lastId) {
+      if (!CFG.pollEndpoint) return Promise.resolve({ status: 'bot', messages: [] });
+      return fetch(CFG.pollEndpoint + '?session_id=' + encodeURIComponent(sessionId) + '&last_id=' + (lastId || 0) + '&_=' + Date.now(), {
+        headers: { 'Accept': 'application/json' }
+      }).then(function (r) { return r.json(); });
     }
   };
-  /* ============================ END DEMO MOCK ============================ */
+  window.ChatbotAPI = ChatbotAPI;
 
   /* ---------------- helpers ---------------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -112,6 +92,45 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
   try { var saved = JSON.parse(sessionStorage.getItem(SKEY)); if (saved) S = Object.assign(S, saved); } catch (e) {}
   function save() { try { sessionStorage.setItem(SKEY, JSON.stringify({ open: S.open, msgs: S.msgs.slice(-60), unread: S.unread })); } catch (e) {} }
 
+  /* ---------------- live mode state ---------------- */
+  var isLiveMode = false, livePollTimer = null, lastLiveMsgId = 0;
+  function setLiveMode(active) {
+    isLiveMode = active;
+    var ttl = $('.akc-ttl');
+    if (active) {
+      if (ttl) ttl.innerHTML = '<strong>Amaanullah Khan</strong><small style="color:#ef4444; font-weight:700;">🔴 Live Session Active</small>';
+      startLivePolling();
+    } else {
+      if (ttl) ttl.innerHTML = '<strong>' + esc(CFG.botName) + '</strong><small>Online · Typically replies instantly</small>';
+      if (livePollTimer) clearInterval(livePollTimer);
+    }
+  }
+
+  function startLivePolling() {
+    if (livePollTimer) clearInterval(livePollTimer);
+    livePollTimer = setInterval(function () {
+      ChatbotAPI.poll(sid(), lastLiveMsgId).then(function (res) {
+        if (res.status === 'closed') {
+          setLiveMode(false);
+          var m = { role: 'bot', text: 'Chat session was closed. Feel free to message again if you need any further help!', ts: Date.now() };
+          S.msgs.push(m); save(); draw(m, true);
+          return;
+        }
+        if (res.messages && res.messages.length > 0) {
+          res.messages.forEach(function (msg) {
+            if (msg.message === '__CLOSED__') return;
+            if (msg.id > lastLiveMsgId) {
+              lastLiveMsgId = msg.id;
+              var m = { role: 'bot', text: msg.message, isLiveAdmin: true, ts: new Date(msg.created_at).getTime() || Date.now() };
+              S.msgs.push(m); save(); draw(m, true);
+              toBottom();
+            }
+          });
+        }
+      }).catch(function () {});
+    }, 2000);
+  }
+
   /* ---------------- DOM ---------------- */
   var root = el('div', 'akc');
   root.innerHTML =
@@ -123,7 +142,8 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
         '<button class="akc-hb akc-min" type="button" aria-label="Minimize chat">' + I.min + '</button>' +
         '<button class="akc-hb akc-close" type="button" aria-label="Close chat">' + I.x + '</button>' +
         '<div class="akc-menu" role="menu"><button role="menuitem" type="button" class="akc-clear">🗑️ Clear chat</button>' +
-        '<a role="menuitem" class="akc-human" href="' + esc(CFG.whatsapp) + '" target="_blank" rel="noopener">💬 Talk to a human</a></div>' +
+        '<a role="menuitem" class="akc-human" href="javascript:void(0)">💬 Talk to a human</a>' +
+        '<a role="menuitem" class="akc-wa" href="' + esc(CFG.whatsapp) + '" target="_blank" rel="noopener">📱 Chat on WhatsApp</a></div>' +
       '</header>' +
       '<div class="akc-body" aria-live="polite" aria-relevant="additions" tabindex="-1"></div>' +
       '<button class="akc-down" type="button" aria-label="Scroll to latest">' + I.down + '</button>' +
@@ -153,6 +173,12 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     $('.akc-more').addEventListener('click', function (e) { e.stopPropagation(); toggleMenu(); });
     document.addEventListener('click', function (e) { if (!menu.contains(e.target)) toggleMenu(false); });
     $('.akc-clear').addEventListener('click', function () { S.msgs = []; save(); render(); toggleMenu(false); ta.focus(); });
+    $('.akc-human').addEventListener('click', function (e) {
+      e.preventDefault();
+      toggleMenu(false);
+      var m = { role: 'bot', text: "Of course! Let's connect you directly with Amaanullah.", handoff: true, ts: Date.now() };
+      S.msgs.push(m); save(); draw(m, true); toBottom();
+    });
     $('form').addEventListener('submit', function (e) { e.preventDefault(); submit(); });
     ta.addEventListener('input', onInput);
     ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); submit(); } });
@@ -160,6 +186,17 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     down.addEventListener('click', function () { toBottom(); });
     root.addEventListener('keydown', trap);
     swipe(); keyboard();
+
+    // Check if live session already open
+    setTimeout(function () {
+      if (CFG.pollEndpoint) {
+        ChatbotAPI.poll(sid(), 0).then(function (res) {
+          if (res.status === 'active' || res.status === 'needs_human') {
+            setLiveMode(true);
+          }
+        }).catch(function () {});
+      }
+    }, 600);
   }
 
   function setOpen(o, instant) {
@@ -195,7 +232,7 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     S.msgs.forEach(function (m, i) { draw(m, i === S.msgs.length - 1); });
   }
   function welcome() {
-    var w = el('div', 'akc-welcome', '<div class="akc-big" aria-hidden="true">' + eyes(2) + '</div><h3>Hi there <em>👋</em></h3><p>I\'m ' + esc(CFG.botName) + ', Amaanullah\'s assistant. Ask about services, projects or start a quote.</p>');
+    var w = el('div', 'akc-welcome', '<div class="akc-big" aria-hidden="true">' + eyes(2) + '</div><h3>Hi there <em>👋</em></h3><p>I\'m ' + esc(CFG.botName) + ', Amaanullah\'s assistant. Ask about services, custom CRMs, Laravel apps or discuss your project.</p>');
     w.appendChild(chips(CHIPS, true)); body.appendChild(w);
   }
   function chips(list, center) {
@@ -209,8 +246,10 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     var col = el('div', 'akc-col');
     col.appendChild(el('div', 'akc-bub', m.role === 'user' ? esc(m.text).replace(/\n/g, '<br>') : md(m.text)));
     if (m.error) { var r = el('button', 'akc-retry', '↻ Retry'); r.type = 'button'; r.onclick = function () { S.msgs.splice(S.msgs.indexOf(m), 1); save(); render(); ask(m.retry); }; col.appendChild(r); }
-    col.appendChild(el('div', 'akc-time', (m.role === 'user' ? 'You · ' : '') + time(m.ts)));
+    var timeLabel = (m.role === 'user' ? 'You · ' : (m.isLiveAdmin ? 'Amaanullah (Live) · ' : '')) + time(m.ts);
+    col.appendChild(el('div', 'akc-time', timeLabel));
     row.appendChild(col); body.appendChild(row);
+
     if (m.cards && m.cards.length) {
       var cs = el('div', 'akc-cards');
       m.cards.forEach(function (c) {
@@ -219,8 +258,10 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
       var wrap = el('div'); wrap.style.paddingLeft = '38px'; wrap.appendChild(cs); body.appendChild(wrap);
     }
     if (m.lead) body.appendChild(leadCard(m));
-    if (last && m.chips && m.chips.length && !m.lead) body.appendChild(chips(m.chips));
+    if (m.handoff) body.appendChild(handoffCard(m));
+    if (last && m.chips && m.chips.length && !m.lead && !m.handoff) body.appendChild(chips(m.chips));
   }
+
   function leadCard(m) {
     var f = el('form', 'akc-lead');
     if (m.leadDone) { f.classList.add('done'); f.innerHTML = '<div class="akc-ok">✓</div><strong>Thanks, ' + esc(m.leadDone) + '!</strong><p>Your details were received. You\'ll hear back soon.</p>'; return f; }
@@ -236,9 +277,47 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
         x[0].setAttribute('aria-invalid', x[1]); errs[x[3]].textContent = x[1] ? x[2] : ''; if (x[1] && ok) { ok = false; x[0].focus(); } });
       if (!ok) return;
       var b = f.querySelector('button'); b.disabled = true; b.textContent = 'Sending…';
-      ChatbotAPI.lead({ name: n, email: em, session_id: sid(), history: S.msgs.slice(-10) }).then(function () {
+      var transcript = S.msgs.slice(-10).map(function(x){ return (x.role === 'user' ? 'User: ' : 'AI: ') + x.text; }).join('\n');
+      ChatbotAPI.lead({ name: n, email: em, session_id: sid(), requirement: 'Lead from chatbot', transcript: transcript }).then(function () {
         m.leadDone = n.split(' ')[0]; save(); var nf = leadCard(m); f.replaceWith(nf);
       }).catch(function () { b.disabled = false; b.textContent = 'Try again'; errs[1].textContent = 'Couldn\'t send. Please retry.'; });
+    };
+    return f;
+  }
+
+  function handoffCard(m) {
+    var f = el('form', 'akc-lead akc-handoff-form');
+    if (m.handoffDone) {
+      f.classList.add('done');
+      f.innerHTML = '<div class="akc-ok">🔴</div><strong>Connecting live...</strong><p>Amaanullah has been notified. You can message directly here.</p>';
+      return f;
+    }
+    f.noValidate = true;
+    f.innerHTML = '<strong>Talk Live with Amaanullah</strong><p>Enter your contact details so we can alert him:</p>' +
+      '<label for="akc-hn">Your Name</label><input id="akc-hn" name="name" autocomplete="name" placeholder="Your name" required><div class="akc-ferr"></div>' +
+      '<label for="akc-he">Email or Phone</label><input id="akc-he" name="email" placeholder="you@company.com" required><div class="akc-ferr"></div>' +
+      '<button class="akc-btn o" type="submit" style="background:linear-gradient(135deg, #f26a1b, #ff8a3d); color:#fff; border:none; padding:10px 16px; border-radius:10px; font-weight:700; cursor:pointer; width:100%; margin-top:8px;">Connect Me Now →</button>';
+    f.onsubmit = function (e) {
+      e.preventDefault();
+      var n = f.name.value.trim(), em = f.email.value.trim(), errs = f.querySelectorAll('.akc-ferr');
+      if (!n || !em) {
+        if (!n) errs[0].textContent = 'Please enter your name';
+        if (!em) errs[1].textContent = 'Please enter your email or phone';
+        return;
+      }
+      var b = f.querySelector('button');
+      b.disabled = true; b.textContent = 'Connecting...';
+      var ctx = S.msgs.slice(-6).map(function(x){ return (x.role === 'user' ? 'User: ' : 'Bot: ') + x.text; }).join('\n');
+      ChatbotAPI.initLive({ name: n, email: em, session_id: sid(), context: ctx }).then(function () {
+        m.handoffDone = true;
+        save();
+        setLiveMode(true);
+        var nf = handoffCard(m);
+        f.replaceWith(nf);
+      }).catch(function () {
+        b.disabled = false; b.textContent = 'Try again';
+        errs[1].textContent = 'Connection failed. Please retry or contact via WhatsApp.';
+      });
     };
     return f;
   }
@@ -255,8 +334,20 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     var t = el('div', 'akc-row bot akc-typing-row', '<div class="akc-mini" aria-hidden="true">' + eyes(2) + '</div><div class="akc-bub akc-typing" aria-label="' + esc(CFG.botName) + ' is typing"><i></i><i></i><i></i></div>');
     body.appendChild(t); toBottom();
     var hist = S.msgs.slice(-12).map(function (m) { return { role: m.role, content: m.text }; });
-    ChatbotAPI.send({ message: text, history: hist, session_id: sid() }).then(function (r) {
-      t.remove(); var m = { role: 'bot', text: r.reply || '', cards: r.cards, chips: r.chips, lead: r.lead, ts: Date.now() };
+    ChatbotAPI.send({ message: text, history: hist, session_id: sid(), current_page: window.location.pathname }).then(function (r) {
+      t.remove();
+      if (r.handoff) {
+        var m = { role: 'bot', text: r.reply || "Of course! Let's connect you directly with Amaanullah.", handoff: true, ts: Date.now() };
+        S.msgs.push(m); save(); draw(m, true);
+        return;
+      }
+      if (r.live_mode) {
+        setLiveMode(true);
+        return;
+      }
+      var cleanText = (r.reply || '').replace(/LEAD_FORM_REQUEST:?/g, '').replace(/DEAL_CLOSE:?/g, '').trim();
+      var showLead = !!(r.lead || (r.reply && (r.reply.indexOf('LEAD_FORM_REQUEST:') !== -1 || r.reply.indexOf('DEAL_CLOSE:') !== -1)));
+      var m = { role: 'bot', text: cleanText, cards: r.cards, chips: r.chips, lead: showLead, ts: Date.now() };
       S.msgs.push(m); if (!S.open) { S.unread = true; root.classList.add('unread'); } save(); draw(m, true);
     }).catch(function () {
       t.remove(); var m = { role: 'bot', error: true, retry: text, text: 'Sorry, something went wrong. Please check your connection and try again.', ts: Date.now() };
@@ -277,6 +368,6 @@ var AK_BASE=((document.currentScript&&document.currentScript.src)||'').replace(/
     vv.addEventListener('resize', fit); fit();
   }
 
-  window.AKChatbot = { open: function () { setOpen(true); }, close: function () { setOpen(false); }, send: function (t) { setOpen(true); send(t); }, demo: DEMO, api: ChatbotAPI };
+  window.AKChatbot = { open: function () { setOpen(true); }, close: function () { setOpen(false); }, send: function (t) { setOpen(true); send(t); }, api: ChatbotAPI };
   (document.readyState === 'loading') ? document.addEventListener('DOMContentLoaded', mount) : mount();
 })();
