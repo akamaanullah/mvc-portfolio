@@ -35,7 +35,7 @@ class ChatbotController extends Controller
         ]);
 
         // Save visitor's message
-        ChatModel::addMessage($conv['id'], 'visitor', $userMessage);
+        $visitorMsgId = ChatModel::addMessage($conv['id'], 'visitor', $userMessage);
 
         // If conversation is already in human mode, don't call bot
         if (in_array($conv['status'], ['needs_human', 'active'])) {
@@ -43,6 +43,7 @@ class ChatbotController extends Controller
                 'live_mode'  => true,
                 'status'     => $conv['status'],
                 'session_id' => $sessionId,
+                'message_id' => $visitorMsgId,
                 'reply'      => null
             ]);
         }
@@ -71,12 +72,13 @@ class ChatbotController extends Controller
         $aiReply = ChatbotService::ask($userMessage, $history);
 
         // Save AI reply to database
-        ChatModel::addMessage($conv['id'], 'bot', $aiReply);
+        $botMsgId = ChatModel::addMessage($conv['id'], 'bot', $aiReply);
 
         return $this->json([
             'reply'      => $aiReply,
             'session_id' => $sessionId,
-            'status'     => 'bot'
+            'status'     => 'bot',
+            'message_id' => $botMsgId
         ]);
     }
 

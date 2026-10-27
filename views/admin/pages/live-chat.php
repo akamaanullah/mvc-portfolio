@@ -123,11 +123,17 @@ function getAvatarColor(?string $name): string {
                 <?php if (empty($messages)): ?>
                     <div class="m sys">No messages recorded yet. Waiting for visitor...</div>
                 <?php else: ?>
-                    <?php foreach ($messages as $m): 
+                    <?php 
+                    $seenMids = [];
+                    foreach ($messages as $m): 
                         if ($m['message'] === '__CLOSED__') {
                             echo '<div class="m sys">Conversation was closed.</div>';
                             continue;
                         }
+                        if (isset($seenMids[$m['id']])) {
+                            continue;
+                        }
+                        $seenMids[$m['id']] = true;
                         $senderClass = $m['sender'] === 'visitor' ? 'v' : ($m['sender'] === 'admin' ? 'a' : 'b');
                         $senderLabel = $m['sender'] === 'visitor' ? htmlspecialchars($active['visitor_name'] ?: 'Visitor') : ($m['sender'] === 'admin' ? 'Amaanullah (You)' : 'Bot');
                         $timeStr = date('H:i', strtotime($m['created_at']));
@@ -254,9 +260,10 @@ function getAvatarColor(?string $name): string {
     let lastMsgId = 0;
     if (msgsContainer) {
         const existing = msgsContainer.querySelectorAll('[data-mid]');
-        if (existing.length > 0) {
-            lastMsgId = parseInt(existing[existing.length - 1].getAttribute('data-mid')) || 0;
-        }
+        existing.forEach(el => {
+            const mid = parseInt(el.getAttribute('data-mid'), 10) || 0;
+            if (mid > lastMsgId) lastMsgId = mid;
+        });
         msgsContainer.scrollTop = msgsContainer.scrollHeight;
     }
 
@@ -285,7 +292,9 @@ function getAvatarColor(?string $name): string {
             });
             const data = await res.json();
             if (data.success) {
-                appendMsg('a', msg, 'Amaanullah (You)', data.created_at || 'Just now', data.message_id);
+                const newMid = parseInt(data.message_id, 10) || 0;
+                if (newMid > lastMsgId) lastMsgId = newMid;
+                appendMsg('a', msg, 'Amaanullah (You)', data.created_at || 'Just now', newMid);
                 cmpTxt.value = '';
                 if (takeoverBox && !takeoverBox.checked) {
                     takeoverBox.checked = true;
@@ -312,6 +321,13 @@ function getAvatarColor(?string $name): string {
 
     function appendMsg(senderClass, text, senderLabel, timeStr, mid) {
         if (!msgsContainer) return;
+        if (mid) {
+            mid = parseInt(mid, 10);
+            if (msgsContainer.querySelector('[data-mid="' + mid + '"]')) {
+                if (mid > lastMsgId) lastMsgId = mid;
+                return; // Prevent duplicate element in DOM
+            }
+        }
         const div = document.createElement('div');
         div.className = 'm ' + senderClass;
         if (mid) div.setAttribute('data-mid', mid);
@@ -445,12 +461,14 @@ function getAvatarColor(?string $name): string {
             if (data.messages && data.messages.length > 0) {
                 let hasNewUserMsg = false;
                 data.messages.forEach(m => {
-                    if (m.id > lastMsgId) {
-                        const sClass = m.sender === 'visitor' ? 'v' : (m.sender === 'admin' ? 'a' : 'b');
-                        const sLabel = m.sender === 'visitor' ? 'Visitor' : (m.sender === 'admin' ? 'Amaanullah (You)' : 'Bot');
-                        appendMsg(sClass, m.message, sLabel, m.created_at ? m.created_at.substr(11, 5) : 'Now', m.id);
-                        if (m.sender === 'visitor') hasNewUserMsg = true;
+                    const numId = parseInt(m.id, 10);
+                    if (numId > lastMsgId) {
+                        lastMsgId = numId;
                     }
+                    const sClass = m.sender === 'visitor' ? 'v' : (m.sender === 'admin' ? 'a' : 'b');
+                    const sLabel = m.sender === 'visitor' ? (document.getElementById('viName')?.textContent || 'Visitor') : (m.sender === 'admin' ? 'Amaanullah (You)' : 'Bot');
+                    appendMsg(sClass, m.message, sLabel, m.created_at ? m.created_at.substr(11, 5) : 'Now', numId);
+                    if (m.sender === 'visitor') hasNewUserMsg = true;
                 });
                 if (hasNewUserMsg) {
                     try { beepAudio.play(); } catch(err) {}

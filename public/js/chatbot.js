@@ -103,49 +103,117 @@
   try { 
     var saved = JSON.parse(sessionStorage.getItem(SKEY)); 
     if (saved && Array.isArray(saved.msgs)) {
-      // Clean any legacy mock text
-      saved.msgs = saved.msgs.filter(function(m) {
-        return !m.text || m.text.indexOf('Demo mode') === -1;
+      // Clean legacy mock text and remove duplicate consecutive/identical bubbles
+      var seenIds = {}, cleaned = [];
+      saved.msgs.forEach(function(m, idx) {
+        if (!m || !m.text) return;
+        if (m.text.indexOf('Demo mode') !== -1) return;
+        if (m.mid) {
+          if (seenIds[m.mid]) return;
+          seenIds[m.mid] = true;
+        }
+        // Deduplicate identical consecutive messages within 30s
+        if (cleaned.length > 0) {
+          var prev = cleaned[cleaned.length - 1];
+          if (prev && prev.role === m.role && prev.text === m.text && Math.abs((prev.ts || 0) - (m.ts || 0)) < 30000) {
+            return;
+          }
+        }
+        cleaned.push(m);
       });
+      saved.msgs = cleaned;
       S = Object.assign(S, saved);
     } 
   } catch (e) {}
   function save() { try { sessionStorage.setItem(SKEY, JSON.stringify({ open: S.open, msgs: S.msgs.slice(-60), unread: S.unread })); } catch (e) {} }
 
+  function computeLastLiveMsgId() {
+    var max = 0;
+    if (Array.isArray(S.msgs)) {
+      for (var i = 0; i < S.msgs.length; i++) {
+        var id = parseInt(S.msgs[i].mid, 10);
+        if (!isNaN(id) && id > max) {
+          max = id;
+        }
+      }
+    }
+    return max;
+  }
+
   /* ---------------- live mode state ---------------- */
-  var isLiveMode = false, livePollTimer = null, lastLiveMsgId = 0;
+  var isLiveMode = false, livePollTimer = null, lastLiveMsgId = computeLastLiveMsgId();
   function setLiveMode(active) {
+    var wasActive = isLiveMode;
     isLiveMode = active;
     var ttl = $('.akc-ttl');
     if (active) {
       if (ttl) ttl.innerHTML = '<strong>Amaanullah Khan</strong><small style="color:#ef4444; font-weight:700;">🔴 Live Session Active</small>';
-      startLivePolling();
+      if (!wasActive || !livePollTimer) {
+        startLivePolling();
+      }
     } else {
       if (ttl) ttl.innerHTML = '<strong>' + esc(CFG.botName) + '</strong><small>Online · Typically replies instantly</small>';
-      if (livePollTimer) clearInterval(livePollTimer);
+      if (livePollTimer) {
+        clearInterval(livePollTimer);
+        livePollTimer = null;
+      }
     }
   }
 
   function startLivePolling() {
-    if (livePollTimer) clearInterval(livePollTimer);
+    if (livePollTimer) {
+      clearInterval(livePollTimer);
+      livePollTimer = null;
+    }
+    lastLiveMsgId = Math.max(lastLiveMsgId, computeLastLiveMsgId());
+
     livePollTimer = setInterval(function () {
       ChatbotAPI.poll(sid(), lastLiveMsgId).then(function (res) {
         if (res.status === 'closed') {
           setLiveMode(false);
-          var m = { role: 'bot', text: 'Chat session was closed. Feel free to message again if you need any further help!', ts: Date.now() };
-          S.msgs.push(m); save(); draw(m, true);
+          var hasClosed = S.msgs.some(function(x) {
+            return x.text && x.text.indexOf('Chat session was closed') !== -1;
+          });
+          if (!hasClosed) {
+            var m = { mid: 'closed_' + Date.now(), role: 'bot', text: 'Chat session was closed. Feel free to message again if you need any further help!', ts: Date.now() };
+            S.msgs.push(m); save(); draw(m, true); toBottom();
+          }
           return;
         }
         if (res.messages && res.messages.length > 0) {
+          var anyNew = false;
           res.messages.forEach(function (msg) {
             if (msg.message === '__CLOSED__') return;
-            if (msg.id > lastLiveMsgId) {
-              lastLiveMsgId = msg.id;
-              var m = { role: 'bot', text: msg.message, isLiveAdmin: true, ts: new Date(msg.created_at).getTime() || Date.now() };
-              S.msgs.push(m); save(); draw(m, true);
-              toBottom();
+            var numId = parseInt(msg.id, 10);
+            if (!isNaN(numId) && numId > lastLiveMsgId) {
+              lastLiveMsgId = numId;
             }
+
+            // Deduplication: check if already in S.msgs by mid or by identical content & close timestamp
+            var alreadyInState = S.msgs.some(function (x) {
+              return (x.mid && x.mid === numId) || (x.role === 'bot' && x.text === msg.message && Math.abs((x.ts || 0) - (new Date(msg.created_at).getTime() || 0)) < 4000);
+            });
+            if (alreadyInState) return;
+
+            // Deduplication: check if already rendered in DOM
+            if (body && body.querySelector('[data-mid="' + numId + '"]')) return;
+
+            var m = {
+              mid: numId,
+              role: 'bot',
+              text: msg.message,
+              isLiveAdmin: true,
+              ts: new Date(msg.created_at).getTime() || Date.now()
+            };
+            S.msgs.push(m);
+            draw(m, true);
+            anyNew = true;
           });
+
+          if (anyNew) {
+            save();
+            toBottom();
+          }
         }
       }).catch(function () {});
     }, 2000);
@@ -209,7 +277,7 @@
 
     // Check if live session already open
     setTimeout(function () {
-      ChatbotAPI.poll(sid(), 0).then(function (res) {
+      ChatbotAPI.poll(sid(), lastLiveMsgId).then(function (res) {
         if (res.status === 'active' || res.status === 'needs_human') {
           setLiveMode(true);
         }
@@ -259,7 +327,11 @@
     return c;
   }
   function draw(m, last) {
+    if (m.mid && body && body.querySelector('[data-mid="' + m.mid + '"]')) {
+      return; // Element with this mid already rendered in DOM
+    }
     var row = el('div', 'akc-row ' + (m.role === 'user' ? 'user' : 'bot') + (m.error ? ' akc-err' : ''));
+    if (m.mid) row.setAttribute('data-mid', m.mid);
     row.innerHTML = '<div class="akc-mini" aria-hidden="true">' + eyes(2) + '</div>';
     var col = el('div', 'akc-col');
     col.appendChild(el('div', 'akc-bub', m.role === 'user' ? esc(m.text).replace(/\n/g, '<br>') : md(m.text)));
@@ -343,8 +415,9 @@
   /* ---------------- flow ---------------- */
   function submit() { var v = ta.value.trim().slice(0, CFG.maxChars); if (!v || waiting) return; ta.value = ''; onInput(); send(v); }
   function send(text) {
-    S.msgs.push({ role: 'user', text: text, ts: Date.now() }); save();
-    if (body.querySelector('.akc-welcome')) render(); else { body.querySelectorAll('.akc-chips.left').forEach(function (c) { c.remove(); }); draw(S.msgs[S.msgs.length - 1]); }
+    var m = { mid: 'u_' + Date.now() + '_' + Math.floor(Math.random() * 1000), role: 'user', text: text, ts: Date.now() };
+    S.msgs.push(m); save();
+    if (body.querySelector('.akc-welcome')) render(); else { body.querySelectorAll('.akc-chips.left').forEach(function (c) { c.remove(); }); draw(m); }
     toBottom(); ask(text);
   }
   function ask(text) {
@@ -355,7 +428,7 @@
     ChatbotAPI.send({ message: text, history: hist, session_id: sid(), current_page: window.location.pathname }).then(function (r) {
       t.remove();
       if (r.handoff) {
-        var m = { role: 'bot', text: r.reply || "Of course! Let's connect you directly with Amaanullah.", handoff: true, ts: Date.now() };
+        var m = { mid: 'sys_' + Date.now(), role: 'bot', text: r.reply || "Of course! Let's connect you directly with Amaanullah.", handoff: true, ts: Date.now() };
         S.msgs.push(m); save(); draw(m, true);
         return;
       }
@@ -365,11 +438,12 @@
       }
       var cleanText = (r.reply || '').replace(/LEAD_FORM_REQUEST:?/g, '').replace(/DEAL_CLOSE:?/g, '').trim();
       var showLead = !!(r.lead || (r.reply && (r.reply.indexOf('LEAD_FORM_REQUEST:') !== -1 || r.reply.indexOf('DEAL_CLOSE:') !== -1)));
-      var m = { role: 'bot', text: cleanText, cards: r.cards, chips: r.chips, lead: showLead, ts: Date.now() };
+      var botMid = r.message_id ? parseInt(r.message_id, 10) : ('b_' + Date.now() + '_' + Math.floor(Math.random() * 1000));
+      var m = { mid: botMid, role: 'bot', text: cleanText, cards: r.cards, chips: r.chips, lead: showLead, ts: Date.now() };
       S.msgs.push(m); if (!S.open) { S.unread = true; root.classList.add('unread'); } save(); draw(m, true);
     }).catch(function (err) {
       console.error('Chat error:', err);
-      t.remove(); var m = { role: 'bot', error: true, retry: text, text: 'Sorry, I had trouble connecting. Please try again or reach out on WhatsApp (+92 319 6935307).', ts: Date.now() };
+      t.remove(); var m = { mid: 'err_' + Date.now(), role: 'bot', error: true, retry: text, text: 'Sorry, I had trouble connecting. Please try again or reach out on WhatsApp (+92 319 6935307).', ts: Date.now() };
       S.msgs.push(m); save(); draw(m, true);
     }).then(function () { waiting = false; ta.removeAttribute('aria-busy'); onInput(); toBottom(); });
   }
