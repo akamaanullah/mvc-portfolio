@@ -380,6 +380,7 @@ class AdminController extends Controller
                 $db = Database::connection();
                 $raw = $db->query("SELECT `key`, `value` FROM settings")->fetchAll(\PDO::FETCH_KEY_PAIR);
                 $viewData['settings'] = $raw;
+                $viewData['seoFiles'] = \App\Services\SeoFilesService::getFilesList();
                 $viewData['integrations'] = [
                     'gsc' => [
                         'connected' => file_exists(BASE_PATH . '/config/keys/search-console-key.json'),
@@ -1237,14 +1238,29 @@ class AdminController extends Controller
             'site_name', 'tagline', 'site_domain', 'contact_email', 'phone_number', 'whatsapp_number',
             'meta_default_title', 'meta_default_desc', 'robots_txt',
             'chatbot_name', 'chatbot_welcome', 'chatbot_timeout', 'chatbot_handoff_trigger',
-            'chatbot_capture_leads', 'chatbot_notify_needs_human', 'chatbot_show_mobile'
+            'chatbot_capture_leads', 'chatbot_notify_needs_human', 'chatbot_show_mobile',
+            'auto_generate_sitemap', 'person_website_schema', 'default_theme_dark'
         ];
+
+        // Ensure checkboxes have 0/1 values
+        $checkboxes = [
+            'chatbot_capture_leads', 'chatbot_notify_needs_human', 'chatbot_show_mobile',
+            'auto_generate_sitemap', 'person_website_schema', 'default_theme_dark'
+        ];
+        foreach ($checkboxes as $cb) {
+            $_POST[$cb] = isset($_POST[$cb]) ? '1' : '0';
+        }
 
         $stmt = $db->prepare("INSERT INTO settings (`key`, `value`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`)");
         foreach ($fields as $k) {
             if (isset($_POST[$k])) {
                 $stmt->execute([$k, trim((string)$_POST[$k])]);
             }
+        }
+
+        // Sync robots.txt file if present
+        if (!empty($_POST['robots_txt'])) {
+            \App\Services\SeoFilesService::saveFile('robots.txt', (string)$_POST['robots_txt']);
         }
 
         $_SESSION['toast'] = 'Settings saved successfully!';
@@ -1270,5 +1286,79 @@ class AdminController extends Controller
             'model'   => env('CF_AI_MODEL', '@cf/meta/llama-3.1-8b-instruct-fast'),
             'reply'   => $reply
         ]);
+    }
+
+    /**
+     * GET /admin/settings/file?file=robots.txt
+     */
+    public function getSeoFile(): string
+    {
+        $this->requireAuth();
+        $file = trim((string)($_GET['file'] ?? 'robots.txt'));
+        $data = \App\Services\SeoFilesService::readFile($file);
+        return $this->json($data);
+    }
+
+    /**
+     * POST /admin/settings/file/save
+     */
+    public function saveSeoFile(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $file = trim((string)($input['file'] ?? ''));
+        $content = (string)($input['content'] ?? '');
+        $res = \App\Services\SeoFilesService::saveFile($file, $content);
+        return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/file/create
+     */
+    public function createSeoFile(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $name = trim((string)($input['filename'] ?? ''));
+        $content = (string)($input['content'] ?? '');
+        $res = \App\Services\SeoFilesService::saveFile($name, $content);
+        return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/file/delete
+     */
+    public function deleteSeoFile(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
+        $name = trim((string)($input['filename'] ?? ''));
+        $res = \App\Services\SeoFilesService::deleteFile($name);
+        return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/file/generate-sitemap
+     */
+    public function generateSitemapAction(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $res = \App\Services\SeoFilesService::generateSitemap();
+        return $this->json($res);
+    }
+
+    /**
+     * POST /admin/settings/file/generate-llms
+     */
+    public function generateLlmsAction(): string
+    {
+        $this->requireAuth();
+        $this->verifyAdminCsrf();
+        $res = \App\Services\SeoFilesService::generateLlmsFull();
+        return $this->json($res);
     }
 }

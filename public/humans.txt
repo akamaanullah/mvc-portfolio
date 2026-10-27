@@ -1,0 +1,11 @@
+/* TEAM */
+Developer: Amaanullah Khan (@akamaanullah)
+Contact: info@amaanullah.com / +92 319 6935307
+Location: Karachi, Pakistan
+Site: https://amaanullah.com
+
+/* THANKS */
+To open-source creators: PHP, Laravel, Three.js, Cloudflare Workers AI.
+
+/* TECHNOLOGY COLOPHON */
+HTML5, Vanilla CSS, Modern JavaScript, PHP 8.2+, MySQL, Cloudflare CDN & Workers AI.

@@ -1,0 +1,21 @@
+# Amaanullah Khan — Full-Stack Software Developer
+
+> Full-Stack Web Application Developer & Custom Software Specialist based in Karachi, Pakistan.
+> Specializing in Custom CRM Systems, SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Mobile Apps.
+
+## Core Capabilities
+- Custom CRM & ERP Development: Tailored business systems with zero monthly user licenses.
+- SaaS & Web App Development: High-performance PHP/Laravel applications, modern APIs, clean architectures.
+- AI Automation & LLM Workflows: Cloudflare Workers AI, custom chatbot integration, automated lead capture.
+- Mobile App Development: Flutter & Firebase for iOS and Android.
+
+## Key Links & Documentation
+- [Home Page](https://amaanullah.com/)
+- [Services Catalog](https://amaanullah.com/services)
+- [Enterprise CRM Development](https://amaanullah.com/services/custom-crm-development)
+- [Portfolio Projects](https://amaanullah.com/projects)
+- [Technical Articles & Blog](https://amaanullah.com/articles)
+- [Contact & WhatsApp](https://amaanullah.com/contact)
+
+## Comprehensive Context
+- For full background, detailed projects, and architectural philosophy, see [Full LLM Specification](https://amaanullah.com/llms-full.txt).

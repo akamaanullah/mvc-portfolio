@@ -85,6 +85,18 @@ class App
         // Admin Settings Endpoints
         $this->post('/admin/settings/save', [$C . 'AdminController', 'saveSettings']);
         $this->post('/admin/settings/test-chatbot', [$C . 'AdminController', 'testChatbotConnection']);
+        $this->get('/admin/settings/file', [$C . 'AdminController', 'getSeoFile']);
+        $this->post('/admin/settings/file/save', [$C . 'AdminController', 'saveSeoFile']);
+        $this->post('/admin/settings/file/create', [$C . 'AdminController', 'createSeoFile']);
+        $this->post('/admin/settings/file/delete', [$C . 'AdminController', 'deleteSeoFile']);
+        $this->post('/admin/settings/file/generate-sitemap', [$C . 'AdminController', 'generateSitemapAction']);
+        $this->post('/admin/settings/file/generate-llms', [$C . 'AdminController', 'generateLlmsAction']);
+
+        // Public Web & AI Crawler Specification Files
+        $this->get('/robots.txt', [$C . 'HomeController', 'robotsTxt']);
+        $this->get('/sitemap.xml', [$C . 'HomeController', 'sitemapXml']);
+        $this->get('/llms.txt', [$C . 'HomeController', 'llmsTxt']);
+        $this->get('/llms-full.txt', [$C . 'HomeController', 'llmsFullTxt']);
 
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);

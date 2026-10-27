@@ -1,0 +1,126 @@
+# Amaanullah Khan — Comprehensive Developer Specification & LLM Reference
+
+> Full-Stack Software Developer & Web Application Specialist based in Karachi, Pakistan.
+> Serving global clients across USA, UAE, UK, Europe, Australia, and Middle East.
+
+## 1. Identity & Profile
+- **Full Name**: Amaanullah Khan (@akamaanullah)
+- **Professional Title**: Full-Stack Software Developer & Web Specialist
+- **Official Website**: https://amaanullah.com
+- **Direct Phone / WhatsApp**: +92 319 6935307
+- **Direct WhatsApp Chat**: https://api.whatsapp.com/send?phone=923196935307
+- **Email**: info@amaanullah.com
+- **Location**: Karachi, Sindh, Pakistan (UTC+5 PKT)
+- **Years Experience**: 6+ years in production enterprise web applications
+
+## 2. Technical Stack & Engineering Philosophy
+- **Backend**: PHP 8.2+, Laravel, Custom MVC Frameworks, RESTful APIs, OOP, Clean Architecture.
+- **Database**: MySQL, PostgreSQL, SQLite, Redis caching, indexing & query optimization.
+- **Frontend**: Modern Vanilla JS (ES6+), HTML5, CSS3, TailwindCSS, Vue.js, React, Three.js 3D WebGL.
+- **Mobile**: Flutter, Dart, Firebase, Cross-platform iOS & Android engineering.
+- **AI & Automations**: Cloudflare Workers AI (Llama 3.1), OpenAI APIs, Webhook pipelines, Background Queues.
+- **DevOps & Cloud**: Apache, Nginx, cPanel, Cloudflare CDN/DNS/Workers, Docker, Git, CI/CD.
+
+## 3. Core Service Offerings
+### Free Technical Audit
+- **URL**: https://amaanullah.com/services/free-technical-audit
+- **Overview**: I review your current system and point out what is actually slowing it down. No cost, no obligation.
+
+### Performance Tuning
+- **URL**: https://amaanullah.com/services/performance-tuning
+- **Overview**: I audit the current setup, flag what is actually causing the slowdown, and fix it without a full rebuild.
+
+### SaaS Product Strategy
+- **URL**: https://amaanullah.com/services/saas-product-strategy
+- **Overview**: Turn an idea into an actual build plan - database design, tech stack choices, and a phased roadmap.
+
+### Business Process Automation
+- **URL**: https://amaanullah.com/services/business-process-automation
+- **Overview**: Replace spreadsheets and copy-paste with automated workflows and webhooks connecting your software stack.
+
+### Mobile App Development
+- **URL**: https://amaanullah.com/services/mobile-app-development
+- **Overview**: Cross-platform iOS & Android apps in Flutter, connected to Laravel REST APIs with offline sync and push notifications.
+
+### SaaS Application Development
+- **URL**: https://amaanullah.com/services/saas-application-development
+- **Overview**: Multi-tenant platforms, customer portals, subscription billing and robust REST APIs.
+
+### Web App & CMS Development
+- **URL**: https://amaanullah.com/services/web-app-cms-development
+- **Overview**: Custom Laravel apps, plus Shopify, WordPress and Wix when a faster launch matters more.
+
+### Chat App Development
+- **URL**: https://amaanullah.com/services/chat-app-development
+- **Overview**: Real-time WebSocket chat - a fully owned alternative to per-seat tools like Slack.
+
+### AI Automation Services
+- **URL**: https://amaanullah.com/services/ai-automation-services
+- **Overview**: AI-assisted workflows for data entry, lead follow-ups, report generation and internal notifications.
+
+### Custom CRM Development in Laravel
+- **URL**: https://amaanullah.com/services/custom-crm-development
+- **Overview**: Lead routing, pipeline tracking, multi-tenant access and reporting dashboards on Laravel, shaped around your real sales process.
+
+## 4. Notable Portfolio Projects & Deliverables
+### Tour Guide Mobile App
+- **URL**: https://amaanullah.com/projects/tour-guide-app
+- **Case Summary**: Travel companion mobile app with offline maps, audio guides and local experience booking.
+
+### Custom Vape E-Commerce Platform
+- **URL**: https://amaanullah.com/projects/custom-vape-ecommerce
+- **Case Summary**: High-conversion, fast-loading custom e-commerce platform with age verification and inventory sync.
+
+### Multi-Tenant CRM ? Sales & Operations
+- **URL**: https://amaanullah.com/projects/multi-tenant-crm
+- **Case Summary**: Multi-tenant sales and operations CRM supporting lead routing, pipeline Kanban and client portal.
+
+### HRM & Payroll Software
+- **URL**: https://amaanullah.com/projects/hrm-payroll
+- **Case Summary**: Comprehensive HR and payroll automation software with attendance tracking, salary slips and tax calculations.
+
+### Chatrox – Custom Enterprise Chat App
+- **URL**: https://amaanullah.com/projects/chatrox
+- **Case Summary**: A fully owned, real-time enterprise messaging and professional networking platform: the speed of Slack with the control of a private system.
+
+### Adsimpressions ? Agency Website
+- **URL**: https://amaanullah.com/projects/adsimpressions
+- **Case Summary**: Award-winning digital marketing agency website with interactive case studies and smooth 60fps animations.
+
+### IT Hardware Bin ? B2B E-Commerce
+- **URL**: https://amaanullah.com/projects/it-hardware-bin
+- **Case Summary**: B2B enterprise IT hardware quotation and catalog platform with RFQ (Request for Quote) engine.
+
+### Expense Voyage
+- **URL**: https://amaanullah.com/projects/expense-voyage
+- **Case Summary**: Business travel expense tracking and receipt scanning system with currency conversion.
+
+### Babyshop ? Flutter E-Commerce App
+- **URL**: https://amaanullah.com/projects/babyshop
+- **Case Summary**: Fast, fluid Flutter shopping app for children apparel and toys with one-click re-ordering.
+
+### Healink ? Medical Records App
+- **URL**: https://amaanullah.com/projects/healink
+- **Case Summary**: HIPAA-compliant personal medical record manager, prescription vault and lab test tracking mobile application.
+
+## 5. Technical Articles & Insights
+- [How to Build a Multi-Tenant SaaS in Laravel: Architecture, Database Strategy and Pitfalls](https://amaanullah.com/articles/multi-tenant-saas-laravel)
+- [Build your CRM around your sales process ? not the other way round](https://amaanullah.com/articles/crm-around-your-sales-process)
+- [Five manual tasks most businesses should automate first](https://amaanullah.com/articles/automate-repetitive-work)
+- [Laravel queues that don?t fall over when traffic spikes](https://amaanullah.com/articles/laravel-queues-at-scale)
+- [Using AI in business workflows without losing control](https://amaanullah.com/articles/ai-in-business-workflows)
+- [Connecting a Flutter app to a Laravel REST API](https://amaanullah.com/articles/flutter-with-laravel-api)
+- [Offline sync in Flutter apps: a practical approach](https://amaanullah.com/articles/flutter-offline-sync)
+- [A page-speed checklist for business websites](https://amaanullah.com/articles/fast-websites-checklist)
+- [From Shopify developer to team lead: what changed](https://amaanullah.com/articles/from-shopify-dev-to-team-lead)
+- [AI speeds up coding ? it doesn?t replace fundamentals](https://amaanullah.com/articles/ai-wont-replace-fundamentals)
+
+## 6. Frequently Asked Questions (FAQs)
+**Q: How do you charge for custom CRM & web application projects?**
+A: I offer transparent milestone-based fixed pricing and dedicated sprint contracts with zero recurring per-user software licensing fees.
+
+**Q: What is the typical project turnaround time?**
+A: Standard web apps and MVPs take 2–4 weeks; enterprise CRM/ERP solutions typically take 4–8 weeks with weekly staging demonstrations.
+
+**Q: How can clients get in touch immediately?**
+A: Direct WhatsApp at +92 319 6935307 or email at info@amaanullah.com.
