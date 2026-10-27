@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Core\Auth;
 use App\Core\Controller;
+use App\Core\Database;
 use App\Core\Logger;
 use App\Models\ArticleModel;
 use App\Models\CategoryModel;
