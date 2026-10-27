@@ -251,13 +251,13 @@ class ChatbotService
     public static function sendTakeoverAlert(array $conversation, string $name, string $email, string $context = ''): bool
     {
         $adminUrl = base_url('/admin/live-chat?session=' . urlencode($conversation['session_id']));
-        $subject = '🔴 URGENT: ' . $name . ' wants to talk LIVE right now!';
+        $subject = '[URGENT] ' . $name . ' requested a LIVE chat session';
 
         $body = '
         <div style="font-family: \'Segoe UI\', Roboto, Arial, sans-serif; background: #0b0c10; padding: 40px 20px; color: #fff;">
             <div style="max-width: 600px; margin: 0 auto; background: #14151d; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);">
                 <div style="background: linear-gradient(135deg, #ef4444, #dc2626); padding: 30px; text-align: center;">
-                    <h1 style="margin:0; color:#fff; font-size: 1.5rem; font-weight:800;">🔴 LIVE CHAT REQUEST</h1>
+                    <h1 style="margin:0; color:#fff; font-size: 1.5rem; font-weight:800; letter-spacing:0.02em;">LIVE CHAT REQUEST</h1>
                     <p style="color:rgba(255,255,255,0.9); margin: 8px 0 0; font-size: 0.95rem;">A visitor requested to speak with you <strong>right now!</strong></p>
                 </div>
                 <div style="padding: 30px;">
@@ -269,7 +269,7 @@ class ChatbotService
                     ' . ($context ? '<div style="margin-top:20px; padding:15px; background:rgba(255,255,255,0.03); border-radius:10px; font-size:0.85rem; color:#94a3b8; white-space:pre-wrap;">' . htmlspecialchars($context) . '</div>' : '') . '
                     <div style="margin-top: 30px; text-align: center;">
                         <a href="' . $adminUrl . '" style="display:inline-block; background:linear-gradient(135deg, #f26a1b, #ff8a3d); color:#fff; text-decoration:none; padding:16px 36px; border-radius:12px; font-weight:800; font-size:1rem; box-shadow:0 6px 20px rgba(242,106,27,0.35);">
-                            👉 Open Live Chat Now
+                            Open Live Chat Now →
                         </a>
                     </div>
                 </div>

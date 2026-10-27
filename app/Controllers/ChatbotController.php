@@ -184,7 +184,7 @@ class ChatbotController extends Controller
         $leadId = (int)$db->lastInsertId();
 
         // Send Email notification to admin
-        $subject = "🎯 New Chatbot Lead: {$name} ({$email})";
+        $subject = "New Chatbot Lead: {$name} ({$email})";
         $body = "
         <div style='font-family: Arial, sans-serif; background: #0b0c10; padding: 30px; color: #fff;'>
             <div style='max-width: 600px; margin: 0 auto; background: #14151d; border-radius: 12px; padding: 25px; border: 1px solid rgba(255,255,255,0.1);'>

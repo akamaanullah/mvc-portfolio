@@ -145,18 +145,21 @@ function getAvatarColor(?string $name): string {
                     <?php endforeach; ?>
                 <?php endif; ?>
                 <?php if ($active['status'] === 'needs_human'): ?>
-                    <div class="m sys" style="color:#ef4444; font-weight:700;">⚠ Visitor requested a human. Take over or reply below to speak live!</div>
+                    <div class="m sys" style="color:#ef4444; font-weight:700; display:flex; align-items:center; gap:6px;">
+                        <svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>Visitor requested a human. Take over or reply below to speak live!</span>
+                    </div>
                 <?php endif; ?>
             </div>
 
             <!-- Composer & Canned Quick Replies -->
             <div class="comp">
                 <div class="canned">
-                    <button type="button" class="canned-btn" data-t="Hi! This is Amaanullah Khan. Thanks for reaching out! How can I help you with your project?">👋 Greeting</button>
-                    <button type="button" class="canned-btn" data-t="I would love to discuss this. You can pick a convenient time on my calendar or we can connect on WhatsApp (+92 319 6935307).">📅 Book a call</button>
-                    <button type="button" class="canned-btn" data-t="Pricing depends on the scope and timeline. Could you share your core feature requirements and target launch date?">💰 Pricing</button>
-                    <button type="button" class="canned-btn" data-t="Could you share your best email and WhatsApp number so I can send over a detailed architecture proposal?">📧 Ask contact</button>
-                    <button type="button" class="canned-btn" data-t="Thank you! I will review all your requirements thoroughly and follow up within 24 hours.">⏱ Follow-up</button>
+                    <button type="button" class="canned-btn" data-t="Hi! This is Amaanullah Khan. Thanks for reaching out! How can I help you with your project?"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Greeting</button>
+                    <button type="button" class="canned-btn" data-t="I would love to discuss this. You can pick a convenient time on my calendar or we can connect on WhatsApp (+92 319 6935307)."><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Book a call</button>
+                    <button type="button" class="canned-btn" data-t="Pricing depends on the scope and timeline. Could you share your core feature requirements and target launch date?"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Pricing</button>
+                    <button type="button" class="canned-btn" data-t="Could you share your best email and WhatsApp number so I can send over a detailed architecture proposal?"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Ask contact</button>
+                    <button type="button" class="canned-btn" data-t="Thank you! I will review all your requirements thoroughly and follow up within 24 hours."><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Follow-up</button>
                 </div>
                 <div class="row">
                     <textarea class="inp" id="cmpTxt" placeholder="Type your reply here... (Press Enter to send, Shift+Enter for new line)" aria-label="Reply"></textarea>

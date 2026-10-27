@@ -48,7 +48,7 @@ if(!RM&&matchMedia('(hover:hover)').matches){
   },900);}
  // Chat: cycle messages
  const ch=document.querySelector('[data-anim=chat]');
- if(ch){const msgs=[['l','Order #482 shipped?'],['r','Yes — tracking sent ✓'],['l','Can I add a teammate?'],['r','Done, invite sent 🎉'],['l','Thanks!']];let i=0;
+ if(ch){const msgs=[['l','Order #482 shipped?'],['r','Yes — tracking sent ✓'],['l','Can I add a teammate?'],['r','Done, invite sent ✓'],['l','Thanks!']];let i=0;
   every(ch,2200,()=>{const ty=ch.querySelector('.typing');const [s,t]=msgs[i%msgs.length];i++;
    const b=document.createElement('div');b.className='bub '+s;b.textContent=t;ch.insertBefore(b,ty);
    const all=ch.querySelectorAll('.bub:not(.typing)');if(all.length>2)all[0].remove();

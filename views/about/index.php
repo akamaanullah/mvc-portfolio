@@ -101,16 +101,16 @@
   <!-- SWAP IMAGE: replace with the user's illustrated avatar (e.g. images/amaanullah-avatar.png) -->
   <video width="400" height="400" class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Amaanullah Khan, PHP and Laravel developer in Karachi"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"></video>
   <h2>Amaanullah Khan</h2><div class="role">PHP &amp; Laravel Developer</div>
-  <div class="meta"><span>📍 Karachi, Pakistan</span><span>Also: Flutter mobile apps</span></div>
+  <div class="meta"><span style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Karachi, Pakistan</span><span>Also: Flutter mobile apps</span></div>
   <!-- URL: Google Business reviews link -->
   <a class="grate" href="javascript:void(0)"><span class="g">G</span><span><b>4.8 ★ Google Rating</b><small>27 Google reviews</small></span></a>
  </aside>
  <div class="fade">
   <span class="eyebrow">✦ About Amaanullah Khan</span>
-  <h1>Hi, I'm <em>Amaanullah&nbsp;Khan</em>&nbsp;👋<br>Software Developer &amp; Systems Architect</h1>
+  <h1>Hi, I'm <em>Amaanullah&nbsp;Khan</em><br>Software Developer &amp; Systems Architect</h1>
   <p class="lead2"><b>Karachi-based</b> developer building custom <b>CRM systems</b>, <b>SaaS applications</b> and <b>workflow automation</b> for businesses across Pakistan, the US, UK, UAE and Saudi Arabia.</p>
   <p class="lead2" style="margin-top:14px;font-size:16px">Full-stack developer and team lead — turning messy day-to-day operations into systems that actually hold up under real use.</p>
-  <div class="btns"><a class="bo pri" href="javascript:void(0)" download><!-- URL: CV file (e.g. files/Amaanullah-Khan-CV.pdf) -->⬇ Download CV</a><a class="bo sec" href="<?= base_url('/contact') ?>">Let's work together →</a></div>
+  <div class="btns"><a class="bo pri" href="javascript:void(0)" download><!-- URL: CV file (e.g. files/Amaanullah-Khan-CV.pdf) --><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download CV</a><a class="bo sec" href="<?= base_url('/contact') ?>">Let's work together →</a></div>
   <div class="facts"><div><b>PHP &amp; Laravel</b><small>Daily stack</small></div><div><b>React · Node · Flutter</b><small>Web to mobile</small></div><div><b>1.5M+ leads</b><small>CRM built &amp; scaled</small></div></div>
   <div class="vp">VERIFIED PROFILES <a href="https://linkedin.com" target="_blank" rel="noopener me"><!-- URL: LinkedIn -->LinkedIn</a><a href="https://github.com/akamaanullah" target="_blank" rel="noopener me"><!-- URL: GitHub -->GitHub</a></div>
  </div>

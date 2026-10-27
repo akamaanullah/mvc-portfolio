@@ -232,12 +232,14 @@ class IntegrationService
             $mail->setFrom($from, $fromName);
             $mail->addAddress($toEmail);
             $mail->isHTML(true);
-            $mail->Subject = '✅ SMTP Test Email — ' . ($fromName ?: 'Portfolio');
+            $mail->Subject = '[Verified] SMTP Test Email — ' . ($fromName ?: 'Portfolio');
             $mail->Body    = '
             <div style="font-family: \'Segoe UI\', Roboto, Arial, sans-serif; background: #0b0c10; padding: 30px 20px; color: #fff;">
                 <div style="max-width: 520px; margin: 0 auto; background: #14151d; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); padding: 25px;">
                     <div style="text-align: center; margin-bottom: 20px;">
-                        <span style="font-size: 32px;">⚡</span>
+                        <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(16,185,129,0.15); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
                         <h2 style="color: #10b981; margin: 8px 0 4px;">SMTP Connection Verified!</h2>
                         <p style="color: #94a3b8; font-size: 13px; margin: 0;">This email confirms your database-driven SMTP host and credentials are fully functioning.</p>
                     </div>

@@ -296,10 +296,10 @@ class VisitorModel extends Model
         foreach ($countryRows as $cr) {
             $code = strtoupper((string) ($cr['country_code'] ?? 'PK'));
             $name = $cr['country'] ?: 'Pakistan';
-            $flag = $flagMap[$code] ?? '🌐';
+            $flag = $flagMap[$code] ?? '';
             $cnt = (int) $cr['cnt'];
             $countries[] = [
-                'name' => $flag . ' ' . $name,
+                'name' => ($flag ? $flag . ' ' : '') . $name,
                 'count' => number_format($cnt),
                 'bar_pct' => round(($cnt / $maxCountry) * 100) . '%'
             ];
@@ -482,8 +482,8 @@ class VisitorModel extends Model
         foreach ($rows as $r) {
             $timeAgo = self::formatTimeAgo($r['created_at']);
             $flagMap = ['PK' => '🇵🇰', 'US' => '🇺🇸', 'AE' => '🇦🇪', 'GB' => '🇬🇧', 'SA' => '🇸🇦', 'CA' => '🇨🇦'];
-            $flag = $flagMap[strtoupper((string) $r['country_code'])] ?? '🌐';
-            $loc = $flag . ' ' . ($r['city'] ? $r['city'] : $r['country']);
+            $flag = $flagMap[strtoupper((string) $r['country_code'])] ?? '';
+            $loc = ($flag ? $flag . ' ' : '') . ($r['city'] ? $r['city'] : $r['country']);
 
             $ref = $r['referrer'] ?: 'direct';
             if (str_contains($ref, 'google')) $src = 'google / organic';

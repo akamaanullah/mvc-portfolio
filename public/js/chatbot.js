@@ -99,7 +99,12 @@
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     dots: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
     send: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
-    down: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14141c" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>'
+    down: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14141c" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>',
+    trash: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/></svg>',
+    human: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    whatsapp: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>',
+    bolt: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+    check: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>'
   };
   var eyes = function (n) { return new Array(n + 1).join('<i></i>'); };
 
@@ -152,7 +157,7 @@
     isLiveMode = active;
     var ttl = $('.akc-ttl');
     if (active) {
-      if (ttl) ttl.innerHTML = '<strong>Amaanullah Khan</strong><small style="color:#ef4444; font-weight:700;">🔴 Live Session Active</small>';
+      if (ttl) ttl.innerHTML = '<strong>Amaanullah Khan</strong><small style="color:#ef4444; font-weight:700;"><span class="akc-live-dot"></span> Live Session Active</small>';
       if (!wasActive || !livePollTimer) {
         startLivePolling();
       }
@@ -227,23 +232,25 @@
   /* ---------------- DOM ---------------- */
   var root = el('div', 'akc');
   root.innerHTML =
-    '<div class="akc-tip" role="status"><button class="akc-tip-open" type="button">Hi! Need help with a project?<span>Ask me anything — I reply instantly.</span></button><button class="akc-tip-x" type="button" aria-label="Dismiss">✕</button></div>' +
+    '<div class="akc-tip" role="status"><button class="akc-tip-open" type="button">Hi! Need help with a project?<span>Ask me anything — I reply instantly.</span></button><button class="akc-tip-x" type="button" aria-label="Dismiss">' + I.x + '</button></div>' +
     '<section class="akc-win" role="dialog" aria-modal="true" aria-label="Chat with ' + esc(CFG.botName) + '">' +
       '<header class="akc-head"><span class="akc-grab" aria-hidden="true"></span><div class="akc-av" aria-hidden="true">' + eyes(2) + '<b></b></div>' +
         '<div class="akc-ttl"><strong>' + esc(CFG.botName) + '</strong><small>Online · Typically replies instantly</small></div>' +
         '<button class="akc-hb akc-more" type="button" aria-label="Chat options" aria-haspopup="true" aria-expanded="false">' + I.dots + '</button>' +
         '<button class="akc-hb akc-min" type="button" aria-label="Minimize chat">' + I.min + '</button>' +
         '<button class="akc-hb akc-close" type="button" aria-label="Close chat">' + I.x + '</button>' +
-        '<div class="akc-menu" role="menu"><button role="menuitem" type="button" class="akc-clear">🗑️ Clear chat</button>' +
-        '<a role="menuitem" class="akc-human" href="javascript:void(0)">💬 Talk to a human</a>' +
-        '<a role="menuitem" class="akc-wa" href="' + esc(CFG.whatsapp) + '" target="_blank" rel="noopener">📱 Chat on WhatsApp</a></div>' +
+        '<div class="akc-menu" role="menu">' +
+          '<button role="menuitem" type="button" class="akc-clear">' + I.trash + ' Clear chat</button>' +
+          '<a role="menuitem" class="akc-human" href="javascript:void(0)">' + I.human + ' Talk to a human</a>' +
+          '<a role="menuitem" class="akc-wa" href="' + esc(CFG.whatsapp) + '" target="_blank" rel="noopener">' + I.whatsapp + ' Chat on WhatsApp</a>' +
+        '</div>' +
       '</header>' +
       '<div class="akc-body" aria-live="polite" aria-relevant="additions" tabindex="-1"></div>' +
       '<button class="akc-down" type="button" aria-label="Scroll to latest">' + I.down + '</button>' +
       '<footer class="akc-foot"><form class="akc-comp" novalidate><label class="akc-sr" for="akc-in">Type your message</label>' +
         '<textarea id="akc-in" rows="1" placeholder="Type your message…" maxlength="' + CFG.maxChars + '"></textarea>' +
         '<button class="akc-send" type="submit" aria-label="Send message" disabled>' + I.send + '</button></form>' +
-        '<div class="akc-meta"><a href="' + esc(CFG.poweredUrl) + '">⚡ <b>' + esc(CFG.poweredBy) + '</b></a><span class="akc-count" aria-live="polite"></span></div></footer>' +
+        '<div class="akc-meta"><a href="' + esc(CFG.poweredUrl) + '">' + I.bolt + ' <b>' + esc(CFG.poweredBy) + '</b></a><span class="akc-count" aria-live="polite"></span></div></footer>' +
     '</section>' +
     '<button class="akc-launch" type="button" aria-label="Open chat" aria-expanded="false"><span class="akc-orb"></span><span class="akc-face" aria-hidden="true"><i></i><i></i></span><span class="akc-x" aria-hidden="true"></span><span class="akc-dot" aria-hidden="true"></span></button>';
 
@@ -323,7 +330,7 @@
     S.msgs.forEach(function (m, i) { draw(m, i === S.msgs.length - 1); });
   }
   function welcome() {
-    var w = el('div', 'akc-welcome', '<div class="akc-big" aria-hidden="true">' + eyes(2) + '</div><h3>Hi there <em>👋</em></h3><p>I\'m ' + esc(CFG.botName) + ', Amaanullah\'s AI assistant. Ask about custom CRMs, Laravel web applications, AI automation, or start your project inquiry.</p>');
+    var w = el('div', 'akc-welcome', '<div class="akc-big" aria-hidden="true">' + eyes(2) + '</div><h3>Welcome!</h3><p>I\'m ' + esc(CFG.botName) + ', Amaanullah\'s AI assistant. Ask about custom CRMs, Laravel web applications, AI automation, or start your project inquiry.</p>');
     w.appendChild(chips(CHIPS, true)); body.appendChild(w);
   }
   function chips(list, center) {
@@ -359,7 +366,7 @@
 
   function leadCard(m) {
     var f = el('form', 'akc-lead');
-    if (m.leadDone) { f.classList.add('done'); f.innerHTML = '<div class="akc-ok">✓</div><strong>Thanks, ' + esc(m.leadDone) + '!</strong><p>Your details were received. You\'ll hear back soon.</p>'; return f; }
+    if (m.leadDone) { f.classList.add('done'); f.innerHTML = '<div class="akc-ok">' + I.check + '</div><strong>Thanks, ' + esc(m.leadDone) + '!</strong><p>Your details were received. You\'ll hear back soon.</p>'; return f; }
     f.noValidate = true;
     f.innerHTML = '<strong>Get a free quote</strong><p>Takes 10 seconds. No spam.</p>' +
       '<label for="akc-ln">Name</label><input id="akc-ln" name="name" autocomplete="name" placeholder="Your name" required><div class="akc-ferr"></div>' +
@@ -384,7 +391,7 @@
     var f = el('form', 'akc-lead akc-handoff-form');
     if (m.handoffDone) {
       f.classList.add('done');
-      f.innerHTML = '<div class="akc-ok">🔴</div><strong>Connecting live...</strong><p>Amaanullah has been notified. You can message directly here.</p>';
+      f.innerHTML = '<div class="akc-ok" style="background:#fee2e2; color:#ef4444;"><span class="akc-live-dot" style="margin:0; width:10px; height:10px;"></span></div><strong>Connecting live...</strong><p>Amaanullah has been notified. You can message directly here.</p>';
       return f;
     }
     f.noValidate = true;
