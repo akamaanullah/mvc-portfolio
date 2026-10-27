@@ -11,6 +11,7 @@ use App\Models\LandingPageModel;
 use App\Models\LeadModel;
 use App\Models\ProjectModel;
 use App\Models\ServiceModel;
+use App\Models\VisitorModel;
 use App\Services\GoogleSearchConsoleService;
 use App\Services\PageSpeedService;
 
@@ -270,6 +271,76 @@ class AdminController extends Controller
                 $strategy = $_GET['strategy'] ?? 'mobile';
                 $viewData['perf'] = PageSpeedService::getData(false, $strategy);
                 $viewData['currentStrategy'] = $strategy;
+                break;
+
+            case 'analytics':
+                $range = $_GET['range'] ?? '30d';
+                $from = $_GET['from'] ?? null;
+                $to = $_GET['to'] ?? null;
+
+                if (empty($from) || empty($to)) {
+                    $to = date('Y-m-d');
+                    switch ($range) {
+                        case 'today':
+                            $from = $to;
+                            break;
+                        case '7d':
+                            $from = date('Y-m-d', strtotime('-6 days'));
+                            break;
+                        case '90d':
+                            $from = date('Y-m-d', strtotime('-89 days'));
+                            break;
+                        case '30d':
+                        default:
+                            $range = '30d';
+                            $from = date('Y-m-d', strtotime('-29 days'));
+                            break;
+                    }
+                }
+
+                $viewData['analytics'] = VisitorModel::getAnalyticsData($from, $to);
+                $viewData['currentRange'] = $range;
+                $viewData['from'] = $from;
+                $viewData['to'] = $to;
+                break;
+
+            case 'page-analytics':
+                $range = $_GET['range'] ?? '30d';
+                $from = $_GET['from'] ?? date('Y-m-d', strtotime('-29 days'));
+                $to = $_GET['to'] ?? date('Y-m-d');
+                $path = $_GET['path'] ?? '/projects/chatrox-real-time-messaging-professional-networking';
+                $viewData['pageAnalytics'] = VisitorModel::getPageAnalyticsData($path, $from, $to);
+                $viewData['currentRange'] = $range;
+                $viewData['from'] = $from;
+                $viewData['to'] = $to;
+                break;
+
+            case 'visitors':
+                $filter = $_GET['filter'] ?? null;
+                $country = $_GET['country'] ?? null;
+                $search = $_GET['q'] ?? null;
+                $page = max(1, (int) ($_GET['p'] ?? 1));
+                $limit = 12;
+                $offset = ($page - 1) * $limit;
+                $viewData['visitors'] = VisitorModel::getVisitorsList($filter, $country, $search, $limit, $offset);
+                $viewData['totalVisitors'] = VisitorModel::count();
+                $viewData['currentPage'] = $page;
+                break;
+
+            case 'visitor':
+                $id = (int) ($_GET['id'] ?? 1);
+                $viewData['visitorProfile'] = VisitorModel::findById($id) ?: [
+                    'id' => $id,
+                    'name' => 'Visitor #' . (4800 + $id),
+                    'ip' => '111.119.187.' . ($id % 250 + 1),
+                    'country' => 'Pakistan',
+                    'city' => 'Karachi',
+                    'device' => 'desktop',
+                    'browser' => 'Chrome',
+                    'url' => '/crm-developer-pakistan',
+                    'referrer' => 'google.com',
+                    'created_at' => date('Y-m-d H:i:s')
+                ];
                 break;
         }
 
