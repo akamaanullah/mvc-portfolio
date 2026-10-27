@@ -9,6 +9,9 @@ $name = $vp['name'] ?? ($visitor['name'] ?? ('Visitor #' . (4800 + $id)));
 $email = $vp['email'] ?? null;
 $ip = $visitor['ip'] ?? client_ip();
 $loc = ($visitor['city'] ? $visitor['city'] . ', ' : '') . ($visitor['country'] ?? 'Pakistan');
+$cCode = strtoupper((string) ($visitor['country_code'] ?? 'PK'));
+$flagMap = ['PK' => '🇵🇰', 'US' => '🇺🇸', 'AE' => '🇦🇪', 'GB' => '🇬🇧', 'SA' => '🇸🇦', 'CA' => '🇨🇦', 'DE' => '🇩🇪', 'AU' => '🇦🇺', 'FR' => '🇫🇷', 'IN' => '🇮🇳', 'SG' => '🇸🇬'];
+$flag = $flagMap[$cCode] ?? '🌐';
 $device = ucfirst((string) ($visitor['device'] ?? 'Desktop'));
 $browser = $visitor['browser'] ?? 'Chrome';
 $url = $vp['landing_url'] ?? ($visitor['url'] ?? '/');
@@ -66,7 +69,7 @@ $chatStatus = $vp['chat_status'] ?? null;
             <dd><b><?= htmlspecialchars($email) ?></b></dd>
           <?php endif; ?>
           <dt>Location</dt>
-          <dd>🇵🇰 <?= htmlspecialchars($loc) ?></dd>
+          <dd><?= $flag ?> <?= htmlspecialchars($loc) ?></dd>
           <dt>Device</dt>
           <dd><?= htmlspecialchars($device) ?> · <?= htmlspecialchars($browser) ?></dd>
           <dt>Landing Page</dt>

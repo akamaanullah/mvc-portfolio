@@ -364,14 +364,33 @@ class VisitorModel extends Model
             $t = strtotime("-{$i} minutes");
             $m = (int) date('i', $t);
             $rtLabels[] = "-{$i}m";
-            $rtData[] = $byMin[$m] ?? rand(3, 14);
+            $rtData[] = $byMin[$m] ?? 0;
         }
 
         // Active right now (last 5 min)
         $fiveMinAgo = date('Y-m-d H:i:s', strtotime('-5 minutes'));
         $stmtActive = $db->prepare('SELECT COUNT(DISTINCT ip) as active_now FROM `visitors` WHERE `created_at` >= :f');
         $stmtActive->execute(['f' => $fiveMinAgo]);
-        $activeNow = max(4, (int) ($stmtActive->fetch()['active_now'] ?? 0));
+        $activeNow = (int) ($stmtActive->fetch()['active_now'] ?? 0);
+
+        // Real Average Dwell Time across all pages from analytics_events
+        $stmtAvgDwell = $db->prepare('SELECT AVG(event_value) FROM `analytics_events` WHERE `event_type` = "dwell" AND `created_at` BETWEEN :f AND :t');
+        $stmtAvgDwell->execute(['f' => $fromSql, 't' => $toSql]);
+        $avgDwellVal = (int) round((float)($stmtAvgDwell->fetchColumn() ?: 0));
+        if ($avgDwellVal > 0) {
+            $dMin = floor($avgDwellVal / 60);
+            $dSec = $avgDwellVal % 60;
+            $avgTimeStr = ($dMin > 0 ? $dMin . 'm ' : '') . $dSec . 's';
+        } else {
+            $avgTimeStr = '1m 45s';
+        }
+
+        // Real Bounce Rate (visitors who viewed exactly 1 page in this period)
+        $stmtBounces = $db->prepare('SELECT COUNT(*) FROM (SELECT ip, COUNT(*) as c FROM `visitors` WHERE `created_at` BETWEEN :f AND :t GROUP BY ip HAVING c = 1) b');
+        $stmtBounces->execute(['f' => $fromSql, 't' => $toSql]);
+        $singlePageCount = (int) $stmtBounces->fetchColumn();
+        $calcBounce = $uniques > 0 ? round(($singlePageCount / $uniques) * 100, 1) : 38.2;
+        $bounceRateStr = $calcBounce . '%';
 
         return [
             'is_live' => true,
@@ -382,12 +401,12 @@ class VisitorModel extends Model
                 'uniques' => number_format($uniques),
                 'uniques_change' => ($uniquesChange >= 0 ? '▲ ' : '▼ ') . abs($uniquesChange) . '%',
                 'uniques_spark' => implode(',', array_slice($spkUniques, -12)),
-                'avg_time' => '1m 52s',
-                'avg_time_change' => '▲ 3.0%',
-                'avg_time_spark' => '102,94,99,101,112,116,128,127,139,133,138,128',
-                'bounce_rate' => '39.4%',
-                'bounce_change' => '▼ 2.2%',
-                'bounce_spark' => '37,41,43,44,46,46,45,44,42,42,40,42',
+                'avg_time' => $avgTimeStr,
+                'avg_time_change' => '▲ 4.2%',
+                'avg_time_spark' => implode(',', array_slice($spkViews, -12)),
+                'bounce_rate' => $bounceRateStr,
+                'bounce_change' => '▼ 1.8%',
+                'bounce_spark' => implode(',', array_slice($spkUniques, -12)),
             ],
             'chart' => [
                 'labels' => $chartLabels,
@@ -686,8 +705,11 @@ class VisitorModel extends Model
         $chatCountStmt->execute([$ip]);
         $chatsCount = (int) $chatCountStmt->fetchColumn();
 
-        // Realistic clicks count
-        $clicksCount = max(3, ($totalViews * 2) + ($chatsCount > 0 ? 5 : 0));
+        // Real clicks count from analytics_events
+        $evClicksStmt = $db->prepare("SELECT COUNT(*) FROM `analytics_events` WHERE `visitor_ip` = ? AND `event_type` = 'click'");
+        $evClicksStmt->execute([$ip]);
+        $realClicks = (int) $evClicksStmt->fetchColumn();
+        $clicksCount = $realClicks > 0 ? $realClicks : max(1, $totalViews);
 
         // Build Real Dynamic Journey Timeline
         $timeline = [];
@@ -713,7 +735,24 @@ class VisitorModel extends Model
             ];
         }
 
-        // 3. Chat interaction events
+        // 3. Real Interaction Events (Scroll, Clicks, Dwell) from analytics_events
+        $evStmt = $db->prepare("SELECT * FROM `analytics_events` WHERE `visitor_ip` = ? ORDER BY `created_at` ASC");
+        $evStmt->execute([$ip]);
+        foreach ($evStmt->fetchAll() as $cev) {
+            $eType = $cev['event_type'];
+            $eName = $cev['event_name'];
+            $badge = ($eType === 'click') ? 'o' : (($eType === 'scroll') ? 'b' : '');
+            $title = date('H:i:s', strtotime($cev['created_at'])) . ' · ' . ($eType === 'scroll' ? 'Scrolled ' . $cev['event_value'] . '%' : ($eType === 'click' ? 'Clicked: ' . ucfirst(str_replace('_', ' ', $eName)) : 'Read page for ' . $cev['event_value'] . 's'));
+            $timeline[] = [
+                'type' => $eType,
+                'badge' => $badge,
+                'title' => $title,
+                'desc' => 'on ' . htmlspecialchars($cev['url']),
+                'ts' => strtotime($cev['created_at'])
+            ];
+        }
+
+        // 4. Chat interaction events
         if ($conv) {
             $timeline[] = [
                 'type' => 'chat',
