@@ -87,6 +87,9 @@ class App
         $this->post('/api/chat/lead', [$C . 'ChatbotController', 'lead']);
         $this->post('/api/chat/close', [$C . 'ChatbotController', 'close']);
 
+        // Real-Time Analytics Event Tracking Endpoint
+        $this->post('/api/analytics/event', [$C . 'AnalyticsController', 'recordEvent']);
+
         // Admin Live Chat Management Endpoints
         $this->get('/admin/live-chat/poll', [$C . 'AdminController', 'liveChatPoll']);
         $this->post('/admin/live-chat/send', [$C . 'AdminController', 'liveChatSend']);

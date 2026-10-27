@@ -36,3 +36,5 @@ if (!empty($home)): ?><footer class="foot" id="footer">
   <div class="fbar"><span>© <span id="yr">2026</span> Amaanullah | Custom Software Business Solutions. All Rights Reserved.</span><span class="hand">made with ♥ &amp; clean code</span><span><a href="javascript:void(0)" style="color:inherit"><!-- URL: privacy page -->Privacy</a> · <a href="javascript:void(0)" style="color:inherit"><!-- URL: terms page -->Terms</a></span></div>
  </div></div>
 </footer></div><?php endif; ?>
+<script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
+<script src="<?= asset_url('js/tracker.js') ?>?v=<?= time() ?>" defer></script>

@@ -5,6 +5,10 @@ if (!defined('PUBLIC_PATH')) {
     define('PUBLIC_PATH', (defined('BASE_PATH') ? BASE_PATH : dirname(__DIR__, 2)) . '/public');
 }
 
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set(env('APP_TIMEZONE', 'Asia/Karachi'));
+}
+
 if (!function_exists('env')) {
     function env(string $key, $default = null) {
         static $vars = null;

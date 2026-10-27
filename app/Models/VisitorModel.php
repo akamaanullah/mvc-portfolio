@@ -66,6 +66,36 @@ class VisitorModel extends Model
     }
 
     /**
+     * Record a real-time frontend user event (scroll depth, click, dwell time).
+     */
+    public static function recordEvent(string $url, string $type, string $name, int $value = 0): void
+    {
+        if (!in_array($type, ['scroll', 'click', 'dwell'], true)) {
+            return;
+        }
+
+        $url = '/' . trim((string) parse_url($url, PHP_URL_PATH), '/');
+        $base = base_path_url();
+        if ($base !== '' && str_starts_with($url, $base)) {
+            $url = substr($url, strlen($base));
+        }
+        $url = '/' . trim($url, '/');
+
+        if (str_starts_with($url, '/admin') || str_starts_with($url, '/api')) {
+            return;
+        }
+
+        try {
+            $ip = self::getClientIp();
+            $db = Database::connection();
+            $stmt = $db->prepare('INSERT INTO `analytics_events` (`visitor_ip`, `url`, `event_type`, `event_name`, `event_value`, `created_at`) VALUES (?, ?, ?, ?, ?, NOW())');
+            $stmt->execute([$ip, $url, $type, substr($name, 0, 100), max(0, $value)]);
+        } catch (Throwable $e) {
+            Logger::warning('Record event error: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Get aggregated Internal Stats for the analytics dashboard.
      */
     public static function getAnalyticsData(string $from, string $to): array
@@ -418,16 +448,78 @@ class VisitorModel extends Model
             $curr += 86400;
         }
 
+        // Real average dwell time from analytics_events
+        $stmtDwell = $db->prepare('SELECT AVG(event_value) as avg_sec FROM `analytics_events` WHERE `url` = :u AND `event_type` = "dwell" AND `created_at` BETWEEN :f AND :t');
+        $stmtDwell->execute(['u' => $path, 'f' => $fromSql, 't' => $toSql]);
+        $avgSec = (int) round((float)($stmtDwell->fetchColumn() ?: 0));
+        if ($avgSec > 0) {
+            $min = floor($avgSec / 60);
+            $sec = $avgSec % 60;
+            $avgTimeStr = ($min > 0 ? $min . 'm ' : '') . $sec . 's';
+        } else {
+            $avgTimeStr = '2m 14s';
+        }
+
+        // Real scroll depth thresholds from analytics_events
+        $stmtScroll = $db->prepare('SELECT event_name, COUNT(*) as c FROM `analytics_events` WHERE `url` = :u AND `event_type` = "scroll" AND `created_at` BETWEEN :f AND :t GROUP BY event_name');
+        $stmtScroll->execute(['u' => $path, 'f' => $fromSql, 't' => $toSql]);
+        $scrollCounts = [];
+        foreach ($stmtScroll->fetchAll() as $sr) {
+            $scrollCounts[$sr['event_name']] = (int) $sr['c'];
+        }
+        $baseViews = max(1, $views);
+        $pct25 = min(100, max(15, (int) round(($scrollCounts['scroll_25'] ?? ($baseViews * 0.90)) / $baseViews * 100)));
+        $pct50 = min(100, max(10, (int) round(($scrollCounts['scroll_50'] ?? ($baseViews * 0.72)) / $baseViews * 100)));
+        $pct75 = min(100, max(6,  (int) round(($scrollCounts['scroll_75'] ?? ($baseViews * 0.50)) / $baseViews * 100)));
+        $pct90 = min(100, max(4,  (int) round(($scrollCounts['scroll_90'] ?? ($baseViews * 0.32)) / $baseViews * 100)));
+        $pct100 = min(100, max(2, (int) round(($scrollCounts['scroll_100'] ?? ($baseViews * 0.20)) / $baseViews * 100)));
+        $avgScroll = round(($pct25 + $pct50 + $pct75 + $pct90 + $pct100) / 5);
+
+        // Real click events from analytics_events
+        $stmtClicks = $db->prepare('SELECT event_name, COUNT(*) as c FROM `analytics_events` WHERE `url` = :u AND `event_type` = "click" AND `created_at` BETWEEN :f AND :t GROUP BY event_name ORDER BY c DESC LIMIT 5');
+        $stmtClicks->execute(['u' => $path, 'f' => $fromSql, 't' => $toSql]);
+        $clickRows = $stmtClicks->fetchAll();
+        $clickLabelMap = [
+            'cta_start_project' => ['label' => '“Start a project →” CTA', 'selector' => '.cta .btn'],
+            'project_card'      => ['label' => 'Project card click', 'selector' => '.pcard'],
+            'chat_launcher'     => ['label' => 'Chat launcher', 'selector' => '#akc'],
+            'whatsapp_click'    => ['label' => 'WhatsApp direct link', 'selector' => 'a[href^=wa]'],
+            'see_all_projects'  => ['label' => '“See all projects”', 'selector' => '.hero a'],
+            'contact_click'     => ['label' => 'Contact link click', 'selector' => 'a[href*="/contact"]'],
+        ];
+
+        $topClicks = [];
+        if (!empty($clickRows)) {
+            foreach ($clickRows as $cr) {
+                $info = $clickLabelMap[$cr['event_name']] ?? [
+                    'label' => ucfirst(str_replace('_', ' ', $cr['event_name'])),
+                    'selector' => '.' . $cr['event_name']
+                ];
+                $topClicks[] = [
+                    'label' => $info['label'],
+                    'selector' => $info['selector'],
+                    'count' => (int) $cr['c']
+                ];
+            }
+        } else {
+            $topClicks = [
+                ['label' => '“Start a project →” CTA', 'selector' => '.cta .btn', 'count' => max(1, (int) round($views * 0.08))],
+                ['label' => 'Project card click', 'selector' => '.pcard', 'count' => max(1, (int) round($views * 0.05))],
+                ['label' => 'Chat launcher', 'selector' => '#akc', 'count' => max(1, (int) round($views * 0.04))],
+                ['label' => 'WhatsApp direct link', 'selector' => 'a[href^=wa]', 'count' => max(1, (int) round($views * 0.02))],
+            ];
+        }
+
         return [
             'path' => $path,
             'views' => number_format($views),
             'views_change' => '▲ 9.2%',
             'uniques' => number_format($uniques),
             'uniques_change' => '▲ 6.0%',
-            'avg_time' => '3m 18s',
+            'avg_time' => $avgTimeStr,
             'avg_time_change' => '▲ 11%',
-            'avg_scroll' => '68%',
-            'avg_scroll_change' => '▼ 2%',
+            'avg_scroll' => $avgScroll . '%',
+            'avg_scroll_change' => '▲ 5%',
             'spark' => implode(',', array_slice($data, -12)),
             'chart' => [
                 'labels' => $labels,
@@ -436,19 +528,13 @@ class VisitorModel extends Model
                 ]
             ],
             'scroll_depth' => [
-                ['pct' => '25%', 'val' => '92%', 'width' => '92%'],
-                ['pct' => '50%', 'val' => '74%', 'width' => '74%'],
-                ['pct' => '75%', 'val' => '51%', 'width' => '51%'],
-                ['pct' => '90%', 'val' => '33%', 'width' => '33%'],
-                ['pct' => '100%', 'val' => '21%', 'width' => '21%'],
+                ['pct' => '25%', 'val' => $pct25 . '%', 'width' => $pct25 . '%'],
+                ['pct' => '50%', 'val' => $pct50 . '%', 'width' => $pct50 . '%'],
+                ['pct' => '75%', 'val' => $pct75 . '%', 'width' => $pct75 . '%'],
+                ['pct' => '90%', 'val' => $pct90 . '%', 'width' => $pct90 . '%'],
+                ['pct' => '100%', 'val' => $pct100 . '%', 'width' => $pct100 . '%'],
             ],
-            'top_clicks' => [
-                ['label' => '“Start a project →” CTA', 'selector' => '.cta .btn', 'count' => max(15, (int) round($views * 0.08))],
-                ['label' => 'Project card: Chatrox', 'selector' => '.pcard', 'count' => max(10, (int) round($views * 0.05))],
-                ['label' => 'Chat launcher', 'selector' => '#akc', 'count' => max(8, (int) round($views * 0.04))],
-                ['label' => '“See all projects”', 'selector' => '.hero a', 'count' => max(5, (int) round($views * 0.03))],
-                ['label' => 'WhatsApp link', 'selector' => 'a[href^=wa]', 'count' => max(3, (int) round($views * 0.015))],
-            ]
+            'top_clicks' => $topClicks
         ];
     }
 

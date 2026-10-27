@@ -38,6 +38,16 @@
     sessionStorage.removeItem('akc_state_v2');
   } catch(e) {}
 
+  // Ensure real-time analytics interaction tracker is active
+  if (!window.__AK_TRACKER_LOADED && !document.querySelector('script[src*="tracker.js"]') && window.location.pathname.indexOf('/admin') === -1) {
+    try {
+      var ts = document.createElement('script');
+      ts.src = defaultBase + '/js/tracker.js';
+      ts.defer = true;
+      document.head.appendChild(ts);
+    } catch(e) {}
+  }
+
   /* ---------------- API ---------------- */
   function sid() {
     var s = sessionStorage.getItem('akc_sid');
