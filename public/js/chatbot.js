@@ -189,6 +189,9 @@
 
     livePollTimer = setInterval(function () {
       ChatbotAPI.poll(sid(), lastLiveMsgId).then(function (res) {
+        if (res.status === 'active' || res.status === 'needs_human') {
+          if (!isLiveMode) setLiveMode(true);
+        }
         if (res.status === 'closed') {
           setLiveMode(false);
           var hasClosed = S.msgs.some(function(x) {
@@ -310,10 +313,15 @@
   function setOpen(o, instant) {
     S.open = o; root.classList.toggle('open', o);
     launch.setAttribute('aria-expanded', o); launch.setAttribute('aria-label', o ? 'Close chat' : 'Open chat');
-    if (o) { tip.classList.remove('show'); sessionStorage.setItem(TKEY, '1'); S.unread = false; root.classList.remove('unread');
+    if (o) { 
+      tip.classList.remove('show'); sessionStorage.setItem(TKEY, '1'); S.unread = false; root.classList.remove('unread');
+      startLivePolling();
       setTimeout(function () { toBottom(true); if (!matchMedia('(max-width:560px)').matches || !instant) ta.focus({ preventScroll: true }); }, instant ? 0 : 350);
       if (matchMedia('(max-width:560px)').matches) document.documentElement.style.overflow = 'hidden';
-    } else { toggleMenu(false); document.documentElement.style.overflow = ''; if (!instant) launch.focus(); }
+    } else { 
+      toggleMenu(false); document.documentElement.style.overflow = ''; if (!instant) launch.focus(); 
+      if (!isLiveMode && livePollTimer) { clearInterval(livePollTimer); livePollTimer = null; }
+    }
     save();
   }
   function toggleMenu(f) { var s = f == null ? !menu.classList.contains('show') : f; menu.classList.toggle('show', s); $('.akc-more').setAttribute('aria-expanded', s); }

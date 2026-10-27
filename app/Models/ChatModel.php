@@ -126,6 +126,10 @@ class ChatModel
             $params[] = $meta['visitor_email'];
         }
 
+        if ($row['status'] === 'closed') {
+            $updates[] = "status = 'bot'";
+        }
+
         if (!empty($updates)) {
             $params[] = $row['id'];
             $db->prepare("UPDATE chat_conversations SET " . implode(', ', $updates) . ", updated_at = NOW() WHERE id = ?")
@@ -151,7 +155,23 @@ class ChatModel
         $db->prepare("UPDATE chat_conversations SET last_message = ?, updated_at = NOW() WHERE id = ?")
             ->execute([mb_substr($message, 0, 255), $conversationId]);
 
+        // If visitor sends a message to a closed chat, automatically reopen it
+        if ($sender === 'visitor') {
+            $db->prepare("UPDATE chat_conversations SET status = 'bot' WHERE id = ? AND status = 'closed'")
+                ->execute([$conversationId]);
+        }
+
         return $msgId;
+    }
+
+    /**
+     * Count messages sent by visitor in a conversation.
+     */
+    public static function countVisitorMessages(int $conversationId): int
+    {
+        $stmt = self::db()->prepare("SELECT COUNT(*) FROM chat_messages WHERE conversation_id = ? AND sender = 'visitor'");
+        $stmt->execute([$conversationId]);
+        return (int)$stmt->fetchColumn();
     }
 
     /**

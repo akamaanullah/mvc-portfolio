@@ -366,6 +366,19 @@ class AdminController extends Controller
                     $activeConversation = $conversations[0];
                 }
 
+                if ($activeConversation) {
+                    $found = false;
+                    foreach ($conversations as $cv) {
+                        if ((int)$cv['id'] === (int)$activeConversation['id']) {
+                            $found = true;
+                            break;
+                        }
+                    }
+                    if (!$found) {
+                        array_unshift($conversations, $activeConversation);
+                    }
+                }
+
                 $activeMessages = [];
                 $visitorProfile = null;
                 if ($activeConversation) {

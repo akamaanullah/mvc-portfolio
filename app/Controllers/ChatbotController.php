@@ -42,6 +42,12 @@ class ChatbotController extends Controller
             'user_agent'   => $_SERVER['HTTP_USER_AGENT'] ?? '',
         ]);
 
+        // If conversation was closed, reset status to bot
+        if (($conv['status'] ?? '') === 'closed') {
+            ChatModel::updateStatus($conv['id'], 'bot');
+            $conv['status'] = 'bot';
+        }
+
         // Save visitor's message
         $visitorMsgId = ChatModel::addMessage($conv['id'], 'visitor', $userMessage);
 
@@ -78,6 +84,24 @@ class ChatbotController extends Controller
 
         // Ask AI
         $aiReply = ChatbotService::ask($userMessage, $history);
+
+        // Guard check: Don't trigger lead form prematurely before collecting project details!
+        $hasLeadFormRequest = str_contains($aiReply, 'LEAD_FORM_REQUEST:') || str_contains($aiReply, 'DEAL_CLOSE:');
+        if ($hasLeadFormRequest) {
+            $isExplicitQuoteOrContact = (bool) preg_match('/\b(quote|pricing|price|cost|budget|proposal|estimate|karcha|charges|hire|rate|rates|contact|phone|email|whatsapp|number|call)\b/i', $userMessage);
+            
+            // Check if the reply is still asking discovery questions (contains '?') or visitor message count is low
+            $isAskingDiscoveryQuestions = str_contains($aiReply, '?');
+            $visitorMsgCount = ChatModel::countVisitorMessages($conv['id']);
+
+            // If user did not explicitly ask for quote/pricing AND bot is still asking discovery questions, suppress premature lead form
+            if (!$isExplicitQuoteOrContact && ($isAskingDiscoveryQuestions || $visitorMsgCount <= 1)) {
+                $aiReply = str_replace(['LEAD_FORM_REQUEST:', 'LEAD_FORM_REQUEST', 'DEAL_CLOSE:', 'DEAL_CLOSE'], '', $aiReply);
+                // Clean up any trailing request sentence asking for name/email
+                $aiReply = preg_replace('/(\*{1,4}\s*)?Please provide your (name and email|details) below[^.\n]*[.\n]?/i', '', $aiReply);
+                $aiReply = trim($aiReply);
+            }
+        }
 
         // Save AI reply to database
         $botMsgId = ChatModel::addMessage($conv['id'], 'bot', $aiReply);

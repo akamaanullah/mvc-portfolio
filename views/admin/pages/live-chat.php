@@ -50,7 +50,8 @@ function getAvatarColor(?string $name): string {
             </label>
         </div>
         <div class="tabs" style="padding:0 8px">
-            <a href="<?= base_url('/admin/live-chat?tab=active') ?>" class="tab-link <?= $currentTab === 'active' ? 'on' : '' ?>" style="text-decoration:none; color:inherit;">Active</a>
+            <a href="<?= base_url('/admin/live-chat?tab=all') ?>" class="tab-link <?= $currentTab === 'all' ? 'on' : '' ?>" style="text-decoration:none; color:inherit;">All</a>
+            <a href="<?= base_url('/admin/live-chat?tab=active') ?>" class="tab-link <?= ($currentTab === 'active' || empty($currentTab)) ? 'on' : '' ?>" style="text-decoration:none; color:inherit;">Active</a>
             <a href="<?= base_url('/admin/live-chat?tab=needs_human') ?>" class="tab-link <?= $currentTab === 'needs_human' ? 'on' : '' ?>" style="text-decoration:none; color:inherit;">
                 Needs you <span class="pill bad nd" id="needsYouPill" style="padding:0 6px; display:<?= $needsCount > 0 ? 'inline-block' : 'none' ?>;"><?= $needsCount ?></span>
             </a>
