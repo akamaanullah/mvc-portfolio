@@ -29,7 +29,13 @@
 
 <main>
 <?php if (!empty($service['body_html'])): ?>
-<?= $service['body_html'] ?>
+<?php
+$bodyHtml = $service['body_html'];
+$bodyHtml = preg_replace_callback('/<\?=\s*asset_url\(([\'"])(.*?)\1\)\s*\?>/', function($m) { return asset_url($m[2]); }, $bodyHtml);
+$bodyHtml = preg_replace_callback('/<\?=\s*base_url\(([\'"])(.*?)\1\)\s*\?>/', function($m) { return base_url($m[2]); }, $bodyHtml);
+$bodyHtml = preg_replace_callback('/<\?=\s*base_url\(\)\s*\?>/', function($m) { return base_url('/'); }, $bodyHtml);
+echo $bodyHtml;
+?>
 <?php else: ?>
 <div class="wrap">
  <nav class="crumb" aria-label="Breadcrumb"><ol><li><a href="<?= base_url('/') ?>">Home</a></li><li><a href="<?= base_url('/services') ?>">Services</a></li><li aria-current="page"><?= htmlspecialchars($service['title'] ?? '') ?></li></ol></nav>
