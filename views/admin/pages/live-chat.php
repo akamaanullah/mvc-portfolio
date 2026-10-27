@@ -368,8 +368,13 @@ function getAvatarColor(?string $name): string {
         });
     }
 
+    function escHtml(s) {
+        return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
     // Real-time polling every 2.5 seconds
     let previousNeedsCount = <?= (int)$needsCount ?>;
+    let prevConvCount = <?= count($conversations) ?>;
     setInterval(async () => {
         try {
             const res = await fetch(`${pollUrl}?conversation_id=${activeConvId}&last_msg_id=${lastMsgId}&tab=${encodeURIComponent(currentTab)}`);
@@ -385,6 +390,54 @@ function getAvatarColor(?string $name): string {
                 if (needsPill) {
                     needsPill.textContent = data.needs_human_count;
                     needsPill.style.display = data.needs_human_count > 0 ? 'inline-block' : 'none';
+                }
+            }
+
+            // Real-time live update of conversation list in sidebar
+            if (data.conversations && data.conversations.length > 0) {
+                if (data.conversations.length > prevConvCount) {
+                    try { beepAudio.play(); } catch(err) {}
+                }
+                prevConvCount = data.conversations.length;
+
+                const activeBadge = document.getElementById('activeCountBadge');
+                if (activeBadge) activeBadge.textContent = data.conversations.length + ' active';
+
+                const cvl = document.getElementById('cvl');
+                const searchVal = chatSearchInp ? chatSearchInp.value.toLowerCase().trim() : '';
+                if (cvl && !searchVal) {
+                    const currentActiveSession = '<?= $active ? htmlspecialchars($active['session_id']) : '' ?>';
+                    let html = '';
+                    data.conversations.forEach(cv => {
+                        const isSel = (cv.session_id === currentActiveSession);
+                        const needsYou = (cv.status === 'needs_human');
+                        const isLive = (cv.status === 'active');
+                        const timeStr = cv.updated_at ? cv.updated_at.substr(11, 5) : '';
+                        const name = cv.visitor_name || 'Visitor';
+                        const lastMsg = cv.last_message || 'Conversation active';
+                        const initials = name.slice(0, 2).toUpperCase();
+                        
+                        let badge = '';
+                        if (needsYou) {
+                            badge = '<span class="pill bad nd" style="font-size:10px; padding:1px 6px">needs you</span>';
+                        } else if (isLive) {
+                            badge = '<span class="pill good" style="font-size:10px; padding:1px 6px">live</span>';
+                        }
+
+                        html += `<a href="<?= base_url('/admin/live-chat?session=') ?>${encodeURIComponent(cv.session_id)}&tab=<?= urlencode($currentTab) ?>" 
+                            class="cv ${isSel ? 'on' : ''}" 
+                            data-id="${cv.id}" 
+                            data-session="${cv.session_id}"
+                            style="text-decoration:none; color:inherit;">
+                            <span class="ava">${initials}</span>
+                            <div class="who">
+                                <b>${escHtml(name)} ${badge}</b>
+                                <p>${escHtml(lastMsg)}</p>
+                            </div>
+                            <span class="tm">${timeStr}</span>
+                        </a>`;
+                    });
+                    cvl.innerHTML = html;
                 }
             }
 

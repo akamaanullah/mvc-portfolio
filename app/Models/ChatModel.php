@@ -65,6 +65,24 @@ class ChatModel
         $page = $meta['current_page'] ?? $_SERVER['HTTP_REFERER'] ?? '/';
         $location = $meta['location'] ?? null;
 
+        if (empty($location)) {
+            if ($ip === '127.0.0.1' || $ip === '::1') {
+                $location = 'Karachi, Pakistan (Local)';
+            } elseif (!empty($_SERVER['HTTP_CF_IPCOUNTRY'])) {
+                $location = $_SERVER['HTTP_CF_IPCOUNTRY'];
+            } else {
+                $vStmt = $db->prepare("SELECT country, city FROM visitors WHERE ip = ? LIMIT 1");
+                $vStmt->execute([$ip]);
+                $vRow = $vStmt->fetch();
+                if ($vRow && (!empty($vRow['country']) || !empty($vRow['city']))) {
+                    $location = trim(($vRow['city'] ?? '') . ', ' . ($vRow['country'] ?? ''), ', ');
+                }
+            }
+        }
+        if (empty($location)) {
+            $location = 'Pakistan';
+        }
+
         if (!$row) {
             // New conversation
             $vName = $meta['visitor_name'] ?? 'Visitor #' . substr(abs(crc32($sessionId)), 0, 4);
@@ -221,8 +239,8 @@ class ChatModel
             $sql .= " WHERE " . implode(' AND ', $where);
         }
 
-        // Sort: needs_human on top, then active, then updated_at DESC
-        $sql .= " ORDER BY CASE WHEN status = 'needs_human' THEN 1 WHEN status = 'active' THEN 2 ELSE 3 END, updated_at DESC LIMIT 50";
+        // Sort: needs_human on top, then active & bot strictly by updated_at DESC (newest at the top)
+        $sql .= " ORDER BY (CASE WHEN status = 'needs_human' THEN 0 ELSE 1 END), updated_at DESC LIMIT 50";
 
         $stmt = $db->prepare($sql);
         $stmt->execute($params);

@@ -47,12 +47,23 @@ class ChatbotController extends Controller
             ]);
         }
 
-        // Check if user is asking for a real person
+        // Check if user is asking for a real person / human takeover
         if (ChatbotService::isHumanRequested($userMessage)) {
+            ChatModel::updateStatus($conv['id'], 'needs_human');
+            
+            // Dispatch instant takeover alert email to admin
+            ChatbotService::sendTakeoverAlert(
+                $conv, 
+                $conv['visitor_name'] ?? 'Visitor', 
+                $conv['visitor_email'] ?? 'Not submitted yet', 
+                $userMessage
+            );
+
             return $this->json([
                 'handoff'    => true,
                 'session_id' => $sessionId,
-                'reply'      => "Of course! Before I connect you, may I quickly get your **name and email**?"
+                'status'     => 'needs_human',
+                'reply'      => "I have just notified Amaanullah Khan! He is receiving an alert to take over this chat right now. You can also message or call him directly on WhatsApp: " . env('CONTACT_PHONE', '+92 319 6935307') . "."
             ]);
         }
 
@@ -177,6 +188,15 @@ class ChatbotController extends Controller
             </div>
         </div>";
         ChatbotService::sendEmail(env('SMTP_USER', 'akamaanullah@gmail.com'), $subject, $body);
+
+        // Synchronize real name and email to chat_conversations record
+        $sessionId = trim($input['session_id'] ?? $input['session_key'] ?? '');
+        if (!empty($sessionId)) {
+            $conv = ChatModel::getConversationBySession($sessionId);
+            if ($conv) {
+                ChatModel::updateVisitorContact($conv['id'], $name, $email);
+            }
+        }
 
         return $this->json(['success' => true, 'lead_id' => $leadId]);
     }
