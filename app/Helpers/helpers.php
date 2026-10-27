@@ -54,6 +54,20 @@ function asset_url(string $path): string {
     return base_url('/' . ltrim($path, '/'));
 }
 
+/** Get client IP address resolving Cloudflare, proxies, or remote address. */
+if (!function_exists('client_ip')) {
+    function client_ip(): string {
+        $ip = $_SERVER['HTTP_CF_CONNECTING_IP']
+            ?? $_SERVER['HTTP_X_REAL_IP']
+            ?? null;
+        if (!$ip && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $parts = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $ip = trim($parts[0]);
+        }
+        return $ip ?: ($_SERVER['REMOTE_ADDR'] ?? '127.0.0.1');
+    }
+}
+
 function e($value): string {
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }

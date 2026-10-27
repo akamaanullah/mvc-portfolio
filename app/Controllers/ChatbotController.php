@@ -38,7 +38,7 @@ class ChatbotController extends Controller
         // Get or initialize conversation
         $conv = ChatModel::getOrCreateConversation($sessionId, [
             'current_page' => $currentPage,
-            'ip'           => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
+            'ip'           => client_ip(),
             'user_agent'   => $_SERVER['HTTP_USER_AGENT'] ?? '',
         ]);
 
@@ -108,7 +108,7 @@ class ChatbotController extends Controller
         $conv = ChatModel::getOrCreateConversation($sessionId, [
             'visitor_name'  => $name,
             'visitor_email' => $email,
-            'ip'            => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'
+            'ip'            => client_ip()
         ]);
 
         ChatModel::updateVisitorContact($conv['id'], $name, $email);

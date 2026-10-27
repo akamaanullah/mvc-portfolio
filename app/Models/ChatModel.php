@@ -59,10 +59,18 @@ class ChatModel
         $stmt->execute([$sessionId]);
         $row = $stmt->fetch();
 
-        $ip = trim((string)($meta['ip'] ?? $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1'));
+        $ip = trim((string)($meta['ip'] ?? client_ip()));
         if (str_contains($ip, ',')) $ip = trim(explode(',', $ip)[0]);
         $ua = self::parseUserAgent($meta['user_agent'] ?? $_SERVER['HTTP_USER_AGENT'] ?? '');
         $page = $meta['current_page'] ?? $_SERVER['HTTP_REFERER'] ?? '/';
+        $base = base_path_url();
+        if ($base !== '' && str_starts_with($page, $base)) {
+            $page = substr($page, strlen($base));
+        }
+        $page = '/' . ltrim($page, '/');
+        if (str_starts_with($page, '/api') || str_starts_with($page, '/admin') || empty($page) || $page === '//') {
+            $page = '/';
+        }
         $location = $meta['location'] ?? null;
 
         if (empty($location)) {
@@ -277,8 +285,12 @@ class ChatModel
                 $visitorId = (int)$visits[0]['id'];
                 $seen = [];
                 foreach ($visits as $v) {
-                    $cleanUrl = preg_replace('#^/web3d-full#', '', $v['url'] ?: '/');
-                    if (empty($cleanUrl) || $cleanUrl === '') $cleanUrl = '/';
+                    $cleanUrl = $v['url'] ?: '/';
+                    $basePath = base_path_url();
+                    if ($basePath !== '' && str_starts_with($cleanUrl, $basePath)) {
+                        $cleanUrl = substr($cleanUrl, strlen($basePath));
+                    }
+                    $cleanUrl = '/' . ltrim($cleanUrl, '/');
                     if (isset($seen[$cleanUrl])) continue;
                     $seen[$cleanUrl] = true;
                     $pages[] = [

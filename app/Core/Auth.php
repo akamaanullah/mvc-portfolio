@@ -67,7 +67,7 @@ class Auth
     public static function attempt(string $email, string $password): array
     {
         self::start();
-        $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+        $ip = client_ip();
 
         // Check Rate Limiting
         if (self::isRateLimited($ip)) {

@@ -7,9 +7,14 @@
   if (window.__AK_CHATBOT_LOADED) return;
   window.__AK_CHATBOT_LOADED = true;
 
-  // Auto-detect base path
+  // Auto-detect base path dynamically
   var path = window.location.pathname || '';
-  var defaultBase = path.indexOf('/web3d-full') !== -1 ? '/web3d-full' : '';
+  var defaultBase = (typeof window.__BASE_URL === 'string') ? window.__BASE_URL : '';
+  if (!defaultBase) {
+    var m = path.match(/^(\/[^\/]+)\/(admin|api|services|projects|articles|about|contact)/);
+    if (m) defaultBase = m[1];
+  }
+  defaultBase = defaultBase.replace(/\/$/, '');
 
   var CFG = Object.assign({
     endpoint: defaultBase + '/api/chat/message',

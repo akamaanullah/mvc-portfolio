@@ -839,10 +839,7 @@ class VisitorModel extends Model
 
     private static function getClientIp(): string
     {
-        return $_SERVER['HTTP_CF_CONNECTING_IP']
-            ?? $_SERVER['HTTP_X_FORWARDED_FOR']
-            ?? $_SERVER['REMOTE_ADDR']
-            ?? '127.0.0.1';
+        return client_ip();
     }
 
     private static function parseDevice(string $ua): string

@@ -21,7 +21,7 @@ class ContactModel extends Model
             $v = sanitize(is_array($v) ? implode(', ', $v) : $v);
             $row[$f] = function_exists('mb_substr') ? mb_substr($v, 0, 5000) : substr($v, 0, 5000);
         }
-        $row['ip'] = $_SERVER['REMOTE_ADDR'] ?? null;
+        $row['ip'] = client_ip();
         $row['created_at'] = date('Y-m-d H:i:s');
 
         if (Database::enabled()) {

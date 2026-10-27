@@ -193,11 +193,15 @@ function getAvatarColor(?string $name): string {
                 <dt>Location</dt>
                 <dd><?= htmlspecialchars($active['location'] ?: 'Pakistan') ?></dd>
                 <dt>IP Address</dt>
-                <dd><code><?= htmlspecialchars($active['visitor_ip'] ?: '127.0.0.1') ?></code></dd>
+                <dd><code><?= htmlspecialchars($active['visitor_ip'] ?: client_ip()) ?></code></dd>
                 <dt>Current Page</dt>
                 <?php 
-                    $currPageDisplay = preg_replace('#^/web3d-full#', '', $active['current_page'] ?: '/');
-                    if (empty($currPageDisplay) || $currPageDisplay === '') $currPageDisplay = '/';
+                    $currPageDisplay = $active['current_page'] ?: '/';
+                    $basePath = base_path_url();
+                    if ($basePath !== '' && str_starts_with($currPageDisplay, $basePath)) {
+                        $currPageDisplay = substr($currPageDisplay, strlen($basePath));
+                    }
+                    $currPageDisplay = '/' . ltrim($currPageDisplay, '/');
                 ?>
                 <dd style="word-break:break-all; font-size:12px;"><b><?= htmlspecialchars($currPageDisplay) ?></b></dd>
                 <dt>Source</dt>

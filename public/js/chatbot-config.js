@@ -2,13 +2,16 @@
  * Amaanullah AI Assistant & Live Chat Configuration
  */
 (function() {
-    // Detect base URL dynamically (e.g. /web3d-full on local XAMPP or '' in production)
+    // Detect base URL dynamically (e.g. from window.__BASE_URL or subfolder path)
     var path = window.location.pathname || '';
     var base = '';
-    if (window.__BASE_URL !== undefined) {
+    if (typeof window.__BASE_URL === 'string') {
         base = window.__BASE_URL;
-    } else if (path.indexOf('/web3d-full') !== -1) {
-        base = '/web3d-full';
+    } else {
+        var m = path.match(/^(\/[^\/]+)\/(admin|api|services|projects|articles|about|contact)/);
+        if (m) {
+            base = m[1];
+        }
     }
     base = base.replace(/\/$/, '');
     window.__BASE_URL = base;
