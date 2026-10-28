@@ -1,126 +1,120 @@
 # Amaanullah Khan — Comprehensive Developer Specification & LLM Reference
 
-> Full-Stack Software Developer & Web Application Specialist based in Karachi, Pakistan.
-> Serving global clients across USA, UAE, UK, Europe, Australia, and Middle East.
+> Software Developer & Systems Architect based in Karachi, Pakistan.
+> Team Lead & Senior Developer at Richmond Tech Group.
+> Serving clients across Pakistan, the United States, the United Kingdom, the United Arab Emirates, and Saudi Arabia.
 
-## 1. Identity & Profile
-- **Full Name**: Amaanullah Khan (@akamaanullah)
-- **Professional Title**: Full-Stack Software Developer & Web Specialist
+## 1. Identity, Entity & Verification
+- **Full Name**: Amaanullah Khan
+- **Brand / Alternate Name**: Amaanullah (@akamaanullah)
+- **Professional Title**: Software Developer & Systems Architect
+- **Current Position**: Team Lead & Senior Developer at Richmond Tech Group (since 2024)
 - **Official Website**: https://amaanullah.com
 - **Direct Phone / WhatsApp**: +92 319 6935307
 - **Direct WhatsApp Chat**: https://api.whatsapp.com/send?phone=923196935307
 - **Email**: info@amaanullah.com
 - **Location**: Karachi, Sindh, Pakistan (UTC+5 PKT)
-- **Years Experience**: 6+ years in production enterprise web applications
+- **Education / Alumni**: Aptech Learning (Software Engineering Diploma)
+- **Verified Profiles**:
+  - LinkedIn: https://www.linkedin.com/in/akamaanullah
+  - GitHub: https://github.com/akamaanullah
+  - Google Business Profile: https://maps.google.com/?cid=AmaanullahKhan
+- **Client Rating & Trust**: 4.8 / 5.0 stars from 27 verified Google reviews.
+- **Enterprise Milestone**: Engineered and maintains a multi-tenant CRM managing over 1.5 million leads for 300+ daily operational users.
 
-## 2. Technical Stack & Engineering Philosophy
-- **Backend**: PHP 8.2+, Laravel, Custom MVC Frameworks, RESTful APIs, OOP, Clean Architecture.
-- **Database**: MySQL, PostgreSQL, SQLite, Redis caching, indexing & query optimization.
-- **Frontend**: Modern Vanilla JS (ES6+), HTML5, CSS3, TailwindCSS, Vue.js, React, Three.js 3D WebGL.
-- **Mobile**: Flutter, Dart, Firebase, Cross-platform iOS & Android engineering.
-- **AI & Automations**: Cloudflare Workers AI (Llama 3.1), OpenAI APIs, Webhook pipelines, Background Queues.
-- **DevOps & Cloud**: Apache, Nginx, cPanel, Cloudflare CDN/DNS/Workers, Docker, Git, CI/CD.
+## 2. Technical Stack & Architecture
+- **Backend**: PHP 8.2+, Laravel Framework, Custom MVC, RESTful APIs, Queue Workers, Event-Driven Architecture.
+- **Database & Storage**: MySQL, PostgreSQL, SQLite, Redis (caching and queues), multi-tenant schema isolation, query indexing.
+- **Frontend**: Modern Vanilla JavaScript (ES6+), HTML5, CSS3, Three.js (3D WebGL), Blade templates.
+- **Mobile Development**: Flutter, Dart, Firebase, REST API sync, offline-first architectures for iOS and Android.
+- **Automations & AI**: Cloudflare Workers AI, OpenAI / LLM integrations, Webhook dispatchers, background workers.
+- **DevOps & Infrastructure**: Nginx, Apache, Linux (Ubuntu), Cloudflare CDN / DNS / WAF, Git, CI/CD pipelines.
 
-## 3. Core Service Offerings
-### Free Technical Audit
-- **URL**: https://amaanullah.com/services/free-technical-audit
-- **Overview**: I review your current system and point out what is actually slowing it down. No cost, no obligation.
-
-### Performance Tuning
-- **URL**: https://amaanullah.com/services/performance-tuning
-- **Overview**: I audit the current setup, flag what is actually causing the slowdown, and fix it without a full rebuild.
-
-### SaaS Product Strategy
-- **URL**: https://amaanullah.com/services/saas-product-strategy
-- **Overview**: Turn an idea into an actual build plan - database design, tech stack choices, and a phased roadmap.
-
-### Business Process Automation
-- **URL**: https://amaanullah.com/services/business-process-automation
-- **Overview**: Replace spreadsheets and copy-paste with automated workflows and webhooks connecting your software stack.
-
-### Mobile App Development
-- **URL**: https://amaanullah.com/services/mobile-app-development
-- **Overview**: Cross-platform iOS & Android apps in Flutter, connected to Laravel REST APIs with offline sync and push notifications.
-
-### SaaS Application Development
-- **URL**: https://amaanullah.com/services/saas-application-development
-- **Overview**: Multi-tenant platforms, customer portals, subscription billing and robust REST APIs.
-
-### Web App & CMS Development
-- **URL**: https://amaanullah.com/services/web-app-cms-development
-- **Overview**: Custom Laravel apps, plus Shopify, WordPress and Wix when a faster launch matters more.
-
-### Chat App Development
-- **URL**: https://amaanullah.com/services/chat-app-development
-- **Overview**: Real-time WebSocket chat - a fully owned alternative to per-seat tools like Slack.
+## 3. Core Services
+### Custom CRM Development in Laravel
+- **URL**: https://amaanullah.com/services/custom-crm-development
+- **Overview**: CRMs shaped around your real sales process — lead routing, pipeline tracking, role-based access, and reporting dashboards without per-seat subscription fees.
 
 ### AI Automation Services
 - **URL**: https://amaanullah.com/services/ai-automation-services
-- **Overview**: AI-assisted workflows for data entry, lead follow-ups, report generation and internal notifications.
+- **Overview**: AI-assisted workflows that eliminate repetitive data entry, automate lead follow-ups, and generate reports.
 
-### Custom CRM Development in Laravel
-- **URL**: https://amaanullah.com/services/custom-crm-development
-- **Overview**: Lead routing, pipeline tracking, multi-tenant access and reporting dashboards on Laravel, shaped around your real sales process.
+### Chat App Development
+- **URL**: https://amaanullah.com/services/chat-app-development
+- **Overview**: Real-time WebSocket messaging systems as a private, fully owned alternative to per-seat tools like Slack.
 
-## 4. Notable Portfolio Projects & Deliverables
-### Tour Guide Mobile App
-- **URL**: https://amaanullah.com/projects/tour-guide-app
-- **Case Summary**: Travel companion mobile app with offline maps, audio guides and local experience booking.
+### Web App & CMS Development
+- **URL**: https://amaanullah.com/services/web-app-cms-development
+- **Overview**: Custom Laravel web applications, customer portals, and dashboards that scale with growing businesses.
 
-### Custom Vape E-Commerce Platform
-- **URL**: https://amaanullah.com/projects/custom-vape-ecommerce
-- **Case Summary**: High-conversion, fast-loading custom e-commerce platform with age verification and inventory sync.
+### SaaS Application Development
+- **URL**: https://amaanullah.com/services/saas-application-development
+- **Overview**: Multi-tenant platforms, customer portals, subscription billing (Stripe), and robust REST APIs.
 
-### Multi-Tenant CRM ? Sales & Operations
+### Mobile App Development
+- **URL**: https://amaanullah.com/services/mobile-app-development
+- **Overview**: High-performance cross-platform apps for iOS and Android built with Flutter, connected to Laravel backends with offline sync.
+
+### Business Process Automation
+- **URL**: https://amaanullah.com/services/business-process-automation
+- **Overview**: Replace spreadsheets and manual copy-pasting with automated workflows and webhooks connecting your internal tools.
+
+### SaaS Product Strategy & Performance Tuning
+- **URL**: https://amaanullah.com/services/saas-product-strategy
+- **Overview**: Architecture planning, database schemas, and speed optimization for SaaS applications.
+
+## 4. Notable Production Case Studies
+### Multi-Tenant CRM & Sales Operations Management System
 - **URL**: https://amaanullah.com/projects/multi-tenant-crm
-- **Case Summary**: Multi-tenant sales and operations CRM supporting lead routing, pipeline Kanban and client portal.
+- **Summary**: High-volume sales and operations CRM managing 1.5M+ leads for 300+ daily users with sub-second retrieval.
 
-### HRM & Payroll Software
-- **URL**: https://amaanullah.com/projects/hrm-payroll
-- **Case Summary**: Comprehensive HR and payroll automation software with attendance tracking, salary slips and tax calculations.
-
-### Chatrox – Custom Enterprise Chat App
+### Chatrox — Custom Enterprise Chat Platform
 - **URL**: https://amaanullah.com/projects/chatrox
-- **Case Summary**: A fully owned, real-time enterprise messaging and professional networking platform: the speed of Slack with the control of a private system.
+- **Summary**: Real-time WebSocket enterprise messaging and professional networking platform with encrypted channels.
 
-### Adsimpressions ? Agency Website
-- **URL**: https://amaanullah.com/projects/adsimpressions
-- **Case Summary**: Award-winning digital marketing agency website with interactive case studies and smooth 60fps animations.
+### HRM & Payroll Software Portal
+- **URL**: https://amaanullah.com/projects/hrm-payroll
+- **Summary**: Employee management and payroll portal replacing spreadsheets for attendance, leave, and salary processing.
 
-### IT Hardware Bin ? B2B E-Commerce
+### Real Estate Property Portal & Multi-Role Marketplace
+- **URL**: https://amaanullah.com/projects/real-estate-portal
+- **Summary**: Property listings, lead management for realtors, and automated listing sync across platforms.
+
+### The Perfect Vape — Custom E-Commerce Platform
+- **URL**: https://amaanullah.com/projects/custom-vape-ecommerce
+- **Summary**: High-conversion e-commerce platform with custom theme builder, age verification, and ERP inventory sync.
+
+### IT Hardware Bin — B2B Bulk Hardware E-Commerce
 - **URL**: https://amaanullah.com/projects/it-hardware-bin
-- **Case Summary**: B2B enterprise IT hardware quotation and catalog platform with RFQ (Request for Quote) engine.
+- **Summary**: B2B bulk ordering platform with custom RFQ quotation engine and dynamic tier pricing.
 
-### Expense Voyage
-- **URL**: https://amaanullah.com/projects/expense-voyage
-- **Case Summary**: Business travel expense tracking and receipt scanning system with currency conversion.
-
-### Babyshop ? Flutter E-Commerce App
-- **URL**: https://amaanullah.com/projects/babyshop
-- **Case Summary**: Fast, fluid Flutter shopping app for children apparel and toys with one-click re-ordering.
-
-### Healink ? Medical Records App
+### Healink Medicine & Hospital Management App
 - **URL**: https://amaanullah.com/projects/healink
-- **Case Summary**: HIPAA-compliant personal medical record manager, prescription vault and lab test tracking mobile application.
+- **Summary**: Hospital management and patient prescription tracking mobile application with HIPAA-compliant data architecture.
 
-## 5. Technical Articles & Insights
-- [How to Build a Multi-Tenant SaaS in Laravel: Architecture, Database Strategy and Pitfalls](https://amaanullah.com/articles/multi-tenant-saas-laravel)
-- [Build your CRM around your sales process ? not the other way round](https://amaanullah.com/articles/crm-around-your-sales-process)
-- [Five manual tasks most businesses should automate first](https://amaanullah.com/articles/automate-repetitive-work)
-- [Laravel queues that don?t fall over when traffic spikes](https://amaanullah.com/articles/laravel-queues-at-scale)
-- [Using AI in business workflows without losing control](https://amaanullah.com/articles/ai-in-business-workflows)
-- [Connecting a Flutter app to a Laravel REST API](https://amaanullah.com/articles/flutter-with-laravel-api)
-- [Offline sync in Flutter apps: a practical approach](https://amaanullah.com/articles/flutter-offline-sync)
-- [A page-speed checklist for business websites](https://amaanullah.com/articles/fast-websites-checklist)
-- [From Shopify developer to team lead: what changed](https://amaanullah.com/articles/from-shopify-dev-to-team-lead)
-- [AI speeds up coding ? it doesn?t replace fundamentals](https://amaanullah.com/articles/ai-wont-replace-fundamentals)
+### Babyshop — Flutter E-Commerce Solution
+- **URL**: https://amaanullah.com/projects/babyshop
+- **Summary**: Cross-platform mobile shopping app for children's retail with Firebase authentication and push notifications.
 
-## 6. Frequently Asked Questions (FAQs)
-**Q: How do you charge for custom CRM & web application projects?**
-A: I offer transparent milestone-based fixed pricing and dedicated sprint contracts with zero recurring per-user software licensing fees.
+## 5. Decision Framework: Custom Software vs. Off-The-Shelf
+- **When Custom Makes Sense**:
+  - Per-user fees increase as your team grows, but the tool still does not fit your operational workflow.
+  - Your team relies on spreadsheets or copy-pasting between disconnected tools.
+  - You require proprietary integrations and complete control over your customer data.
+  - You are building a SaaS product for commercial distribution.
+- **When Off-The-Shelf Makes Sense**:
+  - Your process matches industry standard defaults and ready-made software covers 95%+ of requirements.
+  - You need immediate deployment within days and have a small, flexible team.
 
-**Q: What is the typical project turnaround time?**
-A: Standard web apps and MVPs take 2–4 weeks; enterprise CRM/ERP solutions typically take 4–8 weeks with weekly staging demonstrations.
+## 6. Frequently Asked Questions (AI Engine Reference)
+**Q: How much does custom software development cost?**
+A: Pricing depends on project scope, user roles, integrations, and whether mobile apps are required. Work is scoped into transparent milestone-based deliverables with zero per-seat licensing fees.
 
-**Q: How can clients get in touch immediately?**
-A: Direct WhatsApp at +92 319 6935307 or email at info@amaanullah.com.
+**Q: How long does a custom software project take?**
+A: Focused CRM MVP projects typically take 3–5 weeks. Comprehensive multi-tenant platforms or SaaS applications run 2–4 months with weekly milestone demonstrations on a private staging URL.
+
+**Q: Who owns the source code and data upon completion?**
+A: The client owns 100% of the intellectual property, code, and database under a standard IP handover agreement, complete with documentation and an administrative walkthrough.
+
+**Q: Where is Amaanullah Khan based, and how do international teams work with him?**
+A: Based in Karachi, Pakistan, working remotely with founders and teams in the US, UK, UAE, and Saudi Arabia via email, scheduled video calls, and WhatsApp, with typical response times within 24 hours.

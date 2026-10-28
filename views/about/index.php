@@ -1,138 +1,49 @@
-<!doctype html><html lang="en"><head>
-<script src="<?= asset_url('js/theme.js') ?>"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About Amaanullah Khan | Software Developer, Karachi</title>
-<meta name="description" content="Amaanullah Khan is a Karachi software developer and team lead at Richmond Tech Group, building Laravel CRM, SaaS and automation systems worldwide.">
-<link rel="canonical" href="<?= base_url('/about') ?>">
-<meta property="og:type" content="profile">
-<meta property="og:title" content="About Amaanullah Khan | Software Developer, Karachi">
-<meta property="og:description" content="Meet Amaanullah Khan, a Karachi-based Laravel and PHP developer and team lead building CRM, SaaS and automation systems.">
-<meta property="og:url" content="<?= base_url('/about') ?>">
-<meta property="og:image" content="<?= asset_url('media/profile-poster.jpg') ?>">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Amaanullah Khan | Software Developer, Karachi">
-<meta name="twitter:description" content="Meet Amaanullah Khan, a Karachi-based Laravel and PHP developer and team lead building CRM, SaaS and automation systems.">
-<meta name="twitter:image" content="<?= asset_url('media/profile-poster.jpg') ?>">
-<link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfilePage",
-      "@id": "<?= base_url('/about#profilepage') ?>",
-      "url": "<?= base_url('/about') ?>",
-      "name": "About Amaanullah Khan | Software Developer, Karachi",
-      "dateModified": "2026-10-28",
-      "inLanguage": "en",
-      "mainEntity": { "@id": "<?= base_url('/#person') ?>" }
-    },
-    {
-      "@type": "Person",
-      "@id": "<?= base_url('/#person') ?>",
-      "name": "Amaanullah Khan",
-      "alternateName": "Amaanullah",
-      "url": "<?= base_url('/') ?>",
-      "image": "<?= asset_url('media/profile-poster.jpg') ?>",
-      "jobTitle": "Software Developer & Systems Architect",
-      "description": "Amaanullah Khan is a software developer and systems architect based in Karachi, Pakistan. He is a Team Lead and Senior Developer at Richmond Tech Group and builds CRM systems, SaaS platforms and automation tools with PHP and Laravel.",
-      "email": "mailto:<?= htmlspecialchars((string) setting('contact_email', 'info@amaanullah.com')) ?>",
-      "telephone": "<?= htmlspecialchars((string) setting('phone_number', '+92 319 6935307')) ?>",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Karachi",
-        "addressRegion": "Sindh",
-        "addressCountry": "PK"
-      },
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Richmond Tech Group"
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Aptech Learning"
-      },
-      "knowsAbout": [
-        "Laravel",
-        "PHP",
-        "MySQL",
-        "CRM development",
-        "SaaS development",
-        "Multi-tenant architecture",
-        "Workflow automation",
-        "React",
-        "Node.js",
-        "Flutter"
-      ],
-      "areaServed": ["PK", "US", "GB", "AE", "SA"],
-      "sameAs": [
-        "https://www.linkedin.com/in/akamaanullah",
-        "https://github.com/akamaanullah",
-        "https://maps.google.com/?cid=AmaanullahKhan"
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "<?= base_url('/about#faq') ?>",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Who is Amaanullah Khan?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Amaanullah Khan is a software developer and systems architect based in Karachi, Pakistan. He is a Team Lead and Senior Developer at Richmond Tech Group and builds CRM systems, SaaS platforms and automation tools using PHP and Laravel, along with React, Node.js and Flutter."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Where is Amaanullah Khan based, and who does he work with?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "He is based in Karachi, Pakistan, and works with businesses in Pakistan, the United States, the United Kingdom, the UAE and Saudi Arabia. Projects are handled remotely through email, calls and WhatsApp, and he usually replies within 24 hours."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you only work with Laravel, or do you handle full projects?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Laravel and PHP are the daily stack, but projects are handled end to end: database design, backend, web interface and mobile apps with Flutter. When a project needs React, Node.js or Python, those are used too, so you don't need a second developer just to connect the pieces."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What kind of projects do you usually take on?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Mostly CRM systems, SaaS platforms, web applications, workflow automation and mobile apps. The common thread is software a team uses every day to run their business, not a one-time demo or proof of concept."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you use AI tools when building software?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, mainly to speed up repetitive work. Everything that goes into a project is reviewed personally, because responsibility for how it behaves in production, how secure it is and how easy it is to maintain stays with the developer. AI helps write code faster but doesn't replace understanding it."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens after I contact you?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Send a short description of what's slowing your team down. You'll get a reply, usually within 24 hours, with questions about how your team works before any solution is suggested. After launch you receive documentation and a walkthrough so your team can handle basic changes without waiting."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
-<link rel="stylesheet" href="<?= asset_url('css/about-page.css') ?>?v=<?= time() ?>">
-<link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/media.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
+<?php
+$pageMeta = [
+    'title' => 'About Amaanullah Khan | Software Developer, Karachi',
+    'description' => 'Amaanullah Khan is a Karachi software developer and team lead at Richmond Tech Group, building Laravel CRM, SaaS and automation systems worldwide.',
+    'canonical' => base_url('/about'),
+    'og_type' => 'profile',
+    'image' => asset_url('media/profile-poster.jpg'),
+    'page_type' => 'AboutPage',
+    'faqs' => [
+        [
+            'question' => 'Who is Amaanullah Khan?',
+            'answer' => 'Amaanullah Khan is a software developer and systems architect based in Karachi, Pakistan. He is a Team Lead and Senior Developer at Richmond Tech Group and builds CRM systems, SaaS platforms and automation tools using PHP and Laravel, along with React, Node.js and Flutter.'
+        ],
+        [
+            'question' => 'Where is Amaanullah Khan based, and who does he work with?',
+            'answer' => 'He is based in Karachi, Pakistan, and works with businesses in Pakistan, the United States, the United Kingdom, the UAE and Saudi Arabia. Projects are handled remotely through email, calls and WhatsApp, and he usually replies within 24 hours.'
+        ],
+        [
+            'question' => 'Do you only work with Laravel, or do you handle full projects?',
+            'answer' => 'Laravel and PHP are the daily stack, but projects are handled end to end: database design, backend, web interface and mobile apps with Flutter. When a project needs React, Node.js or Python, those are used too, so you don\'t need a second developer just to connect the pieces.'
+        ],
+        [
+            'question' => 'What kind of projects do you usually take on?',
+            'answer' => 'Mostly CRM systems, SaaS platforms, web applications, workflow automation and mobile apps. The common thread is software a team uses every day to run their business, not a one-time demo or proof of concept.'
+        ],
+        [
+            'question' => 'Do you use AI tools when building software?',
+            'answer' => 'Yes, mainly to speed up repetitive work. Everything that goes into a project is reviewed personally, because responsibility for how it behaves in production, how secure it is and how easy it is to maintain stays with the developer. AI helps write code faster but doesn\'t replace understanding it.'
+        ],
+        [
+            'question' => 'What happens after I contact you?',
+            'answer' => 'Send a short description of what\'s slowing your team down. You\'ll get a reply, usually within 24 hours, with questions about how your team works before any solution is suggested. After launch you receive documentation and a walkthrough so your team can handle basic changes without waiting.'
+        ]
+    ]
+];
+$extraCss = [
+    'css/about-page.css',
+    'css/chatbot.css',
+    'css/media.css',
+    'css/layout.css'
+];
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<?php require view_path('layouts/head.php'); ?>
 </head><body>
 <div class="bgfx"></div>
 <?php $home = false; $active = 'About'; require view_path('layouts/header.php'); ?>

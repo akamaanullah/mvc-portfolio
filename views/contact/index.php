@@ -1,17 +1,20 @@
-<!doctype html><html lang="en"><head>
-<script src="<?= asset_url('js/theme.js') ?>"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact Amaanullah Khan — PHP &amp; Laravel Developer in Karachi</title>
-<meta name="description" content="Get in touch with Amaanullah Khan, a Karachi-based PHP &amp; Laravel developer, about a CRM, SaaS, automation, web or mobile project. Email, WhatsApp, call or send a project brief.">
-<link rel="canonical" href="https://example.com/contact"><!-- EDIT: real domain -->
-<meta property="og:type" content="website"><meta property="og:title" content="Contact Amaanullah Khan — PHP &amp; Laravel Developer in Karachi"><meta property="og:description" content="Get in touch with Amaanullah Khan, a Karachi-based PHP &amp; Laravel developer, about a CRM, SaaS, automation, web or mobile project. Email, WhatsApp, call or send a project brief."><meta property="og:url" content="https://example.com/contact"><meta property="og:image" content="https://example.com/images/og-contact.png"><!-- EDIT -->
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Contact Amaanullah Khan — PHP &amp; Laravel Developer in Karachi"><meta name="twitter:description" content="Get in touch with Amaanullah Khan, a Karachi-based PHP &amp; Laravel developer, about a CRM, SaaS, automation, web or mobile project. Email, WhatsApp, call or send a project brief.">
-<link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ContactPage", "name": "Contact Amaanullah Khan — PHP & Laravel Developer in Karachi", "url": "https://example.com/contact", "description": "Get in touch with Amaanullah Khan, a Karachi-based PHP & Laravel developer, about a CRM, SaaS, automation, web or mobile project. Email, WhatsApp, call or send a project brief.", "mainEntity": {"@type": "Person", "name": "Amaanullah Khan", "jobTitle": "PHP & Laravel Developer", "email": "mailto:info@amaanullah.com", "telephone": "+923196935307", "address": {"@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "PK"}, "sameAs": ["https://www.linkedin.com/in/EDIT", "https://github.com/EDIT"], "contactPoint": {"@type": "ContactPoint", "contactType": "customer support", "email": "info@amaanullah.com", "telephone": "+923196935307", "areaServed": "Worldwide", "availableLanguage": ["English", "Urdu"]}}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/"}, {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://example.com/contact"}]}</script>
-<link rel="stylesheet" href="<?= asset_url('css/contact-page.css') ?>"><link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
+<?php
+$pageMeta = [
+    'title' => 'Contact Amaanullah Khan | Software Developer in Karachi',
+    'description' => 'Get in touch with Amaanullah Khan, a Karachi-based software developer and systems architect, about a CRM, SaaS, automation, web or mobile project.',
+    'canonical' => base_url('/contact'),
+    'page_type' => 'ContactPage',
+];
+$extraCss = [
+    'css/contact-page.css',
+    'css/chatbot.css',
+    'css/layout.css'
+];
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<?php require view_path('layouts/head.php'); ?>
 </head><body><?php $home = false; $active = 'Contact'; require view_path('layouts/header.php'); ?><main id="main">
 <section class="ch"><div class="wrap">
 <nav class="crumb" aria-label="Breadcrumb"><a href="<?= base_url('/') ?>">Home</a><span aria-hidden="true">/</span><b aria-current="page">Contact</b></nav>

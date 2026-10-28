@@ -1,21 +1,36 @@
-# Amaanullah Khan — Full-Stack Software Developer
+# Amaanullah Khan — Full-Stack Software Developer & Systems Architect
 
-> Full-Stack Web Application Developer & Custom Software Specialist based in Karachi, Pakistan.
-> Specializing in Custom CRM Systems, SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Mobile Apps.
+> Software Developer & Systems Architect based in Karachi, Pakistan.
+> Team Lead & Senior Developer at Richmond Tech Group.
+> Specializing in Custom CRM Systems, Multi-Tenant SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Flutter Mobile Apps.
+
+## Quick Facts & Verified Identity
+- **Full Name**: Amaanullah Khan (@akamaanullah)
+- **Role**: Software Developer & Systems Architect / Team Lead at Richmond Tech Group
+- **Official Domain**: https://amaanullah.com
+- **Location**: Karachi, Sindh, Pakistan (Serves clients in Pakistan, USA, UK, UAE, and Saudi Arabia)
+- **Key Proof**: Built multi-tenant CRM managing 1.5M+ leads for 300+ daily users.
+- **Reputation**: 4.8 / 5.0 rating across 27 Google Reviews.
+- **Direct WhatsApp**: https://api.whatsapp.com/send?phone=923196935307
+- **Contact Email**: info@amaanullah.com
 
 ## Core Capabilities
-- Custom CRM & ERP Development: Tailored business systems with zero monthly user licenses.
-- SaaS & Web App Development: High-performance PHP/Laravel applications, modern APIs, clean architectures.
-- AI Automation & LLM Workflows: Cloudflare Workers AI, custom chatbot integration, automated lead capture.
-- Mobile App Development: Flutter & Firebase for iOS and Android.
+- **Custom CRM Development**: Multi-tenant lead routing, sales pipelines, role permissions, and zero per-seat licensing fees.
+- **SaaS Platform Engineering**: Multi-tenant architectures, subscription billing (Stripe), customer portals, and robust REST APIs.
+- **Business Process Automation**: Connecting APIs, webhooks, and removing manual spreadsheets for operational teams.
+- **AI Automation Workflows**: Practical LLM integrations, document summarization, lead qualification, and automated triage.
+- **Mobile App Development**: Cross-platform iOS and Android apps with Flutter, connected to Laravel backends with offline sync.
 
 ## Key Links & Documentation
 - [Home Page](https://amaanullah.com/)
+- [About Amaanullah Khan](https://amaanullah.com/about)
 - [Services Catalog](https://amaanullah.com/services)
-- [Enterprise CRM Development](https://amaanullah.com/services/custom-crm-development)
-- [Portfolio Projects](https://amaanullah.com/projects)
-- [Technical Articles & Blog](https://amaanullah.com/articles)
-- [Contact & WhatsApp](https://amaanullah.com/contact)
+- [Custom CRM Development](https://amaanullah.com/services/custom-crm-development)
+- [Multi-Tenant CRM Case Study](https://amaanullah.com/projects/multi-tenant-crm)
+- [Chatrox Real-Time Messaging](https://amaanullah.com/projects/chatrox)
+- [Portfolio & Production Systems](https://amaanullah.com/projects)
+- [Technical Articles & Architecture Guides](https://amaanullah.com/articles)
+- [Direct Contact & Project Inquiry](https://amaanullah.com/contact)
 
-## Comprehensive Context
-- For full background, detailed projects, and architectural philosophy, see [Full LLM Specification](https://amaanullah.com/llms-full.txt).
+## Comprehensive Specification
+- For exhaustive background, technical stack breakdown, case studies, and architecture FAQs, read the [Full LLM Specification](https://amaanullah.com/llms-full.txt).

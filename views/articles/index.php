@@ -27,42 +27,36 @@ $featuredBig = $allArticles[0] ?? null;
 $featuredSide = array_slice($allArticles, 1, 2);
 $gridArticles = array_slice($allArticles, 3);
 ?>
-<!doctype html><html lang="en"><head>
-<script src="<?= asset_url('js/theme.js') ?>"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Articles on Laravel, SaaS, Automation &amp; Flutter | Amaanullah Khan</title>
-<meta name="description" content="Practical articles by Amaanullah Khan, a Karachi-based PHP &amp; Laravel developer, on building CRMs, SaaS products, business automation, Flutter apps and fast websites.">
-<link rel="canonical" href="<?= base_url('/articles') ?>">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Articles on Laravel, SaaS, Automation &amp; Flutter | Amaanullah Khan">
-<meta property="og:description" content="Practical articles by Amaanullah Khan, a Karachi-based PHP &amp; Laravel developer, on building CRMs, SaaS products, business automation, Flutter apps and fast websites.">
-<meta property="og:url" content="<?= base_url('/articles') ?>">
-<meta property="og:image" content="<?= asset_url('images/og-articles.png') ?>">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Articles on Laravel, SaaS, Automation &amp; Flutter | Amaanullah Khan">
-<meta name="twitter:description" content="Practical articles by Amaanullah Khan, a Karachi-based PHP &amp; Laravel developer, on building CRMs, SaaS products, business automation, Flutter apps and fast websites.">
-<meta name="twitter:image" content="<?= asset_url('images/og-articles.png') ?>">
-<link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
-<script type="application/ld+json" class="pld">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "<?= base_url('/articles') ?>"}]}</script>
-<script type="application/ld+json" class="pld">{
- "@context": "https://schema.org",
- "@type": ["Blog", "CollectionPage"],
- "name": "Articles on Laravel, SaaS, Automation & Flutter | Amaanullah Khan",
- "description": "Practical articles by Amaanullah Khan, a Karachi-based PHP & Laravel developer, on building CRMs, SaaS products, business automation, Flutter apps and fast websites.",
- "url": "<?= base_url('/articles') ?>",
- "author": {"@type": "Person", "name": "Amaanullah Khan"},
- "mainEntity": {
-  "@type": "ItemList",
-  "itemListElement": [
-   <?php foreach (array_slice($allArticles, 0, 10) as $i => $a): ?>
-   {"@type": "ListItem", "position": <?= $i + 1 ?>, "url": "<?= base_url('/articles/' . $a['slug']) ?>", "name": <?= json_encode($a['title']) ?>}<?= $i < min(9, count($allArticles) - 1) ? ',' : '' ?>
-   <?php endforeach; ?>
-  ]
- }
-}</script>
-<link rel="stylesheet" href="<?= asset_url('css/articles.css') ?>"><link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
+<?php
+$schemaItems = [];
+foreach (array_slice($allArticles, 0, 10) as $i => $a) {
+    $schemaItems[] = [
+        '@type' => 'ListItem',
+        'position' => $i + 1,
+        'name' => $a['title'],
+        'url' => base_url('/articles/' . $a['slug'])
+    ];
+}
+
+$pageMeta = [
+    'title' => 'Articles on Laravel, SaaS, Automation & Flutter | Amaanullah Khan',
+    'description' => 'Practical articles by Amaanullah Khan, a Karachi-based PHP & Laravel developer, on building CRMs, SaaS products, business automation, Flutter apps and fast websites.',
+    'canonical' => base_url('/articles'),
+    'og_type' => 'website',
+    'image' => asset_url('images/og-articles.png'),
+    'page_type' => 'CollectionPage',
+    'itemList' => $schemaItems
+];
+$extraCss = [
+    'css/articles.css',
+    'css/chatbot.css',
+    'css/layout.css'
+];
+?>
+<!doctype html>
+<html lang="en">
+<head>
+<?php require view_path('layouts/head.php'); ?>
 </head><body>
 <div class="bgfx"></div>
 <?php $home = false; $active = ''; require view_path('layouts/header.php'); ?>

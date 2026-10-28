@@ -1,38 +1,25 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
 <script src="<?= asset_url('js/splash-gate.js') ?>"></script>
-
-<title>Amaanullah — Web Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&family=Caveat:wght@600&display=swap&family=Kalam:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= asset_url('css/index.css') ?>">
+<?php
+$pageMeta = [
+    'title' => 'Amaanullah Khan | Software Developer & Systems Architect, Karachi',
+    'description' => 'Amaanullah Khan is a software developer in Karachi building custom CRM systems, multi-tenant SaaS platforms, and business automation for businesses in Pakistan, the US, UK, and UAE.',
+    'keywords' => 'Amaanullah Khan, software developer Karachi, Laravel developer Pakistan, custom CRM systems, SaaS architect',
+    'canonical' => base_url('/'),
+    'page_type' => 'WebPage',
+];
+$extraCss = [
+    'css/index.css',
+    'css/chatbot.css',
+    'css/media.css',
+    'css/index-overrides.css'
+];
+require view_path('layouts/head.php');
+?>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-<link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/media.css') ?>">
-<link rel="stylesheet" href="<?= asset_url('css/index-overrides.css') ?>">
-<link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Amaanullah Khan",
-  "jobTitle": "Custom Software Developer",
-  "url": "https://amaanullah.com",
-  "email": "info@amaanullah.com",
-  "telephone": "+923196935307",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Karachi",
-    "addressCountry": "PK"
-  },
-  "sameAs": [
-    "https://maps.google.com/?cid=AmaanullahKhan",
-    "https://github.com/akamaanullah",
-    "https://linkedin.com"
-  ]
-}
-</script>
 </head><body>
-<script src="<?= asset_url('js/theme.js') ?>"></script>
 <!-- ===== SPLASH / WELCOME SCREEN (shown once per session; add ?splash=1 to force) ===== -->
 <div id="splash" role="dialog" aria-label="Loading Amaanullah portfolio">
  <div class="sbg"></div><canvas id="splashC"></canvas><div class="sflash"></div>
