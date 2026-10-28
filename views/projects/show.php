@@ -322,7 +322,7 @@ $relatedProjects = $related ?? [];
 <?php require view_path('layouts/footer.php'); ?>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image preview"><button aria-label="Close">✕</button><figure><img alt=""><p></p></figure></div>
-<script src="<?= asset_url('js/case-study.js') ?>"></script>
+<script src="<?= asset_url('js/case-study.js') ?>?v=<?= time() ?>"></script>
 <script src="<?= asset_url('js/layout.js') ?>"></script>
 <script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
 <script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script>
