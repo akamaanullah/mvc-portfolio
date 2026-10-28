@@ -129,7 +129,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="<?= asset_url('css/about-page.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/about-page.css') ?>?v=<?= time() ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/media.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
