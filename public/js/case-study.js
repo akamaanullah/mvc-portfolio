@@ -32,8 +32,17 @@
     tocOl.innerHTML = '';
     if (mtocOl) mtocOl.innerHTML = '';
     sectionsInContent.forEach(sec => {
+      const eyb = sec.querySelector('.eyb span');
       const h = sec.querySelector('h2, h3');
-      const title = h ? h.textContent.replace(/^\d+\s*[·•-]\s*/, '').trim() : sec.id;
+      let title = '';
+      if (eyb) {
+        title = eyb.textContent.replace(/^\d+\s*[·•-]\s*/, '').trim();
+      } else if (h) {
+        title = h.textContent.replace(/^\d+\s*[·•-]\s*/, '').trim();
+        if (title.length > 28) title = title.substring(0, 28) + '…';
+      } else {
+        title = sec.id;
+      }
       const li = document.createElement('li');
       li.innerHTML = `<a href="#${sec.id}">${title}</a>`;
       tocOl.appendChild(li);
