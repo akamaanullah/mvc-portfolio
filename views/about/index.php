@@ -143,13 +143,17 @@
      ========================================================================== -->
 <header class="wrap ahero">
  <aside class="card pcard fade">
-  <video width="400" height="400" class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Amaanullah Khan, software developer and team lead based in Karachi, Pakistan"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"></video>
-  <h2>Amaanullah Khan</h2>
-  <div class="role">Software Developer &amp; Team Lead</div>
-  <div class="meta"><span style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Karachi, Pakistan</span><span>PHP · Laravel · Flutter</span></div>
+  <div class="pcard-media">
+   <video width="400" height="400" class="pvid" autoplay muted loop playsinline preload="metadata" poster="<?= asset_url('media/profile-poster.jpg') ?>" aria-label="Amaanullah Khan, software developer and team lead based in Karachi, Pakistan"><source src="<?= asset_url('media/profile.webm') ?>" type="video/webm"><source src="<?= asset_url('media/profile.mp4') ?>" type="video/mp4"></video>
+  </div>
+  <div class="pcard-body">
+   <h2>Amaanullah Khan</h2>
+   <div class="role">Software Developer &amp; Team Lead</div>
+   <div class="meta"><span style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Karachi, Pakistan</span><span>PHP · Laravel · Flutter</span></div>
+  </div>
   <a class="grate" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener"><span class="g">G</span><span><b>4.8 ★ Google Rating</b><small>27 Google reviews</small></span></a>
  </aside>
- <div class="fade">
+ <div class="fade ahero-content">
   <span class="eyebrow">✦ About Amaanullah Khan</span>
   <h1>Hi, I'm <em>Amaanullah Khan</em>,<br>Software Developer &amp; Systems Architect</h1>
   <p class="lead2">I'm a software developer based in Karachi, Pakistan, and I lead a development team at Richmond Tech Group. My daily stack is PHP and Laravel, and I build CRM systems, SaaS platforms and workflow automation for businesses in Pakistan, the United States, the United Kingdom, the UAE and Saudi Arabia.</p>
@@ -168,28 +172,6 @@
 </header>
 
 <!-- ==========================================================================
-     QUICK FACTS (Brand / Entity Disambiguation Block)
-     ========================================================================== -->
-<section class="wrap blk" id="quick-facts" aria-labelledby="h-facts">
- <div class="fade">
-  <span class="eyebrow">Entity &amp; Identity</span>
-  <h2 id="h-facts">Quick facts about <em>Amaanullah Khan</em></h2>
-  <p class="sub">Verified professional background, technology specialisations, and credentials at a glance.</p>
- </div>
- <div class="qfacts-grid fade">
-  <div class="qf-card"><small>Full name</small><b>Amaanullah Khan</b></div>
-  <div class="qf-card"><small>Based in</small><b>Karachi, Sindh, Pakistan</b></div>
-  <div class="qf-card"><small>Current role</small><b>Team Lead &amp; Senior Developer at Richmond Tech Group (since 2024)</b></div>
-  <div class="qf-card"><small>Main stack</small><b>PHP, Laravel, MySQL. Also React, Node.js and Flutter</b></div>
-  <div class="qf-card"><small>Core focus</small><b>CRM systems, SaaS platforms and business automation</b></div>
-  <div class="qf-card"><small>Education</small><b>Software Engineering Diploma, Aptech Learning (2022 – 2026)</b></div>
-  <div class="qf-card"><small>Works with clients in</small><b>Pakistan, the US, the UK, the UAE and Saudi Arabia</b></div>
-  <div class="qf-card"><small>Official website</small><b>amaanullah.com</b></div>
-  <div class="qf-card"><small>Direct contact</small><b><?= htmlspecialchars((string) setting('contact_email', 'info@amaanullah.com')) ?> · <?= htmlspecialchars((string) setting('phone_number', '+92 319 6935307')) ?></b></div>
- </div>
-</section>
-
-<!-- ==========================================================================
      HOW I GOT HERE
      ========================================================================== -->
 <section class="wrap blk" id="story" aria-labelledby="h-story">
@@ -198,38 +180,50 @@
   <h2 id="h-story">From one small build to <em>real systems</em></h2>
   <p class="sub">I built something small, watched a stranger use it, and got hooked on that feeling. Everything since has been about making software that people keep using.</p>
  </div>
- <ol class="story" style="list-style:none">
-  <li class="step fade">
-   <div class="n">01</div>
-   <div class="card">
-    <h3>Shopify Developer</h3>
-    <p>My first paid job was at a small software studio, where I customised Liquid themes, fixed slow-loading store pages and adjusted checkout flows to reduce drop-offs. It was a good place to start because every change had a direct, visible effect on whether a customer finished a purchase or left. That taught me that a feature isn't done just because it works. It's done when it actually helps the business.</p>
+ <div class="story-grid">
+  <article class="story-card fade">
+   <div class="story-head">
+    <span class="story-num">01</span>
+    <span class="story-tag">E-Commerce &amp; ROI</span>
    </div>
-  </li>
-  <li class="step fade">
-   <div class="n">02</div>
-   <div class="card">
-    <h3>Frontend Development</h3>
-    <p>From Shopify I moved into frontend work with HTML, CSS and JavaScript. I cared about page speed and accessibility from the beginning, not as an afterthought. But the longer I worked on interfaces, the more curious I became about what was happening behind them: how data moved, how it was stored and how it stayed secure.</p>
+   <h3>Shopify Developer</h3>
+   <p>My first paid job was at a small software studio, where I customised Liquid themes, fixed slow-loading store pages and adjusted checkout flows to reduce drop-offs. It was a good place to start because every change had a direct, visible effect on whether a customer finished a purchase or left. That taught me that a feature isn't done just because it works. It's done when it actually helps the business.</p>
+  </article>
+
+  <article class="story-card fade">
+   <div class="story-head">
+    <span class="story-num">02</span>
+    <span class="story-tag">UI Engineering</span>
    </div>
-  </li>
-  <li class="step fade">
-   <div class="n">03</div>
-   <div class="card">
-    <h3>PHP and MySQL</h3>
-    <p>That curiosity pulled me toward PHP and MySQL. I spent time learning proper database design, writing secure server-side logic and understanding what breaks when a system goes from 10 users to 1,000. Backend development stopped being just another skill on a resume. It became the part of the job I look forward to: keeping an application fast and stable as it grows, instead of patching it after it slows down.</p>
+   <h3>Frontend Development</h3>
+   <p>From Shopify I moved into frontend work with HTML, CSS and JavaScript. I cared about page speed and accessibility from the beginning, not as an afterthought. But the longer I worked on interfaces, the more curious I became about what was happening behind them: how data moved, how it was stored and how it stayed secure.</p>
+  </article>
+
+  <article class="story-card fade">
+   <div class="story-head">
+    <span class="story-num">03</span>
+    <span class="story-tag">Architecture &amp; Scale</span>
    </div>
-  </li>
-  <li class="step fade">
-   <div class="n">04</div>
-   <div class="card">
-    <h3>Senior Developer and Team Lead</h3>
-    <p>Today I work as a Senior Developer and Team Lead at Richmond Tech Group. My role isn't limited to writing code. I help plan how a project should be built before development starts, review other developers' work, and stay involved so the finished product solves the problem it was meant to solve, not just the problem as it was described in the first meeting.</p>
+   <h3>PHP and MySQL</h3>
+   <p>That curiosity pulled me toward PHP and MySQL. I spent time learning proper database design, writing secure server-side logic and understanding what breaks when a system goes from 10 users to 1,000. Backend development stopped being just another skill on a resume. It became the part of the job I look forward to: keeping an application fast and stable as it grows, instead of patching it after it slows down.</p>
+  </article>
+
+  <article class="story-card fade">
+   <div class="story-head">
+    <span class="story-num">04</span>
+    <span class="story-tag">Leadership &amp; Delivery</span>
    </div>
-  </li>
- </ol>
- <div class="story-note fade">
-  You can see this approach in my <a href="<?= base_url('/projects') ?>">case studies</a>, including a <a href="<?= base_url('/projects/multi-tenant-crm') ?>">CRM that handles over 1.5 million leads and 300+ daily users</a>.
+   <h3>Senior Developer and Team Lead</h3>
+   <p>Today I work as a Senior Developer and Team Lead at Richmond Tech Group. My role isn't limited to writing code. I help plan how a project should be built before development starts, review other developers' work, and stay involved so the finished product solves the problem it was meant to solve, not just the problem as it was described in the first meeting.</p>
+  </article>
+ </div>
+
+ <div class="story-proof fade">
+  <div class="sp-text">
+   <div class="sp-badge">Enterprise Proven</div>
+   <p>You can see this approach in my <a href="<?= base_url('/projects') ?>">case studies</a>, including a <a href="<?= base_url('/projects/multi-tenant-crm') ?>">CRM that handles over 1.5 million leads and 300+ daily users</a>.</p>
+  </div>
+  <a class="sp-btn" href="<?= base_url('/projects/multi-tenant-crm') ?>">View CRM Case Study <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
  </div>
 </section>
 
