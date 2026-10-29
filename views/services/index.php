@@ -8,12 +8,11 @@ foreach (($services ?? []) as $s) {
 
 $getSvc = function(string $slug, string $defTitle, string $defSummary, array $defTags = []) use ($serviceMap) {
     $row = $serviceMap[$slug] ?? null;
-    $title = !empty($row['title']) ? $row['title'] : $defTitle;
-    $summary = !empty($row['summary']) ? $row['summary'] : $defSummary;
-    $tags = !empty($row['tags']) ? array_filter(array_map('trim', explode(',', $row['tags']))) : $defTags;
     $url = base_url('/services/' . ($row['slug'] ?? $slug));
-    return ['title' => $title, 'summary' => $summary, 'tags' => $tags, 'url' => $url];
+    return ['title' => $defTitle, 'summary' => $defSummary, 'tags' => $defTags, 'url' => $url];
 };
+
+$arrowSvg = '<svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
 
 $schemaItems = [];
 $pos = 1;
@@ -119,12 +118,12 @@ $extraCss = [
   <p class="local-seo-line fade" style="margin-top:14px;font-weight:600;color:var(--o)">Available for remote projects.</p>
 
   <div class="btns fade">
-    <a class="bo pri" href="<?= base_url('/contact') ?>">Discuss Your Project →</a>
+    <a class="bo pri" href="<?= base_url('/contact') ?>">Discuss Your Project <?= $arrowSvg ?></a>
     <a class="bo sec" href="#development-services">Explore Services</a>
   </div>
   
   <p class="fade" style="margin-top:20px;font-size:13.5px;color:var(--mut)">
-    Have a website already? <a href="<?= base_url('/services/free-technical-audit') ?>" style="color:var(--o);font-weight:700;text-decoration:underline">Request a free technical audit →</a>
+    Have a website already? <a href="<?= base_url('/services/free-technical-audit') ?>" style="color:var(--o);font-weight:700;text-decoration:underline">Request a free technical audit <?= $arrowSvg ?></a>
   </p>
  </div>
  <div class="stage fade" aria-hidden="true">
@@ -174,7 +173,7 @@ $extraCss = [
       <p><?= htmlspecialchars($sWeb['summary']) ?></p>
       <div class="tg"><?php foreach ($sWeb['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
       <div class="card-links">
-        <a href="<?= $sWeb['url'] ?>">Explore Web Development →</a>
+        <a href="<?= $sWeb['url'] ?>">Explore Web Development <?= $arrowSvg ?></a>
       </div>
     </div>
   </div>
@@ -188,7 +187,7 @@ $extraCss = [
       <h3><?= htmlspecialchars($sMob['title']) ?></h3>
       <p><?= htmlspecialchars($sMob['summary']) ?></p>
       <div class="tg"><?php foreach ($sMob['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-      <div class="card-links"><a href="<?= $sMob['url'] ?>">Explore Mobile Apps →</a></div>
+      <div class="card-links"><a href="<?= $sMob['url'] ?>">Explore Mobile Apps <?= $arrowSvg ?></a></div>
     </div>
   </div>
 
@@ -201,7 +200,7 @@ $extraCss = [
       <h3><?= htmlspecialchars($sSaas['title']) ?></h3>
       <p><?= htmlspecialchars($sSaas['summary']) ?></p>
       <div class="tg"><?php foreach ($sSaas['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-      <div class="card-links"><a href="<?= $sSaas['url'] ?>">Explore SaaS Development →</a></div>
+      <div class="card-links"><a href="<?= $sSaas['url'] ?>">Explore SaaS Development <?= $arrowSvg ?></a></div>
     </div>
   </div>
 
@@ -218,7 +217,7 @@ $extraCss = [
       <p><?= htmlspecialchars($sCrm['summary']) ?></p>
       <div class="tg"><?php foreach ($sCrm['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
       <div class="card-links">
-        <a href="<?= $sCrm['url'] ?>">Explore CRM Development →</a>
+        <a href="<?= $sCrm['url'] ?>">Explore CRM Development <?= $arrowSvg ?></a>
       </div>
     </div>
   </div>
@@ -232,7 +231,7 @@ $extraCss = [
       <h3><?= htmlspecialchars($sAi['title']) ?></h3>
       <p><?= htmlspecialchars($sAi['summary']) ?></p>
       <div class="tg"><?php foreach ($sAi['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-      <div class="card-links"><a href="<?= $sAi['url'] ?>">Explore AI Automation →</a></div>
+      <div class="card-links"><a href="<?= $sAi['url'] ?>">Explore AI Automation <?= $arrowSvg ?></a></div>
     </div>
   </div>
 
@@ -246,7 +245,7 @@ $extraCss = [
       <p><?= htmlspecialchars($sChat['summary']) ?></p>
       <div class="tg"><?php foreach ($sChat['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
       <div class="card-links">
-        <a href="<?= $sChat['url'] ?>">Explore Chat Development →</a>
+        <a href="<?= $sChat['url'] ?>">Explore Chat Development <?= $arrowSvg ?></a>
       </div>
     </div>
   </div>
@@ -260,7 +259,7 @@ $extraCss = [
       <h3><?= htmlspecialchars($sAuto['title']) ?></h3>
       <p><?= htmlspecialchars($sAuto['summary']) ?></p>
       <div class="tg"><?php foreach ($sAuto['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-      <div class="card-links"><a href="<?= $sAuto['url'] ?>">Explore Workflow Automation →</a></div>
+      <div class="card-links"><a href="<?= $sAuto['url'] ?>">Explore Workflow Automation <?= $arrowSvg ?></a></div>
     </div>
   </div>
  </div>
@@ -292,21 +291,21 @@ $extraCss = [
      <h3><?= htmlspecialchars($sStrat['title']) ?></h3>
      <p><?= htmlspecialchars($sStrat['summary']) ?></p>
      <div class="tg"><?php foreach ($sStrat['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-     <a class="bo w" href="<?= base_url('/services/saas-product-strategy') ?>">Plan Your Product →</a>
+     <a class="bo w" href="<?= base_url('/services/saas-product-strategy') ?>">Plan Your Product <?= $arrowSvg ?></a>
    </div>
    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
      <span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.3M3 12A9 9 0 0 1 18.5 5.7"/><path d="M18.5 2v3.7h-3.7M5.5 22v-3.7h3.7"/></svg></span>
      <h3><?= htmlspecialchars($sPerf['title']) ?></h3>
      <p><?= htmlspecialchars($sPerf['summary']) ?></p>
      <div class="tg"><?php foreach ($sPerf['tags'] as $tag): ?><span><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-     <a class="bo w" href="<?= base_url('/services/performance-tuning') ?>">Improve Performance →</a>
+     <a class="bo w" href="<?= base_url('/services/performance-tuning') ?>">Improve Performance <?= $arrowSvg ?></a>
    </div>
    <div class="panel audit2" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
      <span class="bi" style="background:rgba(255,255,255,.2);color:#fff"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span>
      <h3><?= htmlspecialchars($sAudit['title']) ?></h3>
      <p><?= htmlspecialchars($sAudit['summary']) ?></p>
      <div class="tg"><?php foreach ($sAudit['tags'] as $tag): ?><span style="background:rgba(255,255,255,.2);color:#fff"><?= htmlspecialchars($tag) ?></span><?php endforeach; ?></div>
-     <a class="bo w" href="<?= base_url('/services/free-technical-audit') ?>">Request Free Audit →</a>
+     <a class="bo w" href="<?= base_url('/services/free-technical-audit') ?>">Request Free Audit <?= $arrowSvg ?></a>
    </div>
   </div>
  </div>
@@ -386,8 +385,8 @@ $extraCss = [
    <h4>Can Custom Software Grow?</h4>
    <p>It can, when the design and hosting suit the workload. More users and data may require better database queries, testing and changes to the server setup. Growth is something to plan and measure, rather than promise with a single word.</p>
    <p class="sn-links" style="margin-top:10px">
-     <a href="<?= base_url('/articles/custom-software-vs-saas-business-scalability') ?>">Compare Custom Software and SaaS →</a> &nbsp;|&nbsp; 
-     <a href="<?= base_url('/contact') ?>">Get Help Choosing →</a>
+     <a href="<?= base_url('/articles/custom-software-vs-saas-business-scalability') ?>">Compare Custom Software and SaaS <?= $arrowSvg ?></a> &nbsp;|&nbsp; 
+     <a href="<?= base_url('/contact') ?>">Get Help Choosing <?= $arrowSvg ?></a>
    </p>
   </div>
  </div>
@@ -409,7 +408,7 @@ $extraCss = [
    <h3>Sales and Operations</h3>
    <p>Lead tracking, customer records and sales reports for busy teams.</p>
    <div class="tg"><span>Leads</span><span>Reports</span></div>
-   <a class="i-link" href="<?= base_url('/projects/multi-tenant-crm-sales-operations-management-system') ?>">View Sales Platform →</a>
+   <a class="i-link" href="<?= base_url('/projects/multi-tenant-crm-sales-operations-management-system') ?>">View Sales Platform <?= $arrowSvg ?></a>
   </article>
 
   <!-- 2. Real Estate -->
@@ -418,7 +417,7 @@ $extraCss = [
    <h3>Real Estate</h3>
    <p>Property listings, enquiries and dashboards for agents and agencies.</p>
    <div class="tg"><span>Listings</span><span>Enquiries</span></div>
-   <a class="i-link" href="<?= base_url('/projects/category/real-estate-tech') ?>">View Property Projects →</a>
+   <a class="i-link" href="<?= base_url('/projects/category/real-estate-tech') ?>">View Property Projects <?= $arrowSvg ?></a>
   </article>
 
   <!-- 3. E-commerce and Retail -->
@@ -427,7 +426,7 @@ $extraCss = [
    <h3>E-commerce and Retail</h3>
    <p>Online stores, product catalogues and ordering tools for retail businesses.</p>
    <div class="tg"><span>Stores</span><span>Orders</span></div>
-   <a class="i-link" href="<?= base_url('/projects/category/e-commerce') ?>">View Retail Projects →</a>
+   <a class="i-link" href="<?= base_url('/projects/category/e-commerce') ?>">View Retail Projects <?= $arrowSvg ?></a>
   </article>
 
   <!-- 4. HR and Payroll -->
@@ -436,7 +435,7 @@ $extraCss = [
    <h3>HR and Payroll</h3>
    <p>Employee records, attendance, leave and payroll workflows in one place.</p>
    <div class="tg"><span>Attendance</span><span>Payroll</span></div>
-   <a class="i-link" href="<?= base_url('/projects/hrm-employee-management-payroll-portal') ?>">View HR Portal →</a>
+   <a class="i-link" href="<?= base_url('/projects/hrm-employee-management-payroll-portal') ?>">View HR Portal <?= $arrowSvg ?></a>
   </article>
 
   <!-- 5. Healthcare -->
@@ -445,7 +444,7 @@ $extraCss = [
    <h3>Healthcare</h3>
    <p>Apps for medical records, hospital workflows and healthcare services.</p>
    <div class="tg"><span>Records</span><span>Mobile Apps</span></div>
-   <a class="i-link" href="<?= base_url('/projects/category/healthcare-tech') ?>">View Healthcare Projects →</a>
+   <a class="i-link" href="<?= base_url('/projects/category/healthcare-tech') ?>">View Healthcare Projects <?= $arrowSvg ?></a>
   </article>
 
   <!-- 6. Expense Management -->
@@ -454,7 +453,7 @@ $extraCss = [
    <h3>Expense Management</h3>
    <p>Expense records, budgets and spending summaries for clearer tracking.</p>
    <div class="tg"><span>Expenses</span><span>Budgets</span></div>
-   <a class="i-link" href="<?= base_url('/projects/expense-voyage-budget-expense-management-web-app') ?>">View Expense App →</a>
+   <a class="i-link" href="<?= base_url('/projects/expense-voyage-budget-expense-management-web-app') ?>">View Expense App <?= $arrowSvg ?></a>
   </article>
 
   <!-- 7. Messaging and Communities -->
@@ -463,7 +462,7 @@ $extraCss = [
    <h3>Messaging and Communities</h3>
    <p>Private conversations, group messaging and professional networking tools.</p>
    <div class="tg"><span>Messaging</span><span>Communities</span></div>
-   <a class="i-link" href="<?= base_url('/projects/chatrox-real-time-messaging-professional-networking') ?>">View Chatrox →</a>
+   <a class="i-link" href="<?= base_url('/projects/chatrox-real-time-messaging-professional-networking') ?>">View Chatrox <?= $arrowSvg ?></a>
   </article>
 
   <!-- 8. Team Collaboration -->
@@ -472,7 +471,7 @@ $extraCss = [
    <h3>Team Collaboration</h3>
    <p>Task boards and shared workspaces that make project progress easier to follow.</p>
    <div class="tg"><span>Tasks</span><span>Workspaces</span></div>
-   <a class="i-link" href="<?= base_url('/projects/workspace-kanban-project-task-management-platform') ?>">View Team Workspace →</a>
+   <a class="i-link" href="<?= base_url('/projects/workspace-kanban-project-task-management-platform') ?>">View Team Workspace <?= $arrowSvg ?></a>
   </article>
  </div>
 </section>
@@ -519,26 +518,26 @@ $extraCss = [
    <a class="rc-card rc-link" href="<?= base_url('/projects/category/web-design-development') ?>" aria-label="Explore Online Stores projects">
     <b>Online Stores</b>
     <small>Catalogues and order flows</small>
-    <span class="rc-arrow" aria-hidden="true">Explore →</span>
+    <span class="rc-arrow" aria-hidden="true">Explore <?= $arrowSvg ?></span>
    </a>
    <a class="rc-card rc-link" href="<?= base_url('/projects/category/web-applications') ?>" aria-label="Explore Business Systems projects">
     <b>Business Systems</b>
     <small>Records and daily workflows</small>
-    <span class="rc-arrow" aria-hidden="true">Explore →</span>
+    <span class="rc-arrow" aria-hidden="true">Explore <?= $arrowSvg ?></span>
    </a>
    <a class="rc-card rc-link" href="<?= base_url('/projects/category/mobile-apps') ?>" aria-label="Explore Mobile Apps projects">
     <b>Mobile Apps</b>
     <small>Apps for customers and teams</small>
-    <span class="rc-arrow" aria-hidden="true">Explore →</span>
+    <span class="rc-arrow" aria-hidden="true">Explore <?= $arrowSvg ?></span>
    </a>
    <a class="rc-card rc-link" href="<?= base_url('/projects/category/products') ?>" aria-label="Explore Team Tools projects">
     <b>Team Tools</b>
     <small>Messaging and shared work</small>
-    <span class="rc-arrow" aria-hidden="true">Explore →</span>
+    <span class="rc-arrow" aria-hidden="true">Explore <?= $arrowSvg ?></span>
    </a>
   </div>
   <div style="text-align:center;margin-top:32px">
-    <a class="bo pri" href="<?= base_url('/projects') ?>">Explore Projects →</a>
+    <a class="bo pri" href="<?= base_url('/projects') ?>">Explore Projects <?= $arrowSvg ?></a>
   </div>
  </div>
 </section>
@@ -553,7 +552,7 @@ $extraCss = [
     <h2 id="h-rev">What Clients Say</h2>
     <p class="sub">Read feedback alongside the projects it relates to.</p>
   </div>
-  <div class="rnav"><button type="button" id="rp" aria-label="Previous review">←</button><button type="button" id="rn" aria-label="Next review">→</button></div>
+  <div class="rnav"><button type="button" id="rp" aria-label="Previous review"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button type="button" id="rn" aria-label="Next review"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
  </div>
  <div class="rtrack" id="rt" tabindex="0" aria-label="Client reviews">
   <figure class="card rv fade"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>“I had a great experience working with Amaanullah. He is highly skilled in web development and backend systems. The website he developed was fast, secure, and very well structured.”</blockquote><figcaption><span class="av">FK</span><span><b>Faisal Khan</b><small>Client · Custom Software &amp; Web Apps</small></span><span class="gg">Google</span></figcaption></figure>
@@ -569,12 +568,15 @@ $extraCss = [
      8. COMMON QUESTIONS (10 FAQ ITEMS)
      ========================================================================== -->
 <section class="wrap blk fqw" id="faq" aria-labelledby="h-faq">
- <div class="fade">
+ <div class="faq-sticky-head fade">
   <span class="eyebrow">BEFORE YOU START</span>
   <h2 id="h-faq">Common Questions</h2>
   <p class="sub">Straight answers about choosing a service and planning the work.</p>
+  <div class="faq-sticky-cta" style="margin-top:24px">
+    <a class="bo sec" href="<?= base_url('/contact') ?>" style="display:inline-flex;align-items:center;gap:6px">Have another question? <?= $arrowSvg ?></a>
+  </div>
  </div>
- <div class="fade">
+ <div class="faq-list fade">
   <?php foreach ($servicesFaqs as $idx => $faqItem): ?>
   <details<?= $idx === 0 ? ' open' : '' ?>>
     <summary><?= htmlspecialchars($faqItem['question']) ?></summary>
@@ -593,8 +595,8 @@ $extraCss = [
     <h2 id="h-contact">Tell Me What You Need</h2>
     <p>Share your idea, your current website or the problem you want to solve. We can discuss a practical next step.</p>
     <div class="btns" style="margin-top:12px">
-      <a class="bo pri" href="<?= base_url('/contact') ?>">Discuss Your Project →</a>
-      <a class="bo sec" href="<?= base_url('/services/free-technical-audit') ?>">Request Free Audit</a>
+      <a class="bo pri" href="<?= base_url('/contact') ?>">Discuss Your Project <?= $arrowSvg ?></a>
+      <a class="bo sec" href="<?= base_url('/services/free-technical-audit') ?>">Request Free Audit <?= $arrowSvg ?></a>
     </div>
     <div class="svc-contact-desc">
       Websites, web applications, mobile apps and custom software. Available for remote projects.
@@ -649,7 +651,7 @@ $extraCss = [
         <textarea id="sc_details" name="message" required rows="4" placeholder="What do you want to build or improve? Include the main features or the problem you are seeing."></textarea>
       </div>
 
-      <button type="submit" class="bo pri" id="svcSubmitBtn" style="width:100%;justify-content:center;margin-top:6px">Send Project Details</button>
+      <button type="submit" class="bo pri" id="svcSubmitBtn" style="width:100%;justify-content:center;margin-top:6px">Send Project Details <?= $arrowSvg ?></button>
 
       <div class="priv-note">
         Your details are only used to reply to your enquiry. See my <a href="<?= base_url('/about') ?>">Privacy Policy</a>.
