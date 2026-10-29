@@ -145,6 +145,8 @@ class ProjectModel extends Model
             'real-estate-tech' => 'web-applications',
             'e-commerce'       => 'web-design-development',
             'healthcare-tech'  => 'mobile-apps',
+            'web-system'       => 'web-applications',
+            'mobile-app'       => 'mobile-apps',
         ];
         if (isset($aliases[$slug])) {
             $slug = $aliases[$slug];
