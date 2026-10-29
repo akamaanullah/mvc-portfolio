@@ -604,7 +604,7 @@ $extraCss = [
   <div class="svc-contact-card">
     <h3>Tell Me About Your Project</h3>
     <form class="sc-form" id="svcProjectForm" action="<?= base_url('/contact') ?>" method="POST">
-      <?= csrf_field() ?>
+      <input type="hidden" name="_token" value="<?= e(csrf_token()) ?>">
       <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       
       <div class="form-success" id="svcFormSuccess" style="display:none" role="status">

@@ -150,6 +150,10 @@ function csrf_token(): string {
     return $_SESSION['_token'] ?? '';
 }
 
+function csrf_field(): string {
+    return '<input type="hidden" name="_token" value="' . e(csrf_token()) . '">';
+}
+
 function csrf_verify(?string $token): bool {
     if (session_status() !== PHP_SESSION_ACTIVE && !headers_sent()) {
         session_start();
