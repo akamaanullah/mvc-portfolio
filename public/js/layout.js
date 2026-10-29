@@ -17,6 +17,7 @@ function openMobNav(){
   mobDrawer.classList.add('open');
   mobDrawer.setAttribute('aria-hidden','false');
   if(mobToggle)mobToggle.setAttribute('aria-expanded','true');
+  document.body.classList.add('mob-nav-open');
   document.body.style.overflow='hidden';
 }
 function closeMobNav(){
@@ -24,6 +25,7 @@ function closeMobNav(){
   mobDrawer.classList.remove('open');
   mobDrawer.setAttribute('aria-hidden','true');
   if(mobToggle)mobToggle.setAttribute('aria-expanded','false');
+  document.body.classList.remove('mob-nav-open');
   document.body.style.overflow='';
 }
 

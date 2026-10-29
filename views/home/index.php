@@ -12,6 +12,7 @@ $pageMeta = [
 ];
 $extraCss = [
     'css/index.css',
+    'css/layout.css',
     'css/chatbot.css',
     'css/media.css',
     'css/index-overrides.css'
@@ -706,6 +707,7 @@ window.__FEATURED_SLIDES = <?= json_encode($sliderSlides, JSON_UNESCAPED_SLASHES
 <script type="module" src="<?= asset_url('js/splash-particles.js') ?>"></script>
 <script type="module" src="<?= asset_url('js/splash-portal.js') ?>"></script>
 <script type="module" src="<?= asset_url('js/hero-3d.js') ?>"></script>
+<script src="<?= asset_url('js/layout.js') ?>"></script>
 <script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot-config.js') ?>"></script>
 <script src="<?= asset_url('js/chatbot.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot.js') ?>" defer></script>
 </body></html>
