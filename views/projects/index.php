@@ -85,7 +85,7 @@ $extraCss = [
 <article class="pc big" data-cat="<?= $fDataCat ?>">
 <a href="<?= base_url('/projects/' . $fp['slug']) ?>" data-project="<?= htmlspecialchars($fp['slug']) ?>" class="pl" aria-label="View case study: <?= htmlspecialchars($fp['title']) ?>">
 <div class="ban"><img src="<?= $fBanner ?>" alt="<?= htmlspecialchars($fp['title']) ?> — <?= htmlspecialchars($fCatName) ?> project banner" width="1600" height="1000" loading="lazy" decoding="async"><span class="cb"><?= htmlspecialchars($fCatName) ?></span><?php if (!empty($fp['is_featured'])): ?><span class="pst live">Live</span><?php endif; ?></div>
-<div class="pb"><span class="lab"><?= htmlspecialchars($fp['industry'] ?: $fCatName) ?></span><div class="pt"><h3><?= htmlspecialchars($fp['title']) ?><?php if (!empty($fp['highlight_em'])): ?> <em><?= htmlspecialchars($fp['highlight_em']) ?></em><?php endif; ?></h3><span class="ar" aria-hidden="true">↗</span></div><p><?= htmlspecialchars($fp['summary']) ?></p>
+<div class="pb"><span class="lab"><?= htmlspecialchars($fp['industry'] ?: $fCatName) ?></span><div class="pt"><h3><?= htmlspecialchars($fp['title']) ?></h3><span class="ar" aria-hidden="true">↗</span></div><p><?= htmlspecialchars($fp['summary']) ?></p>
 <div class="tg"><?php foreach ($fChips as $c): ?><span><?= htmlspecialchars($c) ?></span><?php endforeach; ?></div><span class="vc">View case study <b>→</b></span></div></a></article>
 <?php endforeach; ?>
 </div></section>
@@ -101,7 +101,7 @@ $extraCss = [
 <article class="pc" data-cat="<?= $pDataCat ?>">
 <a href="<?= base_url('/projects/' . $pj['slug']) ?>" data-project="<?= htmlspecialchars($pj['slug']) ?>" class="pl" aria-label="View case study: <?= htmlspecialchars($pj['title']) ?>">
 <div class="ban"><img src="<?= $pBanner ?>" alt="<?= htmlspecialchars($pj['title']) ?> — <?= htmlspecialchars($pCatName) ?> project banner" width="1600" height="1000" loading="lazy" decoding="async"><span class="cb"><?= htmlspecialchars($pCatName) ?></span></div>
-<div class="pb"><span class="lab"><?= htmlspecialchars($pj['industry'] ?: $pCatName) ?></span><div class="pt"><h3><?= htmlspecialchars($pj['title']) ?><?php if (!empty($pj['highlight_em'])): ?> <em><?= htmlspecialchars($pj['highlight_em']) ?></em><?php endif; ?></h3><span class="ar" aria-hidden="true">↗</span></div><p><?= htmlspecialchars($pj['summary']) ?></p>
+<div class="pb"><span class="lab"><?= htmlspecialchars($pj['industry'] ?: $pCatName) ?></span><div class="pt"><h3><?= htmlspecialchars($pj['title']) ?></h3><span class="ar" aria-hidden="true">↗</span></div><p><?= htmlspecialchars($pj['summary']) ?></p>
 <div class="tg"><?php foreach ($pChips as $c): ?><span><?= htmlspecialchars($c) ?></span><?php endforeach; ?></div>
 <?php if ($isMobile): ?><div class="plat"><span>Android</span><span>iOS</span></div><?php endif; ?>
 <span class="vc">View case study <b>→</b></span></div></a></article>

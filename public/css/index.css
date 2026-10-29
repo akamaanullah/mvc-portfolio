@@ -140,7 +140,7 @@ body.dark .slist{background:rgba(30,30,40,.6);border-color:#2a2a35}
 .pc:hover .panel{transform:rotate(0)}
 .pc.dk .panel{background:linear-gradient(160deg,#252a40,#151826);color:#eee}.pc.lt .panel{background:linear-gradient(160deg,#fffaf4,#fff);color:#14141c;box-shadow:0 0 0 1px #eee}
 .panel .ty{display:inline-flex;gap:6px;font-size:10.5px;padding:4px 9px;border-radius:99px;background:rgba(120,140,255,.18)}.pc.lt .panel .ty{background:rgba(22,163,106,.12);color:#0e7a50}
-.panel h4{font-size:19px;font-weight:800;margin:8px 0 6px}.panel p{font-size:11.8px;line-height:1.5;opacity:.75}
+.panel h4{font-size:18px;font-weight:800;margin:8px 0 6px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}.panel p{font-size:12px;line-height:1.5;opacity:.8;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}
 .panel .tc{display:flex;gap:6px;margin:10px 0 8px}.panel .tc span{font-size:10px;padding:3px 8px;border-radius:99px;background:rgba(127,127,127,.15)}
 .panel .vp{font-size:11.5px;font-weight:600}
 .pc .hand{position:absolute;z-index:9;right:8px;bottom:-62px;color:var(--o);transform:rotate(-10deg);font-size:16px;text-align:center}
