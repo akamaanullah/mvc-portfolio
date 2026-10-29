@@ -7,24 +7,6 @@ class ProjectModel extends Model
 {
     protected static string $table = 'projects';
 
-    protected static array $aliases = [
-        'chatrox'                => 'chatrox-real-time-messaging-professional-networking',
-        'babyshop'               => 'babyshop-mobile-app-ecommerce-firebase-solution',
-        'healink'                => 'healink-medicine-app-healthcare-hospital-management-solution',
-        'tour-guide-app'         => 'tour-guide-mobile-app-explore-pakistan-travel-solution',
-        'tour-guide'             => 'tour-guide-mobile-app-explore-pakistan-travel-solution',
-        'custom-vape-ecommerce'  => 'the-perfect-vape-custom-ecommerce-platform-theme-builder',
-        'the-perfect-vape'       => 'the-perfect-vape-custom-ecommerce-platform-theme-builder',
-        'it-hardware-bin'        => 'it-hardware-bin-bulk-hardware-ecommerce-platform',
-        'adsimpressions'         => 'adsimpressions-custom-digital-agency-platform',
-        'multi-tenant-crm'       => 'multi-tenant-crm-sales-operations-management-system',
-        'hrm-payroll'            => 'hrm-employee-management-payroll-portal',
-        'ticketing-crm'          => 'ticketing-crm-jobs-vendor-management-enterprise-portal',
-        'real-estate-portal'     => 'real-estate-property-portal-multi-role-marketplace',
-        'kanban-workspace'       => 'workspace-kanban-project-task-management-platform',
-        'expense-voyage'         => 'expense-voyage-budget-expense-management-web-app',
-    ];
-
     public static function normalize(array $row): array
     {
         if (empty($row)) return $row;
@@ -103,15 +85,34 @@ class ProjectModel extends Model
 
     public static function find(string $slug): ?array
     {
-        $canonical = static::$aliases[$slug] ?? $slug;
-        $row = parent::find($canonical);
+        // 1. Exact match on slug
+        $row = parent::find($slug);
         if ($row) {
             return self::normalize($row);
         }
-        if ($canonical !== $slug) {
-            $row = parent::find($slug);
-            return $row ? self::normalize($row) : null;
+
+        // 2. Dynamic DB match for prefix or keyword
+        if (static::$table && \App\Core\Database::enabled()) {
+            try {
+                $db = \App\Core\Database::connection();
+                // Match prefix (e.g. 'chatrox' -> 'chatrox-real-time-messaging-...')
+                $stmt = $db->prepare('SELECT * FROM `' . static::$table . '` WHERE `slug` LIKE :prefix ORDER BY `id` ASC LIMIT 1');
+                $stmt->execute(['prefix' => $slug . '-%']);
+                $matched = $stmt->fetch();
+                if ($matched) {
+                    return self::normalize($matched);
+                }
+
+                // Match substring
+                $stmt = $db->prepare('SELECT * FROM `' . static::$table . '` WHERE `slug` LIKE :contains ORDER BY `id` ASC LIMIT 1');
+                $stmt->execute(['contains' => '%' . $slug . '%']);
+                $matched = $stmt->fetch();
+                if ($matched) {
+                    return self::normalize($matched);
+                }
+            } catch (\Throwable $e) {}
         }
+
         return null;
     }
 
@@ -140,7 +141,18 @@ class ProjectModel extends Model
 
     public static function category(string $slug): ?array
     {
-        foreach (self::categories() as $c) if ($c['slug'] === $slug) return $c;
+        foreach (self::categories() as $c) {
+            if ($c['slug'] === $slug) return $c;
+        }
+        if (\App\Core\Database::enabled()) {
+            try {
+                $db = \App\Core\Database::connection();
+                $stmt = $db->prepare("SELECT * FROM `categories` WHERE `slug` = :s AND `type` = 'project' LIMIT 1");
+                $stmt->execute(['s' => $slug]);
+                $cat = $stmt->fetch();
+                if ($cat) return $cat;
+            } catch (\Throwable $e) {}
+        }
         return null;
     }
 }

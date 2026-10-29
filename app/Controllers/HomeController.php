@@ -7,7 +7,42 @@ class HomeController extends Controller
 {
     public function index(): string 
     { 
-        return $this->render('home/index'); 
+        $featuredProjects = \App\Models\ProjectModel::select(
+            'id, category_id, category_slug, title, slug, highlight_em, domain, summary, banner, banner_alt, client, industry, role, timeline, platform, project_status, tech_chips, tldr, key_results, is_featured, show_on_home, sort_order',
+            "status = 'published' AND is_featured = 1",
+            [],
+            'sort_order ASC, id ASC'
+        );
+
+        if (empty($featuredProjects)) {
+            $featuredProjects = \App\Models\ProjectModel::select(
+                'id, category_id, category_slug, title, slug, highlight_em, domain, summary, banner, banner_alt, client, industry, role, timeline, platform, project_status, tech_chips, tldr, key_results, is_featured, show_on_home, sort_order',
+                "status = 'published' AND show_on_home = 1",
+                [],
+                'sort_order ASC, id ASC'
+            );
+        }
+
+        if (empty($featuredProjects)) {
+            $featuredProjects = \App\Models\ProjectModel::summaryList('sort_order ASC, id ASC');
+        }
+
+        $featuredProjects = array_map([\App\Models\ProjectModel::class, 'normalize'], $featuredProjects);
+
+        $homeProjects = \App\Models\ProjectModel::select(
+            'id, category_id, category_slug, title, slug, highlight_em, domain, summary, banner, banner_alt, client, industry, role, timeline, platform, project_status, tech_chips, tldr, key_results, is_featured, show_on_home, sort_order',
+            "status = 'published' AND show_on_home = 1",
+            [],
+            'sort_order ASC, id ASC'
+        );
+        $homeProjects = !empty($homeProjects) 
+            ? array_map([\App\Models\ProjectModel::class, 'normalize'], $homeProjects)
+            : $featuredProjects;
+
+        return $this->render('home/index', [
+            'featuredProjects' => $featuredProjects,
+            'homeProjects'     => $homeProjects
+        ]); 
     }
 
     public function robotsTxt(): string

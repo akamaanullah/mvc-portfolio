@@ -232,58 +232,108 @@ require view_path('layouts/head.php');
   <div class="hand">Ideas<br>→ Code<br>→ Real Impact</div>
   <a class="vall" href="<?= base_url('/projects') ?>"><!-- URL: all projects page -->View All Projects <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
  </div>
+<?php
+$featuredList = !empty($featuredProjects) ? $featuredProjects : [];
+if (empty($featuredList)) {
+    $featuredList = \App\Models\ProjectModel::summaryList('sort_order ASC, id ASC');
+}
+$heroProj = $featuredList[0] ?? [
+    'title' => 'Multi-Tenant CRM System',
+    'summary' => 'A powerful multi-tenant CRM platform with lead management, analytics, real-time updates and 7-level RBAC. Built for scale and security.',
+    'slug' => 'multi-tenant-crm-sales-operations-management-system',
+    'banner' => 'images/crm-1.svg',
+    'tech_chips' => 'PHP, MySQL, Laravel, WebSockets',
+    'platform' => 'Multi-tenant SaaS',
+    'key_results' => "Lead Management\nReal-time Analytics\n7-Level RBAC\nSecure & Scalable"
+];
+
+$heroTitleClean = $heroProj['title'] ?? 'Featured Project';
+$heroTitleParts = explode(' – ', $heroTitleClean);
+$heroMainTitle = $heroTitleParts[0];
+$heroSubTitle = $heroTitleParts[1] ?? '';
+
+$heroChips = array_filter(array_map('trim', explode(',', $heroProj['tech_chips'] ?? 'PHP, MySQL, Laravel, WebSockets')));
+$heroResults = array_filter(array_map('trim', explode("\n", $heroProj['key_results'] ?? "Lead Management\nReal-time Analytics\n7-Level RBAC\nSecure & Scalable")));
+
+$sliderProjects = array_slice($featuredList, 0, 4);
+$sliderSlides = [];
+foreach ($sliderProjects as $idx => $sp) {
+    $spTitleClean = $sp['title'] ?? '';
+    $spParts = explode(' – ', $spTitleClean);
+    $spMain = htmlspecialchars($spParts[0]);
+    $spSub = isset($spParts[1]) ? '<br><span>' . htmlspecialchars($spParts[1]) . '</span>' : '';
+    $spChips = array_values(array_filter(array_map('trim', explode(',', $sp['tech_chips'] ?? 'PHP, MySQL'))));
+    $spResults = array_values(array_filter(array_map('trim', explode("\n", $sp['key_results'] ?? "Scalable Architecture\nHigh Performance"))));
+    $sliderSlides[] = [
+        't'   => $spMain . $spSub,
+        'd'   => htmlspecialchars($sp['summary'] ?? ''),
+        'c'   => $spChips,
+        'f'   => array_slice($spResults, 0, 4),
+        'img' => asset_url($sp['banner'] ?? 'images/crm-1.svg'),
+        'url' => base_url('/projects/' . $sp['slug']),
+    ];
+}
+?>
  <div class="feat-wrap pv" id="featWrap" style="transition-delay:.1s">
   <div class="fshape"></div>
   <svg class="crystal" style="left:30%;top:20%" width="54" height="70" viewBox="0 0 54 70"><polygon points="27,0 54,24 40,70 6,62 0,22" fill="url(#gCry)"/><polygon points="27,0 54,24 27,30" fill="#fff" opacity=".35"/><polygon points="27,30 40,70 6,62" fill="#0d1460" opacity=".35"/></svg>
   <div class="cube3" style="--s:22px;left:31%;top:76%;animation-duration:7s"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="ftext fslide">
    <span class="ftag">✦ Featured Project</span>
-   <h3 id="fpT">Multi-tenant<br><span>CRM System</span></h3>
-   <p id="fpD">A powerful multi-tenant CRM platform with lead management, analytics, real-time updates and 7-level RBAC. Built for scale and security.</p>
-   <div class="tchips" id="fpC"><span>PHP</span><span>MySQL</span><span>Laravel</span><span>WebSockets</span></div>
-   <a class="vcs" id="fpL" href="<?= base_url('/projects/multi-tenant-crm') ?>"><!-- URL: case study page (per slide, see SLIDES in the script) -->View Case Study <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+   <h3 id="fpT"><?= htmlspecialchars($heroMainTitle) ?><?php if ($heroSubTitle): ?><br><span><?= htmlspecialchars($heroSubTitle) ?></span><?php endif; ?></h3>
+   <p id="fpD"><?= htmlspecialchars($heroProj['summary'] ?? '') ?></p>
+   <div class="tchips" id="fpC"><?php foreach ($heroChips as $c): ?><span><?= htmlspecialchars($c) ?></span><?php endforeach; ?></div>
+   <a class="vcs" id="fpL" href="<?= base_url('/projects/' . $heroProj['slug']) ?>">View Case Study <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
   <svg class="rock" viewBox="0 0 400 200" preserveAspectRatio="none"><defs><radialGradient id="rk" cx=".5" cy=".4" r=".55"><stop offset="0%" stop-color="#2a2420" stop-opacity=".85"/><stop offset="50%" stop-color="#161720" stop-opacity=".6"/><stop offset="82%" stop-color="#101118" stop-opacity=".2"/><stop offset="100%" stop-color="#0e0f15" stop-opacity="0"/></radialGradient></defs><path d="M20,70 Q60,20 140,30 Q220,5 300,28 Q380,30 390,80 Q400,150 330,180 Q200,200 80,185 Q0,160 20,70Z" fill="url(#rk)"/><path d="M60,60 Q140,40 200,50 M220,40 Q300,35 350,60" stroke="#ff7a2a" stroke-opacity=".4" fill="none"/></svg>
   <svg class="wire" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M10,250 C80,180 40,80 160,120 S300,260 390,150"/><path d="M30,280 C120,240 200,300 260,220 S350,120 395,60"/></svg>
-  <div class="laptop fslide"><div class="lscreen"><!-- SWAP IMAGE: replace images/crm-1.svg with your CRM screenshot --><img id="fpI" src="<?= asset_url('images/crm-1.svg') ?>" alt="CRM dashboard screenshot"></div><div class="lbase"></div></div>
-  <div class="stat"><i style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></i><div>Multi-tenant</div><b>5M – 10M+</b><div>Leads Capacity</div></div>
-  <div class="flist fslide" id="fpF"><div>Lead Management</div><div>Real-time Analytics</div><div>7-Level RBAC</div><div>Secure &amp; Scalable</div></div>
+  <div class="laptop fslide"><div class="lscreen"><img id="fpI" src="<?= asset_url($heroProj['banner'] ?? 'images/crm-1.svg') ?>" alt="<?= htmlspecialchars($heroProj['title'] ?? '') ?>"></div><div class="lbase"></div></div>
+  <div class="stat"><i style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></i><div><?= htmlspecialchars($heroProj['platform'] ?? 'Web Platform') ?></div><b>100%</b><div>High Availability</div></div>
+  <div class="flist fslide" id="fpF"><?php foreach (array_slice($heroResults, 0, 4) as $res): ?><div><?= htmlspecialchars($res) ?></div><?php endforeach; ?></div>
   <div class="thumbs">
-   <!-- SWAP IMAGES: thumbnails for the featured project gallery -->
-   <a href="javascript:void(0)" class="on" data-i="0"><img src="<?= asset_url('images/crm-1.svg') ?>" alt="CRM screen 1"></a>
-   <a href="javascript:void(0)" data-i="1"><img src="<?= asset_url('images/crm-2.svg') ?>" alt="CRM screen 2"></a>
-   <a href="javascript:void(0)" data-i="2"><img src="<?= asset_url('images/crm-3.svg') ?>" alt="CRM screen 3"></a>
-   <a href="javascript:void(0)" data-i="3"><img src="<?= asset_url('images/crm-4.svg') ?>" alt="CRM screen 4"></a>
+   <?php foreach ($sliderProjects as $idx => $sp): ?>
+    <a href="javascript:void(0)" class="<?= $idx === 0 ? 'on' : '' ?>" data-i="<?= $idx ?>"><img src="<?= asset_url($sp['banner'] ?? 'images/crm-1.svg') ?>" alt="<?= htmlspecialchars($sp['title'] ?? '') ?>"></a>
+   <?php endforeach; ?>
   </div>
-  <div class="pager"><span id="fpN">01 / 04</span><button id="fpPrev" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="fpNext" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
+  <div class="pager"><span id="fpN">01 / <?= sprintf('%02d', count($sliderProjects)) ?></span><button id="fpPrev" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="fpNext" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
  </div>
 
  <div class="pcards">
-  <a class="pc dk pv" data-p="chatrox" href="<?= base_url('/projects/chatrox') ?>" style="transition-delay:.15s"><!-- URL: Chatrox project page -->
+ <?php
+ $gridCards = !empty($homeProjects) ? $homeProjects : array_slice($featuredList, 1);
+ if (count($gridCards) < 4) {
+     $gridCards = $featuredList;
+ }
+ $gridCards = array_slice($gridCards, 0, 4);
+
+ $cardStyles = [
+     ['class' => 'pc dk pv', 'gradient' => 'linear-gradient(135deg,#7d8cff,#4b52e8)', 'slogan' => "Connect<br>Collaborate<br>Achieve", 'icon' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'],
+     ['class' => 'pc lt b pv', 'gradient' => 'linear-gradient(135deg,#ff9a4a,#f25a0a)', 'slogan' => "Plan<br>Track<br>Deliver", 'icon' => '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="14" y1="3" x2="14" y2="21"/>'],
+     ['class' => 'pc dk pv', 'gradient' => 'linear-gradient(135deg,#5b9bff,#2f5bff)', 'slogan' => "Scale<br>Fast<br>Secure", 'icon' => '<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>'],
+     ['class' => 'pc lt b pv', 'gradient' => 'linear-gradient(135deg,#3fd08a,#13a36a)', 'slogan' => "Modern<br>Clean<br>Impactful", 'icon' => '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'],
+ ];
+
+ foreach ($gridCards as $gIdx => $gp):
+     $style = $cardStyles[$gIdx % count($cardStyles)];
+     $cardDelay = 0.15 + ($gIdx * 0.10);
+     $chips = array_filter(array_map('trim', explode(',', $gp['tech_chips'] ?? 'PHP, MySQL')));
+     $chips = array_slice($chips, 0, 3);
+     $catName = !empty($gp['industry']) ? $gp['industry'] : ucwords(str_replace('-', ' ', $gp['category_slug'] ?? 'Web Application'));
+ ?>
+  <a class="<?= $style['class'] ?>" data-p="<?= htmlspecialchars($gp['slug']) ?>" href="<?= base_url('/projects/' . $gp['slug']) ?>" style="transition-delay:<?= $cardDelay ?>s">
    <div class="sh"></div><div class="bg"></div><div class="img"></div>
-   <div class="dev" style="left:30%"><!-- SWAP IMAGE: Chatrox desktop screenshot --><img src="<?= asset_url('images/chatrox.svg') ?>" alt="Chatrox screenshot"></div>
-   <div class="phone"><!-- SWAP IMAGE: Chatrox mobile screenshot --><img src="<?= asset_url('images/chatrox-mobile.svg') ?>" alt="Chatrox mobile screenshot"></div>
-   <span class="badge" style="background:linear-gradient(135deg,#7d8cff,#4b52e8); display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-   <div class="panel"><span class="ty">Chat Application</span><h4>Chatrox</h4><p>Slack-like chat application with channels, files, voice &amp; more. Built for real-time communication.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Flutter</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-   <div class="hand">Connect<br>Collaborate<br>Achieve</div></a>
-  <a class="pc lt b pv" data-p="rtg" href="<?= base_url('/projects/kanban-workspace') ?>" style="transition-delay:.25s"><!-- URL: RTG Workspace project page -->
-   <div class="sh"></div><div class="bg"></div><div class="img"></div>
-   <div class="dev"><!-- SWAP IMAGE: RTG Workspace screenshot --><img src="<?= asset_url('images/rtg-workspace.svg') ?>" alt="RTG Workspace screenshot"></div>
-   <span class="badge" style="background:linear-gradient(135deg,#ff9a4a,#f25a0a); display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="14" y1="3" x2="14" y2="21"/></svg></span>
-   <div class="panel"><span class="ty">◉ Web Application</span><h4>RTG Workspace</h4><p>A Trello-style project management tool for internal team collaboration with task tracking and file sharing.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>jQuery</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-   <div class="hand">Plan<br>Track<br>Deliver</div></a>
-  <a class="pc dk pv" data-p="it" href="<?= base_url('/projects/it-hardware-bin') ?>" style="transition-delay:.35s"><!-- URL: IT Hardware Bin project page -->
-   <div class="sh"></div><div class="bg"></div><div class="img"></div>
-   <div class="dev"><!-- SWAP IMAGE: IT Hardware Bin screenshot --><img src="<?= asset_url('images/it-hardware-bin.svg') ?>" alt="IT Hardware Bin screenshot"></div>
-   <span class="badge" style="background:linear-gradient(135deg,#5b9bff,#2f5bff); display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
-   <div class="panel"><span class="ty" style="background:rgba(242,106,27,.2)">● E-Commerce</span><h4>IT Hardware Bin</h4><p>An complete e-commerce platform for IT hardware with quote requests, product catalog and smooth checkout.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Laravel</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-   <div class="hand">Hardware<br>Tech<br>Business</div></a>
-  <a class="pc lt b pv" data-p="landsfy" href="<?= base_url('/projects/real-estate-portal') ?>" style="transition-delay:.45s"><!-- URL: Landsfy project page -->
-   <div class="sh"></div><div class="bg"></div><div class="img"></div>
-   <div class="dev"><!-- SWAP IMAGE: Landsfy screenshot --><img src="<?= asset_url('images/landsfy.svg') ?>" alt="Landsfy screenshot"></div>
-   <span class="badge" style="background:linear-gradient(135deg,#3fd08a,#13a36a); display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-   <div class="panel"><span class="ty">◉ Web Application</span><h4>Landsfy</h4><p>Real estate portal with property listings, search filters and RBAC-based access control.</p><div class="tc"><span>PHP</span><span>MySQL</span><span>Laravel</span></div><span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-   <div class="hand">Find<br>Your<br>Dream Home</div></a>
+   <div class="dev"><img src="<?= asset_url($gp['banner'] ?? 'images/crm-1.svg') ?>" alt="<?= htmlspecialchars($gp['title']) ?>"></div>
+   <span class="badge" style="background:<?= $style['gradient'] ?>; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?= $style['icon'] ?></svg></span>
+   <div class="panel">
+     <span class="ty"><?= htmlspecialchars($catName) ?></span>
+     <h4><?= htmlspecialchars($gp['title']) ?></h4>
+     <p><?= htmlspecialchars($gp['summary'] ?? '') ?></p>
+     <div class="tc"><?php foreach ($chips as $c): ?><span><?= htmlspecialchars($c) ?></span><?php endforeach; ?></div>
+     <span class="vp">View Project <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+   </div>
+   <div class="hand"><?= $style['slogan'] ?></div>
+  </a>
+ <?php endforeach; ?>
  </div>
 
  <div class="wave">
@@ -521,12 +571,22 @@ require view_path('layouts/head.php');
    <span class="mq-pill">Software built for</span>
   </div>
   <div class="mrow rev2" id="mr2">
-   <a class="chipr dk chipr-link" href="<?= base_url('/projects/multi-tenant-crm') ?>"><span class="p-ico" style="background:rgba(242,106,27,.2);color:#ff8a3d"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg></span><div><b class="pname">Multi-Tenant CRM</b><small class="pdesc">Sales &amp; operations platform</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
-   <a class="chipr chipr-link" href="<?= base_url('/projects/chatrox') ?>"><span class="p-ico" style="background:rgba(19,163,122,.2);color:#13a37a"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><b class="pname">Chatrox</b><small class="pdesc">Real-time team chat</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
-   <a class="chipr dk chipr-link" href="<?= base_url('/projects/hrm-payroll') ?>"><span class="p-ico" style="background:rgba(122,162,255,.2);color:#7aa2ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div><b class="pname">RTG HRM Portal</b><small class="pdesc">HR &amp; payroll</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
-   <a class="chipr chipr-link" href="<?= base_url('/projects/it-hardware-bin') ?>"><span class="p-ico" style="background:rgba(232,74,165,.2);color:#e84aa5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><div><b class="pname">IT Hardware Bin</b><small class="pdesc">Bulk hardware e-commerce</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
-   <a class="chipr dk chipr-link" href="<?= base_url('/projects/real-estate-portal') ?>"><span class="p-ico" style="background:rgba(255,176,32,.2);color:#ffb020"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><div><b class="pname">Landsfy</b><small class="pdesc">Real estate portal</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
-   <a class="chipr chipr-link" href="<?= base_url('/projects/adsimpressions') ?>"><span class="p-ico" style="background:rgba(157,122,255,.2);color:#9d7aff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span><div><b class="pname">Adsimpressions</b><small class="pdesc">Digital agency platform</small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+  <?php
+  $marqueeProjects = !empty($homeProjects) ? $homeProjects : $featuredList;
+  $chipAccents = [
+      ['bg' => 'rgba(242,106,27,.2)', 'color' => '#ff8a3d'],
+      ['bg' => 'rgba(19,163,122,.2)', 'color' => '#13a37a'],
+      ['bg' => 'rgba(122,162,255,.2)', 'color' => '#7aa2ff'],
+      ['bg' => 'rgba(232,74,165,.2)', 'color' => '#e84aa5'],
+      ['bg' => 'rgba(255,176,32,.2)', 'color' => '#ffb020'],
+      ['bg' => 'rgba(157,122,255,.2)', 'color' => '#9d7aff'],
+  ];
+  foreach (array_slice($marqueeProjects, 0, 8) as $mIdx => $mp):
+      $acc = $chipAccents[$mIdx % count($chipAccents)];
+      $isDk = ($mIdx % 2 === 0);
+  ?>
+   <a class="chipr <?= $isDk ? 'dk ' : '' ?>chipr-link" href="<?= base_url('/projects/' . $mp['slug']) ?>"><span class="p-ico" style="background:<?= $acc['bg'] ?>;color:<?= $acc['color'] ?>"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></svg></span><div><b class="pname"><?= htmlspecialchars($mp['title']) ?></b><small class="pdesc"><?= htmlspecialchars(mb_strimwidth($mp['summary'] ?? '', 0, 36, '...')) ?></small></div><span class="p-arr" aria-hidden="true">↗</span></a>
+  <?php endforeach; ?>
   </div>
  </div>
  <div class="tst-more tv" style="transition-delay:.3s">
@@ -639,10 +699,13 @@ require view_path('layouts/head.php');
 <?php require view_path('layouts/footer.php'); ?>
 
 
+<script>
+window.__BASE_URL = '<?= base_path_url() ?>';
+window.__FEATURED_SLIDES = <?= json_encode($sliderSlides, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
+</script>
 <script type="module" src="<?= asset_url('js/splash-particles.js') ?>"></script>
 <script type="module" src="<?= asset_url('js/splash-portal.js') ?>"></script>
 <script type="module" src="<?= asset_url('js/hero-3d.js') ?>"></script>
-<script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
-<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script>
-<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
+<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot-config.js') ?>"></script>
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot.js') ?>" defer></script>
 </body></html>

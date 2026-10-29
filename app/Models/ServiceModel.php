@@ -7,26 +7,34 @@ class ServiceModel extends Model
 {
     protected static string $table = 'services';
 
-    protected static array $aliases = [
-        'chat-application-development' => 'chat-app-development',
-        'saas-development'             => 'saas-application-development',
-        'web-development'              => 'web-app-cms-development',
-        'crm-development'              => 'custom-crm-development',
-        'ai-automation'                => 'ai-automation-services',
-        'process-automation'           => 'business-process-automation',
-        'technical-audit'              => 'free-technical-audit',
-    ];
-
     public static function find(string $slug): ?array
     {
-        $canonical = static::$aliases[$slug] ?? $slug;
-        $row = parent::find($canonical);
+        // 1. Exact match
+        $row = parent::find($slug);
         if ($row) {
             return $row;
         }
-        if ($canonical !== $slug) {
-            return parent::find($slug);
+
+        // 2. Dynamic DB match
+        if (static::$table && \App\Core\Database::enabled()) {
+            try {
+                $db = \App\Core\Database::connection();
+                $stmt = $db->prepare('SELECT * FROM `' . static::$table . '` WHERE `slug` LIKE :prefix ORDER BY `id` ASC LIMIT 1');
+                $stmt->execute(['prefix' => $slug . '-%']);
+                $matched = $stmt->fetch();
+                if ($matched) {
+                    return $matched;
+                }
+
+                $stmt = $db->prepare('SELECT * FROM `' . static::$table . '` WHERE `slug` LIKE :contains ORDER BY `id` ASC LIMIT 1');
+                $stmt->execute(['contains' => '%' . $slug . '%']);
+                $matched = $stmt->fetch();
+                if ($matched) {
+                    return $matched;
+                }
+            } catch (\Throwable $e) {}
         }
+
         return null;
     }
 }

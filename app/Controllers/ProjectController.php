@@ -21,7 +21,20 @@ class ProjectController extends Controller
     public function category(string $cat): string
     {
         $category = ProjectModel::category($cat);
-        return $category ? $this->render('projects/category', ['category' => $category]) : $this->notFound();
+        if (!$category) {
+            return $this->notFound();
+        }
+        $all = ProjectModel::summaryList('sort_order ASC, id ASC');
+        if (empty($all)) {
+            $all = ProjectModel::all('sort_order ASC, id ASC');
+        }
+        $projects = array_values(array_filter($all, fn($p) => ($p['category_slug'] ?? '') === ($category['slug'] ?? $cat)));
+        return $this->render('projects/category', [
+            'category'    => $category,
+            'projects'    => $projects,
+            'allProjects' => $all,
+            'categories'  => ProjectModel::categories(),
+        ]);
     }
 
     public function show(string $slug): string

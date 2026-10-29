@@ -204,17 +204,18 @@ loop();
 (()=>{
 const sec=document.getElementById('projects');if(!sec)return;
 new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&sec.classList.add('in')),{threshold:.08}).observe(sec);
-// Featured slides — set img / url to your own files and pages
-const SLIDES=[
+// Featured slides — dynamic from window.__FEATURED_SLIDES or fallback
+const defaultSlides=[
  {t:'Multi-tenant<br><span>CRM System</span>',d:'A powerful multi-tenant CRM platform with lead management, analytics, real-time updates and 7-level RBAC. Built for scale and security.',c:['PHP','MySQL','Laravel','WebSockets'],f:['Lead Management','Real-time Analytics','7-Level RBAC','Secure & Scalable'],img:'images/crm-1.svg',url:(window.__BASE_URL||'')+'/projects/multi-tenant-crm'},
  {t:'CRM<br><span>Lead Pipelines</span>',d:'Kanban pipelines that move leads from first touch to closed deal, with automatic assignment and reminders.',c:['Laravel','Vue','Redis'],f:['Drag & Drop Stages','Auto Assignment','Follow-up Reminders','Activity Timeline'],img:'images/crm-2.svg',url:(window.__BASE_URL||'')+'/projects'},
  {t:'CRM<br><span>Reports</span>',d:'Live reports and exports for every tenant — conversions, team performance and revenue forecasts.',c:['PHP','MySQL','Chart.js'],f:['Custom Reports','CSV / PDF Export','Scheduled Emails','Team KPIs'],img:'images/crm-3.svg',url:(window.__BASE_URL||'')+'/projects'},
  {t:'CRM<br><span>Analytics</span>',d:'Real-time analytics dashboards powered by WebSockets, so managers see every change the moment it happens.',c:['Node.js','WebSockets','MySQL'],f:['Live Dashboards','Lead Sources','Funnel Analysis','Role-based Views'],img:'images/crm-4.svg',url:(window.__BASE_URL||'')+'/projects'}];
-const W=document.getElementById('featWrap'),th=[...W.querySelectorAll('.thumbs a')];let cur=0,tm;
-function go(i){i=(i+SLIDES.length)%SLIDES.length;if(i===cur)return;cur=i;W.classList.add('swap');th.forEach((a,k)=>a.classList.toggle('on',k===i));clearTimeout(tm);
- tm=setTimeout(()=>{const s=SLIDES[i];fpT.innerHTML=s.t;fpD.textContent=s.d;fpC.innerHTML=s.c.map(x=>`<span>${x}</span>`).join('');fpF.innerHTML=s.f.map(x=>`<div>${x}</div>`).join('');fpI.src=s.img;fpL.href=s.url;fpN.textContent=`0${i+1} / 0${SLIDES.length}`;W.classList.remove('swap')},420)}
-fpPrev.onclick=()=>go(cur-1);fpNext.onclick=()=>go(cur+1);th.forEach(a=>a.onclick=()=>go(+a.dataset.i));
-let auto=setInterval(()=>go(cur+1),7000);W.addEventListener('mouseenter',()=>clearInterval(auto));
+const SLIDES = (window.__FEATURED_SLIDES && Array.isArray(window.__FEATURED_SLIDES) && window.__FEATURED_SLIDES.length > 0) ? window.__FEATURED_SLIDES : defaultSlides;
+const W=document.getElementById('featWrap'),th=W?[...W.querySelectorAll('.thumbs a')]:[];let cur=0,tm;
+function go(i){if(!W||!SLIDES.length)return;i=(i+SLIDES.length)%SLIDES.length;if(i===cur)return;cur=i;W.classList.add('swap');th.forEach((a,k)=>a.classList.toggle('on',k===i));clearTimeout(tm);
+ tm=setTimeout(()=>{const s=SLIDES[i];if(window.fpT&&s.t)fpT.innerHTML=s.t;if(window.fpD&&s.d)fpD.textContent=s.d;if(window.fpC&&s.c)fpC.innerHTML=s.c.map(x=>`<span>${x}</span>`).join('');if(window.fpF&&s.f)fpF.innerHTML=s.f.map(x=>`<div>${x}</div>`).join('');if(window.fpI&&s.img)fpI.src=s.img;if(window.fpL&&s.url)fpL.href=s.url;if(window.fpN)fpN.textContent=String(i+1).padStart(2,'0')+' / '+String(SLIDES.length).padStart(2,'0');W.classList.remove('swap')},420)}
+if(window.fpPrev)fpPrev.onclick=()=>go(cur-1);if(window.fpNext)fpNext.onclick=()=>go(cur+1);th.forEach(a=>a.onclick=()=>go(+a.dataset.i));
+let auto=SLIDES.length>1?setInterval(()=>go(cur+1),7000):null;if(W&&auto)W.addEventListener('mouseenter',()=>clearInterval(auto));
 // mouse tilt on project cards
 document.querySelectorAll('.pc').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*6}deg) translateY(-8px)`});c.addEventListener('mouseleave',()=>c.style.transform='')});
 // parallax for featured mockup
