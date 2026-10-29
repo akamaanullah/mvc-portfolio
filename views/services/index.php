@@ -167,7 +167,57 @@ $extraCss = [
   <?php $sWeb = $getSvc('web-app-cms-development', 'Websites and Web Apps', 'Business websites, online stores and custom web apps, with the pages and tools your customers and team need.', ['Websites', 'Online Stores', 'Portals']); ?>
   <div class="bc b-span7 fade">
     <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.3h.01M8.5 6.3h.01"/></svg></span><a class="ba" href="<?= $sWeb['url'] ?>" aria-label="Explore Web Development">↗</a></div>
-    <div class="mk wbmk live" data-anim="web" aria-hidden="true"><div class="mkbar"><i></i><i></i><i></i><span class="url">yourbrand.com</span></div><div class="wbg"><div class="sk hl"></div><div class="sk ln"></div><div class="sk ln s"></div><div class="tiles"><i class="sk"></i><i class="sk btn"></i><i class="sk"></i></div></div></div>
+    <div class="mk wbmk live" data-anim="web" aria-hidden="true">
+      <div class="mkbar">
+        <i></i><i></i><i></i>
+        <span class="url">yourbrand.com/platform</span>
+        <span class="w-perf-pill">⚡ 99/100 Speed</span>
+      </div>
+      <div class="wbg">
+        <div class="w-topbar">
+          <div class="w-nav-links"><span></span><span></span><span></span></div>
+          <div class="w-search-box"><span>Search stores, portals, apps...</span></div>
+        </div>
+        <div class="w-tiles">
+          <div class="w-tile">
+            <span class="wt-badge">Websites</span>
+            <b>Fast &amp; Responsive</b>
+            <small>Sub-second FCP</small>
+          </div>
+          <div class="w-tile feat">
+            <span class="wt-badge">E-Commerce</span>
+            <b>Online Stores</b>
+            <small>Stripe, Cart &amp; Stock</small>
+          </div>
+          <div class="w-tile">
+            <span class="wt-badge">Web Apps</span>
+            <b>Custom Portals</b>
+            <small>RBAC, Dashboards</small>
+          </div>
+        </div>
+        <div class="w-table">
+          <div class="wt-head">
+            <span>Recent Deployed Modules</span>
+            <span class="wt-status">Production Ready</span>
+          </div>
+          <div class="wt-row">
+            <div class="wt-col main"><i class="wt-dot"></i><span>Client Agency Showcase</span></div>
+            <div class="wt-col tag"><span>Custom PHP 8</span></div>
+            <div class="wt-col state"><span class="wt-pill live">● Live</span></div>
+          </div>
+          <div class="wt-row">
+            <div class="wt-col main"><i class="wt-dot"></i><span>Multi-Vendor Retail Shop</span></div>
+            <div class="wt-col tag"><span>Woo / Shopify</span></div>
+            <div class="wt-col state"><span class="wt-pill live">● Live</span></div>
+          </div>
+          <div class="wt-row">
+            <div class="wt-col main"><i class="wt-dot"></i><span>Internal Management Portal</span></div>
+            <div class="wt-col tag"><span>Laravel + REST</span></div>
+            <div class="wt-col state"><span class="wt-pill active">● Ready</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="bt">
       <h3><?= htmlspecialchars($sWeb['title']) ?></h3>
       <p><?= htmlspecialchars($sWeb['summary']) ?></p>
@@ -226,7 +276,31 @@ $extraCss = [
   <?php $sAi = $getSvc('ai-automation-services', 'AI Automation Services', 'Use AI to read documents, sort enquiries or draft responses, with review steps where accuracy matters.', ['Documents', 'Enquiries', 'Drafts']); ?>
   <div class="bc b-span4 fade">
     <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><a class="ba" href="<?= $sAi['url'] ?>" aria-label="Explore AI Automation">↗</a></div>
-    <div class="mk aimk live" aria-hidden="true"><div class="node"><b>Enquiry</b>Inbound</div><div class="wire"></div><div class="node ai">✦ AI Step<b>Sort &amp; Draft</b></div><div class="wire"></div><div class="node"><b>Review</b>Team</div></div>
+    <div class="mk aimk live" aria-hidden="true">
+      <div class="ai-status-row">
+        <span class="ai-tag">✦ AI Pipeline · Active</span>
+        <span class="ai-rate">99.4% Accuracy</span>
+      </div>
+      <div class="ai-flow">
+        <div class="node"><b>Enquiry</b><span>Inbound</span></div>
+        <div class="wire"></div>
+        <div class="node ai"><b>✦ AI Step</b><span>Sort &amp; Draft</span></div>
+        <div class="wire"></div>
+        <div class="node"><b>Review</b><span>Team</span></div>
+      </div>
+      <div class="ai-log">
+        <div class="ai-log-item">
+          <span class="ai-dot green"></span>
+          <span class="ai-txt">Supplier_Invoice_Oct.pdf</span>
+          <span class="ai-res">Extracted ✓</span>
+        </div>
+        <div class="ai-log-item">
+          <span class="ai-dot orange"></span>
+          <span class="ai-txt">Customer Sales Inquiry</span>
+          <span class="ai-res">Drafted ✓</span>
+        </div>
+      </div>
+    </div>
     <div class="bt">
       <h3><?= htmlspecialchars($sAi['title']) ?></h3>
       <p><?= htmlspecialchars($sAi['summary']) ?></p>
@@ -239,7 +313,22 @@ $extraCss = [
   <?php $sChat = $getSvc('chat-app-development', 'Chat App Development', 'Add private messaging, team conversations or customer support chat to your own website or application.', ['Messaging', 'Groups', 'Notifications']); ?>
   <div class="bc b-span4 fade">
     <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg></span><a class="ba" href="<?= $sChat['url'] ?>" aria-label="Explore Chat Development">↗</a></div>
-    <div class="mk chmk live" data-anim="chat" aria-hidden="true"><div class="bub l">Need help with our order?</div><div class="bub r">On it — checking details ✓</div><div class="bub l typing"><i></i><i></i><i></i></div></div>
+    <div class="mk chmk live" data-anim="chat" aria-hidden="true">
+      <div class="ch-head">
+        <div class="ch-user">
+          <span class="ch-avatar">AK</span>
+          <div class="ch-meta"><b>Amaanullah</b><small><i class="ch-online"></i>Online</small></div>
+        </div>
+        <span class="ch-tag">WebSocket</span>
+      </div>
+      <div class="ch-body">
+        <div class="bub l">Can I add real-time chat to our app?</div>
+        <div class="bub r">Yes — private &amp; team channels ready ✓</div>
+        <div class="bub l">Does it support push notifications?</div>
+        <div class="bub r">Instant FCM &amp; WebSockets ⚡</div>
+        <div class="bub l typing"><i></i><i></i><i></i></div>
+      </div>
+    </div>
     <div class="bt">
       <h3><?= htmlspecialchars($sChat['title']) ?></h3>
       <p><?= htmlspecialchars($sChat['summary']) ?></p>
