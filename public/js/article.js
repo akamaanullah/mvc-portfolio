@@ -5,6 +5,10 @@ function on(){const r=c.getBoundingClientRect(),t=Math.min(1,Math.max(0,-r.top/(
 let k=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<140)k=i});links.forEach((a,i)=>a.classList.toggle('on',i===k));mc.textContent=k<0?'Introduction':links[k].textContent}
 addEventListener('scroll',on,{passive:true});on();
 document.querySelectorAll('.mtoc a').forEach(a=>a.onclick=()=>a.closest('details').open=false);
-const cp=(t,b)=>{(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{b.classList.add('ok');const o=b.innerHTML;if(b.classList.contains('cp'))b.textContent='Copied';setTimeout(()=>{b.classList.remove('ok');b.innerHTML=o},1500)}).catch(()=>{})};
-document.querySelectorAll('.cp').forEach(b=>b.onclick=()=>cp(b.closest('.code').querySelector('code').innerText,b));
+const cp=(t,b)=>{(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{b.classList.add('copied','ok');const o=b.innerHTML;b.textContent='Copied';setTimeout(()=>{b.classList.remove('copied','ok');b.innerHTML=o},1600)}).catch(()=>{})};
+document.querySelectorAll('.cp, .code-copy-btn').forEach(b=>b.onclick=()=>{
+  const parent = b.closest('.code, .code-box');
+  const codeEl = parent ? parent.querySelector('code') : null;
+  if(codeEl) cp(codeEl.innerText, b);
+});
 document.querySelectorAll('.copyl').forEach(b=>b.onclick=()=>cp(location.href,b));})();

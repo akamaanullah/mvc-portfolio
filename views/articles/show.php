@@ -42,7 +42,7 @@ $currentUrl = base_url('/articles/' . $slug);
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "<?= base_url('/articles') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catBadge) ?>", "item": "<?= base_url('/articles/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $currentUrl ?>"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($coverImage) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= base_url('/about') ?>", "jobTitle": "PHP & Laravel Developer"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($a['published_at']) ? date('Y-m-d', strtotime($a['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($a['updated_at']) ? date('Y-m-d', strtotime($a['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= $currentUrl ?>", "articleSection": "<?= htmlspecialchars($catBadge) ?>"}</script>
-<link rel="stylesheet" href="<?= asset_url('css/article.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/article.css') ?>?v=<?= time() ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
@@ -64,10 +64,62 @@ $currentUrl = base_url('/articles/' . $slug);
  </header>
  <div class="cover"><img src="<?= htmlspecialchars($coverImage) ?>" alt="<?= htmlspecialchars($title) ?>" width="1600" height="900" fetchpriority="high"></div>
  <div class="alay">
-  <?php if ($slug === 'multi-tenant-saas-laravel'): ?>
-  <aside class="toc" aria-label="On this page"><div class="rt"><span>On this page</span><span id="pct">0%</span></div><div class="bar"><i id="tbar"></i></div><ol><li class="l2"><a href="#what-is-multi-tenancy">What Multi-Tenancy Means (and What It Doesn’t)</a></li><li class="l2"><a href="#choosing-a-database-strategy">Choosing a Database Strategy</a></li><li class="l3"><a href="#single-database">Single database with a tenant_id column</a></li><li class="l3"><a href="#database-per-tenant">Database per tenant</a></li><li class="l2"><a href="#identifying-the-tenant">Identifying the Current Tenant</a></li><li class="l2"><a href="#scoping-queries">Scoping Queries So Data Never Leaks</a></li><li class="l3"><a href="#where-scopes-dont-reach">Where global scopes don’t reach</a></li><li class="l2"><a href="#authentication-and-roles">Authentication, Users and Roles</a></li><li class="l2"><a href="#queues-cache-storage">Queues, Cache and File Storage</a></li><li class="l3"><a href="#tenant-aware-jobs">Tenant-aware jobs</a></li><li class="l3"><a href="#cache-and-files">Cache keys and file paths</a></li><li class="l2"><a href="#migrations-and-onboarding">Migrations and Tenant Onboarding</a></li><li class="l2"><a href="#common-pitfalls">Common Pitfalls and How to Avoid Them</a></li><li class="l2"><a href="#billing-and-plans">Plans, Limits and Billing per Tenant</a></li><li class="l2"><a href="#testing-tenant-isolation">Testing Tenant Isolation</a></li><li class="l2"><a href="#performance-and-scaling">Performance and Scaling</a></li><li class="l2"><a href="#build-or-use-a-package">Build It Yourself or Use a Package?</a></li><li class="l2"><a href="#conclusion">Conclusion</a></li><li class="l2"><a href="#faq">FAQ</a></li></ol></aside>
-  <div class="mtoc"><details><summary>On this page <span id="mcur">Introduction</span></summary><ol><li class="l2"><a href="#what-is-multi-tenancy">What Multi-Tenancy Means (and What It Doesn’t)</a></li><li class="l2"><a href="#choosing-a-database-strategy">Choosing a Database Strategy</a></li><li class="l3"><a href="#single-database">Single database with a tenant_id column</a></li><li class="l3"><a href="#database-per-tenant">Database per tenant</a></li><li class="l2"><a href="#identifying-the-tenant">Identifying the Current Tenant</a></li><li class="l2"><a href="#scoping-queries">Scoping Queries So Data Never Leaks</a></li><li class="l3"><a href="#where-scopes-dont-reach">Where global scopes don’t reach</a></li><li class="l2"><a href="#authentication-and-roles">Authentication, Users and Roles</a></li><li class="l2"><a href="#queues-cache-storage">Queues, Cache and File Storage</a></li><li class="l3"><a href="#tenant-aware-jobs">Tenant-aware jobs</a></li><li class="l3"><a href="#cache-and-files">Cache keys and file paths</a></li><li class="l2"><a href="#migrations-and-onboarding">Migrations and Tenant Onboarding</a></li><li class="l2"><a href="#common-pitfalls">Common Pitfalls and How to Avoid Them</a></li><li class="l2"><a href="#billing-and-plans">Plans, Limits and Billing per Tenant</a></li><li class="l2"><a href="#testing-tenant-isolation">Testing Tenant Isolation</a></li><li class="l2"><a href="#performance-and-scaling">Performance and Scaling</a></li><li class="l2"><a href="#build-or-use-a-package">Build It Yourself or Use a Package?</a></li><li class="l2"><a href="#conclusion">Conclusion</a></li><li class="l2"><a href="#faq">FAQ</a></li></ol></details></div>
+<?php
+$tocItems = [];
+if (!empty($a['toc_json'])) {
+    $tocItems = json_decode($a['toc_json'], true) ?: [];
+}
+if (empty($tocItems) && !empty($a['body_html'])) {
+    // Auto-extract h2 and h3 with id attributes
+    if (preg_match_all('/<h([23])\s+id="([^"]+)">([^<]+)<\/h[23]>/i', $a['body_html'], $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $m) {
+            $tocItems[] = [
+                'level' => (int)$m[1],
+                'id'    => $m[2],
+                'title' => htmlspecialchars_decode($m[3], ENT_QUOTES)
+            ];
+        }
+    }
+}
+$faqs = !empty($a['faq_json']) ? json_decode($a['faq_json'], true) : [];
+?>
+  <aside class="toc" aria-label="On this page">
+    <div class="rt"><span>On this page</span><span id="pct">0%</span></div>
+    <div class="bar"><i id="tbar"></i></div>
+    <ol>
+      <?php if (!empty($tocItems)): ?>
+        <?php foreach ($tocItems as $t): ?>
+          <li class="l<?= $t['level'] ?? 2 ?>"><a href="#<?= htmlspecialchars($t['id']) ?>"><?= htmlspecialchars($t['title']) ?></a></li>
+        <?php endforeach; ?>
+      <?php else: ?>
+        <li class="l2"><a href="#overview">Overview &amp; Context</a></li>
+        <li class="l2"><a href="#deep-dive">Key Architecture &amp; Insights</a></li>
+        <li class="l2"><a href="#takeaways">Practical Takeaways</a></li>
+      <?php endif; ?>
+    </ol>
+  </aside>
+
+  <div class="mtoc">
+    <details>
+      <summary>On this page <span id="mcur">Introduction</span></summary>
+      <ol>
+        <?php if (!empty($tocItems)): ?>
+          <?php foreach ($tocItems as $t): ?>
+            <li class="l<?= $t['level'] ?? 2 ?>"><a href="#<?= htmlspecialchars($t['id']) ?>"><?= htmlspecialchars($t['title']) ?></a></li>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <li class="l2"><a href="#overview">Overview &amp; Context</a></li>
+          <li class="l2"><a href="#deep-dive">Key Architecture &amp; Insights</a></li>
+          <li class="l2"><a href="#takeaways">Practical Takeaways</a></li>
+        <?php endif; ?>
+      </ol>
+    </details>
+  </div>
+
   <article class="prose" id="content">
+    <?php if (!empty($a['body_html'])): ?>
+      <?= $a['body_html'] ?>
+    <?php elseif ($slug === 'multi-tenant-saas-laravel'): ?>
 <p class="lead">Multi-tenancy is the backbone of almost every B2B SaaS product: one codebase, one deployment, many customers, each of whom must feel like the system was built only for them. Laravel is an excellent fit for this, but the framework does not make the hard decisions for you. This guide walks through those decisions in the order you will meet them.</p>
 <p>We will cover what “tenant” actually means in your domain, how to identify the current tenant on every request, the three common database strategies and when each makes sense, how to scope Eloquent queries so data never leaks, and how queues, caching, files and testing need to change once tenancy enters the picture. The examples use Laravel 11 conventions, but the ideas apply to any recent version.</p>
 <h2 id="what-is-multi-tenancy">What Multi-Tenancy Means (and What It Doesn’t)</h2>
@@ -124,37 +176,31 @@ $currentUrl = base_url('/articles/' . $slug);
 <ul><li><strong>Raw queries without tenant filters.</strong> Search the codebase for <code>DB::table</code> and <code>DB::select</code> regularly, and review each one.</li><li><strong>Global unique constraints.</strong> An email or invoice number that is unique across all tenants blocks legitimate data. Make uniqueness composite with <code>tenant_id</code>.</li><li><strong>Jobs and commands without tenant context.</strong> Anything running outside HTTP must set the tenant explicitly.</li><li><strong>Shared cache keys.</strong> Prefix everything with tenant ID.</li></ul>
 <h2 id="conclusion">Conclusion</h2>
 <p>A good multi-tenant Laravel application is built on a few deliberate choices: a clear definition of the tenant, a database strategy matched to your customers, one place that resolves the current tenant, automatic query scoping, and tenant context carried into jobs, cache and files. Get those right and tests to prove isolation, and the rest of the product can be built like any other Laravel app.</p>
-  <?php else: ?>
-  <!-- DYNAMIC VIEW FOR OTHER ARTICLES -->
-  <aside class="toc" aria-label="On this page"><div class="rt"><span>On this page</span><span id="pct">0%</span></div><div class="bar"><i id="tbar"></i></div><ol><li class="l2"><a href="#overview">Overview &amp; Context</a></li><li class="l2"><a href="#deep-dive">Key Architecture &amp; Insights</a></li><li class="l2"><a href="#takeaways">Practical Takeaways</a></li></ol></aside>
-  <div class="mtoc"><details><summary>On this page <span id="mcur">Introduction</span></summary><ol><li class="l2"><a href="#overview">Overview &amp; Context</a></li><li class="l2"><a href="#deep-dive">Key Architecture &amp; Insights</a></li><li class="l2"><a href="#takeaways">Practical Takeaways</a></li></ol></details></div>
-  <article class="prose" id="content">
-   <?php if (!empty($a['body_html'])): ?>
-     <?= $a['body_html'] ?>
-   <?php else: ?>
-     <p class="lead"><?= htmlspecialchars($subtitle) ?></p>
-     <h2 id="overview">Overview &amp; Practical Context</h2>
-     <p><?= htmlspecialchars($a['excerpt'] ?? $subtitle) ?></p>
-     <aside class="cl tip"><b>Key Focus</b><p>Building maintainable, production-ready software requires solving the underlying architectural bottlenecks before writing user-facing code.</p></aside>
-     <h2 id="deep-dive">Key Architectural Principles</h2>
-     <p>When engineering high-throughput business applications, clean separation of concerns and clear data ownership boundaries protect the product as user concurrency increases.</p>
-     <ul>
-      <li><strong>Structured Data Layers:</strong> Clear entity boundaries and indexed lookups maintain sub-second response times.</li>
-      <li><strong>Defensive Code Structure:</strong> Validations, automated retries, and comprehensive error handling prevent silent failures.</li>
-      <li><strong>Operational Simplicity:</strong> Clean code patterns that existing teams can easily maintain and extend.</li>
-     </ul>
-     <h2 id="takeaways">Practical Takeaways &amp; Next Steps</h2>
-     <p>Before launching complex workflows or heavy background tasks, test your system under simulated load and ensure proper observability is in place.</p>
-     <div class="take"><b>Summary</b><p><?= htmlspecialchars($subtitle) ?></p></div>
-   <?php endif; ?>
-  <?php endif; ?>
+    <?php else: ?>
+      <p class="lead"><?= htmlspecialchars($subtitle) ?></p>
+      <h2 id="overview">Overview &amp; Practical Context</h2>
+      <p><?= htmlspecialchars($a['excerpt'] ?? $subtitle) ?></p>
+      <aside class="cl tip"><b>Key Focus</b><p>Building maintainable, production-ready software requires solving the underlying architectural bottlenecks before writing user-facing code.</p></aside>
+      <h2 id="deep-dive">Key Architectural Principles</h2>
+      <p>When engineering high-throughput business applications, clean separation of concerns and clear data ownership boundaries protect the product as user concurrency increases.</p>
+      <ul>
+       <li><strong>Structured Data Layers:</strong> Clear entity boundaries and indexed lookups maintain sub-second response times.</li>
+       <li><strong>Defensive Code Structure:</strong> Validations, automated retries, and comprehensive error handling prevent silent failures.</li>
+       <li><strong>Operational Simplicity:</strong> Clean code patterns that existing teams can easily maintain and extend.</li>
+      </ul>
+      <h2 id="takeaways">Practical Takeaways &amp; Next Steps</h2>
+      <p>Before launching complex workflows or heavy background tasks, test your system under simulated load and ensure proper observability is in place.</p>
+      <div class="take"><b>Summary</b><p><?= htmlspecialchars($subtitle) ?></p></div>
+    <?php endif; ?>
 
    <div class="tags" aria-label="Tags"><?php foreach ($tags as $t): ?><a href="<?= base_url('/articles') ?>">#<?= htmlspecialchars(ltrim($t, '#')) ?></a><?php endforeach; ?></div>
    <section class="abio" aria-label="About the author"><img src="<?= asset_url('media/profile-poster.jpg') ?>" alt="Amaanullah Khan" loading="lazy" width="76" height="76"><div><small>Written by</small><h3>Amaanullah Khan</h3><p>PHP &amp; Laravel developer in Karachi building custom CRM, SaaS and enterprise web apps, plus Flutter mobile apps.</p><div class="lk"><a href="<?= base_url('/about') ?>">About me →</a><a href="<?= base_url('/projects') ?>">See projects →</a></div></div></section>
-   <section class="afaq" id="faq" aria-labelledby="h-faq"><h2 id="h-faq">Frequently Asked Questions</h2>
-    <details class="fq"><summary>Can I apply these patterns to my existing application?<span class="pm" aria-hidden="true"></span></summary><div><p>Yes. These architectural approaches are designed to be incrementally adoptable without requiring a total rewrite of your stack.</p></div></details>
-    <details class="fq"><summary>How do these architectural decisions scale over time?<span class="pm" aria-hidden="true"></span></summary><div><p>By enforcing clean separation between storage, business logic, and presentation layers, your application stays performant even as record counts reach millions.</p></div></details>
-   </section>
+    <?php if (!str_contains($a['body_html'] ?? '', 'afaq') && !str_contains($a['body_html'] ?? '', 'id="faq"')): ?>
+    <section class="afaq" id="faq" aria-labelledby="h-faq"><h2 id="h-faq">Frequently Asked Questions</h2>
+      <details class="fq"><summary>Can I apply these patterns to my existing application?<span class="pm" aria-hidden="true"></span></summary><div><p>Yes. These architectural approaches are designed to be incrementally adoptable without requiring a total rewrite of your stack.</p></div></details>
+      <details class="fq"><summary>How do these architectural decisions scale over time?<span class="pm" aria-hidden="true"></span></summary><div><p>By enforcing clean separation between storage, business logic, and presentation layers, your application stays performant even as record counts reach millions.</p></div></details>
+    </section>
+    <?php endif; ?>
    <section class="news" aria-labelledby="h-news"><div><h2 id="h-news">Get new articles in your inbox</h2><p>Practical Laravel, SaaS and architecture notes. No spam.</p></div><form onsubmit="event.preventDefault();this.querySelector('button').textContent='Subscribed ✓'"><label class="sr" for="em" style="position:absolute;left:-9999px">Email</label><input id="em" type="email" placeholder="you@company.com" required><button class="btn o" type="submit">Subscribe</button></form></section>
   </article>
   <aside class="rail" aria-label="Share"><div class="shr" aria-label="Share this article"><button type="button" class="copyl" aria-label="Copy link"><svg viewBox="0 0 24 24"><path d="M10.6 13.4a1 1 0 0 1 0-1.4l3.5-3.5a1 1 0 1 1 1.4 1.4L12 13.4a1 1 0 0 1-1.4 0zM8.5 20a5.5 5.5 0 0 1-3.9-9.4l2-2 1.4 1.4-2 2a3.5 3.5 0 0 0 5 5l2-2 1.4 1.4-2 2A5.5 5.5 0 0 1 8.5 20zm9-7-1.4-1.4 2-2a3.5 3.5 0 0 0-5-5l-2 2L9.7 5.2l2-2A5.5 5.5 0 0 1 19.5 11z"/></svg></button><a href="https://www.linkedin.com/sharing/share-offsite/?url=<?= urlencode($currentUrl) ?>" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.1 1.43-2.1 2.9V21H9z"/></svg></a><a href="https://twitter.com/intent/tweet?url=<?= urlencode($currentUrl) ?>&amp;text=<?= urlencode($title) ?>" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24"><path d="M17.8 3h3.3l-7.2 8.2L22.4 21h-6.6l-5.2-6.8L4.7 21H1.4l7.7-8.8L1 3h6.8l4.7 6.2zm-1.2 16h1.8L7.5 4.9H5.6z"/></svg></a><a href="https://wa.me/?text=<?= urlencode($title . ' ' . $currentUrl) ?>" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 13.9c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a></div></aside>
@@ -192,7 +238,7 @@ $currentUrl = base_url('/articles/' . $slug);
 </main>
 <?php require view_path('layouts/footer.php'); ?>
 
-<script src="<?= asset_url('js/article.js') ?>"></script>
+<script src="<?= asset_url('js/article.js') ?>?v=<?= time() ?>"></script>
 <script src="<?= asset_url('js/layout.js') ?>"></script>
 <script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
 <script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script>

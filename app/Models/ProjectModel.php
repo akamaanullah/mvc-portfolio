@@ -7,6 +7,89 @@ class ProjectModel extends Model
 {
     protected static string $table = 'projects';
 
+    public static function normalize(array $row): array
+    {
+        if (empty($row)) return $row;
+
+        if (!isset($row['summary']) && isset($row['description'])) {
+            $row['summary'] = $row['description'];
+        }
+        if (!isset($row['banner']) && !empty($row['image_url'])) {
+            $row['banner'] = $row['image_url'];
+        }
+        if (!isset($row['timeline']) && !empty($row['duration'])) {
+            $row['timeline'] = $row['duration'];
+        }
+        if (!isset($row['tech_chips']) && !empty($row['tech_stack'])) {
+            $row['tech_chips'] = $row['tech_stack'];
+        }
+        if (!isset($row['tldr']) && !empty($row['result_summary'])) {
+            $row['tldr'] = $row['result_summary'];
+        }
+        if (!isset($row['role'])) {
+            $row['role'] = 'Lead Full-Stack Architect';
+        }
+        if (!isset($row['platform'])) {
+            $row['platform'] = match($row['service_hub'] ?? '') {
+                'mobile' => 'Mobile App (iOS & Android)',
+                'saas'   => 'Web & Cloud SaaS',
+                default  => 'Custom Web Platform'
+            };
+        }
+        if (!isset($row['project_status']) && !empty($row['status'])) {
+            $row['project_status'] = $row['status'];
+        }
+        if (!isset($row['industry']) && !empty($row['category'])) {
+            $row['industry'] = $row['category'];
+        }
+        if (!isset($row['category_slug'])) {
+            $row['category_slug'] = match($row['service_hub'] ?? '') {
+                'web'    => 'web-design-development',
+                'saas'   => 'web-applications',
+                'mobile' => 'mobile-apps',
+                default  => 'web-applications'
+            };
+        }
+        if (!isset($row['key_results']) && (!empty($row['impact_efficiency']) || !empty($row['impact_growth']))) {
+            $parts = [];
+            if (!empty($row['impact_efficiency'])) $parts[] = 'Speed & Efficiency | ' . $row['impact_efficiency'];
+            if (!empty($row['impact_growth'])) $parts[] = 'Scale & Growth | ' . $row['impact_growth'];
+            $row['key_results'] = implode("\n", $parts);
+        }
+        if (!isset($row['body_html']) && (!empty($row['overview']) || !empty($row['conclusion']))) {
+            $body = ($row['overview'] ?? '');
+            if (!empty($row['conclusion'])) {
+                $body .= "\n" . $row['conclusion'];
+            }
+            $row['body_html'] = $body;
+        }
+        return $row;
+    }
+
+    public static function all(string $orderBy = 'sort_order ASC, id ASC'): array
+    {
+        $rows = parent::all($orderBy);
+        return array_map([self::class, 'normalize'], $rows);
+    }
+
+    public static function find(string $slug): ?array
+    {
+        $row = parent::find($slug);
+        return $row ? self::normalize($row) : null;
+    }
+
+    public static function findById(int|string $id): ?array
+    {
+        $row = parent::findById($id);
+        return $row ? self::normalize($row) : null;
+    }
+
+    public static function where(string $column, mixed $value, string $orderBy = 'sort_order ASC, id ASC'): array
+    {
+        $rows = parent::where($column, $value, $orderBy);
+        return array_map([self::class, 'normalize'], $rows);
+    }
+
     public static function categories(): array
     {
         $cats = CategoryModel::where('type', 'project', 'sort_order ASC, id ASC');

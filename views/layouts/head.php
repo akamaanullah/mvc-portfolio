@@ -15,3 +15,4 @@ echo SeoEngine::renderHead($pageMeta ?? []);
     <link rel="stylesheet" href="<?= asset_url($cssPath) ?><?= str_contains($cssPath, '?') ? '' : '?v=' . time() ?>">
   <?php endforeach; ?>
 <?php endif; ?>
+
