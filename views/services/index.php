@@ -276,7 +276,7 @@ $extraCss = [
   <?php $sAi = $getSvc('ai-automation-services', 'AI Automation Services', 'Use AI to read documents, sort enquiries or draft responses, with review steps where accuracy matters.', ['Documents', 'Enquiries', 'Drafts']); ?>
   <div class="bc b-span4 fade">
     <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><a class="ba" href="<?= $sAi['url'] ?>" aria-label="Explore AI Automation">↗</a></div>
-    <div class="mk aimk live" aria-hidden="true">
+    <div class="mk aimk live" data-anim="ai" aria-hidden="true">
       <div class="ai-status-row">
         <span class="ai-tag">✦ AI Pipeline · Active</span>
         <span class="ai-rate">99.4% Accuracy</span>

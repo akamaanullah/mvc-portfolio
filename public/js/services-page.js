@@ -33,6 +33,37 @@ if(!RM&&matchMedia('(hover:hover)').matches){
   every(crm,2600,()=>bars.forEach(b=>b.style.height=(30+Math.random()*65|0)+'%'));
   every(crm,1800,()=>{pills[st].classList.remove('on');st=(st+1)%pills.length;pills[st].classList.add('on')},300);
   ks.forEach((k,i)=>every(crm,1300+i*500,()=>{let v=+k.dataset.c+1+(Math.random()*+k.dataset.r|0);k.dataset.c=v;k.textContent=fmt(v);k.classList.add('tick');setTimeout(()=>k.classList.remove('tick'),350)},i*300));}
+ // Web (Card 1)
+ const web=document.querySelector('[data-anim=web]');
+ if(web){
+  const tiles=[...web.querySelectorAll('.w-tile')];
+  const rows=[...web.querySelectorAll('.wt-row')];
+  const search=web.querySelector('.w-search-box span');
+  const queries=['Search stores, portals, apps...','Filter: Laravel + React...','Database queries: 0.03s','Stripe checkout: live'];
+  let ti=1,qi=0;
+  every(web,2600,()=>{
+    tiles.forEach(t=>t.classList.remove('feat'));
+    ti=(ti+1)%tiles.length;
+    tiles[ti].classList.add('feat');
+  },500);
+  if(search){
+    every(web,3000,()=>{
+      qi=(qi+1)%queries.length;
+      search.style.opacity='0';
+      setTimeout(()=>{
+        search.textContent=queries[qi];
+        search.style.opacity='1';
+      },220);
+    },1000);
+  }
+  every(web,2400,()=>{
+    if(rows.length){
+      const r=rows[Math.floor(Math.random()*rows.length)];
+      r.classList.add('flash');
+      setTimeout(()=>r.classList.remove('flash'),900);
+    }
+  },700);
+ }
  // SaaS
  const ss=document.querySelector('[data-anim=saas]');
  if(ss){const rows=[...ss.querySelectorAll('.ten')],plans=['Pro','Team','Starter','Business'];let hi=2,t=0;
@@ -46,11 +77,70 @@ if(!RM&&matchMedia('(hover:hover)').matches){
    const sp=r.querySelector('span');sp.classList.add('sw');
    setTimeout(()=>{sp.className='bill';sp.innerHTML='Billing <i>✓</i>';r.classList.add('on')},300);
   },900);}
- // Chat: cycle messages
+ // AI Automation (Card 5)
+ const ai=document.querySelector('[data-anim=ai]');
+ if(ai){
+  const nodes=[...ai.querySelectorAll('.ai-flow .node')];
+  const logBox=ai.querySelector('.ai-log');
+  const logs=[
+    {doc:'Supplier_Invoice_Oct.pdf',res:'Extracted ✓',dot:'green'},
+    {doc:'Customer Sales Inquiry',res:'Drafted ✓',dot:'orange'},
+    {doc:'Contract_Agreement_v3.pdf',res:'Verified ✓',dot:'green'},
+    {doc:'New Support Ticket #914',res:'Routed ✓',dot:'orange'},
+    {doc:'Bank_Statement_Q3.pdf',res:'Parsed ✓',dot:'green'}
+  ];
+  let li=1,ni=1;
+  every(ai,2200,()=>{
+    nodes.forEach(n=>n.classList.remove('pulse'));
+    ni=(ni+1)%nodes.length;
+    nodes[ni].classList.add('pulse');
+    setTimeout(()=>nodes[ni].classList.remove('pulse'),900);
+  },400);
+  if(logBox){
+    every(ai,2800,()=>{
+      li=(li+1)%logs.length;
+      const next=logs[li];
+      const item=document.createElement('div');
+      item.className='ai-log-item new-log';
+      item.innerHTML=`<span class="ai-dot ${next.dot}"></span><span class="ai-txt">${next.doc}</span><span class="ai-res">${next.res}</span>`;
+      logBox.appendChild(item);
+      const all=logBox.querySelectorAll('.ai-log-item');
+      if(all.length>2){
+        all[0].style.opacity='0';
+        setTimeout(()=>all[0].remove(),250);
+      }
+    },1100);
+  }
+ }
+ // Chat: cycle messages (Card 6)
  const ch=document.querySelector('[data-anim=chat]');
- if(ch){const msgs=[['l','Order #482 shipped?'],['r','Yes — tracking sent ✓'],['l','Can I add a teammate?'],['r','Done, invite sent ✓'],['l','Thanks!']];let i=0;
-  every(ch,2200,()=>{const ty=ch.querySelector('.typing');const [s,t]=msgs[i%msgs.length];i++;
-   const b=document.createElement('div');b.className='bub '+s;b.textContent=t;ch.insertBefore(b,ty);
-   const all=ch.querySelectorAll('.bub:not(.typing)');if(all.length>2)all[0].remove();
-   ty.classList.toggle('r',s==='l');ty.classList.toggle('l',s!=='l')},600);}
+ if(ch){
+  const body=ch.querySelector('.ch-body')||ch;
+  const msgs=[
+    ['l','Can I add real-time chat to our app?'],
+    ['r','Yes — private & team channels ready ✓'],
+    ['l','Does it support push notifications?'],
+    ['r','Instant FCM & WebSockets ⚡'],
+    ['l','Can we self-host on our server?'],
+    ['r','100% owned — no per-seat fee ✓'],
+    ['l','Sounds perfect, let\'s build it!']
+  ];
+  let i=2;
+  every(ch,2400,()=>{
+    const ty=body.querySelector('.typing');
+    if(!ty)return;
+    const [s,t]=msgs[i%msgs.length];
+    i++;
+    const b=document.createElement('div');
+    b.className='bub '+s+' pop-in';
+    b.textContent=t;
+    body.insertBefore(b,ty);
+    const all=body.querySelectorAll('.bub:not(.typing)');
+    if(all.length>3){
+      all[0].style.opacity='0';
+      all[0].style.transform='scale(0.92)';
+      setTimeout(()=>all[0].remove(),200);
+    }
+  },700);
+ }
 })();
