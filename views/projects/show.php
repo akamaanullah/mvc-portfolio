@@ -80,12 +80,16 @@ $shareEncodedTitle = rawurlencode($title . ($highlightEm ? ' ' . $highlightEm : 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="<?= asset_url('js/theme.js') ?>"></script>
+<script>
+(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}var dark=t!=='light';var d=document.documentElement;d.setAttribute('data-theme',dark?'dark':'light');d.style.colorScheme=dark?'dark':'light';if(document.body&&dark)document.body.classList.add('dark');})();
+document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.pvid').forEach(function(v){v.removeAttribute('autoplay');v.pause();v.preload='none';v.load()})}});
+</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= htmlspecialchars($seoTitle) ?></title>
 <meta name="description" content="<?= htmlspecialchars($metaDesc) ?>">
 <link rel="canonical" href="<?= base_url('/projects/' . $slug) ?>">
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="Amaanullah">
 <meta property="og:title" content="<?= htmlspecialchars($title) ?>">
 <meta property="og:description" content="<?= htmlspecialchars($summary) ?>">
 <meta property="og:image" content="<?= htmlspecialchars($bannerUrl) ?>">
@@ -101,10 +105,10 @@ $shareEncodedTitle = rawurlencode($title . ($highlightEm ? ' ' . $highlightEm : 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "<?= base_url('/projects') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catName) ?>", "item": "<?= base_url('/projects/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= base_url('/projects/' . $slug) ?>"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Article", "CreativeWork"], "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($bannerUrl) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= base_url('/about') ?>"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($p['published_at']) ? date('Y-m-d', strtotime($p['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($p['updated_at']) ? date('Y-m-d', strtotime($p['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= base_url('/projects/' . $slug) ?>"}</script>
-<link rel="stylesheet" href="<?= asset_url('css/case-study.css') ?>?v=<?= time() ?>">
-<link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/case-study.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/case-study.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/chatbot.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/layout.css') ?>">
 </head>
 <body>
 <div class="prog" id="prog"></div>
@@ -251,10 +255,10 @@ $shareEncodedTitle = rawurlencode($title . ($highlightEm ? ' ' . $highlightEm : 
 <?php require view_path('layouts/footer.php'); ?>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image preview"><button aria-label="Close">✕</button><figure><img alt=""><p></p></figure></div>
-<script src="<?= asset_url('js/case-study.js') ?>?v=<?= time() ?>"></script>
+<script src="<?= asset_url('js/case-study.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/case-study.js') ?>"></script>
 <script src="<?= asset_url('js/layout.js') ?>"></script>
 <script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
-<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script>
-<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
+<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot-config.js') ?>"></script>
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot.js') ?>" defer></script>
 </body>
 </html>

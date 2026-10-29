@@ -1,7 +1,7 @@
 <?php
 /* Shared site header. $active = Home|Services|Projects|About|Articles|Contact. */
 ?><script>
-window.__BASE_URL = '<?= rtrim(base_url(), '/') ?>';
+window.__BASE_URL = '<?= base_path_url() ?>';
 window.__SITE_SETTINGS = {
     botName: <?= json_encode((string) setting('chatbot_name', '')) ?>,
     welcomeMsg: <?= json_encode((string) setting('chatbot_welcome', '')) ?>,

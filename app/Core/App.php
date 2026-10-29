@@ -117,6 +117,9 @@ class App
         $this->get('/sitemap.xml', [$C . 'HomeController', 'sitemapXml']);
         $this->get('/llms.txt', [$C . 'HomeController', 'llmsTxt']);
         $this->get('/llms-full.txt', [$C . 'HomeController', 'llmsFullTxt']);
+        $this->get('/feed', [$C . 'HomeController', 'feed']);
+        $this->get('/privacy', [$C . 'HomeController', 'privacy']);
+        $this->get('/terms', [$C . 'HomeController', 'terms']);
 
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);
@@ -150,7 +153,12 @@ class App
             if (preg_match($regex, $path, $m)) {
                 $params = array_values(array_filter($m, 'is_string', ARRAY_FILTER_USE_KEY));
                 if ($method === 'GET' && !str_starts_with($path, '/admin') && !str_starts_with($path, '/api')) {
-                    \App\Models\VisitorModel::trackCurrentRequest($path);
+                    register_shutdown_function(function () use ($path) {
+                        try {
+                            if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
+                            \App\Models\VisitorModel::trackCurrentRequest($path);
+                        } catch (\Throwable) {}
+                    });
                 }
                 echo (new $class())->$action(...$params);
                 return;

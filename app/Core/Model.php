@@ -35,6 +35,30 @@ abstract class Model
         return static::data();
     }
 
+    public static function select(string $columns = '*', string $where = '', array $params = [], string $orderBy = 'id DESC', ?int $limit = null): array
+    {
+        if (static::$table && Database::enabled()) {
+            try {
+                $cleanCols = preg_match('/^[a-zA-Z0-9_,\s`*]+$/', $columns) ? $columns : '*';
+                $cleanOrder = '';
+                if ($orderBy && preg_match('/^[a-zA-Z0-9_,\s]+$/', $orderBy)) {
+                    $cleanOrder = ' ORDER BY ' . $orderBy;
+                }
+                $limitClause = ($limit !== null && $limit > 0) ? ' LIMIT ' . (int)$limit : '';
+                $sql = 'SELECT ' . $cleanCols . ' FROM `' . static::$table . '`' . ($where ? ' WHERE ' . $where : '') . $cleanOrder . $limitClause;
+                $stmt = Database::connection()->prepare($sql);
+                $stmt->execute($params);
+                $rows = $stmt->fetchAll();
+                if ($rows !== false) {
+                    return $rows;
+                }
+            } catch (\Throwable $e) {
+                Logger::warning('DB select failed: ' . $e->getMessage());
+            }
+        }
+        return static::data();
+    }
+
     public static function find(string $slug): ?array
     {
         if (static::$table && Database::enabled()) {

@@ -20,12 +20,16 @@ $currentUrl = base_url('/articles/' . $slug);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="<?= asset_url('js/theme.js') ?>"></script>
+<script>
+(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}var dark=t!=='light';var d=document.documentElement;d.setAttribute('data-theme',dark?'dark':'light');d.style.colorScheme=dark?'dark':'light';if(document.body&&dark)document.body.classList.add('dark');})();
+document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.pvid').forEach(function(v){v.removeAttribute('autoplay');v.pause();v.preload='none';v.load()})}});
+</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= htmlspecialchars($seoTitle) ?></title>
 <meta name="description" content="<?= htmlspecialchars($metaDesc) ?>">
 <link rel="canonical" href="<?= $currentUrl ?>">
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="Amaanullah">
 <meta property="og:title" content="<?= htmlspecialchars($title) ?>">
 <meta property="og:description" content="<?= htmlspecialchars($subtitle) ?>">
 <meta property="og:image" content="<?= htmlspecialchars($coverImage) ?>">
@@ -42,10 +46,10 @@ $currentUrl = base_url('/articles/' . $slug);
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "<?= base_url('/articles') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catBadge) ?>", "item": "<?= base_url('/articles/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $currentUrl ?>"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($coverImage) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= base_url('/about') ?>", "jobTitle": "PHP & Laravel Developer"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($a['published_at']) ? date('Y-m-d', strtotime($a['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($a['updated_at']) ? date('Y-m-d', strtotime($a['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= $currentUrl ?>", "articleSection": "<?= htmlspecialchars($catBadge) ?>"}</script>
-<link rel="stylesheet" href="<?= asset_url('css/article.css') ?>?v=<?= time() ?>">
-<link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/article.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/article.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/chatbot.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/layout.css') ?>">
 </head>
 <body>
 <div class="prog" id="prog"></div>
@@ -238,9 +242,9 @@ $faqs = !empty($a['faq_json']) ? json_decode($a['faq_json'], true) : [];
 </main>
 <?php require view_path('layouts/footer.php'); ?>
 
-<script src="<?= asset_url('js/article.js') ?>?v=<?= time() ?>"></script>
+<script src="<?= asset_url('js/article.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/article.js') ?>"></script>
 <script src="<?= asset_url('js/layout.js') ?>"></script>
 <script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
-<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= time() ?>"></script>
-<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= time() ?>" defer></script>
+<script src="<?= asset_url('js/chatbot-config.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot-config.js') ?>"></script>
+<script src="<?= asset_url('js/chatbot.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/chatbot.js') ?>" defer></script>
 </body></html>

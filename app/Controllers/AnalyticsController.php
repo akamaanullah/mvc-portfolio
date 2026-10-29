@@ -13,6 +13,13 @@ class AnalyticsController extends Controller
      */
     public function recordEvent(): string
     {
+        // Basic origin validation to avoid cross-site abuse
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
+        $host = $_SERVER['HTTP_HOST'] ?? '';
+        if ($origin && $host && !str_contains($origin, $host) && !str_contains($origin, 'localhost') && !str_contains($origin, '127.0.0.1')) {
+            return $this->json(['success' => false, 'error' => 'Forbidden'], 403);
+        }
+
         $raw = file_get_contents('php://input');
         $data = json_decode($raw, true);
 

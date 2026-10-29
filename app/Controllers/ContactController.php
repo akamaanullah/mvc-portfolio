@@ -27,7 +27,8 @@ class ContactController extends Controller
         if ($errors) {
             return $this->wantsJson() ? $this->json(['message' => 'Please fix the highlighted fields.', 'errors' => $errors], 422) : $this->back('error=422');
         }
-        ContactModel::create($in);
+        $data = array_intersect_key($in, array_flip(ContactModel::FIELDS));
+        ContactModel::create($data);
         return $this->wantsJson() ? $this->json(['message' => "Thanks! I'll get back to you soon."]) : $this->back('sent=1');
     }
 

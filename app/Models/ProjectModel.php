@@ -7,6 +7,24 @@ class ProjectModel extends Model
 {
     protected static string $table = 'projects';
 
+    protected static array $aliases = [
+        'chatrox'                => 'chatrox-real-time-messaging-professional-networking',
+        'babyshop'               => 'babyshop-mobile-app-ecommerce-firebase-solution',
+        'healink'                => 'healink-medicine-app-healthcare-hospital-management-solution',
+        'tour-guide-app'         => 'tour-guide-mobile-app-explore-pakistan-travel-solution',
+        'tour-guide'             => 'tour-guide-mobile-app-explore-pakistan-travel-solution',
+        'custom-vape-ecommerce'  => 'the-perfect-vape-custom-ecommerce-platform-theme-builder',
+        'the-perfect-vape'       => 'the-perfect-vape-custom-ecommerce-platform-theme-builder',
+        'it-hardware-bin'        => 'it-hardware-bin-bulk-hardware-ecommerce-platform',
+        'adsimpressions'         => 'adsimpressions-custom-digital-agency-platform',
+        'multi-tenant-crm'       => 'multi-tenant-crm-sales-operations-management-system',
+        'hrm-payroll'            => 'hrm-employee-management-payroll-portal',
+        'ticketing-crm'          => 'ticketing-crm-jobs-vendor-management-enterprise-portal',
+        'real-estate-portal'     => 'real-estate-property-portal-multi-role-marketplace',
+        'kanban-workspace'       => 'workspace-kanban-project-task-management-platform',
+        'expense-voyage'         => 'expense-voyage-budget-expense-management-web-app',
+    ];
+
     public static function normalize(array $row): array
     {
         if (empty($row)) return $row;
@@ -72,10 +90,29 @@ class ProjectModel extends Model
         return array_map([self::class, 'normalize'], $rows);
     }
 
+    public static function summaryList(string $orderBy = 'sort_order ASC, id ASC'): array
+    {
+        $rows = static::select(
+            'id, category_id, category_slug, title, slug, highlight_em, domain, summary, banner, banner_alt, client, industry, role, timeline, platform, project_status, tech_chips, tldr, key_results, is_featured, show_on_home, sort_order',
+            "status = 'published'",
+            [],
+            $orderBy
+        );
+        return array_map([self::class, 'normalize'], $rows);
+    }
+
     public static function find(string $slug): ?array
     {
-        $row = parent::find($slug);
-        return $row ? self::normalize($row) : null;
+        $canonical = static::$aliases[$slug] ?? $slug;
+        $row = parent::find($canonical);
+        if ($row) {
+            return self::normalize($row);
+        }
+        if ($canonical !== $slug) {
+            $row = parent::find($slug);
+            return $row ? self::normalize($row) : null;
+        }
+        return null;
     }
 
     public static function findById(int|string $id): ?array

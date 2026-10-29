@@ -15,7 +15,7 @@ if (!empty($home)): ?><footer class="foot" id="footer">
    <div class="fcol"><h5>Contact</h5><a href="tel:+<?= preg_replace('/[^0-9]/', '', (string) setting('phone_number', '')) ?>"><?= htmlspecialchars((string) setting('phone_number', '')) ?></a><a href="mailto:<?= htmlspecialchars((string) setting('contact_email', '')) ?>"><?= htmlspecialchars((string) setting('contact_email', '')) ?></a><a href="<?= base_url('/contact') ?>">Send a message &rarr;</a></div>
   </div>
   <div class="wm" aria-hidden="true">LET'S BUILD</div>
-  <div class="fbar"><span>© <span id="yr">2026</span> Amaanullah | Custom Software Business Solutions. All Rights Reserved.</span><span class="hand">made with ♥ &amp; clean code</span><span><a href="javascript:void(0)" style="color:inherit"><!-- URL: privacy page -->Privacy</a> · <a href="javascript:void(0)" style="color:inherit"><!-- URL: terms page -->Terms</a></span></div>
+  <div class="fbar"><span>© <span id="yr"><?= date('Y') ?></span> Amaanullah | Custom Software Business Solutions. All Rights Reserved.</span><span class="hand">made with ♥ &amp; clean code</span><span><a href="<?= base_url('/privacy') ?>" style="color:inherit">Privacy</a> · <a href="<?= base_url('/terms') ?>" style="color:inherit">Terms</a></span></div>
  </div></div>
 </footer><?php else: ?><div id="akf"><footer class="foot" id="footer">
  <svg class="fwave" viewBox="0 0 1440 120" preserveAspectRatio="none"><defs><linearGradient id="gFw" x1="0" x2="1"><stop offset="0" stop-color="#f26a1b" stop-opacity=".1"/><stop offset=".5" stop-color="#ff8a3d"/><stop offset="1" stop-color="#f26a1b" stop-opacity=".1"/></linearGradient></defs>
@@ -33,8 +33,7 @@ if (!empty($home)): ?><footer class="foot" id="footer">
    <div class="fcol"><h5>Contact</h5><a href="tel:+<?= preg_replace('/[^0-9]/', '', (string) setting('phone_number', '')) ?>"><?= htmlspecialchars((string) setting('phone_number', '')) ?></a><a href="mailto:<?= htmlspecialchars((string) setting('contact_email', '')) ?>"><?= htmlspecialchars((string) setting('contact_email', '')) ?></a><a href="<?= base_url('/contact') ?>">Send a message &rarr;</a></div>
   </div>
   <div class="wm" aria-hidden="true">LET'S BUILD</div>
-  <div class="fbar"><span>© <span id="yr">2026</span> Amaanullah | Custom Software Business Solutions. All Rights Reserved.</span><span class="hand">made with ♥ &amp; clean code</span><span><a href="javascript:void(0)" style="color:inherit"><!-- URL: privacy page -->Privacy</a> · <a href="javascript:void(0)" style="color:inherit"><!-- URL: terms page -->Terms</a></span></div>
+  <div class="fbar"><span>© <span id="yr"><?= date('Y') ?></span> Amaanullah | Custom Software Business Solutions. All Rights Reserved.</span><span class="hand">made with ♥ &amp; clean code</span><span><a href="<?= base_url('/privacy') ?>" style="color:inherit">Privacy</a> · <a href="<?= base_url('/terms') ?>" style="color:inherit">Terms</a></span></div>
  </div></div>
 </footer></div><?php endif; ?>
-<script>window.__BASE_URL = '<?= base_path_url() ?>';</script>
-<script src="<?= asset_url('js/tracker.js') ?>?v=<?= time() ?>" defer></script>
+<script src="<?= asset_url('js/tracker.js') ?>?v=<?= filemtime(PUBLIC_PATH . '/js/tracker.js') ?>" defer></script>

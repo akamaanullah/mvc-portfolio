@@ -8,7 +8,7 @@ class ArticleController extends Controller
 {
     public function index(): string 
     { 
-        $articles = ArticleModel::where('status', 'published', 'sort_order ASC, id ASC');
+        $articles = ArticleModel::summaryList('sort_order ASC, id ASC');
         if (empty($articles)) {
             $articles = ArticleModel::all('sort_order ASC, id ASC');
         }
@@ -21,7 +21,21 @@ class ArticleController extends Controller
     public function category(string $cat): string
     {
         $category = ArticleModel::category($cat);
-        return $category ? $this->render('articles/category', ['category' => $category]) : $this->notFound();
+        if (!$category) {
+            return $this->notFound();
+        }
+
+        $allArticles = ArticleModel::summaryList('sort_order ASC, id ASC');
+        $catArticles = array_values(array_filter($allArticles, function ($a) use ($cat, $category) {
+            $cSlug = $a['category_slug'] ?? '';
+            return $cSlug === $cat || (!empty($category['id']) && (int)($a['category_id'] ?? 0) === (int)$category['id']);
+        }));
+
+        return $this->render('articles/category', [
+            'category'    => $category,
+            'articles'    => $catArticles,
+            'allArticles' => $allArticles,
+        ]);
     }
 
     public function show(string $slug): string
@@ -31,7 +45,8 @@ class ArticleController extends Controller
             return $this->notFound();
         }
 
-        $all = ArticleModel::all('sort_order ASC, id ASC');
+        // Use lightweight summary list for prev/next and related articles (saves bandwidth/RAM)
+        $all = ArticleModel::summaryList('sort_order ASC, id ASC');
         $prev = null;
         $next = null;
         $currentIndex = null;

@@ -8,7 +8,7 @@ class ProjectController extends Controller
 {
     public function index(): string 
     { 
-        $projects = ProjectModel::where('status', 'published', 'sort_order ASC, id ASC');
+        $projects = ProjectModel::summaryList('sort_order ASC, id ASC');
         if (empty($projects)) {
             $projects = ProjectModel::all('sort_order ASC, id ASC');
         }
@@ -31,7 +31,8 @@ class ProjectController extends Controller
             return $this->notFound();
         }
 
-        $all = ProjectModel::all('sort_order ASC, id ASC');
+        // Use lightweight summary list for prev/next and related projects (saves bandwidth/RAM)
+        $all = ProjectModel::summaryList('sort_order ASC, id ASC');
         $prev = null;
         $next = null;
         $currentIndex = null;

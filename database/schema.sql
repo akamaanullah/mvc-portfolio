@@ -91,12 +91,14 @@ CREATE TABLE `articles` (
   `is_indexed` TINYINT(1) NOT NULL DEFAULT 1,
   `faq_schema` TINYINT(1) NOT NULL DEFAULT 1,
   `blog_schema` TINYINT(1) NOT NULL DEFAULT 1,
+  `sort_order` INT NOT NULL DEFAULT 0,
   `view` VARCHAR(100) NOT NULL DEFAULT 'articles/show',
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
   INDEX `idx_art_status` (`status`),
   INDEX `idx_art_cat` (`category_slug`),
-  INDEX `idx_art_pub` (`published_at`)
+  INDEX `idx_art_pub` (`published_at`),
+  INDEX `idx_art_sort` (`sort_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------
@@ -303,6 +305,20 @@ CREATE TABLE `visitors` (
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   INDEX `idx_vis_created` (`created_at`),
   INDEX `idx_vis_url` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS `analytics_events`;
+CREATE TABLE `analytics_events` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `visitor_ip` VARCHAR(45) NOT NULL,
+  `url` VARCHAR(255) NOT NULL,
+  `event_type` ENUM('scroll', 'click', 'dwell') NOT NULL,
+  `event_name` VARCHAR(100) NOT NULL,
+  `event_value` INT UNSIGNED DEFAULT 0,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_evt_url_type` (`url`, `event_type`),
+  INDEX `idx_evt_url_created` (`url`, `created_at`),
+  INDEX `idx_evt_created` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------

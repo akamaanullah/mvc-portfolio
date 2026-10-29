@@ -45,4 +45,42 @@ class HomeController extends Controller
         $f = PUBLIC_PATH . '/llms-full.txt';
         return file_exists($f) ? file_get_contents($f) : '# Amaanullah Khan - Full Specification';
     }
+
+    public function feed(): string
+    {
+        if (!headers_sent()) {
+            header('Content-Type: application/rss+xml; charset=utf-8');
+        }
+        $biz = config('business');
+        $siteUrl = rtrim($biz['url'] ?? 'https://amaanullah.com', '/');
+        $articles = \App\Models\ArticleModel::summaryList('published_at DESC, id DESC');
+
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">' . "\n";
+        $xml .= '<channel>' . "\n";
+        $xml .= '  <title>' . htmlspecialchars($biz['name'] ?? 'Amaanullah Khan') . '</title>' . "\n";
+        $xml .= '  <link>' . $siteUrl . '</link>' . "\n";
+        $xml .= '  <description>' . htmlspecialchars($biz['description'] ?? '') . '</description>' . "\n";
+        $xml .= '  <language>en-us</language>' . "\n";
+        $xml .= '  <atom:link href="' . $siteUrl . '/feed" rel="self" type="application/rss+xml" />' . "\n";
+
+        foreach ($articles as $art) {
+            $link = $siteUrl . '/articles/' . rawurlencode($art['slug']);
+            $pubDate = !empty($art['published_at']) ? date(DATE_RSS, strtotime($art['published_at'])) : date(DATE_RSS);
+            $xml .= '  <item>' . "\n";
+            $xml .= '    <title>' . htmlspecialchars($art['title']) . '</title>' . "\n";
+            $xml .= '    <link>' . $link . '</link>' . "\n";
+            $xml .= '    <guid>' . $link . '</guid>' . "\n";
+            $xml .= '    <pubDate>' . $pubDate . '</pubDate>' . "\n";
+            $xml .= '    <description>' . htmlspecialchars($art['excerpt'] ?? $art['subtitle'] ?? '') . '</description>' . "\n";
+            $xml .= '  </item>' . "\n";
+        }
+
+        $xml .= '</channel>' . "\n";
+        $xml .= '</rss>';
+        return $xml;
+    }
+
+    public function privacy(): string { return $this->render('legal/privacy'); }
+    public function terms(): string { return $this->render('legal/terms'); }
 }
