@@ -38,7 +38,7 @@ svg#lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z
 @keyframes up{to{opacity:1;transform:none}}
 .dots{position:fixed;right:22px;top:16%;display:flex;flex-direction:column;gap:6px;z-index:4}.dots i{width:4px;height:10px;border-radius:3px;background:rgba(242,106,27,.25)}.dots i:first-child{background:var(--o)}
 @media(max-width:980px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:10px}.stage{order:-1;height:430px;margin:0 -20px}.left{text-align:left}.dots{display:none}}
-@media(max-width:560px){nav{padding:16px 18px}.logo small{display:none}.ib{display:none}.talk{padding:10px 16px;font-size:13px}.hero{padding:0 18px 40px}.stage{height:330px}.lbl{font-size:11px}h1{margin:18px 0 14px}.drag{display:none}}
+@media(max-width:560px){nav{padding:14px 16px}.logo small{display:none}.ib.snd-btn{display:none}.talk{padding:10px 16px;font-size:13px}.hero{padding:0 18px 40px}.stage{height:330px}.lbl{font-size:11px}h1{margin:18px 0 14px}.drag{display:none}}
 .svc{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:90px 32px 70px}
 .svc .pill2{display:inline-flex;gap:8px;align-items:center;font-size:13px;font-weight:600;padding:7px 14px;border-radius:99px;background:rgba(255,190,140,.25)}
 .svc .pill2:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--o)}

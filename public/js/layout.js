@@ -19,6 +19,8 @@ function openMobNav(){
   if(mobToggle)mobToggle.setAttribute('aria-expanded','true');
   document.body.classList.add('mob-nav-open');
   document.body.style.overflow='hidden';
+  var chat = document.querySelector('.akc');
+  if(chat) chat.style.setProperty('display','none','important');
 }
 function closeMobNav(){
   if(!mobDrawer)return;
@@ -27,6 +29,8 @@ function closeMobNav(){
   if(mobToggle)mobToggle.setAttribute('aria-expanded','false');
   document.body.classList.remove('mob-nav-open');
   document.body.style.overflow='';
+  var chat = document.querySelector('.akc');
+  if(chat) chat.style.removeProperty('display');
 }
 
 if(mobToggle)mobToggle.onclick=function(e){e.preventDefault();openMobNav()};

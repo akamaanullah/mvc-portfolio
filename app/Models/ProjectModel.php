@@ -141,6 +141,15 @@ class ProjectModel extends Model
 
     public static function category(string $slug): ?array
     {
+        $aliases = [
+            'real-estate-tech' => 'web-applications',
+            'e-commerce'       => 'web-design-development',
+            'healthcare-tech'  => 'mobile-apps',
+        ];
+        if (isset($aliases[$slug])) {
+            $slug = $aliases[$slug];
+        }
+
         foreach (self::categories() as $c) {
             if ($c['slug'] === $slug) return $c;
         }
