@@ -174,7 +174,10 @@ main{overflow-x:clip}
 .bc:hover{transform:translateY(-6px);box-shadow:0 26px 50px rgba(242,106,27,.18);border-color:rgba(242,106,27,.3)}.bc:hover:before{opacity:1}
 .bh{display:flex;justify-content:space-between;align-items:center}
 .bi{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#fdf1e8;color:var(--o);transition:.3s}.bc:hover .bi{background:var(--o);color:#fff}
-.ba{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;border:1.5px solid rgba(20,20,28,.12);transition:.3s}.bc:hover .ba{background:var(--ink);color:#fff;border-color:var(--ink);transform:rotate(45deg)}
+.ba{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid rgba(20,20,28,.12);color:var(--ink);text-decoration:none;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+.ba .ba-arr{transition:transform .3s cubic-bezier(.2,.8,.2,1);flex-shrink:0}
+.bc:hover .ba{background:var(--o);color:#fff;border-color:var(--o);box-shadow:0 4px 14px rgba(242,106,27,0.35)}
+.bc:hover .ba .ba-arr{transform:translate(2px,-2px)}
 .bt{margin-top:auto}.bt h3{font-size:20px;letter-spacing:-.02em;margin-bottom:8px}.bt p{color:var(--mut);font-size:14.5px;line-height:1.6;margin-bottom:14px;max-width:520px}
 .b-crm{grid-column:span 7;grid-row:span 2;background:linear-gradient(160deg,#fff 40%,#fff4ea)}
 .b-ai{grid-column:span 5}.b-chat{grid-column:span 5}
@@ -540,7 +543,7 @@ html[data-theme="dark"] .bc:hover{border-color:rgba(242,106,27,.35)}
 html[data-theme="dark"] .bi{background:rgba(242,106,27,0.12);color:#f26a1b}
 html[data-theme="dark"] .bc:hover .bi{background:#f26a1b;color:#fff}
 html[data-theme="dark"] .ba{border:1.5px solid rgba(255,255,255,0.12);color:#cbd5e1}
-html[data-theme="dark"] .bc:hover .ba{background:#f26a1b;color:#fff;border-color:#f26a1b}
+html[data-theme="dark"] .bc:hover .ba{background:var(--o);color:#fff;border-color:var(--o);box-shadow:0 4px 14px rgba(242,106,27,0.4)}
 html[data-theme="dark"] .bt p{color:#94a3b8}
 html[data-theme="dark"] .b-crm,html[data-theme="dark"] .b-span7{background:#151622;border:1px solid rgba(255,255,255,0.08)}
 html[data-theme="dark"] .b-auto{background:#151622;color:#f8fafc;border-color:rgba(255,255,255,0.08)}
@@ -676,8 +679,10 @@ html[data-theme="dark"] .spin{border:2px solid rgba(255,255,255,.3);border-top-c
 :hover > .btn-arr, a:hover .btn-arr, button:hover .btn-arr{transform:translateX(4px)}
 
 .card-links{display:flex;flex-direction:column;gap:6px;margin-top:16px;font-size:13.5px}
-.card-links a{color:var(--o);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;transition:color .2s}
+.card-links a{color:var(--o);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color .2s}
 .card-links a:hover{color:var(--o2)}
+.card-links a .btn-arr{margin-left:0}
+.card-links a:hover .btn-arr{transform:translateX(5px)}
 .card-links .cs-link{color:var(--mut);font-weight:600}
 .card-links .cs-link:hover{color:var(--o)}
 

@@ -12,7 +12,8 @@ $getSvc = function(string $slug, string $defTitle, string $defSummary, array $de
     return ['title' => $defTitle, 'summary' => $defSummary, 'tags' => $defTags, 'url' => $url];
 };
 
-$arrowSvg = '<svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+$arrowSvg = '<svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+$arrowUpRightSvg = '<svg class="ba-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>';
 
 $schemaItems = [];
 $pos = 1;
@@ -166,7 +167,7 @@ $extraCss = [
   <!-- 1. Websites and Web Apps (First per instructions, span 7) -->
   <?php $sWeb = $getSvc('web-app-cms-development', 'Websites and Web Apps', 'Business websites, online stores and custom web apps, with the pages and tools your customers and team need.', ['Websites', 'Online Stores', 'Portals']); ?>
   <div class="bc b-span7 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.3h.01M8.5 6.3h.01"/></svg></span><a class="ba" href="<?= $sWeb['url'] ?>" aria-label="Explore Web Development">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.3h.01M8.5 6.3h.01"/></svg></span><a class="ba" href="<?= $sWeb['url'] ?>" aria-label="Explore Web Development"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk wbmk live" data-anim="web" aria-hidden="true">
       <div class="mkbar">
         <i></i><i></i><i></i>
@@ -231,7 +232,7 @@ $extraCss = [
   <!-- 2. Mobile App Development (span 5) -->
   <?php $sMob = $getSvc('mobile-app-development', 'Mobile App Development', 'Android and iPhone apps for customers or teams, connected to your website, store or business system where needed.', ['Android', 'iPhone', 'Flutter']); ?>
   <div class="bc b-span5 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><a class="ba" href="<?= $sMob['url'] ?>" aria-label="Explore Mobile Apps">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><a class="ba" href="<?= $sMob['url'] ?>" aria-label="Explore Mobile Apps"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk mbmk live" data-anim="mob" aria-hidden="true"><div class="phone"><div class="notch"></div><div class="pl"></div><div class="pl s"></div><div class="plist"><div class="pc"></div><div class="pc"></div><div class="pc"></div><div class="pc"></div></div><div class="pn"><span class="spin"></span>Ready for iOS &amp; Android</div></div></div>
     <div class="bt">
       <h3><?= htmlspecialchars($sMob['title']) ?></h3>
@@ -244,7 +245,7 @@ $extraCss = [
   <!-- 3. SaaS Application Development (span 5) -->
   <?php $sSaas = $getSvc('saas-application-development', 'SaaS Application Development', 'Turn your software idea into a working product with user accounts, customer workspaces and subscription features.', ['Accounts', 'Subscriptions', 'Dashboards']); ?>
   <div class="bc b-span5 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5l9 4.5 9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span><a class="ba" href="<?= $sSaas['url'] ?>" aria-label="Explore SaaS Development">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5l9 4.5 9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/></svg></span><a class="ba" href="<?= $sSaas['url'] ?>" aria-label="Explore SaaS Development"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk ssmk live" data-anim="saas" aria-hidden="true"><div class="ten" style="--y:0"><b>Workspace A</b><span>Active</span></div><div class="ten" style="--y:1"><b>Workspace B</b><span>Team</span></div><div class="ten on" style="--y:2"><b>Subscription</b><span class="bill">Paid <i>✓</i></span></div></div>
     <div class="bt">
       <h3><?= htmlspecialchars($sSaas['title']) ?></h3>
@@ -257,7 +258,7 @@ $extraCss = [
   <!-- 4. Custom CRM Development (span 4) -->
   <?php $sCrm = $getSvc('custom-crm-development', 'Custom CRM Development', "Keep leads, customer records, follow-ups and sales reports together in a system built around your team's process.", ['Leads', 'Follow-ups', 'Reports']); ?>
   <div class="bc b-span4 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.9 2.6 2.6 3 5.2"/></svg></span><a class="ba" href="<?= $sCrm['url'] ?>" aria-label="Explore CRM Development">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.6.9 2.6 2.6 3 5.2"/></svg></span><a class="ba" href="<?= $sCrm['url'] ?>" aria-label="Explore CRM Development"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk crmk live" data-anim="crm" aria-hidden="true"><div class="mkbar"><i></i><i></i><i></i><span>Pipeline · Active</span><em class="lv">● Live</em></div>
     <div class="crmg"><div class="kpis"><div><small>Leads</small><b>Active</b></div><div><small>Deals</small><b>Won</b></div><div><small>Tasks</small><b>Done</b></div></div>
     <div class="bars"><i style="--h:42%"></i><i style="--h:65%"></i><i style="--h:52%"></i><i style="--h:85%"></i><i style="--h:60%"></i><i style="--h:90%"></i></div>
@@ -275,7 +276,7 @@ $extraCss = [
   <!-- 5. AI Automation Services (span 4) -->
   <?php $sAi = $getSvc('ai-automation-services', 'AI Automation Services', 'Use AI to read documents, sort enquiries or draft responses, with review steps where accuracy matters.', ['Documents', 'Enquiries', 'Drafts']); ?>
   <div class="bc b-span4 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><a class="ba" href="<?= $sAi['url'] ?>" aria-label="Explore AI Automation">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><a class="ba" href="<?= $sAi['url'] ?>" aria-label="Explore AI Automation"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk aimk live" data-anim="ai" aria-hidden="true">
       <div class="ai-status-row">
         <span class="ai-tag">✦ AI Pipeline · Active</span>
@@ -312,7 +313,7 @@ $extraCss = [
   <!-- 6. Chat App Development (span 4) -->
   <?php $sChat = $getSvc('chat-app-development', 'Chat App Development', 'Add private messaging, team conversations or customer support chat to your own website or application.', ['Messaging', 'Groups', 'Notifications']); ?>
   <div class="bc b-span4 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg></span><a class="ba" href="<?= $sChat['url'] ?>" aria-label="Explore Chat Development">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg></span><a class="ba" href="<?= $sChat['url'] ?>" aria-label="Explore Chat Development"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk chmk live" data-anim="chat" aria-hidden="true">
       <div class="ch-head">
         <div class="ch-user">
@@ -342,7 +343,7 @@ $extraCss = [
   <!-- 7. Business Process Automation (span 12, wider final card) -->
   <?php $sAuto = $getSvc('business-process-automation', 'Business Process Automation', 'Connect your tools and automate repeatable steps such as approvals, data updates, reminders and reports.', ['Workflows', 'Integrations', 'Approvals']); ?>
   <div class="bc b-span12 fade">
-    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.3M3 12A9 9 0 0 1 18.5 5.7"/><path d="M18.5 2v3.7h-3.7M5.5 22v-3.7h3.7"/></svg></span><a class="ba" href="<?= $sAuto['url'] ?>" aria-label="Explore Workflow Automation">↗</a></div>
+    <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.3M3 12A9 9 0 0 1 18.5 5.7"/><path d="M18.5 2v3.7h-3.7M5.5 22v-3.7h3.7"/></svg></span><a class="ba" href="<?= $sAuto['url'] ?>" aria-label="Explore Workflow Automation"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk aumk live" aria-hidden="true"><span class="chip2">Input Trigger</span><span class="arrw"></span><span class="chip2 o">Automated Step</span><span class="arrw"></span><span class="chip2">System Updated ✓</span></div>
     <div class="bt">
       <h3><?= htmlspecialchars($sAuto['title']) ?></h3>
