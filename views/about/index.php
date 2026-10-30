@@ -78,7 +78,7 @@ $extraCss = [
    <div><b>React · Node · Flutter</b><small>web to mobile</small></div>
    <div><b>1.5M+ leads</b><small>handled by a CRM I built</small></div>
   </div>
-  <div class="vp">VERIFIED PROFILES <a href="https://www.linkedin.com/in/akamaanullah" target="_blank" rel="noopener me">LinkedIn</a><a href="https://github.com/akamaanullah" target="_blank" rel="noopener me">GitHub</a></div>
+  <div class="vp">VERIFIED PROFILES <a href="https://www.linkedin.com/in/akamaanullah" target="_blank" rel="noopener me">LinkedIn</a><a href="https://github.com/akamaanullah" target="_blank" rel="noopener me">GitHub</a><a href="https://www.facebook.com/amaanullah.dev" target="_blank" rel="noopener me">Facebook</a><a href="https://www.instagram.com/amaanullah.dev" target="_blank" rel="noopener me">Instagram</a><a href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener me">Google Business</a></div>
  </div>
 </header>
 

@@ -60,11 +60,11 @@ class SeoEngine
         $keywords = $ctx['keywords'] ?? 'custom CRM development, Laravel SaaS developer, business process automation, software architect Karachi';
         $robots = $ctx['robots'] ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
-        // Title optimization for SERPs (aim <= 60 chars while keeping full title in OG/DC)
+        // Title optimization for SERPs (keep targeted title intact up to 65 chars)
         $metaTitle = $rawTitle;
-        if (mb_strlen($metaTitle) > 60 && str_contains($metaTitle, ' | ')) {
+        if (mb_strlen($metaTitle) > 65 && str_contains($metaTitle, ' | ')) {
             $parts = explode(' | ', $metaTitle);
-            if (mb_strlen($parts[0]) <= 60) {
+            if (mb_strlen($parts[0]) >= 30 && mb_strlen($parts[0]) <= 65) {
                 $metaTitle = $parts[0];
             }
         }

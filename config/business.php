@@ -31,6 +31,12 @@ return [
     'email'          => 'info@amaanullah.com',
     'whatsapp_url'   => 'https://api.whatsapp.com/send?phone=923196935307',
 
+    // Social Profiles
+    'github_url'     => 'https://github.com/akamaanullah',
+    'linkedin_url'   => 'https://www.linkedin.com/in/akamaanullah',
+    'facebook_url'   => 'https://www.facebook.com/amaanullah.dev',
+    'instagram_url'  => 'https://www.instagram.com/amaanullah.dev',
+
     // Geographic & Location Data (GEO Metadata)
     'locality'       => 'Karachi',
     'region'         => 'Sindh',
@@ -48,12 +54,14 @@ return [
     'gbp_search_url' => 'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer',
     'gbp_maps_url'   => 'https://maps.google.com/?cid=AmaanullahKhan',
 
-    // Verified Profiles (sameAs links for Knowledge Graph)
+    // Verified Profiles (sameAs links for Knowledge Graph & Schema.org)
     'same_as' => [
         'https://www.linkedin.com/in/akamaanullah',
         'https://github.com/akamaanullah',
-        'https://maps.google.com/?cid=AmaanullahKhan',
-        'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer'
+        'https://www.facebook.com/amaanullah.dev',
+        'https://www.instagram.com/amaanullah.dev',
+        'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer',
+        'https://maps.google.com/?cid=AmaanullahKhan'
     ],
 
     // Target Service Countries (areaServed)
