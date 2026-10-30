@@ -507,7 +507,7 @@ $extraCss = [
    <h3>Real Estate</h3>
    <p>Property listings, enquiries and dashboards for agents and agencies.</p>
    <div class="tg"><span>Listings</span><span>Enquiries</span></div>
-   <a class="i-link" href="<?= base_url('/projects/category/real-estate-tech') ?>">View Property Projects <?= $arrowSvg ?></a>
+   <a class="i-link" href="<?= base_url('/projects/real-estate-property-portal-multi-role-marketplace') ?>">View Property Projects <?= $arrowSvg ?></a>
   </article>
 
   <!-- 3. E-commerce and Retail -->
@@ -516,7 +516,7 @@ $extraCss = [
    <h3>E-commerce and Retail</h3>
    <p>Online stores, product catalogues and ordering tools for retail businesses.</p>
    <div class="tg"><span>Stores</span><span>Orders</span></div>
-   <a class="i-link" href="<?= base_url('/projects/category/e-commerce') ?>">View Retail Projects <?= $arrowSvg ?></a>
+   <a class="i-link" href="<?= base_url('/projects/it-hardware-bin-bulk-hardware-ecommerce-platform') ?>">View Retail Projects <?= $arrowSvg ?></a>
   </article>
 
   <!-- 4. HR and Payroll -->
@@ -534,7 +534,7 @@ $extraCss = [
    <h3>Healthcare</h3>
    <p>Apps for medical records, hospital workflows and healthcare services.</p>
    <div class="tg"><span>Records</span><span>Mobile Apps</span></div>
-   <a class="i-link" href="<?= base_url('/projects/category/healthcare-tech') ?>">View Healthcare Projects <?= $arrowSvg ?></a>
+   <a class="i-link" href="<?= base_url('/projects/healink-medicine-app-healthcare-hospital-management-solution') ?>">View Healthcare Projects <?= $arrowSvg ?></a>
   </article>
 
   <!-- 6. Expense Management -->

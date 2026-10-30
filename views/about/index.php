@@ -132,9 +132,9 @@ $extraCss = [
  <div class="story-proof fade">
   <div class="sp-text">
    <div class="sp-badge">Enterprise Proven</div>
-   <p>You can see this approach in my <a href="<?= base_url('/projects') ?>">case studies</a>, including a <a href="<?= base_url('/projects/multi-tenant-crm') ?>">CRM that handles over 1.5 million leads and 300+ daily users</a>.</p>
+   <p>You can see this approach in my <a href="<?= base_url('/projects') ?>">case studies</a>, including a <a href="<?= base_url('/projects/multi-tenant-crm-sales-operations-management-system') ?>">CRM that handles over 1.5 million leads and 300+ daily users</a>.</p>
   </div>
-  <a class="sp-btn" href="<?= base_url('/projects/multi-tenant-crm') ?>">View CRM Case Study <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <a class="sp-btn" href="<?= base_url('/projects/multi-tenant-crm-sales-operations-management-system') ?>">View CRM Case Study <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
  </div>
 </section>
 
@@ -183,7 +183,7 @@ $extraCss = [
    <p>My <b>3-year Aptech diploma</b> covered databases, system architecture and multiple programming languages, not just one framework. That's the part that doesn't show up in a quick demo but matters six months later: being able to read and debug the code that ships, explain why a system is structured a certain way, and adjust when a project needs something outside my usual stack. <b>AI speeds up how I write code. It doesn't replace understanding what that code does.</b></p>
   </div>
   <div class="ai-article-link">
-   If you're weighing AI-generated code against a real engineer, I wrote about it here: <a href="<?= base_url('/articles/ai-wont-replace-fundamentals') ?>">why startups still need a real developer →</a>
+   If you're weighing AI-generated code against a real engineer, I wrote about it here: <a href="<?= base_url('/articles/ai-in-software-development-future-trends') ?>">why startups still need a real developer →</a>
   </div>
  </div>
  <div class="fade" id="stack">
@@ -240,7 +240,7 @@ $extraCss = [
    <span class="auth-title">Looking for a specific service?</span>
    <div class="auth-chips">
     <a href="<?= base_url('/services/custom-crm-development') ?>">Custom CRM Development</a>
-    <a href="<?= base_url('/services/web-app-cms-development') ?>">Scalable Web Applications</a>
+    <a href="<?= base_url('/services/web-development') ?>">Scalable Web Applications</a>
     <a href="<?= base_url('/services/business-process-automation') ?>">Business Process Automation</a>
    </div>
   </div>
@@ -248,8 +248,8 @@ $extraCss = [
    <span class="auth-title">Local development &amp; consultations:</span>
    <div class="auth-chips">
     <a href="<?= base_url('/laravel-developer-karachi') ?>">Laravel Development in Karachi</a>
-    <a href="<?= base_url('/crm-developers-pakistan') ?>">CRM Development in Pakistan</a>
-    <a href="<?= base_url('/full-stack-developer-karachi') ?>">Hiring a Developer in Karachi</a>
+    <a href="<?= base_url('/crm-developer-pakistan') ?>">CRM Development in Pakistan</a>
+    <a href="<?= base_url('/hire-a-developer-karachi') ?>">Hiring a Developer in Karachi</a>
    </div>
   </div>
  </div>

@@ -265,10 +265,10 @@ flowchart TD
 | **1** | Fix dead project slugs in `public/llms.txt` & `SeoFilesService.php` | P1 | Completed & Verified ✓ |
 | **1** | Add AI crawler directives to `robots.txt` & `SeoFilesService.php` | P1 | Completed & Verified ✓ |
 | **1** | Update `apple-touch-icon` to 180x180 square asset | P2 | Completed & Verified ✓ |
-| **2** | Correct service slugs in `views/home/index.php` and `projects/show.php` | P1 | Ready |
-| **2** | Fix dead mock article links on `about/index.php` and `articles/index.php` | P1 | Ready |
-| **2** | Standardize project category slugs across service views | P2 | Ready |
-| **2** | Include `/privacy` and `/terms` in `sitemap.xml` | P2 | Ready |
+| **2** | Correct service slugs in `views/home/index.php` and `projects/show.php` | P1 | Completed & Verified ✓ |
+| **2** | Fix dead mock article links on `about/index.php` and `articles/index.php` | P1 | Completed & Verified ✓ |
+| **2** | Standardize project category slugs across service views | P2 | Completed & Verified ✓ |
+| **2** | Include `/privacy` and `/terms` in `sitemap.xml` | P2 | Completed & Verified ✓ |
 | **3** | Convert 28 article PNG banners to WebP & update DB | P2 | Ready |
 | **3** | Create `public/manifest.json` and link in `head.php` | P2 | Ready |
 | **3** | Add HTTPS, canonical host, and security headers in `.htaccess` | P2 | Ready |
