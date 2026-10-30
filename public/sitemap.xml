@@ -4,325 +4,349 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://amaanullah.com/</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/projects</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/about</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/contact</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/laravel-developer-karachi</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/crm-developers-pakistan</loc>
-    <lastmod>2026-10-27</lastmod>
+    <loc>https://amaanullah.com/crm-developer-pakistan</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/full-stack-developer-karachi</loc>
-    <lastmod>2026-10-27</lastmod>
+    <loc>https://amaanullah.com/hire-a-developer-karachi</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/free-technical-audit</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/performance-tuning</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/saas-product-strategy</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/business-process-automation</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/mobile-app-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/saas-application-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/services/web-app-cms-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <loc>https://amaanullah.com/services/web-development</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/chat-app-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/ai-automation-services</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/services/custom-crm-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/projects/adsimpressions</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/it-hardware-bin</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/expense-voyage</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/babyshop</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/healink</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/tour-guide-app</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/projects/the-perfect-vape-custom-ecommerce-platform-theme-builder</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/projects/kanban-workspace</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/real-estate-portal</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/custom-vape-ecommerce</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/projects/real-estate-property-portal-multi-role-marketplace</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/projects/ticketing-crm</loc>
-    <lastmod>2026-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://amaanullah.com/projects/multi-tenant-crm</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/projects/chatrox-real-time-messaging-professional-networking</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/projects/hrm-payroll</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/projects/workspace-kanban-project-task-management-platform</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/projects/chatrox</loc>
-    <lastmod>2026-10-27</lastmod>
+    <loc>https://amaanullah.com/projects/hrm-employee-management-payroll-portal</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/multi-tenant-saas-laravel</loc>
-    <lastmod>2026-10-27</lastmod>
+    <loc>https://amaanullah.com/projects/multi-tenant-crm-sales-operations-management-system</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/ticketing-crm-jobs-vendor-management-enterprise-portal</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/tour-guide-mobile-app-explore-pakistan-travel-solution</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/healink-medicine-app-healthcare-hospital-management-solution</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/babyshop-mobile-app-ecommerce-firebase-solution</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/expense-voyage-budget-expense-management-web-app</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/it-hardware-bin-bulk-hardware-ecommerce-platform</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/projects/adsimpressions-custom-digital-agency-platform</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/articles/vibe-coding-risks-startups-need-real-developer</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/crm-around-your-sales-process</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/ai-coding-agents-2026-custom-software</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/automate-repetitive-work</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/custom-software-vs-saas-business-scalability</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/laravel-queues-at-scale</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/custom-software-crm-ai-automation-business-growth</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/ai-in-business-workflows</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/deploy-web-app-vps-guide</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/flutter-with-laravel-api</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/ai-automation-transforming-businesses</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/flutter-offline-sync</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/ecommerce-website-design-digital-branding-growth</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/fast-websites-checklist</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/modern-web-development-technologies-guide</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/from-shopify-dev-to-team-lead</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/seo-paid-marketing-balanced-growth-strategy</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/ai-wont-replace-fundamentals</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/ui-ux-design-psychic-user-experience-screens</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/saas-billing-basics</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/web-design-development-business-growth-strategy</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://amaanullah.com/articles/custom-ecommerce-vs-shopify</loc>
-    <lastmod>2026-10-24</lastmod>
+    <loc>https://amaanullah.com/articles/ai-automation-business-development-intelligent-growth</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/articles/ai-developer-toolkit-2026-agentic-trends</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/articles/mastering-tech-tips-modern-developers</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/articles/ai-in-software-development-future-trends</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://amaanullah.com/articles/enterprise-solutions-development-roadmap</loc>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles/category/laravel-php</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles/category/saas-crm</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles/category/automation-ai</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles/category/mobile-flutter</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles/category/web-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/articles/category/career-insights</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/projects/category/web-applications</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/projects/category/web-design-development</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/projects/category/mobile-apps</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://amaanullah.com/projects/category/products</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

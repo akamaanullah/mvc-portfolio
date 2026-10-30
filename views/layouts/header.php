@@ -60,42 +60,42 @@ $navClass = $isHome ? 'rev' : 'aknav rev';
       </button>
     </div>
     <div class="mob-links-list">
-      <a class="<?= ($active ?? '') === 'Home' || ($isHome && empty($active)) ? 'act' : '' ?>" href="<?= base_url('/') ?>">
-        <span class="mob-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-        <span class="mob-nav-text">Home</span>
-        <span class="mob-nav-arr">→</span>
+      <a class="mob-nav-item <?= ($active ?? '') === 'Home' || ($isHome && empty($active)) ? 'act' : '' ?>" href="<?= base_url('/') ?>" style="display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:12px !important;">
+        <span class="mob-nav-icon" style="display:inline-flex !important;align-items:center !important;justify-content:center !important;flex-shrink:0 !important;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+        <span class="mob-nav-text" style="flex:1 1 auto !important;text-align:left !important;">Home</span>
+        <span class="mob-nav-arr" style="flex-shrink:0 !important;">→</span>
       </a>
-      <a class="<?= ($active ?? '') === 'Services' ? 'act' : '' ?>" href="<?= base_url('/services') ?>">
-        <span class="mob-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
-        <span class="mob-nav-text">Services</span>
-        <span class="mob-nav-arr">→</span>
+      <a class="mob-nav-item <?= ($active ?? '') === 'Services' ? 'act' : '' ?>" href="<?= base_url('/services') ?>" style="display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:12px !important;">
+        <span class="mob-nav-icon" style="display:inline-flex !important;align-items:center !important;justify-content:center !important;flex-shrink:0 !important;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+        <span class="mob-nav-text" style="flex:1 1 auto !important;text-align:left !important;">Services</span>
+        <span class="mob-nav-arr" style="flex-shrink:0 !important;">→</span>
       </a>
-      <a class="<?= ($active ?? '') === 'Projects' ? 'act' : '' ?>" href="<?= base_url('/projects') ?>">
-        <span class="mob-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-        <span class="mob-nav-text">Projects</span>
-        <span class="mob-nav-arr">→</span>
+      <a class="mob-nav-item <?= ($active ?? '') === 'Projects' ? 'act' : '' ?>" href="<?= base_url('/projects') ?>" style="display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:12px !important;">
+        <span class="mob-nav-icon" style="display:inline-flex !important;align-items:center !important;justify-content:center !important;flex-shrink:0 !important;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+        <span class="mob-nav-text" style="flex:1 1 auto !important;text-align:left !important;">Projects</span>
+        <span class="mob-nav-arr" style="flex-shrink:0 !important;">→</span>
       </a>
-      <a class="<?= ($active ?? '') === 'About' ? 'act' : '' ?>" href="<?= base_url('/about') ?>">
-        <span class="mob-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-        <span class="mob-nav-text">About</span>
-        <span class="mob-nav-arr">→</span>
+      <a class="mob-nav-item <?= ($active ?? '') === 'About' ? 'act' : '' ?>" href="<?= base_url('/about') ?>" style="display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:12px !important;">
+        <span class="mob-nav-icon" style="display:inline-flex !important;align-items:center !important;justify-content:center !important;flex-shrink:0 !important;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <span class="mob-nav-text" style="flex:1 1 auto !important;text-align:left !important;">About</span>
+        <span class="mob-nav-arr" style="flex-shrink:0 !important;">→</span>
       </a>
-      <a class="<?= ($active ?? '') === 'Articles' ? 'act' : '' ?>" href="<?= base_url('/articles') ?>">
-        <span class="mob-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
-        <span class="mob-nav-text">Articles</span>
-        <span class="mob-nav-arr">→</span>
+      <a class="mob-nav-item <?= ($active ?? '') === 'Articles' ? 'act' : '' ?>" href="<?= base_url('/articles') ?>" style="display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:12px !important;">
+        <span class="mob-nav-icon" style="display:inline-flex !important;align-items:center !important;justify-content:center !important;flex-shrink:0 !important;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+        <span class="mob-nav-text" style="flex:1 1 auto !important;text-align:left !important;">Articles</span>
+        <span class="mob-nav-arr" style="flex-shrink:0 !important;">→</span>
       </a>
-      <a class="<?= ($active ?? '') === 'Contact' ? 'act' : '' ?>" href="<?= base_url('/contact') ?>">
-        <span class="mob-nav-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
-        <span class="mob-nav-text">Contact</span>
-        <span class="mob-nav-arr">→</span>
+      <a class="mob-nav-item <?= ($active ?? '') === 'Contact' ? 'act' : '' ?>" href="<?= base_url('/contact') ?>" style="display:flex !important;flex-direction:row !important;align-items:center !important;justify-content:flex-start !important;gap:12px !important;">
+        <span class="mob-nav-icon" style="display:inline-flex !important;align-items:center !important;justify-content:center !important;flex-shrink:0 !important;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        <span class="mob-nav-text" style="flex:1 1 auto !important;text-align:left !important;">Contact</span>
+        <span class="mob-nav-arr" style="flex-shrink:0 !important;">→</span>
       </a>
-    </div>
-    <div class="mob-status">
-      <span class="mob-status-dot"></span>
-      <span class="mob-status-text">Available for remote projects</span>
     </div>
     <div class="mob-foot">
+      <div class="mob-status">
+        <span class="mob-status-dot"></span>
+        <span class="mob-status-text">Available for remote projects</span>
+      </div>
       <a class="mob-talk-cta" href="<?= base_url('/contact') ?>">
         <span>Let's Talk</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>

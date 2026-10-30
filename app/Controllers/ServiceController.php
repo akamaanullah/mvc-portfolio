@@ -10,7 +10,15 @@ class ServiceController extends Controller
 
     public function show(string $slug): string
     {
+        if ($slug === 'web-app-cms-development') {
+            header('Location: ' . base_url('/services/web-development'), true, 301);
+            exit;
+        }
+
         $service = ServiceModel::find($slug);
+        if (!$service && $slug === 'web-development') {
+            $service = ServiceModel::find('web-app-cms-development');
+        }
         return $service ? $this->render($service['view'] ?? 'services/show', ['service' => $service]) : $this->notFound();
     }
 }

@@ -357,7 +357,7 @@ class SeoFilesService
         $projects = ProjectModel::all('is_featured DESC, id DESC LIMIT 10');
         $articles = ArticleModel::all('published_at DESC LIMIT 10');
 
-        $content = "# Amaanullah Khan — Comprehensive Developer Specification & LLM Reference\n\n";
+        $content = "# Amaanullah Khan - Comprehensive Developer Specification & LLM Reference\n\n";
         $content .= "> Full-Stack Software Developer & Web Application Specialist based in Karachi, Pakistan.\n";
         $content .= "> Serving global clients across USA, UAE, UK, Europe, Australia, and Middle East.\n\n";
 
@@ -437,7 +437,7 @@ class SeoFilesService
                 break;
 
             case 'llms.txt':
-                $content = "# Amaanullah Khan — Full-Stack Software Developer\n\n> Full-Stack Web Application Developer & Custom Software Specialist based in Karachi, Pakistan.\n> Specializing in Custom CRM Systems, SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Mobile Apps.\n\n## Core Capabilities\n- Custom CRM & ERP Development: Tailored business systems with zero monthly user licenses.\n- SaaS & Web App Development: High-performance PHP/Laravel applications, modern APIs, clean architectures.\n- AI Automation & LLM Workflows: Cloudflare Workers AI, custom chatbot integration, automated lead capture.\n- Mobile App Development: Flutter & Firebase for iOS and Android.\n\n## Key Links & Documentation\n- [Home Page]({$siteUrl}/)\n- [Services Catalog]({$siteUrl}/services)\n- [Enterprise CRM Development]({$siteUrl}/services/custom-crm-development)\n- [Portfolio Projects]({$siteUrl}/projects)\n- [Technical Articles & Blog]({$siteUrl}/articles)\n- [Contact & WhatsApp]({$siteUrl}/contact)\n\n## Comprehensive Context\n- For full background, detailed projects, and architectural philosophy, see [Full LLM Specification]({$siteUrl}/llms-full.txt).\n";
+                $content = "# Amaanullah Khan - Full-Stack Software Developer\n\n> Full-Stack Web Application Developer & Custom Software Specialist based in Karachi, Pakistan.\n> Specializing in Custom CRM Systems, SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Mobile Apps.\n\n## Core Capabilities\n- Custom CRM & ERP Development: Tailored business systems with zero monthly user licenses.\n- SaaS & Web App Development: High-performance PHP/Laravel applications, modern APIs, clean architectures.\n- AI Automation & LLM Workflows: Cloudflare Workers AI, custom chatbot integration, automated lead capture.\n- Mobile App Development: Flutter & Firebase for iOS and Android.\n\n## Key Links & Documentation\n- [Home Page]({$siteUrl}/)\n- [Services Catalog]({$siteUrl}/services)\n- [Enterprise CRM Development]({$siteUrl}/services/custom-crm-development)\n- [Portfolio Projects]({$siteUrl}/projects)\n- [Technical Articles & Blog]({$siteUrl}/articles)\n- [Contact & WhatsApp]({$siteUrl}/contact)\n\n## Comprehensive Context\n- For full background, detailed projects, and architectural philosophy, see [Full LLM Specification]({$siteUrl}/llms-full.txt).\n";
                 self::saveFile('llms.txt', $content);
                 break;
 

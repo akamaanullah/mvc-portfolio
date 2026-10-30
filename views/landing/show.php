@@ -30,6 +30,14 @@ $canonical = base_url('/' . $slug);
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"},
+    {"@type": "ListItem", "position": 2, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $canonical ?>"}
+  ]
+}</script>
 <?php if (!empty($l['schema_json'])): ?>
 <?php
   $schemas = explode("\n", trim($l['schema_json']));
@@ -43,27 +51,24 @@ $canonical = base_url('/' . $slug);
     }
   endforeach;
 ?>
-<?php else: ?>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"},
-    {"@type": "ListItem", "position": 2, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $canonical ?>"}
-  ]
-}</script>
 <?php endif; ?>
 <link rel="stylesheet" href="<?= asset_url('css/landing.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>
-<body>
+<body class="dark">
 <div class="prog" id="prog"></div>
 <?php $home = false; $active = 'Services'; require view_path('layouts/header.php'); ?>
 
 <main>
 <?php if (!empty($l['content_html'])): ?>
-  <?= $l['content_html'] ?>
+<?php
+$html = $l['content_html'];
+$html = preg_replace_callback('/<\?=\s*asset_url\(([\'"])(.*?)\1\)\s*\?>/', function($m) { return asset_url($m[2]); }, $html);
+$html = preg_replace_callback('/<\?=\s*base_url\(([\'"])(.*?)\1\)\s*\?>/', function($m) { return base_url($m[2]); }, $html);
+$html = preg_replace_callback('/<\?=\s*base_url\(\)\s*\?>/', function($m) { return base_url('/'); }, $html);
+echo $html;
+?>
 <?php else: ?>
   <div class="wrap" style="padding:80px 20px;text-align:center">
     <h1><?= htmlspecialchars($l['title'] ?? 'Landing Page') ?></h1>

@@ -15,6 +15,15 @@
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "<?= base_url('/services') ?>"},
+    {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($service['title'] ?? 'Service') ?>", "item": "<?= base_url('/services/' . $service['slug']) ?>"}
+  ]
+}</script>
 <?php if (!empty($service['schema_json'])): ?>
 <?= $service['schema_json'] ?>
 <?php endif; ?>

@@ -165,7 +165,7 @@ $extraCss = [
  
  <div class="bento">
   <!-- 1. Websites and Web Apps (First per instructions, span 7) -->
-  <?php $sWeb = $getSvc('web-app-cms-development', 'Websites and Web Apps', 'Business websites, online stores and custom web apps, with the pages and tools your customers and team need.', ['Websites', 'Online Stores', 'Portals']); ?>
+  <?php $sWeb = $getSvc('web-development', 'Websites and Web Apps', 'Business websites, online stores and custom web apps, with the pages and tools your customers and team need.', ['Websites', 'Online Stores', 'Portals']); ?>
   <div class="bc b-span7 fade">
     <div class="bh"><span class="bi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.3h.01M8.5 6.3h.01"/></svg></span><a class="ba" href="<?= $sWeb['url'] ?>" aria-label="Explore Web Development"><?= $arrowUpRightSvg ?></a></div>
     <div class="mk wbmk live" data-anim="web" aria-hidden="true">
