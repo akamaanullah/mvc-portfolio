@@ -15,7 +15,7 @@ $extraCss = [
 <html lang="en">
 <head>
 <?php require view_path('layouts/head.php'); ?>
-</head><body><?php $home = false; $active = 'Contact'; require view_path('layouts/header.php'); ?><main id="main">
+</head><body class="dark"><?php $home = false; $active = 'Contact'; require view_path('layouts/header.php'); ?><main id="main">
 <section class="ch"><div class="wrap">
 <nav class="crumb" aria-label="Breadcrumb"><a href="<?= base_url('/') ?>">Home</a><span aria-hidden="true">/</span><b aria-current="page">Contact</b></nav>
 <span class="eyebrow rv3">✦ Contact</span>

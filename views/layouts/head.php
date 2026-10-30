@@ -10,7 +10,20 @@ require_once BASE_PATH . '/app/Helpers/SeoEngine.php';
 echo SeoEngine::renderHead($pageMeta ?? []);
 ?>
 <script>
-(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}var dark=t!=='light';var d=document.documentElement;d.setAttribute('data-theme',dark?'dark':'light');d.style.colorScheme=dark?'dark':'light';if(document.body&&dark)document.body.classList.add('dark');})();
+(function(){
+  var t;try{t=localStorage.getItem('theme')}catch(e){}
+  var dark=t!=='light';
+  var d=document.documentElement;
+  d.setAttribute('data-theme',dark?'dark':'light');
+  d.style.colorScheme=dark?'dark':'light';
+  if(dark){
+    if(document.body)document.body.classList.add('dark');
+    else {
+      var obs=new MutationObserver(function(){if(document.body){document.body.classList.add('dark');obs.disconnect();}});
+      obs.observe(d,{childList:true,subtree:true});
+    }
+  }
+})();
 document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('video.pvid').forEach(function(v){v.removeAttribute('autoplay');v.pause();v.preload='none';v.load()})}});
 </script>
 <?php if (!empty($extraCss) && is_array($extraCss)): ?>

@@ -61,7 +61,7 @@ $extraCss = [
 <html lang="en">
 <head>
 <?php require view_path('layouts/head.php'); ?>
-</head><body>
+</head><body class="dark">
 <div class="bgfx"></div>
 <?php $home = false; $active = 'Projects'; require view_path('layouts/header.php'); ?>
 

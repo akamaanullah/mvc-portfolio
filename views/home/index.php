@@ -20,7 +20,7 @@ $extraCss = [
 require view_path('layouts/head.php');
 ?>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
-</head><body>
+</head><body class="dark">
 <!-- ===== SPLASH / WELCOME SCREEN (shown once per session; add ?splash=1 to force) ===== -->
 <div id="splash" role="dialog" aria-label="Loading Amaanullah portfolio">
  <div class="sbg"></div><canvas id="splashC"></canvas><div class="sflash"></div>
