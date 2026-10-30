@@ -25,14 +25,21 @@
   ]
 }</script>
 <?php if (!empty($service['schema_json'])): ?>
-<?= $service['schema_json'] ?>
+<?php
+  $schema = trim($service['schema_json']);
+  if (!str_starts_with($schema, '<script')) {
+    $schema = '<script type="application/ld+json">' . $schema . '</script>';
+  }
+  echo $schema . "\n";
+?>
 <?php endif; ?>
 <link rel="stylesheet" href="<?= asset_url('css/service-detail.css') ?>">
+<link rel="stylesheet" href="<?= asset_url('css/landing.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= asset_url('css/layout.css') ?>">
 </head>
-<body>
+<body class="dark">
 <div class="prog" id="prog"></div>
 <?php $home = false; $active = 'Services'; require view_path('layouts/header.php'); ?>
 
