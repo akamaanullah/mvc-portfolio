@@ -1,7 +1,7 @@
 /* Global Viewport Guard & Shared site header + footer */
 html{background:#fbf6ef;color-scheme:light dark}
 html[data-theme="dark"]{background:#0f0f15}
-body{background:var(--bg,#fbf6ef);color:var(--ink,#14141c);overflow-x:clip;max-width:100vw}
+body, body.dark, html[data-theme="dark"] body{background:var(--bg,#fbf6ef);color:var(--ink,#14141c);overflow-x:clip;max-width:100vw !important;width:100% !important;margin:0 !important;padding:0 !important;border-radius:0 !important;box-shadow:none !important}
 html[data-theme="dark"] body{background:#0f0f15;color:#f4ebe1}
 :is(#akh,#akf,#homeHeaderWrap){--o:#f26a1b;--o2:#ff8a3d;--ink:#14141c;--mut:#5c5f6b;--bg:#fbf6ef;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);text-align:left;line-height:normal;letter-spacing:normal;font-size:16px;-webkit-font-smoothing:auto}
 :is(#akh,#akf,#homeHeaderWrap) *{margin:0;padding:0;line-height:inherit;letter-spacing:inherit;text-transform:inherit}
