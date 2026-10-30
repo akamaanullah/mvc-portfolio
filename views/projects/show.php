@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&ma
    <div class="share">Share<br>
      <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?= $shareEncodedUrl ?>" target="_blank" rel="noopener noreferrer" title="Share on LinkedIn">LinkedIn</a>
      <a href="https://twitter.com/intent/tweet?url=<?= $shareEncodedUrl ?>&text=<?= $shareEncodedTitle ?>" target="_blank" rel="noopener noreferrer" title="Share on X">X</a>
-     <a href="javascript:void(0)" class="copy-link-btn" title="Copy project link">Copy link</a>
+     <a href="#copy" class="copy-link-btn" role="button" title="Copy project link">Copy link</a>
    </div>
   </aside>
   

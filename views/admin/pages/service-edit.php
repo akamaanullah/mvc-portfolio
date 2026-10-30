@@ -24,7 +24,7 @@ $liveUrl = !empty($slug) ? base_url('/services/' . $slug) : base_url('/services'
   </div>
 </div>
 
-<form id="serviceForm" action="javascript:void(0)" method="post">
+<form id="serviceForm" action="" method="post">
   <input type="hidden" id="svcId" name="id" value="<?= htmlspecialchars((string)($s['id'] ?? '')) ?>">
   
   <div class="grid g21">

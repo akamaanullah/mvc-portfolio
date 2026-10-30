@@ -23,7 +23,7 @@ $liveUrl = !empty($slug) ? base_url('/' . $slug) : base_url('/');
   </div>
 </div>
 
-<form id="landingForm" action="javascript:void(0)" method="post">
+<form id="landingForm" action="" method="post">
   <input type="hidden" id="lpId" name="id" value="<?= htmlspecialchars((string)($lp['id'] ?? '')) ?>">
   
   <div class="grid g21">

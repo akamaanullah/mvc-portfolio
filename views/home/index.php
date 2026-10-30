@@ -82,7 +82,7 @@ require view_path('layouts/head.php');
     <a class="sk" href="https://flutter.dev/" target="_blank" rel="noopener noreferrer"><div class="h"><span class="lg" style="background:#47c5fb">F</span>Flutter</div><div class="bar"><i style="--w:78%"></i></div><span class="lv">Advanced</span></a>
    </div>
    <div class="actas av" style="transition-delay:.3s">
-    <a class="cv" href="javascript:void(0)" download><!-- URL: link to your CV file, e.g. files/Amaanullah-CV.pdf --><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
+    <a class="cv" href="<?= asset_url('media/AK-Resume.pdf') ?>" download="Amaanullah-Khan-Resume.pdf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a>
     <a class="lt2" href="<?= base_url('/contact') ?>"><!-- URL: contact page or #contact -->Let's Talk <svg class="btn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <a class="story-link" href="<?= base_url('/about') ?>">About Amaanullah Khan →</a>
    </div>
@@ -293,7 +293,7 @@ foreach ($sliderProjects as $idx => $sp) {
   <div class="flist fslide" id="fpF"><?php foreach (array_slice($heroResults, 0, 4) as $res): ?><div><?= htmlspecialchars($res) ?></div><?php endforeach; ?></div>
   <div class="thumbs">
    <?php foreach ($sliderProjects as $idx => $sp): ?>
-    <a href="javascript:void(0)" class="<?= $idx === 0 ? 'on' : '' ?>" data-i="<?= $idx ?>"><img src="<?= asset_url($sp['banner'] ?? 'images/crm-1.svg') ?>" alt="<?= htmlspecialchars($sp['title'] ?? '') ?>"></a>
+    <a href="#featured" class="<?= $idx === 0 ? 'on' : '' ?>" data-i="<?= $idx ?>" aria-label="View featured slide <?= $idx + 1 ?>"><img src="<?= asset_url($sp['banner'] ?? 'images/crm-1.svg') ?>" alt="<?= htmlspecialchars($sp['title'] ?? '') ?>"></a>
    <?php endforeach; ?>
   </div>
   <div class="pager"><span id="fpN">01 / <?= sprintf('%02d', count($sliderProjects)) ?></span><button id="fpPrev" aria-label="Previous"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="fpNext" aria-label="Next"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
@@ -662,7 +662,7 @@ foreach ($sliderProjects as $idx => $sp) {
   <div style="position:relative" class="cv2">
    <div class="fglow"></div>
    <div class="fglass" id="fglass" style="transition-delay:.2s">
-    <form id="cform" method="POST" action="javascript:void(0)" novalidate>
+    <form id="cform" method="POST" action="<?= base_url('/contact') ?>" novalidate>
      <input type="hidden" name="_token" value="">
      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
      <div class="frow">

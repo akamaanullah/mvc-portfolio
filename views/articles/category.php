@@ -112,7 +112,7 @@ $remaining = array_slice($catArticles, 1);
       <?php endforeach; ?>
     </ol></section>
     <section class="box nlb rv2" aria-labelledby="h-nl"><h3 id="h-nl">Get new articles by email</h3><p>Occasional, practical posts on Laravel, SaaS and automation. No spam.</p>
-      <form class="nlf" action="javascript:void(0)" method="post" novalidate>
+      <form class="nlf" action="<?= base_url('/contact') ?>" method="post" novalidate>
         <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
         <label for="nl-cat" class="hp">Email address</label><input id="nl-cat" type="email" name="email" placeholder="you@company.com" required autocomplete="email">
         <button type="submit">Subscribe</button><div class="msg" role="status" aria-live="polite"></div></form>

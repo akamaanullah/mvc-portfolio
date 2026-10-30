@@ -84,7 +84,7 @@
 
   /* ---------------- helpers ---------------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function safeUrl(u) { return /^(https?:|mailto:|tel:|\/|#|[\w-]+\.html|javascript:void\(0\))/i.test(u) ? u : '#'; }
+  function safeUrl(u) { return /^(https?:|mailto:|tel:|\/|#|[\w-]+\.html)/i.test(u) ? u : '#'; }
   function inline(s) {
     return s.replace(/`([^`]+)`/g, '<code>$1</code>')
       .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, t, u) { return '<a href="' + safeUrl(u.replace(/&amp;/g, '&')) + '" target="_blank" rel="noopener">' + t + '</a>'; })
@@ -254,7 +254,7 @@
         '<button class="akc-hb akc-close" type="button" aria-label="Close chat">' + I.x + '</button>' +
         '<div class="akc-menu" role="menu">' +
           '<button role="menuitem" type="button" class="akc-clear">' + I.trash + ' Clear chat</button>' +
-          '<a role="menuitem" class="akc-human" href="javascript:void(0)">' + I.human + ' Talk to a human</a>' +
+          '<button role="menuitem" type="button" class="akc-human">' + I.human + ' Talk to a human</button>' +
           '<a role="menuitem" class="akc-wa" href="' + esc(CFG.whatsapp) + '" target="_blank" rel="noopener">' + I.whatsapp + ' Chat on WhatsApp</a>' +
         '</div>' +
       '</header>' +

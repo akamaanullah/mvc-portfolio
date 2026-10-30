@@ -9,7 +9,7 @@ $coverUrl = !empty($a['cover_image']) ? asset_url($a['cover_image']) : asset_url
 <div class="ed-top"><div class="st2"><span><b id="wc">0</b> words</span><span><b id="rt"><?= htmlspecialchars($a['reading_time'] ?? '1 min') ?></b></span><span><b id="bc">0</b> blocks</span><span><b id="tc">0</b> TOC items</span><span id="saveSt" class="saved">✓ All changes saved</span></div>
 <div class="seg" role="tablist" aria-label="View mode"><button class="on" data-mode="write" type="button"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Write</button><button data-mode="split" type="button">Split</button><button data-mode="prev" type="button"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg> Preview</button></div></div>
 <div class="bar" style="margin:-4px 0 16px" title="Progress to 2,500-word target"><i id="wcGoal" data-goal="2500" style="width:0"></i></div>
-<form id="articleForm" action="javascript:void(0)" method="post">
+<form id="articleForm" action="" method="post">
 <input type="hidden" id="projId" name="id" value="<?= $a['id'] ?? '' ?>">
 <input type="hidden" name="body_json" id="bodyJson">
 <div class="ed" data-editor="article" data-site-css="<?= asset_url('css/') ?>" data-asset="<?= base_url('/') ?>">

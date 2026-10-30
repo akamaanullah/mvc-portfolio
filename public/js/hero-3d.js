@@ -214,7 +214,7 @@ const SLIDES = (window.__FEATURED_SLIDES && Array.isArray(window.__FEATURED_SLID
 const W=document.getElementById('featWrap'),th=W?[...W.querySelectorAll('.thumbs a')]:[];let cur=0,tm;
 function go(i){if(!W||!SLIDES.length)return;i=(i+SLIDES.length)%SLIDES.length;if(i===cur)return;cur=i;W.classList.add('swap');th.forEach((a,k)=>a.classList.toggle('on',k===i));clearTimeout(tm);
  tm=setTimeout(()=>{const s=SLIDES[i];if(window.fpT&&s.t)fpT.innerHTML=s.t;if(window.fpD&&s.d)fpD.textContent=s.d;if(window.fpC&&s.c)fpC.innerHTML=s.c.map(x=>`<span>${x}</span>`).join('');if(window.fpF&&s.f)fpF.innerHTML=s.f.map(x=>`<div>${x}</div>`).join('');if(window.fpI&&s.img)fpI.src=s.img;if(window.fpL&&s.url)fpL.href=s.url;if(window.fpN)fpN.textContent=String(i+1).padStart(2,'0')+' / '+String(SLIDES.length).padStart(2,'0');W.classList.remove('swap')},420)}
-if(window.fpPrev)fpPrev.onclick=()=>go(cur-1);if(window.fpNext)fpNext.onclick=()=>go(cur+1);th.forEach(a=>a.onclick=()=>go(+a.dataset.i));
+if(window.fpPrev)fpPrev.onclick=()=>go(cur-1);if(window.fpNext)fpNext.onclick=()=>go(cur+1);th.forEach(a=>a.onclick=(e)=>{if(e)e.preventDefault();go(+a.dataset.i);});
 let auto=SLIDES.length>1?setInterval(()=>go(cur+1),7000):null;if(W&&auto)W.addEventListener('mouseenter',()=>clearInterval(auto));
 // mouse tilt on project cards
 document.querySelectorAll('.pc').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*6}deg) translateY(-8px)`});c.addEventListener('mouseleave',()=>c.style.transform='')});

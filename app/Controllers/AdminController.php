@@ -435,7 +435,7 @@ class AdminController extends Controller
                         'desc' => $waConn ? ($intConfig['whatsapp']['phone'] . ' · Live Chat Direct Handoff') : 'WhatsApp phone number not configured',
                         'badge' => $waConn ? 'Connected' : 'Not Configured',
                         'badge_class' => $waConn ? 'good' : 'warn',
-                        'link' => $intConfig['whatsapp']['whatsapp_url'] ?: 'javascript:void(0)'
+                        'link' => $intConfig['whatsapp']['whatsapp_url'] ?: base_url('/admin/settings')
                     ],
                     'smtp' => [
                         'connected' => $smtpConn,
@@ -443,7 +443,7 @@ class AdminController extends Controller
                         'desc' => $smtpConn ? ($intConfig['smtp']['host'] . ':' . $intConfig['smtp']['port'] . ' (' . $intConfig['smtp']['user'] . ')') : 'SMTP credentials required for email delivery',
                         'badge' => $smtpConn ? 'Connected' : 'Not Configured',
                         'badge_class' => $smtpConn ? 'good' : 'warn',
-                        'link' => 'javascript:void(0)'
+                        'link' => base_url('/admin/settings')
                     ],
                     'alerts' => [
                         'connected' => $alertsConn,
@@ -451,7 +451,7 @@ class AdminController extends Controller
                         'desc' => $alertsConn ? ('Live takeover alerts & lead briefs sent to ' . $intConfig['alerts']['alert_email']) : 'Alert recipient email not configured',
                         'badge' => $alertsConn ? 'Active' : 'Disabled',
                         'badge_class' => $alertsConn ? 'good' : 'warn',
-                        'link' => 'javascript:void(0)'
+                        'link' => base_url('/admin/settings')
                     ],
                     'cloudflare' => [
                         'connected' => $cfConn,
@@ -459,7 +459,7 @@ class AdminController extends Controller
                         'desc' => $cfConn ? ($intConfig['cloudflare']['model'] . ' (Active AI Engine)') : 'Cloudflare Workers AI API Token & Account ID required',
                         'badge' => $cfConn ? 'Connected' : 'Not Configured',
                         'badge_class' => $cfConn ? 'good' : 'warn',
-                        'link' => 'javascript:void(0)'
+                        'link' => base_url('/admin/settings')
                     ]
                 ];
                 break;
