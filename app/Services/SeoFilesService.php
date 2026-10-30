@@ -221,7 +221,7 @@ class SeoFilesService
      */
     public static function generateSitemap(): array
     {
-        $siteUrl = rtrim((string) setting('site_domain', ''), '/');
+        $siteUrl = rtrim((string) (setting('site_domain') ?: config('business.canonical_url', 'https://amaanullah.com')), '/');
         $urls = [];
 
         // 1. Static Core Pages
@@ -232,6 +232,8 @@ class SeoFilesService
         $urls[] = ['loc' => $siteUrl . '/about', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $today];
         $urls[] = ['loc' => $siteUrl . '/articles', 'priority' => '0.85', 'changefreq' => 'daily', 'lastmod' => $today];
         $urls[] = ['loc' => $siteUrl . '/contact', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $today];
+        $urls[] = ['loc' => $siteUrl . '/privacy', 'priority' => '0.3', 'changefreq' => 'yearly', 'lastmod' => $today];
+        $urls[] = ['loc' => $siteUrl . '/terms', 'priority' => '0.3', 'changefreq' => 'yearly', 'lastmod' => $today];
 
         // 2. High-Intent Landing Pages
         try {
@@ -428,7 +430,7 @@ class SeoFilesService
 
         switch ($filename) {
             case 'robots.txt':
-                $content = "User-agent: *\nDisallow: /admin\nDisallow: /api/\nAllow: /\n\n# AI Crawlers & LLM Web Crawlers\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: CCBot\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\n";
+                $content = "User-agent: *\nDisallow: /admin\nDisallow: /api/\nAllow: /\n\n# AI Crawlers & LLM Web Crawlers\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ChatGPT-User\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nUser-agent: CCBot\nAllow: /\n\nUser-agent: Google-Extended\nAllow: /\n\nUser-agent: Applebot-Extended\nAllow: /\n\nUser-agent: Bytespider\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\n";
                 self::saveFile('robots.txt', $content);
                 break;
 
@@ -437,7 +439,7 @@ class SeoFilesService
                 break;
 
             case 'llms.txt':
-                $content = "# Amaanullah Khan - Full-Stack Software Developer\n\n> Full-Stack Web Application Developer & Custom Software Specialist based in Karachi, Pakistan.\n> Specializing in Custom CRM Systems, SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Mobile Apps.\n\n## Core Capabilities\n- Custom CRM & ERP Development: Tailored business systems with zero monthly user licenses.\n- SaaS & Web App Development: High-performance PHP/Laravel applications, modern APIs, clean architectures.\n- AI Automation & LLM Workflows: Cloudflare Workers AI, custom chatbot integration, automated lead capture.\n- Mobile App Development: Flutter & Firebase for iOS and Android.\n\n## Key Links & Documentation\n- [Home Page]({$siteUrl}/)\n- [Services Catalog]({$siteUrl}/services)\n- [Enterprise CRM Development]({$siteUrl}/services/custom-crm-development)\n- [Portfolio Projects]({$siteUrl}/projects)\n- [Technical Articles & Blog]({$siteUrl}/articles)\n- [Contact & WhatsApp]({$siteUrl}/contact)\n\n## Comprehensive Context\n- For full background, detailed projects, and architectural philosophy, see [Full LLM Specification]({$siteUrl}/llms-full.txt).\n";
+                $content = "# Amaanullah Khan - Full-Stack Software Developer\n\n> Full-Stack Web Application Developer & Custom Software Specialist based in Karachi, Pakistan.\n> Specializing in Custom CRM Systems, SaaS Platforms, Laravel APIs, AI Automations, and Cross-Platform Mobile Apps.\n\n## Core Capabilities\n- Custom CRM & ERP Development: Tailored business systems with zero monthly user licenses.\n- SaaS & Web App Development: High-performance PHP/Laravel applications, modern APIs, clean architectures.\n- AI Automation & LLM Workflows: Cloudflare Workers AI, custom chatbot integration, automated lead capture.\n- Mobile App Development: Flutter & Firebase for iOS and Android.\n\n## Key Links & Documentation\n- [Home Page]({$siteUrl}/)\n- [Services Catalog]({$siteUrl}/services)\n- [Enterprise CRM Development]({$siteUrl}/services/custom-crm-development)\n- [Multi-Tenant CRM Case Study]({$siteUrl}/projects/multi-tenant-crm-sales-operations-management-system)\n- [Chatrox Real-Time Messaging]({$siteUrl}/projects/chatrox-real-time-messaging-professional-networking)\n- [Portfolio Projects]({$siteUrl}/projects)\n- [Technical Articles & Blog]({$siteUrl}/articles)\n- [Contact & WhatsApp]({$siteUrl}/contact)\n\n## Comprehensive Context\n- For full background, detailed projects, and architectural philosophy, see [Full LLM Specification]({$siteUrl}/llms-full.txt).\n";
                 self::saveFile('llms.txt', $content);
                 break;
 

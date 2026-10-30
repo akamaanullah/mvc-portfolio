@@ -73,7 +73,7 @@ $ctaLabel = !empty($p['cta_label']) ? $p['cta_label'] : 'Book a free technical c
 $prevProject = $prev ?? null;
 $nextProject = $next ?? null;
 $relatedProjects = $related ?? [];
-$projectCanonicalUrl = base_url('/projects/' . $slug);
+$projectCanonicalUrl = canonical_url('/projects/' . $slug);
 $shareEncodedUrl = rawurlencode($projectCanonicalUrl);
 $shareEncodedTitle = rawurlencode($title . ($highlightEm ? ' ' . $highlightEm : ''));
 ?>
@@ -87,13 +87,13 @@ document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&ma
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= htmlspecialchars($seoTitle) ?></title>
 <meta name="description" content="<?= htmlspecialchars($metaDesc) ?>">
-<link rel="canonical" href="<?= base_url('/projects/' . $slug) ?>">
+<link rel="canonical" href="<?= $projectCanonicalUrl ?>">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Amaanullah">
 <meta property="og:title" content="<?= htmlspecialchars($title) ?>">
 <meta property="og:description" content="<?= htmlspecialchars($summary) ?>">
 <meta property="og:image" content="<?= htmlspecialchars($bannerUrl) ?>">
-<meta property="og:url" content="<?= base_url('/projects/' . $slug) ?>">
+<meta property="og:url" content="<?= $projectCanonicalUrl ?>">
 <meta property="article:author" content="Amaanullah Khan">
 <meta property="article:section" content="<?= htmlspecialchars($catName) ?>">
 <meta name="twitter:card" content="summary_large_image">
@@ -101,10 +101,11 @@ document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&ma
 <meta name="twitter:description" content="<?= htmlspecialchars($summary) ?>">
 <meta name="twitter:image" content="<?= htmlspecialchars($bannerUrl) ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
+<link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "<?= base_url('/projects') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catName) ?>", "item": "<?= base_url('/projects/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= base_url('/projects/' . $slug) ?>"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Article", "CreativeWork"], "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($bannerUrl) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= base_url('/about') ?>"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($p['published_at']) ? date('Y-m-d', strtotime($p['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($p['updated_at']) ? date('Y-m-d', strtotime($p['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= base_url('/projects/' . $slug) ?>"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= canonical_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Projects", "item": "<?= canonical_url('/projects') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catName) ?>", "item": "<?= canonical_url('/projects/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $projectCanonicalUrl ?>"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Article", "CreativeWork"], "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($bannerUrl) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= canonical_url('/about') ?>"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($p['published_at']) ? date('Y-m-d', strtotime($p['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($p['updated_at']) ? date('Y-m-d', strtotime($p['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= $projectCanonicalUrl ?>"}</script>
 <link rel="stylesheet" href="<?= asset_url('css/case-study.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/case-study.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/chatbot.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">

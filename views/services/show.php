@@ -5,23 +5,24 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?= htmlspecialchars($service['seo_title'] ?? ($service['title'] . ' | Amaanullah Khan, Karachi')) ?></title>
 <meta name="description" content="<?= htmlspecialchars($service['meta_description'] ?? ($service['summary'] ?? '')) ?>">
-<link rel="canonical" href="<?= base_url('/services/' . $service['slug']) ?>">
+<link rel="canonical" href="<?= canonical_url('/services/' . $service['slug']) ?>">
 <meta property="og:type" content="website">
 <meta property="og:title" content="<?= htmlspecialchars($service['seo_title'] ?? $service['title']) ?>">
 <meta property="og:description" content="<?= htmlspecialchars($service['meta_description'] ?? ($service['summary'] ?? '')) ?>">
 <meta property="og:image" content="<?= !empty($service['banner']) ? asset_url($service['banner']) : asset_url('images/services/' . $service['slug'] . '.webp') ?>">
-<meta property="og:url" content="<?= base_url('/services/' . $service['slug']) ?>">
+<meta property="og:url" content="<?= canonical_url('/services/' . $service['slug']) ?>">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
+<link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"},
-    {"@type": "ListItem", "position": 2, "name": "Services", "item": "<?= base_url('/services') ?>"},
-    {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($service['title'] ?? 'Service') ?>", "item": "<?= base_url('/services/' . $service['slug']) ?>"}
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= canonical_url('/') ?>"},
+    {"@type": "ListItem", "position": 2, "name": "Services", "item": "<?= canonical_url('/services') ?>"},
+    {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($service['title'] ?? 'Service') ?>", "item": "<?= canonical_url('/services/' . $service['slug']) ?>"}
   ]
 }</script>
 <?php if (!empty($service['schema_json'])): ?>

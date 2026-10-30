@@ -7,7 +7,7 @@ $l = $landing ?? $page ?? [];
 $slug = $l['slug'] ?? '';
 $title = !empty($l['seo_title']) ? $l['seo_title'] : (!empty($l['title']) ? $l['title'] : 'Web & Software Development | Amaanullah Khan');
 $desc = !empty($l['meta_description']) ? $l['meta_description'] : 'Senior software developer building custom CRM systems, SaaS platforms, automation workflows and modern web apps.';
-$canonical = base_url('/' . $slug);
+$canonical = canonical_url('/' . $slug);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +27,7 @@ $canonical = base_url('/' . $slug);
 <meta name="geo.region" content="PK-SD">
 <meta name="geo.placename" content="<?= htmlspecialchars($l['city'] ?? 'Karachi') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
+<link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -34,22 +35,18 @@ $canonical = base_url('/' . $slug);
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"},
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= canonical_url('/') ?>"},
     {"@type": "ListItem", "position": 2, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $canonical ?>"}
   ]
 }</script>
 <?php if (!empty($l['schema_json'])): ?>
 <?php
-  $schemas = explode("\n", trim($l['schema_json']));
-  foreach ($schemas as $s):
-    $s = trim($s);
-    if ($s === '') continue;
-    if (str_starts_with($s, '<script')) {
-      echo $s . "\n";
-    } else {
-      echo '<script type="application/ld+json">' . $s . "</script>\n";
-    }
-  endforeach;
+  $schemaRaw = trim($l['schema_json']);
+  if (str_starts_with($schemaRaw, '<script')) {
+      echo $schemaRaw . "\n";
+  } else {
+      echo '<script type="application/ld+json">' . "\n" . $schemaRaw . "\n</script>\n";
+  }
 ?>
 <?php endif; ?>
 <link rel="stylesheet" href="<?= asset_url('css/landing.css') ?>">

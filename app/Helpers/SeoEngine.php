@@ -9,6 +9,38 @@ namespace App\Helpers;
 class SeoEngine
 {
     /**
+     * Resolve and normalize absolute canonical URL strictly against production domain.
+     * Prevents localhost, dev ports, or XAMPP subdirectories from ever leaking into canonicals.
+     */
+    public static function canonicalUrl(string $urlOrPath = ''): string
+    {
+        $siteUrl = rtrim(config('business.canonical_url', 'https://amaanullah.com'), '/');
+        if (empty($urlOrPath) || $urlOrPath === '/') {
+            return $siteUrl . '/';
+        }
+
+        // If a full URL was passed, extract just the path
+        if (preg_match('#^https?://#i', $urlOrPath)) {
+            $parsedPath = parse_url($urlOrPath, PHP_URL_PATH) ?? '/';
+        } else {
+            $parsedPath = $urlOrPath;
+        }
+
+        // Strip subfolder prefix if present (e.g. /web3d-full)
+        $clean = '/' . ltrim($parsedPath, '/');
+        $baseFolder = function_exists('base_path_url') ? base_path_url() : '';
+        if ($baseFolder !== '' && str_starts_with($clean, $baseFolder)) {
+            $clean = substr($clean, strlen($baseFolder)) ?: '/';
+        }
+
+        $clean = preg_replace('#^/index\.php#', '', $clean);
+        $clean = preg_replace('#/page/1/?$#', '', $clean);
+        $clean = rtrim($clean, '/');
+
+        return $siteUrl . ($clean === '' ? '/' : $clean);
+    }
+
+    /**
      * Build and render the entire HTML <head> content including meta, GEO, OG, and JSON-LD Schema.
      */
     public static function renderHead(array $ctx = []): string
@@ -16,19 +48,9 @@ class SeoEngine
         $biz = config('business');
         $siteUrl = rtrim($biz['url'] ?? 'https://amaanullah.com', '/');
 
-        // Resolve Canonical URL
-        $canonical = $ctx['canonical'] ?? null;
-        if (!$canonical) {
-            $reqUri = $_SERVER['REQUEST_URI'] ?? '/';
-            $path = parse_url($reqUri, PHP_URL_PATH) ?? '/';
-            $clean = preg_replace('#^/index\.php#', '', $path);
-            $clean = preg_replace('#/page/1/?$#', '', $clean);
-            $clean = rtrim($clean, '/');
-            $canonical = $siteUrl . ($clean === '' ? '/' : $clean);
-        } else {
-            $canonical = rtrim($canonical, '/');
-            if ($canonical === $siteUrl) $canonical .= '/';
-        }
+        // Resolve Canonical URL strictly via canonicalUrl()
+        $canonicalInput = $ctx['canonical'] ?? ($_SERVER['REQUEST_URI'] ?? '/');
+        $canonical = self::canonicalUrl($canonicalInput);
 
         $isHome = ($canonical === $siteUrl || $canonical === $siteUrl . '/');
 
@@ -111,7 +133,7 @@ class SeoEngine
 
 <!-- PWA, Favicons & Theme -->
 <link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
-<link rel="apple-touch-icon" href="<?= asset_url('images/logo.png') ?>">
+<link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <meta name="theme-color" content="#f26a1b">
 <link rel="alternate" type="application/rss+xml" title="Amaanullah Insights Feed" href="<?= $siteUrl ?>/feed">
 

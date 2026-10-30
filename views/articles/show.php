@@ -15,7 +15,7 @@ $tags = !empty($a['tags']) ? array_filter(array_map('trim', explode(',', $a['tag
 $prevArticle = $prev ?? null;
 $nextArticle = $next ?? null;
 $relatedArticles = $related ?? [];
-$currentUrl = base_url('/articles/' . $slug);
+$currentUrl = canonical_url('/articles/' . $slug);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +42,11 @@ document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&ma
 <meta name="twitter:description" content="<?= htmlspecialchars($subtitle) ?>">
 <meta name="twitter:image" content="<?= htmlspecialchars($coverImage) ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
+<link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= base_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "<?= base_url('/articles') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catBadge) ?>", "item": "<?= base_url('/articles/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $currentUrl ?>"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($coverImage) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= base_url('/about') ?>", "jobTitle": "PHP & Laravel Developer"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($a['published_at']) ? date('Y-m-d', strtotime($a['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($a['updated_at']) ? date('Y-m-d', strtotime($a['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= $currentUrl ?>", "articleSection": "<?= htmlspecialchars($catBadge) ?>"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "<?= canonical_url('/') ?>"}, {"@type": "ListItem", "position": 2, "name": "Articles", "item": "<?= canonical_url('/articles') ?>"}, {"@type": "ListItem", "position": 3, "name": "<?= htmlspecialchars($catBadge) ?>", "item": "<?= canonical_url('/articles/category/' . $catSlug) ?>"}, {"@type": "ListItem", "position": 4, "name": "<?= htmlspecialchars($title) ?>", "item": "<?= $currentUrl ?>"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": <?= json_encode($seoTitle) ?>, "description": <?= json_encode($metaDesc) ?>, "image": <?= json_encode($coverImage) ?>, "author": {"@type": "Person", "name": "Amaanullah Khan", "url": "<?= canonical_url('/about') ?>", "jobTitle": "PHP & Laravel Developer"}, "publisher": {"@type": "Person", "name": "Amaanullah Khan"}, "datePublished": "<?= !empty($a['published_at']) ? date('Y-m-d', strtotime($a['published_at'])) : date('Y-m-d') ?>", "dateModified": "<?= !empty($a['updated_at']) ? date('Y-m-d', strtotime($a['updated_at'])) : date('Y-m-d') ?>", "mainEntityOfPage": "<?= $currentUrl ?>", "articleSection": "<?= htmlspecialchars($catBadge) ?>"}</script>
 <link rel="stylesheet" href="<?= asset_url('css/article.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/article.css') ?>">
 <link rel="stylesheet" href="<?= asset_url('css/chatbot.css') ?>?v=<?= filemtime(PUBLIC_PATH . '/css/chatbot.css') ?>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">

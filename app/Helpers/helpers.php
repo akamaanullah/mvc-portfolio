@@ -103,6 +103,13 @@ function asset_url(string $path): string {
     return base_url('/' . ltrim($path, '/'));
 }
 
+/**
+ * Return strict, absolute canonical URL pointing to the production domain.
+ */
+function canonical_url(string $urlOrPath = ''): string {
+    return \App\Helpers\SeoEngine::canonicalUrl($urlOrPath);
+}
+
 /** Get client IP address resolving Cloudflare, proxies, or remote address. */
 if (!function_exists('client_ip')) {
     function client_ip(): string {
