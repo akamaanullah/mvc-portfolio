@@ -256,7 +256,7 @@ $heroSubTitle = $heroTitleParts[1] ?? '';
 $heroChips = array_filter(array_map('trim', explode(',', $heroProj['tech_chips'] ?? 'PHP, MySQL, Laravel, WebSockets')));
 $heroResults = array_filter(array_map('trim', explode("\n", $heroProj['key_results'] ?? "Lead Management\nReal-time Analytics\n7-Level RBAC\nSecure & Scalable")));
 
-$sliderProjects = array_slice($featuredList, 0, 4);
+$sliderProjects = array_slice($featuredList, 0, 5);
 $sliderSlides = [];
 foreach ($sliderProjects as $idx => $sp) {
     $spTitleClean = $sp['title'] ?? '';
@@ -301,11 +301,10 @@ foreach ($sliderProjects as $idx => $sp) {
 
  <div class="pcards">
  <?php
- $gridCards = !empty($homeProjects) ? $homeProjects : array_slice($featuredList, 1);
+ $gridCards = !empty($homeProjects) ? array_slice($homeProjects, 1, 4) : array_slice($featuredList, 1, 4);
  if (count($gridCards) < 4) {
-     $gridCards = $featuredList;
+     $gridCards = array_slice($featuredList, 0, 4);
  }
- $gridCards = array_slice($gridCards, 0, 4);
 
  $cardStyles = [
      ['class' => 'pc dk pv', 'gradient' => 'linear-gradient(135deg,#7d8cff,#4b52e8)', 'slogan' => "Connect<br>Collaborate<br>Achieve", 'icon' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'],

@@ -103,9 +103,15 @@ const streakM=new THREE.LineBasicMaterial({vertexColors:true,...ADD,opacity:0});
 // --- code glyphs drifting on the walls
 const glyphs=[];['{ }','</>',';','=>','[ ]','#','( )','01','/>','&&'].forEach((ch,k)=>{const t=ctex((g,w,h)=>{g.font='bold 54px monospace';g.textAlign='center';g.textBaseline='middle';g.shadowColor='#ff7a2a';g.shadowBlur=14;g.fillStyle=k%3?'#ffb27a':'#fff4e8';g.fillText(ch,w/2,h/2)});
  for(let j=0;j<(MOB?1:2);j++){const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,...ADD,opacity:0}));const a=Math.random()*Math.PI*2;s.position.set(Math.cos(a)*RAD*.82,Math.sin(a)*RAD*.82,0);s.userData={z0:Math.random()*L};s.scale.setScalar(.55);scene.add(s);glyphs.push(s)}});
-// --- project panels (glass cards with the placeholder screenshots)
+// --- project panels (glass cards with high-res project banners)
 // EDIT: project names + category tags shown during the fly-by focus
-const PRJ=[['crm-1.svg','Multi-tenant CRM','CRM Platform'],['chatrox.svg','Chatrox','Chat Application'],['rtg-workspace.svg','RTG Workspace','Web Application'],['it-hardware-bin.svg','IT Hardware Bin','E-Commerce'],['landsfy.svg','Landsfy','Web Application']];
+const PRJ=[
+  ['projects/chatrox.png','Chatrox','Chat Application'],
+  ['projects/multi-tenant-crm.png','Multi-tenant CRM','CRM Platform'],
+  ['projects/rtg-hrm-portal.png','HRM & Payroll','Enterprise Portal'],
+  ['projects/kanban-workspace.png','Workspace Kanban','Project Management'],
+  ['projects/real-estate-portal.png','Landsfy','PropTech Marketplace']
+];
 // panels alternate left/right, slightly below the camera path; camera gets a brief cinematic focus on each
 const SIDE=[-1,1,-1,1,-1],PX=MOB?.5:1.75,PY=MOB?-.42:-.55,ZF=MOB?7.2:5.8,PS=MOB?.56:1;
 const rr=(g,x,y,w,h,r)=>{g.beginPath();g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h)};
