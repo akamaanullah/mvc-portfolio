@@ -179,6 +179,104 @@ class IntegrationService
     }
 
     /**
+     * Send email via PHPMailer using verified database credentials.
+     * Supports multiple recipients, HTML + plain text fallback, reply-to, and attachments.
+     */
+    public static function sendEmail(
+        string $to, 
+        string $subject, 
+        string $htmlBody, 
+        string $textBody = '', 
+        string $toName = '',
+        string $replyTo = '',
+        string $replyToName = ''
+    ): bool
+    {
+        $host = (string) setting('smtp_host', 'mail.amaanullah.com');
+        $user = (string) setting('smtp_user', 'info@amaanullah.com');
+        $pass = trim((string) setting('smtp_pass', ''), " \t\n\r\0\x0B\"'");
+        $port = (int) setting('smtp_port', 0) ?: 465;
+        $enc  = strtolower((string) setting('smtp_encryption', 'ssl'));
+        $from = (string) setting('smtp_from', $user);
+        $fromName = (string) setting('smtp_from_name', (string) setting('site_name', 'Amaanullah Khan'));
+
+        $phpmailerPath = BASE_PATH . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+        if (file_exists($phpmailerPath) && !empty($host) && !empty($user) && !empty($pass)) {
+            require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/Exception.php';
+            require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+            require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/SMTP.php';
+
+            try {
+                $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+                $mail->CharSet = 'UTF-8';
+                $mail->Timeout = 8;
+                $mail->isSMTP();
+                $mail->Host       = $host;
+                $mail->SMTPAuth   = true;
+                $mail->Username   = $user;
+                $mail->Password   = $pass;
+                $mail->Port       = $port;
+
+                if ($enc === 'tls' || $mail->Port == 587) {
+                    $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                } else {
+                    $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+                }
+
+                $mail->SMTPOptions = [
+                    'ssl' => [
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    ]
+                ];
+
+                $mail->setFrom($from, $fromName);
+                
+                // Add recipients (supports comma-separated list)
+                $recipients = array_filter(array_map('trim', explode(',', $to)));
+                foreach ($recipients as $idx => $r) {
+                    if ($idx === 0 && !empty($toName)) {
+                        $mail->addAddress($r, $toName);
+                    } else {
+                        $mail->addAddress($r);
+                    }
+                }
+
+                if (!empty($replyTo)) {
+                    $mail->addReplyTo($replyTo, $replyToName ?: $replyTo);
+                }
+
+                $mail->isHTML(true);
+                $mail->Subject = $subject;
+                $mail->Body    = $htmlBody;
+                if (!empty($textBody)) {
+                    $mail->AltBody = $textBody;
+                } else {
+                    $mail->AltBody = strip_tags($htmlBody);
+                }
+
+                return (bool) $mail->send();
+            } catch (\Throwable $e) {
+                Logger::error('SMTP Send Failed: ' . $e->getMessage(), [
+                    'to' => $to,
+                    'subject' => $subject,
+                    'host' => $host,
+                    'port' => $port,
+                    'user' => $user
+                ]);
+            }
+        }
+
+        // Native fallback
+        $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: {$from}\r\n";
+        if (!empty($replyTo)) {
+            $headers .= "Reply-To: {$replyTo}\r\n";
+        }
+        return (bool) @mail($to, $subject, $htmlBody, $headers);
+    }
+
+    /**
      * Send real live SMTP test email using settings from database.
      */
     public static function testSmtp(string $toEmail): array

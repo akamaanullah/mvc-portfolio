@@ -203,59 +203,7 @@ class ChatbotService
      */
     public static function sendEmail(string $to, string $subject, string $htmlBody): bool
     {
-        $host = (string) setting('smtp_host', '');
-        $user = (string) setting('smtp_user', '');
-        $pass = trim((string) setting('smtp_pass', ''), '"\'');
-        $port = (int) setting('smtp_port', 0) ?: 465;
-        $enc  = strtolower((string) setting('smtp_encryption', ''));
-        $from = (string) setting('smtp_from', $user);
-        $fromName = (string) setting('smtp_from_name', (string) setting('site_name', ''));
-
-        $phpmailerPath = BASE_PATH . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-        if (file_exists($phpmailerPath) && !empty($host) && !empty($user)) {
-            require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/Exception.php';
-            require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-            require_once BASE_PATH . '/vendor/phpmailer/phpmailer/src/SMTP.php';
-
-            try {
-                $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
-                $mail->CharSet = 'UTF-8';
-                $mail->isSMTP();
-                $mail->Host       = $host;
-                $mail->SMTPAuth   = true;
-                $mail->Username   = $user;
-                $mail->Password   = $pass;
-                $mail->Port       = $port;
-
-                if ($enc === 'tls' || $mail->Port == 587) {
-                    $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-                } else {
-                    $mail->SMTPSecure = \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
-                }
-
-                $mail->SMTPOptions = [
-                    'ssl' => [
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    ]
-                ];
-
-                $mail->setFrom($from, $fromName);
-                $mail->addAddress($to);
-                $mail->isHTML(true);
-                $mail->Subject = $subject;
-                $mail->Body    = $htmlBody;
-
-                return $mail->send();
-            } catch (\Throwable $e) {
-                Logger::error('SMTP Send Failed: ' . $e->getMessage());
-            }
-        }
-
-        // Fallback to mail()
-        $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: {$from}\r\n";
-        return @mail($to, $subject, $htmlBody, $headers);
+        return IntegrationService::sendEmail($to, $subject, $htmlBody);
     }
 
     /**
@@ -289,7 +237,7 @@ class ChatbotService
             </div>
         </div>';
 
-        $alertEmail = (string) setting('alert_email', (string) setting('smtp_user', ''));
+        $alertEmail = (string) setting('alert_email', (string) setting('contact_email', 'akamaanullah@gmail.com'));
         if (empty($alertEmail)) return false;
 
         return self::sendEmail($alertEmail, $subject, $body);

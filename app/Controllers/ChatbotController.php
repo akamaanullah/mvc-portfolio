@@ -221,7 +221,8 @@ class ChatbotController extends Controller
                 <p style='margin-top: 25px;'><a href='" . base_url('/admin/leads') . "' style='display:inline-block; padding:12px 24px; background:#f26a1b; color:#fff; text-decoration:none; border-radius:8px; font-weight:bold;'>View in Admin Panel</a></p>
             </div>
         </div>";
-        ChatbotService::sendEmail(env('SMTP_USER', 'akamaanullah@gmail.com'), $subject, $body);
+        $alertEmail = (string) setting('alert_email', (string) setting('contact_email', 'akamaanullah@gmail.com'));
+        ChatbotService::sendEmail($alertEmail, $subject, $body);
 
         // Synchronize real name and email to chat_conversations record
         $sessionId = trim($input['session_id'] ?? $input['session_key'] ?? '');

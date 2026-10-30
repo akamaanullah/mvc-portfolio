@@ -600,7 +600,7 @@ $seoFiles = $seoFiles ?? [];
             <div class="fg2" style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:10px;">
                 <div class="fld">
                     <label>SMTP Host</label>
-                    <input class="inp code-in" id="smtpHost" value="<?= htmlspecialchars($integrationsConfig['smtp']['host'] ?? 'smtp.gmail.com') ?>">
+                    <input class="inp code-in" id="smtpHost" value="<?= htmlspecialchars($integrationsConfig['smtp']['host'] ?? 'mail.amaanullah.com') ?>">
                 </div>
                 <div class="fld">
                     <label>Port</label>
@@ -609,7 +609,7 @@ $seoFiles = $seoFiles ?? [];
                 <div class="fld">
                     <label>Encryption</label>
                     <select class="sel" id="smtpEncryption">
-                        <option value="ssl" <?= ($integrationsConfig['smtp']['encryption'] ?? '') === 'ssl' ? 'selected' : '' ?>>SSL (465)</option>
+                        <option value="ssl" <?= ($integrationsConfig['smtp']['encryption'] ?? 'ssl') === 'ssl' ? 'selected' : '' ?>>SSL (465)</option>
                         <option value="tls" <?= ($integrationsConfig['smtp']['encryption'] ?? '') === 'tls' ? 'selected' : '' ?>>TLS (587)</option>
                     </select>
                 </div>
@@ -617,7 +617,7 @@ $seoFiles = $seoFiles ?? [];
             <div class="fg2" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                 <div class="fld">
                     <label>SMTP Username / Email</label>
-                    <input class="inp code-in" id="smtpUser" value="<?= htmlspecialchars($integrationsConfig['smtp']['user'] ?? 'akamaanullah@gmail.com') ?>">
+                    <input class="inp code-in" id="smtpUser" value="<?= htmlspecialchars($integrationsConfig['smtp']['user'] ?? 'info@amaanullah.com') ?>">
                 </div>
                 <div class="fld">
                     <label>SMTP Password / App Password</label>
@@ -627,11 +627,11 @@ $seoFiles = $seoFiles ?? [];
             <div class="fg2" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                 <div class="fld">
                     <label>Sender Name</label>
-                    <input class="inp" id="smtpFromName" value="<?= htmlspecialchars($integrationsConfig['smtp']['from_name'] ?? 'Amaanullah Khan Portfolio') ?>">
+                    <input class="inp" id="smtpFromName" value="<?= htmlspecialchars($integrationsConfig['smtp']['from_name'] ?? 'Amaanullah Khan') ?>">
                 </div>
                 <div class="fld">
                     <label>Sender Email</label>
-                    <input class="inp code-in" id="smtpFrom" value="<?= htmlspecialchars($integrationsConfig['smtp']['from'] ?? 'akamaanullah@gmail.com') ?>">
+                    <input class="inp code-in" id="smtpFrom" value="<?= htmlspecialchars($integrationsConfig['smtp']['from'] ?? 'info@amaanullah.com') ?>">
                 </div>
             </div>
 
@@ -639,7 +639,7 @@ $seoFiles = $seoFiles ?? [];
             <div style="background:rgba(255,255,255,0.02); border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:10px;">
                 <label style="font-weight:700; font-size:12.5px; display:flex; align-items:center; gap:6px; margin-bottom:6px;"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Send Live Test Email</label>
                 <div style="display:flex; gap:10px;">
-                    <input class="inp code-in" id="smtpTestRecipient" value="<?= htmlspecialchars($integrationsConfig['smtp']['user'] ?? 'akamaanullah@gmail.com') ?>" placeholder="recipient@example.com" style="flex:1;">
+                    <input class="inp code-in" id="smtpTestRecipient" value="<?= htmlspecialchars($integrationsConfig['alerts']['alert_email'] ?? 'akamaanullah@gmail.com') ?>" placeholder="recipient@example.com" style="flex:1;">
                     <button class="btn sm o" type="button" id="btnSendTestEmail">Send Test Email</button>
                 </div>
             </div>
