@@ -1,0 +1,29 @@
+{
+  "name": "Amaanullah Khan - Software Developer & Systems Architect",
+  "short_name": "Amaanullah",
+  "description": "Custom CRM systems, SaaS platforms, and high-performance web applications engineered with PHP & Laravel.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#14141c",
+  "theme_color": "#f26a1b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo-v2/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo-v2/apple-touch-icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-v2/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -12,6 +12,7 @@
 <meta property="og:image" content="<?= !empty($service['banner']) ? asset_url($service['banner']) : asset_url('images/services/' . $service['slug'] . '.webp') ?>">
 <meta property="og:url" content="<?= canonical_url('/services/' . $service['slug']) ?>">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="<?= asset_url('manifest.json') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
 <link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

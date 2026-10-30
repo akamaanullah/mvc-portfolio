@@ -132,6 +132,7 @@ class SeoEngine
 <meta name="twitter:image" content="<?= htmlspecialchars($image, ENT_QUOTES, 'UTF-8') ?>">
 
 <!-- PWA, Favicons & Theme -->
+<link rel="manifest" href="<?= asset_url('manifest.json') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon.ico') ?>">
 <link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <meta name="theme-color" content="#f26a1b">

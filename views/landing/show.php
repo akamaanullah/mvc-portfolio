@@ -26,6 +26,7 @@ $canonical = canonical_url('/' . $slug);
 <meta name="twitter:card" content="summary_large_image">
 <meta name="geo.region" content="PK-SD">
 <meta name="geo.placename" content="<?= htmlspecialchars($l['city'] ?? 'Karachi') ?>">
+<link rel="manifest" href="<?= asset_url('manifest.json') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
 <link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">

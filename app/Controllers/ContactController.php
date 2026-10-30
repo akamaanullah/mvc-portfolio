@@ -9,10 +9,32 @@ class ContactController extends Controller
 {
     public function index(): string { return $this->render('contact/index'); }
 
-    /** POST /contact — CSRF + honeypot + validation, then ContactModel (DB or log). JSON for fetch(), redirect otherwise. */
+    /** POST /contact — Rate limit + CSRF + honeypot + validation, then ContactModel (DB or log). JSON for fetch(), redirect otherwise. */
     public function store(): string
     {
         $in = $_POST;
+
+        // Rate limiting: max 5 submissions per 15 minutes
+        if (session_status() !== PHP_SESSION_ACTIVE && !headers_sent()) {
+            session_start();
+        }
+        $ip = client_ip();
+        $now = time();
+        $window = 15 * 60; // 15 minutes
+        $maxAttempts = 5;
+
+        $_SESSION['contact_rate_limit'] = array_filter(
+            $_SESSION['contact_rate_limit'] ?? [],
+            fn($timestamp) => ($now - $timestamp) < $window
+        );
+
+        if (count($_SESSION['contact_rate_limit']) >= $maxAttempts) {
+            Logger::warning("Contact form rate limit exceeded for IP: {$ip}");
+            return $this->wantsJson()
+                ? $this->json(['message' => 'Too many requests. Please wait a few minutes before submitting again.'], 429)
+                : $this->back('error=429');
+        }
+
         if (!csrf_verify($in['_token'] ?? null)) {
             Logger::warning('Contact form: bad CSRF token');
             return $this->wantsJson() ? $this->json(['message' => 'Session expired, please reload the page.'], 419) : $this->back('error=419');
@@ -27,6 +49,9 @@ class ContactController extends Controller
         if ($errors) {
             return $this->wantsJson() ? $this->json(['message' => 'Please fix the highlighted fields.', 'errors' => $errors], 422) : $this->back('error=422');
         }
+
+        $_SESSION['contact_rate_limit'][] = $now;
+
         $data = array_intersect_key($in, array_flip(ContactModel::FIELDS));
         ContactModel::create($data);
         return $this->wantsJson() ? $this->json(['message' => "Thanks! I'll get back to you soon."]) : $this->back('sent=1');

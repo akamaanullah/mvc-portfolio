@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&ma
 <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>">
 <meta name="twitter:description" content="<?= htmlspecialchars($summary) ?>">
 <meta name="twitter:image" content="<?= htmlspecialchars($bannerUrl) ?>">
+<link rel="manifest" href="<?= asset_url('manifest.json') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
 <link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
