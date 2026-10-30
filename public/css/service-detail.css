@@ -562,5 +562,61 @@ html[data-theme="dark"] td.us:before{color:#f26a1b}}
 .slot-audit .audit-foot{font-size:11px;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.08);padding-top:7px;margin-top:auto}
 .slot-audit .audit-foot b{display:block;color:#fff;font-size:11.5px}
 
+/* Unified Layout Aliases for Service Detail Template */
+.faq{border-bottom:1px solid var(--ln)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;gap:18px;align-items:center;padding:18px 0;font-weight:700;font-size:17px;cursor:pointer;line-height:1.4;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq .fbody p{font-size:16px;color:var(--mu);line-height:1.6;padding-bottom:16px;margin:0}
+
+.rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.rel-card{text-decoration:none;background:#fff;border:1px solid var(--ln);border-radius:20px;padding:22px;transition:.25s;display:flex;flex-direction:column;gap:6px;color:inherit}
+.rel-card:hover{border-color:var(--o);transform:translateY(-3px);box-shadow:0 12px 30px rgba(242,106,27,0.1)}
+.rel-eyebrow{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--o);margin-bottom:2px}
+.rel-card h3{font-size:17px;line-height:1.3;margin:0;color:var(--ink)}
+.rel-card p{font-size:14px;color:var(--mu);line-height:1.5;margin:0}
+.rel-card .plink{margin-top:auto;color:var(--o);font-weight:700;font-size:13.5px;display:inline-flex;align-items:center;gap:5px;padding-top:10px}
+
+.bgrid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.bcard{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:8px}
+.bnum{width:36px;height:36px;border-radius:10px;background:var(--cr2);color:var(--o);display:grid;place-items:center;font-weight:800;font-size:14px}
+.bcard h3{font-size:18px;margin:0;color:var(--ink)}
+.bcard p{font-size:14.5px;color:var(--mu);line-height:1.55;margin:0}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:24px;list-style:none;padding:0}
+.step{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid var(--ln);border-radius:18px;padding:22px}
+.step .sn{width:36px;height:36px;border-radius:10px;background:var(--cr2);color:var(--o);display:grid;place-items:center;font-weight:800;font-size:14px}
+.step h3{font-size:16.5px;margin:0;color:var(--ink)}
+.step p{font-size:13.5px;color:var(--mu);line-height:1.55;margin:0}
+
+.cpanel{margin:80px 0 0;background:var(--o);border-radius:30px;padding:54px;color:#fff;position:relative;overflow:hidden}
+.cpanel:after{content:"";position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;border:40px solid #ffffff18;pointer-events:none}
+.cp-in{position:relative;z-index:1;max-width:650px}
+.cpanel h2{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.03em;line-height:1.1;margin:10px 0}
+.cpanel p{color:#ffe7d6;font-size:16px;line-height:1.6;margin-bottom:24px}
+.cp-btns{display:flex;gap:12px;flex-wrap:wrap}
+.cp-btns .btn.o{background:var(--ink);color:#fff;border:0;padding:12px 22px;border-radius:12px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.cp-btns .btn.o:hover{background:#fff;color:var(--ink)}
+.cp-btns .btn.gh{background:transparent;color:#fff;border:1.5px solid #fff;padding:12px 22px;border-radius:12px;font-weight:700;text-decoration:none}
+.cp-btns .btn.gh:hover{background:rgba(255,255,255,0.15)}
+
+@media(max-width:980px){
+  .rel-grid{grid-template-columns:1fr 1fr}
+  .bgrid3{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .rel-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .cpanel{padding:32px 20px}
+}
+
+html[data-theme="dark"] .faq{border-bottom-color:#462e22}
+html[data-theme="dark"] .faq summary{color:#fff}
+html[data-theme="dark"] .faq .fbody p{color:#d2b088}
+html[data-theme="dark"] .rel-card,html[data-theme="dark"] .bcard,html[data-theme="dark"] .step{background:#1e1e29;border-color:#462e22}
+html[data-theme="dark"] .rel-card h3,html[data-theme="dark"] .bcard h3,html[data-theme="dark"] .step h3{color:#fff}
+html[data-theme="dark"] .rel-card p,html[data-theme="dark"] .bcard p,html[data-theme="dark"] .step p{color:#d2b088}
+
+
 
 
