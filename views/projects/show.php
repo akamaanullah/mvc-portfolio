@@ -97,9 +97,17 @@ document.addEventListener('DOMContentLoaded',function(){if(window.matchMedia&&ma
 <meta property="article:author" content="Amaanullah Khan">
 <meta property="article:section" content="<?= htmlspecialchars($catName) ?>">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@akamaanullah">
+<meta name="twitter:creator" content="@akamaanullah">
 <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>">
 <meta name="twitter:description" content="<?= htmlspecialchars($summary) ?>">
 <meta name="twitter:image" content="<?= htmlspecialchars($bannerUrl) ?>">
+<meta name="geo.region" content="PK-SD">
+<meta name="geo.placename" content="Karachi, Sindh, Pakistan">
+<meta name="geo.position" content="24.8607;67.0011">
+<meta name="ICBM" content="24.8607, 67.0011">
+<meta name="DC.creator" content="Amaanullah Khan">
+<meta name="DC.publisher" content="Amaanullah Khan">
 <link rel="manifest" href="<?= asset_url('manifest.json') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
 <link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">

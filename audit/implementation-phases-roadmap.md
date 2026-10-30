@@ -273,6 +273,6 @@ flowchart TD
 | **3** | Create `public/manifest.json` and link in `head.php` | P2 | Completed & Verified ✓ |
 | **3** | Add HTTPS, canonical host, and security headers in `.htaccess` | P2 | Completed & Verified ✓ |
 | **3** | Implement rate limiting in `ContactController.php` | P2 | Completed & Verified ✓ |
-| **4** | Unify `@graph` schema nodes across detail templates | P3 | Ready |
-| **4** | Execute full 65-route crawler verification test suite | P1 | Ready |
+| **4** | Unify `@graph` schema nodes across detail templates | P3 | Completed & Verified ✓ |
+| **4** | Execute full 65-route crawler verification test suite | P1 | Completed & Verified ✓ |
 

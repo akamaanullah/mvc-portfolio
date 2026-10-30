@@ -24,8 +24,14 @@ $canonical = canonical_url('/' . $slug);
 <meta property="og:image" content="<?= asset_url('images/og/landing.webp') ?>">
 <meta property="og:locale" content="en_PK">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@akamaanullah">
+<meta name="twitter:creator" content="@akamaanullah">
 <meta name="geo.region" content="PK-SD">
-<meta name="geo.placename" content="<?= htmlspecialchars($l['city'] ?? 'Karachi') ?>">
+<meta name="geo.placename" content="<?= htmlspecialchars($l['city'] ?? 'Karachi') ?>, Sindh, Pakistan">
+<meta name="geo.position" content="24.8607;67.0011">
+<meta name="ICBM" content="24.8607, 67.0011">
+<meta name="DC.creator" content="Amaanullah Khan">
+<meta name="DC.publisher" content="Amaanullah Khan">
 <link rel="manifest" href="<?= asset_url('manifest.json') ?>">
 <link rel="icon" href="<?= asset_url('logo-v2/favicon-32.png') ?>">
 <link rel="apple-touch-icon" href="<?= asset_url('logo-v2/apple-touch-icon-180.png') ?>">
