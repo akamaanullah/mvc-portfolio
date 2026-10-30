@@ -82,8 +82,8 @@ $extraCss = [
   <?php foreach ($featuredSide as $fs): ?>
   <article class="ac pc sm">
   <a class="pl al" href="<?= base_url('/articles/' . $fs['slug']) ?>" data-article="<?= htmlspecialchars($fs['slug']) ?>">
-  <div class="cov"><img src="<?= asset_url($fs['cover_image']) ?>" alt="<?= htmlspecialchars($fs['title']) ?> — cover image" width="1600" height="900" loading="lazy" decoding="async"><span class="cb"><?= htmlspecialchars($fs['badge_category']) ?></span></div>
-  <div class="ab"><h3><?= htmlspecialchars($fs['title']) ?></h3><p><?= htmlspecialchars($fs['excerpt']) ?></p><div class="am"><img src="<?= asset_url('media/profile-poster.jpg') ?>" alt="Amaanullah Khan" width="28" height="28" loading="lazy"><span><b>Amaanullah Khan</b><small><time><?= !empty($fs['published_at']) ? date('M Y', strtotime($fs['published_at'])) : 'Recent' ?></time> · <?= htmlspecialchars($fs['reading_time']) ?></small></span></div></div></a></article>
+  <div class="cov"><img src="<?= asset_url($fs['cover_image']) ?>" alt="<?= htmlspecialchars($fs['title']) ?> — cover image" width="1600" height="900" loading="lazy" decoding="async"></div>
+  <div class="ab"><span class="scat"><?= htmlspecialchars($fs['badge_category']) ?></span><h3><?= htmlspecialchars($fs['title']) ?></h3><p><?= htmlspecialchars($fs['excerpt']) ?></p><div class="am"><img src="<?= asset_url('media/profile-poster.jpg') ?>" alt="Amaanullah Khan" width="28" height="28" loading="lazy"><span><b>Amaanullah Khan</b><small><time><?= !empty($fs['published_at']) ? date('M Y', strtotime($fs['published_at'])) : 'Recent' ?></time> · <?= htmlspecialchars($fs['reading_time']) ?></small></span></div></div></a></article>
   <?php endforeach; ?>
  </div></div></section>
 <section class="sec2" aria-labelledby="h-all"><div class="lbl2 rv2"><h2 id="h-all">All articles</h2></div>
