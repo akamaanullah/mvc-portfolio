@@ -10,8 +10,13 @@ class ServiceController extends Controller
 
     public function show(string $slug): string
     {
-        if ($slug === 'web-app-cms-development') {
-            header('Location: ' . base_url('/services/web-development'), true, 301);
+        $legacy = [
+            'web-app-cms-development'     => '/services/web-development',
+            'saas-development'             => '/services/saas-application-development',
+            'chat-application-development' => '/services/chat-app-development',
+        ];
+        if (isset($legacy[$slug])) {
+            header('Location: ' . base_url($legacy[$slug]), true, 301);
             exit;
         }
 

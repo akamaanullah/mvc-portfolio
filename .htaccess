@@ -33,6 +33,14 @@ Options -Indexes
   RewriteRule ^(app|bin|config|database|storage|views|vendor)(/|$) - [F,L]
   RewriteRule (^|/)\.(?!well-known) - [F,L]
   RewriteRule ^(composer\.(json|lock)|README\.md)$ - [F,L]
+
+  # Legacy URL 301 Permanent Redirects (Preserve old live SEO rankings & backlinks)
+  RewriteRule ^services/saas-development/?$ /services/saas-application-development [R=301,L]
+  RewriteRule ^services/chat-application-development/?$ /services/chat-app-development [R=301,L]
+  RewriteRule ^services/web-app-cms-development/?$ /services/web-development [R=301,L]
+  RewriteRule ^articles/data-privacy-security-custom-software-compliance-guide/?$ /articles/ai-coding-agents-2026-custom-software [R=301,L]
+  RewriteRule ^windows-11(/.*)?$ / [R=301,L]
+
   # static file in public/?
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
   RewriteCond %{REQUEST_URI} !^.*/public/

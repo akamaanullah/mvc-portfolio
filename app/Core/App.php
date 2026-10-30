@@ -120,6 +120,8 @@ class App
         $this->get('/feed', [$C . 'HomeController', 'feed']);
         $this->get('/privacy', [$C . 'HomeController', 'privacy']);
         $this->get('/terms', [$C . 'HomeController', 'terms']);
+        $this->get('/windows-11', [$C . 'HomeController', 'windows11']);
+        $this->get('/windows-11/{sub}', [$C . 'HomeController', 'windows11']);
 
         $this->get('/admin/{page}', [$C . 'AdminController', 'page']);
         $this->get('/admin/{section}/{action}', [$C . 'AdminController', 'sub']);

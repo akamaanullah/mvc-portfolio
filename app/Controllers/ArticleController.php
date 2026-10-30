@@ -40,6 +40,14 @@ class ArticleController extends Controller
 
     public function show(string $slug): string
     {
+        $legacy = [
+            'data-privacy-security-custom-software-compliance-guide' => '/articles/ai-coding-agents-2026-custom-software',
+        ];
+        if (isset($legacy[$slug])) {
+            header('Location: ' . base_url($legacy[$slug]), true, 301);
+            exit;
+        }
+
         $item = ArticleModel::find($slug);
         if (!$item) {
             return $this->notFound();

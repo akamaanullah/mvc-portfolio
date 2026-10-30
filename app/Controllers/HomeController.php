@@ -118,4 +118,5 @@ class HomeController extends Controller
 
     public function privacy(): string { return $this->render('legal/privacy'); }
     public function terms(): string { return $this->render('legal/terms'); }
+    public function windows11(): string { redirect('/', 301); return ''; }
 }

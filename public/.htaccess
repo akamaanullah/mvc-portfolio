@@ -40,6 +40,13 @@ Options -Indexes
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
+  # Legacy URL 301 Permanent Redirects (Preserve old live SEO rankings & backlinks)
+  RewriteRule ^services/saas-development/?$ /services/saas-application-development [R=301,L]
+  RewriteRule ^services/chat-application-development/?$ /services/chat-app-development [R=301,L]
+  RewriteRule ^services/web-app-cms-development/?$ /services/web-development [R=301,L]
+  RewriteRule ^articles/data-privacy-security-custom-software-compliance-guide/?$ /articles/ai-coding-agents-2026-custom-software [R=301,L]
+  RewriteRule ^windows-11(/.*)?$ / [R=301,L]
+
   # Standard Front Controller routing
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
