@@ -52,7 +52,7 @@ return [
     'gbp_reviews'    => 27,
     'gbp_kgmid'      => '/g/11xyj_sq2m',
     'gbp_search_url' => 'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer',
-    'gbp_maps_url'   => 'https://maps.google.com/?cid=AmaanullahKhan',
+    'gbp_maps_url'   => 'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer',
 
     // Verified Profiles (sameAs links for Knowledge Graph & Schema.org)
     'same_as' => [
@@ -60,8 +60,7 @@ return [
         'https://github.com/akamaanullah',
         'https://www.facebook.com/amaanullah.dev',
         'https://www.instagram.com/amaanullah.dev',
-        'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer',
-        'https://maps.google.com/?cid=AmaanullahKhan'
+        'https://www.google.com/search?kgmid=/g/11xyj_sq2m&q=Amaanullah+Khan+-+Software+Developer'
     ],
 
     // Target Service Countries (areaServed)

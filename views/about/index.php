@@ -62,7 +62,7 @@ $extraCss = [
    <div class="role">Software Developer &amp; Team Lead</div>
    <div class="meta"><span style="display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Karachi, Pakistan</span><span>PHP · Laravel · Flutter</span></div>
   </div>
-  <a class="grate" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener"><span class="g">G</span><span><b>4.8 ★ Google Rating</b><small>27 Google reviews</small></span></a>
+  <a class="grate" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener"><span class="g">G</span><span><b>4.8 ★ Google Rating</b><small>27 Google reviews</small></span></a>
  </aside>
  <div class="fade ahero-content">
   <span class="eyebrow">✦ About Amaanullah Khan</span>

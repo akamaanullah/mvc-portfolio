@@ -471,7 +471,7 @@ foreach ($sliderProjects as $idx => $sp) {
    <span class="pill2">Client Reviews</span>
    <h2>What <em>clients say</em><br>about working with me</h2>
    <p class="sub">Real reviews from my Google Business Profile. Drag or swipe the cards to read more.</p>
-   <a class="agg" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer" aria-label="4.8 rating based on 27 Google reviews. Read on Google.">
+   <a class="agg" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer" aria-label="4.8 rating based on 27 Google reviews. Read on Google.">
     <span class="big">4.8</span>
     <div>
      <span class="stars">★★★★★</span>
@@ -498,7 +498,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“Amanullah is a skilled and reliable software developer. He delivers high-quality work, writes clean and efficient code, and communicates professionally throughout the project. He is knowledgeable”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><cite class="rname">Mr. Abdullah</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc lite">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -506,7 +506,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="dim">★</span></div>
     <blockquote>“I had a great experience working with Amaanullah. He is highly skilled in web development and backend systems. The website he developed was fast, secure, and very well structured.”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><cite class="rname">faisal khan</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -514,7 +514,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“The web developer has strong technical skills and a deep understanding of web development. They are proficient in various programming languages and frameworks, and have a good eye for design and functionality.”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><cite class="rname">Syed Hamza Qadri</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc lite">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -522,7 +522,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“I love to work with his team, he build LMS system for my school. Good job guys”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><cite class="rname">steve harington</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -530,7 +530,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“Great job I love to working with them. They’re very supportive and don’t charge extra for additional work such as website maintenance and technical tasks. Thank you guys”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-5.svg') ?>" alt=""><div><cite class="rname">Ruben</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc lite">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -538,7 +538,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“Great productivity highly recommended no matter which country you’re in. The team is reliable, professional and won’t charge extra for additional work, fully satisfied with the services”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-1.svg') ?>" alt=""><div><cite class="rname">Sonny Hayce</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -546,7 +546,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“Satisfied and timely results. Thanks for your service. Highly recommended”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-2.svg') ?>" alt=""><div><cite class="rname">Khujista Azhar</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc lite">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -554,7 +554,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
     <blockquote>“Amanullah is professional, responsible, and easy to work with”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-3.svg') ?>" alt=""><div><cite class="rname">AZFAR BILAL</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
    <div class="qc">
     <div class="qbg"></div><span class="qm" aria-hidden="true">“</span>
@@ -562,7 +562,7 @@ foreach ($sliderProjects as $idx => $sp) {
     <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="dim">★</span></div>
     <blockquote>“Great team, professional, helpful and always willing to go the extra mile. Highly recommended!”</blockquote>
     <div class="who"><img src="<?= asset_url('images/avatar-4.svg') ?>" alt=""><div><cite class="rname">Johnson Pest Control</cite></div></div>
-    <a class="glink" href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
+    <a class="glink" href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer">Google review · Read on Google →</a>
    </div>
   </div>
  </div>
@@ -590,7 +590,7 @@ foreach ($sliderProjects as $idx => $sp) {
   </div>
  </div>
  <div class="tst-more tv" style="transition-delay:.3s">
-  <a href="https://maps.google.com/?cid=AmaanullahKhan" target="_blank" rel="noopener noreferrer" class="btn-g-all"><span>Read all 27 reviews on Google</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <a href="https://www.google.com/search?kgmid=/g/11xyj_sq2m&amp;q=Amaanullah+Khan+-+Software+Developer" target="_blank" rel="noopener noreferrer" class="btn-g-all"><span>Read all 27 reviews on Google</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
  </div>
 </section>
 <!-- ===== CTA ===== -->
